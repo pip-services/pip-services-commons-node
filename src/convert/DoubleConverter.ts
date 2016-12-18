@@ -1,19 +1,24 @@
 let _ = require('lodash');
 
-import { FloatConverter } from './FloatConverter';
-
 export class DoubleConverter {
 
-    public static toNullableLong(value: any): number {
-        return FloatConverter.toNullableFloat(value);
+    public static toNullableDouble(value: any): number {
+        if (value == null) return null;
+        if (_.isNumber(value)) return value;
+        if (_.isDate(value)) return value.getTime();
+        if (_.isBoolean(value)) return value ? 1 : 0;
+
+        let result = parseFloat(value);
+        return isNaN(result) ? null : result;
     }
 
-    public static toLong(value: any): number {
-       return FloatConverter.toFloat(value);
+    public static toDouble(value: any): number {
+       return DoubleConverter.toDoubleWithDefault(value, 0);
     }
 
-    public static toLongWithDefault(value: any, defaultValue: number = 0): number {
-       return FloatConverter.toFloatWithDefault(value, defaultValue);
+    public static toDoubleWithDefault(value: any, defaultValue: number = 0): number {
+       var result = DoubleConverter.toNullableDouble(value);
+       return result != null ? result : defaultValue;
     }
 
 }

@@ -23,18 +23,18 @@ export class ArrayConverter {
 
 	public static toArray(value: any): any[] {
 		let result: any[] = ArrayConverter.toNullableArray(value);
-		return value || [];
+		return result || [];
 	}
 
 	public static toArrayWithDefault(value: any, defaultValue: any[]): any[] {
 		let result: any[] = ArrayConverter.toNullableArray(value);
-		return value || defaultValue;
+		return result || defaultValue;
 	}
 
     public static listToArray(value: any): any[] {
         if (value == null) return [];
         if (_.isString(value)) value = value.split(',');
-        return _.isArray(value) ? value : [value];
+		return ArrayConverter.toArray(value);
     }
     
 }

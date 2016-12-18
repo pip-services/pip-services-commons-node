@@ -1,0 +1,15 @@
+export enum TypeCode {
+	Unknown,
+	String,
+	Boolean,
+	Integer,
+	Long,
+	Float,
+	Double,
+	DateTime,
+	Duration,
+	Object,
+	Enum,
+	Array,
+	Map,
+}

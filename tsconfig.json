@@ -4,12 +4,16 @@
         "module": "commonjs",
         "target": "es5",
         "noImplicitAny": false,
-        "outDir": "lib",
+        "outDir": "obj",
         "rootDir": ".",
-        "sourceMap": true
+        "sourceMap": true,
+	"types": ["node", "mocha", "chai"] 
     },
     "exclude": [
         "node_modules",
-        "lib"
+        "lib",
+        "dist",
+        "obj",
+        "temp"
     ]
 }
