@@ -18,7 +18,7 @@ var TypeConverter = (function () {
         if (_.isArray(value))
             return TypeCode_1.TypeCode.Array;
         if (_.isBoolean(value))
-            return TypeCode_1.TypeCode.Long;
+            return TypeCode_1.TypeCode.Boolean;
         if (_.isDate(value))
             return TypeCode_1.TypeCode.DateTime;
         if (_.isInteger(value))

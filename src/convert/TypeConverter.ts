@@ -20,7 +20,7 @@ export class TypeConverter {
         if (_.isArray(value))
             return TypeCode.Array;
         if (_.isBoolean(value))
-            return TypeCode.Long;
+            return TypeCode.Boolean;
         if (_.isDate(value))
             return TypeCode.DateTime;
         if (_.isInteger(value))
