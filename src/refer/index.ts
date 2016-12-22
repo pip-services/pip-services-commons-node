@@ -4,3 +4,7 @@ export { ILocateable } from './ILocateable';
 export { IReferences } from './IReferences';
 export { IReferenceable } from './IReferenceable';
 export { IUnreferenceable } from './IUnreferenceable';
+export { Reference } from './Reference';
+export { ReferenceQuery } from './ReferenceQuery';
+export { References } from './References';
+export { ReferenceException } from './ReferenceException';

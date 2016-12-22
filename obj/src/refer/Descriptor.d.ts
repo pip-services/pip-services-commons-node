@@ -3,23 +3,26 @@
  * <ul>
  * <li> logical group: package or other logical group of components like 'pip-services-storage-blocks'
  * <li> component type: identifies component interface like 'controller', 'services' or 'cache'
- * <li> component id: identifies component internal content or implementation like 'memory', 'file' or 'mongodb', ...
+ * <li> component kind: identifies component implementation like 'memory', 'file' or 'mongodb', ...
+ * <li> component name: identifies component internal content, ...
  * <li> implementation version: '1.0', '1.5' or '10.4'
  * </ul>
  */
 export declare class Descriptor {
     private _group;
     private _type;
-    private _id;
+    private _kind;
+    private _name;
     private _version;
     /**
      * Creates instance of a component locator
      * @param group - logical group: 'pip-services-runtime', 'pip-services-logging'
      * @param type - external type: 'cache', 'services' or 'controllers'
-     * @param id - internal content/implementation: 'memory', 'file' or 'memcached'
+     * @param kind - internal implementation: 'memory', 'file' or 'memcached'
+     * @param name - internal content
      * @param version - implementation version: '1.0'. '1.5' or '10.4'
      */
-    constructor(group: string, type: string, id: string, version: string);
+    constructor(group: string, type: string, kind: string, name: string, version: string);
     /**
      * Gets a component group
      * @return a component group
@@ -31,10 +34,15 @@ export declare class Descriptor {
      */
     getType(): string;
     /**
-     * Gets a component id
-     * @return a component id
+     * Gets a component kind
+     * @return a component kind
      */
-    getId(): string;
+    getKind(): string;
+    /**
+     * Gets a component name
+     * @return a component name
+     */
+    getName(): string;
     /**
      * Gets an implementation version
      * @return an implementation version
@@ -55,5 +63,5 @@ export declare class Descriptor {
     isComplete(): boolean;
     equals(value: any): boolean;
     toString(): string;
-    static fromString(value: string): Descriptor;
+    static fromString(value: String): Descriptor;
 }

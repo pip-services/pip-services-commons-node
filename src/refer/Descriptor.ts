@@ -1,34 +1,41 @@
+import { ConfigException } from '../errors/ConfigException';
+
 /**
  * Component descriptor used to find a component by its descriptive elements:
  * <ul>
  * <li> logical group: package or other logical group of components like 'pip-services-storage-blocks'
  * <li> component type: identifies component interface like 'controller', 'services' or 'cache'
- * <li> component id: identifies component internal content or implementation like 'memory', 'file' or 'mongodb', ...
+ * <li> component kind: identifies component implementation like 'memory', 'file' or 'mongodb', ...
+ * <li> component name: identifies component internal content, ...
  * <li> implementation version: '1.0', '1.5' or '10.4'
  * </ul>
  */
 export class Descriptor {
 	private _group: string;
 	private _type: string;
-	private _id: string;
+	private _kind: string;
+	private _name: string;
 	private _version: string;
 	
 	/**
 	 * Creates instance of a component locator
 	 * @param group - logical group: 'pip-services-runtime', 'pip-services-logging' 
 	 * @param type - external type: 'cache', 'services' or 'controllers'
-	 * @param id - internal content/implementation: 'memory', 'file' or 'memcached' 
+	 * @param kind - internal implementation: 'memory', 'file' or 'memcached' 
+	 * @param name - internal content
 	 * @param version - implementation version: '1.0'. '1.5' or '10.4'
 	 */
-	public constructor(group: string, type: string, id: string, version: string) {
+	public constructor(group: string, type: string, kind: string, name: string, version: string) {
 		if ("*" == group) group = null;
 		if ("*" == type) type = null;
-		if ("*" == id) id = null;
+		if ("*" == kind) kind = null;
+		if ("*" == name) name = null;
 		if ("*" == version) version = null;
 		
 		this._group = group;
 		this._type = type;
-		this._id = id;
+		this._kind = kind;
+		this._name = name;
 		this._version = version;
 	}
 
@@ -49,11 +56,19 @@ export class Descriptor {
 	}
 	
 	/**
-	 * Gets a component id
-	 * @return a component id
+	 * Gets a component kind
+	 * @return a component kind
 	 */
-	public getId(): string { 
-		return this._id; 
+	public getKind(): string { 
+		return this._kind; 
+	}
+
+	/**
+	 * Gets a component name
+	 * @return a component name
+	 */
+	public getName(): string { 
+		return this._name; 
 	}
 	
 	/**
@@ -81,7 +96,8 @@ export class Descriptor {
 	public match(descriptor: Descriptor): boolean {
 		return this.matchField(this._group, descriptor.getGroup())
 			&& this.matchField(this._type, descriptor.getType())
-			&& this.matchField(this._id, descriptor.getId())
+			&& this.matchField(this._kind, descriptor.getKind())
+			&& this.matchField(this._name, descriptor.getName())
 			&& this.matchField(this._version, descriptor.getVersion());
 	}
 	
@@ -96,13 +112,14 @@ export class Descriptor {
 	public exactMatch(descriptor: Descriptor): boolean {
 		return this.exactMatchField(this._group, descriptor.getGroup())
 			&& this.exactMatchField(this._type, descriptor.getType())
-			&& this.exactMatchField(this._id, descriptor.getId())
+			&& this.exactMatchField(this._kind, descriptor.getKind())
+			&& this.exactMatchField(this._name, descriptor.getName())
 			&& this.exactMatchField(this._version, descriptor.getVersion());
 	}
 	
 	public isComplete(): boolean {
-		return this._group != null && this._type != null
-			&& this._id != null && this._version != null;
+		return this._group != null && this._type != null && this._kind != null
+			&& this._name != null && this._version != null;
 	}
 	
 	public equals(value: any): boolean {
@@ -112,26 +129,24 @@ export class Descriptor {
 	}
 	
 	public toString(): string {
-		let output = "";
-		output += this._group != null ? this._group : "*";
-	    output += ":" + (this._type != null ? this._type : "*");
-		output += ":" + (this._id != null ? this._id : "*");
-		output += ":" + (this._version != null ? this._version : "*");
-		return output.toString();
+		return (this._group || "*")
+			+ ":" + (this._type || "*")
+			+ ":" + (this._kind || "*")
+			+ ":" + (this._name || "*")
+			+ ":" + (this._version || "*");
 	}
 	
-	public static fromString(value: string): Descriptor {
+	public static fromString(value: String): Descriptor {
 		if (value == null || value.length == 0) 
 			return null;
 				
 		let tokens = value.split(":");
-		if (tokens.length != 4) {
-            throw Error("!!!");
-			// throw new ConfigException(
-			// 	null, "BAD_DESCRIPTOR", "Descriptor " + value + " is in wrong format"
-			// ).withDetails("descriptor", value);
+		if (tokens.length != 5) {
+			throw new ConfigException(
+				null, "BAD_DESCRIPTOR", "Descriptor " + value + " is in wrong format"
+			).withDetails("descriptor", value);
 		}
 			
-		return new Descriptor(tokens[0].trim(), tokens[1].trim(), tokens[2].trim(), tokens[3].trim());		
+		return new Descriptor(tokens[0].trim(), tokens[1].trim(), tokens[2].trim(), tokens[3].trim(), tokens[4].trim());		
 	}
 }
