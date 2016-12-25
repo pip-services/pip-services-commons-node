@@ -5,6 +5,8 @@ import { AnyValueMap } from './AnyValueMap';
 export declare class StringValueMap {
     constructor(map?: any);
     get(name: string): string;
+    put(key: string, value: any): any;
+    delete(key: string): void;
     append(map: any): void;
     clear(): any;
     getAsObject(key?: string): any;

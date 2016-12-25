@@ -3,6 +3,9 @@ import { AnyValue } from './AnyValue';
 import { AnyValueMap } from './AnyValueMap';
 export declare class AnyValueArray extends Array<any> {
     constructor(values?: any[]);
+    get(index: number): any;
+    put(index: number, value: any): void;
+    remove(index: number): void;
     append(elements: any[]): void;
     clear(): void;
     getAsObject(index?: number): any;

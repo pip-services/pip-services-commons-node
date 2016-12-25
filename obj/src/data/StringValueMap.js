@@ -29,6 +29,12 @@ var StringValueMap = (function () {
         }
         return null;
     };
+    StringValueMap.prototype.put = function (key, value) {
+        this[key] = StringConverter_1.StringConverter.toNullableString(value);
+    };
+    StringValueMap.prototype.delete = function (key) {
+        delete this[key];
+    };
     StringValueMap.prototype.append = function (map) {
         if (map == null)
             return;

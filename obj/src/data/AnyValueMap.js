@@ -28,6 +28,12 @@ var AnyValueMap = (function () {
         }
         return null;
     };
+    AnyValueMap.prototype.put = function (key, value) {
+        this[key] = value;
+    };
+    AnyValueMap.prototype.remove = function (key) {
+        delete this[key];
+    };
     AnyValueMap.prototype.append = function (map) {
         if (map == null)
             return;

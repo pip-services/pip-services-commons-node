@@ -25,6 +25,18 @@ export class AnyValueArray extends Array<any> {
         this.append(values);
     }
         
+    public get(index: number): any {
+        return this[index];
+    }
+
+    public put(index: number, value: any): void {
+        this[index] = value;
+    }
+
+    public remove(index: number): void {
+        this.splice(index, 1);
+    }
+
     public append(elements: any[]): void {
     	if (elements != null) {
             for (let index = 0; index < elements.length; index++)            	

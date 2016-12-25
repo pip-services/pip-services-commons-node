@@ -34,6 +34,14 @@ export class AnyValueMap {
     	return null;
     }
 
+	public put(key: string, value: any): any {
+        this[key] = value;
+    }
+
+    public remove(key: string): void {
+        delete this[key];
+    }
+
     public append(map: any): void {
     	if (map == null) return;
     	

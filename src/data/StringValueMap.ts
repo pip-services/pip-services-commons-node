@@ -35,6 +35,14 @@ export class StringValueMap {
     	return null;
     }
     
+	public put(key: string, value: any): any {
+        this[key] = StringConverter.toNullableString(value);
+    }
+
+    public delete(key: string): void {
+        delete this[key];
+    }
+    
     public append(map: any): void {
     	if (map == null) return;
     	

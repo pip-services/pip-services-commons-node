@@ -1,0 +1,48 @@
+let _ = require('lodash');
+let async = require('async');
+
+/**
+ * Helper class that cleans components
+ */
+export class Cleaner {
+	/**
+	 * Cleans component that implement ICleanable interface
+	 * @param correlationId a unique transaction id to trace calls across components
+	 * @param component a components to be cleaned
+     * @param callback a function to call back when cleaning is complete
+	 */
+	public static clearOne(correlationId: string, component: any, callback?: (err: any) => void): void {
+        if (_.isFunction(component.clear)) {
+			try {
+				component.clear(correlationId);
+			} catch (err) {
+				if (callback != null)
+					callback(err);
+				else
+					throw err;
+			}
+		} else if (callback != null)
+			callback(null);
+	}
+
+	/**
+	 * Cleans components that implement ICleanable interface
+	 * @param correlationId a unique transaction id to trace calls across components
+	 * @param components a list of components to be cleaned
+     * @param callback a function to call back when cleaning is complete
+	 */
+	public static clear(correlationId: string, components: any[], callback?: (err: any) => void) {		
+        async.eachSeries(
+            components, 
+            (component, callback) => {
+				Cleaner.clearOne(correlationId, component, callback);
+            },
+            (err) => {
+				if (callback != null) 
+					callback(err);
+				else if (err != null)
+					throw err;
+			}
+        );            
+	}
+}

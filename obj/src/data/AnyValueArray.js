@@ -27,6 +27,15 @@ var AnyValueArray = (function (_super) {
         _this.append(values);
         return _this;
     }
+    AnyValueArray.prototype.get = function (index) {
+        return this[index];
+    };
+    AnyValueArray.prototype.put = function (index, value) {
+        this[index] = value;
+    };
+    AnyValueArray.prototype.remove = function (index) {
+        this.splice(index, 1);
+    };
     AnyValueArray.prototype.append = function (elements) {
         if (elements != null) {
             for (var index = 0; index < elements.length; index++)

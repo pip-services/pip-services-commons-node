@@ -8,11 +8,13 @@ export interface IReferences {
      * Puts a new component reference to the set with explicit locator
      * @param locator a locator to find the reference
      * @param component a component reference to be added
+     * @param callback callback function with execution error
      */
     put(component: any, locator?: any): any;
     /**
      * Puts list of component references
      * @param reference a component reference to be added
+     * @param callback callback function with execution error
      */
     putAll(...components: any[]): void;
     /**
@@ -20,23 +22,27 @@ export interface IReferences {
      * The method removes only the last reference.
      * @param locator a locator to find the reference to remove
      * @return a removed reference
+     * @param callback callback function with execution error
      */
     remove(locator: any): any;
     /**
      * Removes all component references from the set.
      * @param locator a locator to find the reference to remove
      * @return a list with removed references
+     * @param callback callback function with execution error
      */
     removeAll(locator: any): any[];
     /**
      * Gets all stored component references
      * @return a list with component references
+     * @param callback callback function with execution error
      */
     getAll(): any[];
     /**
      * Gets a list of component references that match provided locator
      * and matching to the specified type.
      * @param locator a locator to find references
+     * @param callback callback function with execution error
      * @return a list with found component references
      */
     getOptional<T>(locator: any): T[];
@@ -45,6 +51,7 @@ export interface IReferences {
      * and matching to the specified type.
      * If no references found an exception is thrown
      * @param locator a locator to find references
+     * @param callback callback function with execution error
      * @return a list with found component references
      * @throws ReferenceException when no single component reference is found
      */
@@ -54,6 +61,7 @@ export interface IReferences {
      * and matching to the specified type.
      * The search is performed from latest added references.
      * @param locator a locator to find a reference
+     * @param callback callback function with execution error
      * @return a found component reference or <code>null</code> if nothing was found
      */
     getOneOptional<T>(locator: any): T;
@@ -62,6 +70,7 @@ export interface IReferences {
      * and matching to the specified type.
      * The search is performed from latest added references.
      * @param locator a locator to find a reference
+     * @param callback callback function with execution error
      * @return a found component reference
      * @throws ReferenceException when requested component wasn't found
      */
