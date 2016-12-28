@@ -37,15 +37,18 @@ var MemoryCredentialStore = (function () {
         else {
             this._items.delete(key);
         }
-        callback(null);
+        if (callback)
+            callback(null);
     };
     MemoryCredentialStore.prototype.lookup = function (correlationId, key, callback) {
         var credential = this._items.getAsObject(key);
         if (credential instanceof CredentialParams_1.CredentialParams) {
-            callback(null, credential);
+            if (callback)
+                callback(null, credential);
         }
         else {
-            callback(null, null);
+            if (callback)
+                callback(null, null);
         }
     };
     return MemoryCredentialStore;
