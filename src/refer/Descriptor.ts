@@ -43,7 +43,7 @@ export class Descriptor {
 	 * Gets a component group
 	 * @return a component group
 	 */
-	public getGroup(): string { 
+	public get group(): string { 
 		return this._group; 
 	}
 	
@@ -51,7 +51,7 @@ export class Descriptor {
 	 * Gets a component type
 	 * @return a component type
 	 */
-	public getType(): string { 
+	public get type(): string { 
 		return this._type; 
 	}
 	
@@ -59,7 +59,7 @@ export class Descriptor {
 	 * Gets a component kind
 	 * @return a component kind
 	 */
-	public getKind(): string { 
+	public get kind(): string { 
 		return this._kind; 
 	}
 
@@ -67,7 +67,7 @@ export class Descriptor {
 	 * Gets a component name
 	 * @return a component name
 	 */
-	public getName(): string { 
+	public get name(): string { 
 		return this._name; 
 	}
 	
@@ -75,7 +75,7 @@ export class Descriptor {
 	 * Gets an implementation version
 	 * @return an implementation version
 	 */
-	public getVersion(): string { 
+	public get version(): string { 
 		return this._version; 
 	}
 
@@ -94,11 +94,11 @@ export class Descriptor {
 	 * @return <b>true</b> if descriptors match or <b>false</b> otherwise. 
 	 */
 	public match(descriptor: Descriptor): boolean {
-		return this.matchField(this._group, descriptor.getGroup())
-			&& this.matchField(this._type, descriptor.getType())
-			&& this.matchField(this._kind, descriptor.getKind())
-			&& this.matchField(this._name, descriptor.getName())
-			&& this.matchField(this._version, descriptor.getVersion());
+		return this.matchField(this._group, descriptor.group)
+			&& this.matchField(this._type, descriptor.type)
+			&& this.matchField(this._kind, descriptor.kind)
+			&& this.matchField(this._name, descriptor.name)
+			&& this.matchField(this._version, descriptor.version);
 	}
 	
 	private exactMatchField(field1: string, field2: string): boolean {
@@ -110,11 +110,11 @@ export class Descriptor {
 	}
 	
 	public exactMatch(descriptor: Descriptor): boolean {
-		return this.exactMatchField(this._group, descriptor.getGroup())
-			&& this.exactMatchField(this._type, descriptor.getType())
-			&& this.exactMatchField(this._kind, descriptor.getKind())
-			&& this.exactMatchField(this._name, descriptor.getName())
-			&& this.exactMatchField(this._version, descriptor.getVersion());
+		return this.exactMatchField(this._group, descriptor.group)
+			&& this.exactMatchField(this._type, descriptor.type)
+			&& this.exactMatchField(this._kind, descriptor.kind)
+			&& this.exactMatchField(this._name, descriptor.name)
+			&& this.exactMatchField(this._version, descriptor.version);
 	}
 	
 	public isComplete(): boolean {

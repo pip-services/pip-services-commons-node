@@ -27,27 +27,27 @@ export declare class Descriptor {
      * Gets a component group
      * @return a component group
      */
-    getGroup(): string;
+    readonly group: string;
     /**
      * Gets a component type
      * @return a component type
      */
-    getType(): string;
+    readonly type: string;
     /**
      * Gets a component kind
      * @return a component kind
      */
-    getKind(): string;
+    readonly kind: string;
     /**
      * Gets a component name
      * @return a component name
      */
-    getName(): string;
+    readonly name: string;
     /**
      * Gets an implementation version
      * @return an implementation version
      */
-    getVersion(): string;
+    readonly version: string;
     private matchField(field1, field2);
     /**
      * Matches this descriptor to another descriptor

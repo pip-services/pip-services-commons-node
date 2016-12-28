@@ -36,41 +36,61 @@ var Descriptor = (function () {
         this._name = name;
         this._version = version;
     }
-    /**
-     * Gets a component group
-     * @return a component group
-     */
-    Descriptor.prototype.getGroup = function () {
-        return this._group;
-    };
-    /**
-     * Gets a component type
-     * @return a component type
-     */
-    Descriptor.prototype.getType = function () {
-        return this._type;
-    };
-    /**
-     * Gets a component kind
-     * @return a component kind
-     */
-    Descriptor.prototype.getKind = function () {
-        return this._kind;
-    };
-    /**
-     * Gets a component name
-     * @return a component name
-     */
-    Descriptor.prototype.getName = function () {
-        return this._name;
-    };
-    /**
-     * Gets an implementation version
-     * @return an implementation version
-     */
-    Descriptor.prototype.getVersion = function () {
-        return this._version;
-    };
+    Object.defineProperty(Descriptor.prototype, "group", {
+        /**
+         * Gets a component group
+         * @return a component group
+         */
+        get: function () {
+            return this._group;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Descriptor.prototype, "type", {
+        /**
+         * Gets a component type
+         * @return a component type
+         */
+        get: function () {
+            return this._type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Descriptor.prototype, "kind", {
+        /**
+         * Gets a component kind
+         * @return a component kind
+         */
+        get: function () {
+            return this._kind;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Descriptor.prototype, "name", {
+        /**
+         * Gets a component name
+         * @return a component name
+         */
+        get: function () {
+            return this._name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Descriptor.prototype, "version", {
+        /**
+         * Gets an implementation version
+         * @return an implementation version
+         */
+        get: function () {
+            return this._version;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Descriptor.prototype.matchField = function (field1, field2) {
         return field1 == null
             || field2 == null
@@ -85,11 +105,11 @@ var Descriptor = (function () {
      * @return <b>true</b> if descriptors match or <b>false</b> otherwise.
      */
     Descriptor.prototype.match = function (descriptor) {
-        return this.matchField(this._group, descriptor.getGroup())
-            && this.matchField(this._type, descriptor.getType())
-            && this.matchField(this._kind, descriptor.getKind())
-            && this.matchField(this._name, descriptor.getName())
-            && this.matchField(this._version, descriptor.getVersion());
+        return this.matchField(this._group, descriptor.group)
+            && this.matchField(this._type, descriptor.type)
+            && this.matchField(this._kind, descriptor.kind)
+            && this.matchField(this._name, descriptor.name)
+            && this.matchField(this._version, descriptor.version);
     };
     Descriptor.prototype.exactMatchField = function (field1, field2) {
         if (field1 == null && field2 == null)
@@ -99,11 +119,11 @@ var Descriptor = (function () {
         return field1 == field2;
     };
     Descriptor.prototype.exactMatch = function (descriptor) {
-        return this.exactMatchField(this._group, descriptor.getGroup())
-            && this.exactMatchField(this._type, descriptor.getType())
-            && this.exactMatchField(this._kind, descriptor.getKind())
-            && this.exactMatchField(this._name, descriptor.getName())
-            && this.exactMatchField(this._version, descriptor.getVersion());
+        return this.exactMatchField(this._group, descriptor.group)
+            && this.exactMatchField(this._type, descriptor.type)
+            && this.exactMatchField(this._kind, descriptor.kind)
+            && this.exactMatchField(this._name, descriptor.name)
+            && this.exactMatchField(this._version, descriptor.version);
     };
     Descriptor.prototype.isComplete = function () {
         return this._group != null && this._type != null && this._kind != null
