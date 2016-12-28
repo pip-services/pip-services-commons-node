@@ -2,12 +2,14 @@ import { TypeCode } from '../convert/TypeCode';
 import { AnyValue } from './AnyValue';
 import { AnyValueArray } from './AnyValueArray';
 export declare class AnyValueMap {
+    private count;
     constructor(values?: any);
     get(name: string): any;
     put(key: string, value: any): any;
     remove(key: string): void;
     append(map: any): void;
     clear(): any;
+    getCount(): number;
     getAsObject(key?: string): any;
     setAsObject(key: any, value?: any): void;
     getAsNullableString(key: string): string;

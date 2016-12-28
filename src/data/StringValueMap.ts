@@ -34,6 +34,18 @@ export class StringValueMap {
     	
     	return null;
     }
+
+	public getKeyNames(): string[] {
+        let names: string[] = [];
+		
+		for (let key in this) {
+            if (this.hasOwnProperty(key)) {
+                names.push(key);
+            }
+        }
+
+        return names;
+    }            
     
 	public put(key: string, value: any): any {
         this[key] = StringConverter.toNullableString(value);
@@ -258,6 +270,16 @@ export class StringValueMap {
     	return new StringValueMap(this);
     }
 
+    public getCount(): number {
+        let count: number = 0;
+    	for (let key in this) {
+    		if (this.hasOwnProperty(key)) {
+                count ++;
+            }
+    	}        
+        return count;
+    }    
+
     public static fromTuples(...tuples: any[]): StringValueMap {
         return StringValueMap.fromTuplesArray(tuples);
     }
@@ -308,5 +330,4 @@ export class StringValueMap {
     	}
     	return result;
     }
-
 }

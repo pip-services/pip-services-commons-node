@@ -29,6 +29,15 @@ var StringValueMap = (function () {
         }
         return null;
     };
+    StringValueMap.prototype.getKeyNames = function () {
+        var names = [];
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                names.push(key);
+            }
+        }
+        return names;
+    };
     StringValueMap.prototype.put = function (key, value) {
         this[key] = StringConverter_1.StringConverter.toNullableString(value);
     };
@@ -212,6 +221,15 @@ var StringValueMap = (function () {
     };
     StringValueMap.prototype.clone = function () {
         return new StringValueMap(this);
+    };
+    StringValueMap.prototype.getCount = function () {
+        var count = 0;
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                count++;
+            }
+        }
+        return count;
     };
     StringValueMap.fromTuples = function () {
         var tuples = [];

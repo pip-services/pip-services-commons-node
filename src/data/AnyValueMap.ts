@@ -15,6 +15,8 @@ import { AnyValueArray } from './AnyValueArray';
 
 export class AnyValueMap {
 
+    private count: number;
+
     public constructor(values: any = null) { 
     	this.append(values);
     }
@@ -58,6 +60,16 @@ export class AnyValueMap {
             if (this.hasOwnProperty(key))
     		    delete this[key];
     	}
+    }
+
+    public getCount(): number {
+        let count: number = 0;
+    	for (let key in this) {
+    		if (this.hasOwnProperty(key)) {
+                count ++;
+            }
+    	}        
+        return count;
     }
         
     public getAsObject(key: string = null): any {

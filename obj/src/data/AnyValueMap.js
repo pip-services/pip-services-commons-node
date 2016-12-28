@@ -50,6 +50,15 @@ var AnyValueMap = (function () {
                 delete this[key];
         }
     };
+    AnyValueMap.prototype.getCount = function () {
+        var count = 0;
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                count++;
+            }
+        }
+        return count;
+    };
     AnyValueMap.prototype.getAsObject = function (key) {
         if (key === void 0) { key = null; }
         if (key == null) {

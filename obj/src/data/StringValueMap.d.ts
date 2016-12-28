@@ -5,6 +5,7 @@ import { AnyValueMap } from './AnyValueMap';
 export declare class StringValueMap {
     constructor(map?: any);
     get(name: string): string;
+    getKeyNames(): string[];
     put(key: string, value: any): any;
     delete(key: string): void;
     append(map: any): void;
@@ -44,6 +45,7 @@ export declare class StringValueMap {
     getAsMapWithDefault(key: string, defaultValue: AnyValueMap): AnyValueMap;
     toString(): string;
     clone(): any;
+    getCount(): number;
     static fromTuples(...tuples: any[]): StringValueMap;
     static fromTuplesArray(tuples: any[]): StringValueMap;
     static fromString(line: string): StringValueMap;
