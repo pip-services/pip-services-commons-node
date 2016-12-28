@@ -13,6 +13,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	/**
 	 * Default configuration for memory cache component
 	 */
+    //milliseconds
     private static readonly _defaultTimeout: number = 60000;
     private static readonly _defaultMaxSize: number = 1000;
 
@@ -20,6 +21,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
     private _count: number = 0;
 
     private _name: string;
+    //milliseconds
     private _timeout: number;
     private _maxSize: number;
 
@@ -83,17 +85,6 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
         this.maxSize = config.getAsLongWithDefault("max_size", this.maxSize);
     }
 
-    public retrieveAsync(correlationId: string, key: string): any {
-        return null;
-    }
-
-    public storeAsync(correlationId: string, key: string, value: any, timeout: number): any {
-        return value;
-    }
-
-    public removeAsync(correlationId: string, key: string): void {
-    }
-	
 	/**
 	 * Cleans up cache from obsolete values and shrinks the cache
 	 * to fit into allowed max size by dropping values that were not
@@ -160,7 +151,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
             return;
         }
                 
-        callback(null, entry.value());
+        callback(null, entry.value);
     }
     
 	/**

@@ -36,9 +36,6 @@ export declare class MemoryCache implements ICache, IDescriptable, IReconfigurab
      * or configuration validation fails.
      */
     configure(config: ConfigParams): void;
-    retrieveAsync(correlationId: string, key: string): any;
-    storeAsync(correlationId: string, key: string, value: any, timeout: number): any;
-    removeAsync(correlationId: string, key: string): void;
     /**
      * Cleans up cache from obsolete values and shrinks the cache
      * to fit into allowed max size by dropping values that were not

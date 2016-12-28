@@ -24,7 +24,7 @@ export class CacheEntry {
 
     public setValue(value: any, timeout: number): void {
         this._value = value;
-	this._expiration = new Date().getTime() + timeout;
+	    this._expiration = new Date().getTime() + timeout;
     }
 	
     public isExpired(): boolean

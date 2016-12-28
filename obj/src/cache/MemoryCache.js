@@ -66,14 +66,6 @@ var MemoryCache = (function () {
         this.timeout = config.getAsLongWithDefault("timeout", this.timeout);
         this.maxSize = config.getAsLongWithDefault("max_size", this.maxSize);
     };
-    MemoryCache.prototype.retrieveAsync = function (correlationId, key) {
-        return null;
-    };
-    MemoryCache.prototype.storeAsync = function (correlationId, key, value, timeout) {
-        return value;
-    };
-    MemoryCache.prototype.removeAsync = function (correlationId, key) {
-    };
     /**
      * Cleans up cache from obsolete values and shrinks the cache
      * to fit into allowed max size by dropping values that were not
@@ -132,7 +124,7 @@ var MemoryCache = (function () {
             callback(null, null);
             return;
         }
-        callback(null, entry.value());
+        callback(null, entry.value);
     };
     /**
      * Stores value identified by unique key in the cache.
@@ -199,6 +191,7 @@ var MemoryCache = (function () {
 /**
  * Default configuration for memory cache component
  */
+//milliseconds
 MemoryCache._defaultTimeout = 60000;
 MemoryCache._defaultMaxSize = 1000;
 /**
