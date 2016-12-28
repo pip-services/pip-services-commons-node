@@ -1,4 +1,5 @@
 export * from './auth';
+export * from './cache';
 export * from './convert';
 export * from './errors';
 export * from './data';
