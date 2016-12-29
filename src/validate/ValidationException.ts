@@ -1,0 +1,53 @@
+import { ValidationResult } from './ValidationResult';
+import { ValidationResultType } from './ValidationResultType';
+import { BadRequestException } from '../errors/BadRequestException';
+
+export class ValidationException extends BadRequestException {
+    private static readonly SerialVersionUid: number = -1459801864235223845;
+
+    public constructor(correlationId: string, message?: string, results?: ValidationResult[])
+    {
+        super(correlationId, "INVALID_DATA", message || ValidationException.composeMessage(results));
+
+        if (results)
+            this.withDetails("results", results);
+    }
+    
+    public static composeMessage(results: ValidationResult[]): string{
+        let builder: string = "Validation failed";
+
+        if (results && results.length > 0) {
+            var first = true;
+            for (var i = 0; i < results.length; i++) {
+                let result: ValidationResult = results[i];
+
+                if (result.type == ValidationResultType.Information)
+                    continue;
+
+                builder += !first ? ": " : ", ";
+                builder += result.message;
+                first = false;
+            }
+        }
+
+        return builder;
+    }
+    
+    public static throwExceptionIfNeeded(correlationId: string, results: ValidationResult[], strict: boolean): void {
+        var hasErrors = false;
+
+        for (var i = 0; i < results.length; i++) {
+            let result: ValidationResult = results[i];
+
+            if (result.type == ValidationResultType.Error)
+                hasErrors = true;
+
+            if (strict && result.type == ValidationResultType.Warning)
+                hasErrors = true;
+        }
+
+        if (hasErrors)
+            throw new ValidationException(correlationId, null, results);
+    }
+
+}

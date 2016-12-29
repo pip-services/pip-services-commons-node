@@ -3,6 +3,6 @@ import { Parameters } from '../run/Parameters';
 import { ValidationResult } from '../validate/ValidationResult';
 
 export interface ICommand extends IExecutable {
-    path: string;
+    name: string;
     validate(args: Parameters): ValidationResult[];
 }

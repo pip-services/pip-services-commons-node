@@ -33,9 +33,9 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 */
     public constructor(name: string = null, config: ConfigParams = null)
     {
-        this.name = name;
-        this.timeout = MemoryCache._defaultTimeout;
-        this.maxSize = MemoryCache._defaultMaxSize;
+        this._name = name;
+        this._timeout = MemoryCache._defaultTimeout;
+        this._maxSize = MemoryCache._defaultMaxSize;
 
         if (config != null) this.configure(config);
     }
