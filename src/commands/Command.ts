@@ -28,18 +28,24 @@ export class Command implements ICommand {
         return this._name; 
     }
     
-    public execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): any {
+    public execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void {
         if (this._schema)
             this._schema.validateAndThrowException(correlationId, args);
 
         try {
-            return this._function.execute(correlationId, args, callback);
+            this._function.execute(correlationId, args, callback);
         } catch (ex) {
-            throw new InvocationException(
+            var err = new InvocationException(
                 correlationId, 
                 "EXEC_FAILED", 
                 "Execution " + this.name + " failed: " + ex
             ).withDetails("command", this.name).wrap(ex);
+
+            if (callback) {
+                callback(err, null);
+            } else {
+                throw err;
+            }
         }
     }
 
