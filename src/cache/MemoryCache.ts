@@ -1,5 +1,3 @@
-let _ = require('lodash');
-
 import { ICache } from './ICache';
 import { CacheEntry } from './CacheEntry';
 import { Descriptor } from '../refer/Descriptor';
