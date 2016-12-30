@@ -11,7 +11,7 @@ export class Schema {
     private _isRequired: boolean;
     private _rules: IValidationRule[];
     
-    public constructor(required: boolean, rules: IValidationRule[])
+    public constructor(required?: boolean, rules?: IValidationRule[])
     {
         this._isRequired = required;
         this._rules = rules;

@@ -2,8 +2,8 @@ import { IEvent } from './IEvent';
 import { IEventListener } from './IEventListener';
 import { Parameters } from '../run/Parameters';
 export declare class Event implements IEvent {
-    _name: string;
-    _listeners: IEventListener[];
+    private _name;
+    private _listeners;
     constructor(name: string);
     readonly name: string;
     readonly listeners: IEventListener[];

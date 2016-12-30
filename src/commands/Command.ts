@@ -9,7 +9,7 @@ export class Command implements ICommand {
     private readonly _schema: Schema;
     private readonly _function: IExecutable;
 
-    public _name: string;
+    private _name: string;
 
     public constructor(name: string, schema: Schema, func: IExecutable)
     {

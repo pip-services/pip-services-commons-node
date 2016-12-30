@@ -5,8 +5,8 @@ import { Parameters } from '../run/Parameters';
 import { ValidationResult } from '../validate/ValidationResult';
 
 export class Event implements IEvent {
-    public _name: string;
-    public _listeners: IEventListener[];
+    private _name: string;
+    private _listeners: IEventListener[];
 
     public constructor(name: string)
     {

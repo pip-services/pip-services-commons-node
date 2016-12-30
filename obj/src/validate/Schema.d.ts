@@ -3,7 +3,7 @@ import { ValidationResult } from './ValidationResult';
 export declare class Schema {
     private _isRequired;
     private _rules;
-    constructor(required: boolean, rules: IValidationRule[]);
+    constructor(required?: boolean, rules?: IValidationRule[]);
     isRequired: boolean;
     rules: IValidationRule[];
     makeRequired(): Schema;

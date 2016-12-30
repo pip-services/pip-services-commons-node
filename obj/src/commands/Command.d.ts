@@ -6,7 +6,7 @@ import { ValidationResult } from '../validate/ValidationResult';
 export declare class Command implements ICommand {
     private readonly _schema;
     private readonly _function;
-    _name: string;
+    private _name;
     constructor(name: string, schema: Schema, func: IExecutable);
     readonly name: string;
     execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void;
