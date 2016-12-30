@@ -1,5 +1,4 @@
 "use strict";
-var _ = require('lodash');
 var CacheEntry_1 = require("./CacheEntry");
 var Descriptor_1 = require("../refer/Descriptor");
 var NameResolver_1 = require("../config/NameResolver");
@@ -13,9 +12,9 @@ var MemoryCache = (function () {
         if (config === void 0) { config = null; }
         this._cache = {};
         this._count = 0;
-        this.name = name;
-        this.timeout = MemoryCache._defaultTimeout;
-        this.maxSize = MemoryCache._defaultMaxSize;
+        this._name = name;
+        this._timeout = MemoryCache._defaultTimeout;
+        this._maxSize = MemoryCache._defaultMaxSize;
         if (config != null)
             this.configure(config);
     }

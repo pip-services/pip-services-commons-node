@@ -4,9 +4,11 @@ function __export(m) {
 }
 __export(require("./auth"));
 __export(require("./cache"));
+__export(require("./commands"));
 __export(require("./convert"));
 __export(require("./errors"));
 __export(require("./data"));
 __export(require("./random"));
 __export(require("./refer"));
+__export(require("./validate"));
 //# sourceMappingURL=index.js.map
