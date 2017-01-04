@@ -1,12 +1,13 @@
 "use strict";
 var LogLevel_1 = require("./LogLevel");
+var StringConverter_1 = require("../convert/StringConverter");
 var LogLevelConverter = (function () {
     function LogLevelConverter() {
     }
     LogLevelConverter.toLogLevel = function (value) {
         if (value == null)
             return LogLevel_1.LogLevel.Info;
-        value = value.toString().toUpperCase();
+        value = StringConverter_1.StringConverter.toString(value).toUpperCase();
         if ("0" == value || "NOTHING" == value || "NONE" == value)
             return LogLevel_1.LogLevel.None;
         else if ("1" == value || "FATAL" == value)

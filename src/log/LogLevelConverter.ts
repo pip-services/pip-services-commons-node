@@ -1,11 +1,12 @@
 import { LogLevel } from './LogLevel';
+import { StringConverter } from '../convert/StringConverter';
 
 export class LogLevelConverter {
 
     public static toLogLevel(value: any): LogLevel {
         if (value == null) return LogLevel.Info;
 
-        value = value.toString().toUpperCase();
+        value = StringConverter.toString(value).toUpperCase();
         if ("0" == value || "NOTHING" == value || "NONE" == value)
             return LogLevel.None;
         else if ("1" == value || "FATAL" == value)
