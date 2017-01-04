@@ -1,0 +1,3 @@
+export { ConnectionParams } from './ConnectionParams';
+export { IDiscovery } from './IDiscovery';
+export { ConnectionResolver } from './ConnectionResolver';

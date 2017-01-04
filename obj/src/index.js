@@ -5,6 +5,7 @@ function __export(m) {
 __export(require("./auth"));
 __export(require("./cache"));
 __export(require("./commands"));
+__export(require("./connect"));
 __export(require("./convert"));
 __export(require("./errors"));
 __export(require("./data"));
