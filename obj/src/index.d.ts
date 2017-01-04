@@ -4,6 +4,7 @@ export * from './commands';
 export * from './connect';
 export * from './convert';
 export * from './errors';
+export * from './log';
 export * from './data';
 export * from './random';
 export * from './refer';

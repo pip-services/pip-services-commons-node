@@ -8,6 +8,7 @@ __export(require("./commands"));
 __export(require("./connect"));
 __export(require("./convert"));
 __export(require("./errors"));
+__export(require("./log"));
 __export(require("./data"));
 __export(require("./random"));
 __export(require("./refer"));
