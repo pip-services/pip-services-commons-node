@@ -11,6 +11,7 @@ var Schema_1 = require("./Schema");
 var ObjectReader_1 = require("../reflect/ObjectReader");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
+var StringConverter_1 = require("../convert/StringConverter");
 var MapSchema = (function (_super) {
     __extends(MapSchema, _super);
     function MapSchema(required, rules, keyType, valueType) {
@@ -48,7 +49,7 @@ var MapSchema = (function (_super) {
         var map = valueType === TypeCode_1.TypeCode.Map ? value : null;
         if (map) {
             for (var key in map) {
-                var elementPath = path ? path + "." + key : key.toString();
+                var elementPath = path ? path + "." + key : StringConverter_1.StringConverter.toString(key);
                 this.performTypeValidation(elementPath, this.keyType, key, results);
                 this.performTypeValidation(elementPath, this.valueType, map[key], results);
             }

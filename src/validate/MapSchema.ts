@@ -3,12 +3,11 @@ let _ = require('lodash');
 import { IValidationRule } from './IValidationRule';
 import { ValidationResult } from './ValidationResult';
 import { ValidationResultType } from './ValidationResultType';
-import { ValidationException } from './ValidationException';
 import { Schema } from './Schema';
 import { ObjectReader } from '../reflect/ObjectReader';
-import { TypeMatcher } from '../reflect/TypeMatcher';
 import { TypeCode } from '../convert/TypeCode';
 import { TypeConverter } from '../convert/TypeConverter';
+import { StringConverter } from '../convert/StringConverter';
 
 export class MapSchema extends Schema {
     private _keyType: any;
@@ -51,7 +50,7 @@ export class MapSchema extends Schema {
 
         if (map) {
             for (var key in map) {
-                var elementPath = path ? path + "." + key : key.toString();
+                var elementPath = path ? path + "." + key : StringConverter.toString(key);
 
                 this.performTypeValidation(elementPath, this.keyType, key, results);
                 this.performTypeValidation(elementPath, this.valueType, map[key], results);
