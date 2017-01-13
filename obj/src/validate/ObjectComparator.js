@@ -24,9 +24,9 @@ var ObjectComparator = (function () {
         return true;
     };
     ObjectComparator.areEqual = function (value1, value2) {
-        if (!value1 && !value2)
+        if (value1 == null && value2 == null)
             return true;
-        if (!value1 || !value2)
+        if (value1 == null || value2 == null)
             return false;
         return _.isEqual(value1, value2);
     };
@@ -43,14 +43,14 @@ var ObjectComparator = (function () {
     ObjectComparator.more = function (value1, value2) {
         var number1 = DoubleConverter_1.DoubleConverter.toNullableDouble(value1);
         var number2 = DoubleConverter_1.DoubleConverter.toNullableDouble(value2);
-        if (!number1 || !number2)
+        if (number1 == null || number2 == null)
             return false;
         return number1 > number2;
     };
     ObjectComparator.match = function (value1, value2) {
-        if (!value1 && !value2)
+        if (value1 == null && value2 == null)
             return true;
-        if (!value1 || !value2)
+        if (value1 == null || value2 == null)
             return false;
         var str1 = StringConverter_1.StringConverter.toString(value1);
         var str2 = StringConverter_1.StringConverter.toString(value2);

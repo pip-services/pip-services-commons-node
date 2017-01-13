@@ -10,7 +10,7 @@ export class PropertiesComparisonRule implements IValidationRule {
     private readonly _property2: string;
     private readonly _operation: string;
 
-    public constructor(property1: string, property2: string, operation: string) {
+    public constructor(property1: string, operation: string, property2: string) {
         this._property1 = property1;
         this._property2 = property2;
         this._operation = operation;

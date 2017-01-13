@@ -50,7 +50,7 @@ export class Schema {
     }
 
     protected performValidation(path: string, value: any, results: ValidationResult[]): void {
-        if (!value) {
+        if (value == null) {
             if (this.isRequired) {
                 results.push(new ValidationResult(
                     path,
@@ -76,7 +76,7 @@ export class Schema {
 
     protected performTypeValidation(path: string, type: any, value: any, results: ValidationResult[]): void {
         // If type it not defined then skip
-        if (!type) return;
+        if (type == null) return;
 
         // Perform validation against schema
         if (type instanceof Schema) {
@@ -87,7 +87,7 @@ export class Schema {
 
         // If value is null then skip
         value = ObjectReader.getValue(value);
-        if (!value) return;
+        if (value == null) return;
 
         let valueType: TypeCode = TypeConverter.toTypeCode(value);
 

@@ -44,7 +44,7 @@ var Schema = (function () {
         return this;
     };
     Schema.prototype.performValidation = function (path, value, results) {
-        if (!value) {
+        if (value == null) {
             if (this.isRequired) {
                 results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_IS_NULL", "value cannot be null", "NOT NULL", null));
             }
@@ -62,7 +62,7 @@ var Schema = (function () {
     };
     Schema.prototype.performTypeValidation = function (path, type, value, results) {
         // If type it not defined then skip
-        if (!type)
+        if (type == null)
             return;
         // Perform validation against schema
         if (type instanceof Schema) {
@@ -72,7 +72,7 @@ var Schema = (function () {
         }
         // If value is null then skip
         value = ObjectReader_1.ObjectReader.getValue(value);
-        if (!value)
+        if (value == null)
             return;
         var valueType = TypeConverter_1.TypeConverter.toTypeCode(value);
         // Match types

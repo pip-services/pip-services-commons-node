@@ -4,7 +4,7 @@ var ObjectComparator_1 = require("./ObjectComparator");
 var ValidationResultType_1 = require("./ValidationResultType");
 var ObjectReader_1 = require("../reflect/ObjectReader");
 var PropertiesComparisonRule = (function () {
-    function PropertiesComparisonRule(property1, property2, operation) {
+    function PropertiesComparisonRule(property1, operation, property2) {
         this._property1 = property1;
         this._property2 = property2;
         this._operation = operation;
