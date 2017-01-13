@@ -65,8 +65,8 @@ var Schema = (function () {
         if (!type)
             return;
         // Perform validation against schema
-        var schema = type;
-        if (schema) {
+        if (type instanceof Schema) {
+            var schema = type;
             schema.performValidation(path, value, results);
             return;
         }

@@ -37,7 +37,7 @@ export class ObjectSchema extends Schema {
         return this;
     }
 
-    public withRequiredProperty(name: string, type: any, ...rules: IValidationRule[]): ObjectSchema {
+    public withRequiredProperty(name: string, type?: any, ...rules: IValidationRule[]): ObjectSchema {
         this.properties = this.properties || [];
 
         var schema = new PropertySchema(null, null, name, type);
@@ -47,7 +47,7 @@ export class ObjectSchema extends Schema {
         return this.withProperty(schema);
     }
 
-    public WithOptionalProperty(name: string, type: any, ...rules: IValidationRule[]): ObjectSchema {
+    public withOptionalProperty(name: string, type?: any, ...rules: IValidationRule[]): ObjectSchema {
         this.properties = this.properties || [];
 
         var schema = new PropertySchema(null, null, name, type);

@@ -35,7 +35,7 @@ export class PropertySchema extends Schema {
 
         super.performValidation(path, value, results);
 
-        this.performTypeValidation(path, this.type, value, results);
+        super.performTypeValidation(path, this.type, value, results);
     }
 
 }

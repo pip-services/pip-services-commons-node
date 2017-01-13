@@ -9,7 +9,7 @@ export declare class ObjectSchema extends Schema {
     isUndefinedAllowed: boolean;
     allowUndefined(value: boolean): ObjectSchema;
     withProperty(schema: PropertySchema): ObjectSchema;
-    withRequiredProperty(name: string, type: any, ...rules: IValidationRule[]): ObjectSchema;
-    WithOptionalProperty(name: string, type: any, ...rules: IValidationRule[]): ObjectSchema;
+    withRequiredProperty(name: string, type?: any, ...rules: IValidationRule[]): ObjectSchema;
+    withOptionalProperty(name: string, type?: any, ...rules: IValidationRule[]): ObjectSchema;
     protected performValidation(path: string, value: any, results: ValidationResult[]): void;
 }

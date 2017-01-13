@@ -79,8 +79,8 @@ export class Schema {
         if (!type) return;
 
         // Perform validation against schema
-        let schema: Schema = type;
-        if (schema) {
+        if (type instanceof Schema) {
+            let schema: Schema = type as Schema;
             schema.performValidation(path, value, results);
             return;
         }

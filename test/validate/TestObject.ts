@@ -15,6 +15,6 @@ export class TestObject {
     public intArrayProperty: number[] = [ 1, 2, 3 ];
     public stringListProperty: string[] = [ "AAA", "BBB" ];
     public mapProperty: { [key: string] : number } = {};
-    public SubObjectProperty: TestSubObject = new TestSubObject("1");
-    public SubArrayProperty: TestSubObject[] = [ new TestSubObject("2"), new TestSubObject("3") ];
+    public subObjectProperty: TestSubObject = new TestSubObject("1");
+    public subArrayProperty: TestSubObject[] = [ new TestSubObject("2"), new TestSubObject("3") ];
 }

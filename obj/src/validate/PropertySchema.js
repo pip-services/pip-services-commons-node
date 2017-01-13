@@ -36,7 +36,7 @@ var PropertySchema = (function (_super) {
     PropertySchema.prototype.performValidation = function (path, value, results) {
         path = path ? this.name : path + "." + this.name;
         _super.prototype.performValidation.call(this, path, value, results);
-        this.performTypeValidation(path, this.type, value, results);
+        _super.prototype.performTypeValidation.call(this, path, this.type, value, results);
     };
     return PropertySchema;
 }(Schema_1.Schema));

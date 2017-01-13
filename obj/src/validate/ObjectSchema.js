@@ -55,7 +55,7 @@ var ObjectSchema = (function (_super) {
         schema.makeRequired();
         return this.withProperty(schema);
     };
-    ObjectSchema.prototype.WithOptionalProperty = function (name, type) {
+    ObjectSchema.prototype.withOptionalProperty = function (name, type) {
         var rules = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             rules[_i - 2] = arguments[_i];

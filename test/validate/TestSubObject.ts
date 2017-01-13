@@ -14,7 +14,7 @@ export class TestSubObject {
         this._id = value;
     }
 
-    public floatField: number = 432;
+    public floatField: number = 432.1;
 
     public get nullProperty() {
         return this._nullProperty;
