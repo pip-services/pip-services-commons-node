@@ -7,6 +7,7 @@ __export(require("./cache"));
 __export(require("./commands"));
 __export(require("./connect"));
 __export(require("./convert"));
+__export(require("./count"));
 __export(require("./errors"));
 __export(require("./log"));
 __export(require("./data"));

@@ -1,16 +1,11 @@
-"use strict";
-var NameResolver = (function () {
-    function NameResolver() {
-    }
-    NameResolver.resolve = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
-        var options = config.getSection("options");
-        if (options.getCount() == 0) {
-            options = config;
-        }
-        return options;
-    };
-    return NameResolver;
-}());
-exports.NameResolver = NameResolver;
+// import { ConfigParams } from './ConfigParams';
+// export class NameResolver {
+//     static resolve(config: ConfigParams, configAsDefault: boolean = true): ConfigParams {
+//         let options: ConfigParams = config.getSection("options");
+//         if(options.getCount() == 0) {
+//             options = config;
+//         }
+//         return options;
+//     }
+// } 
 //# sourceMappingURL=OptionsResolver.js.map

@@ -3,6 +3,7 @@ export * from './cache';
 export * from './commands';
 export * from './connect';
 export * from './convert';
+export * from './count';
 export * from './errors';
 export * from './log';
 export * from './data';
