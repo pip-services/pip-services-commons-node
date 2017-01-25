@@ -3,6 +3,8 @@ let _ = require('lodash');
 import { TypeDescriptor } from './TypeDescriptor';
 import { NotFoundException } from '../errors/NotFoundException';
 import { UnsupportedException } from '../errors/UnsupportedException';
+import { TypeCode } from '../convert/TypeCode';
+import { TypeConverter } from '../convert/TypeConverter';
 
 export class TypeReflector {
 
@@ -55,6 +57,15 @@ export class TypeReflector {
 			throw new Error("Type descriptor cannot be null");
 
 		return TypeReflector.createInstance(type.getName(), type.getLibrary(), args);
+	}
+
+	public static isPrimitive(value: any): boolean {
+		var typeCode = TypeConverter.toTypeCode(value);
+		return typeCode == TypeCode.String || typeCode == TypeCode.Enum
+			|| typeCode == TypeCode.Boolean || typeCode == TypeCode.Integer
+			|| typeCode == TypeCode.Long || typeCode == TypeCode.Float
+			|| typeCode == TypeCode.Double || typeCode == TypeCode.DateTime
+			|| typeCode == TypeCode.Duration;
 	}
 
 }

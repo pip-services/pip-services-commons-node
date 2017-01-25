@@ -16,8 +16,7 @@ var MapConverter = (function () {
             return _.isObject(value) ? value : null;
     };
     MapConverter.toMap = function (value) {
-        var map = MapConverter.toNullableMap(value);
-        return map != null ? map : {};
+        return MapConverter.toNullableMap(value) || {};
     };
     MapConverter.toMapWithDefault = function (value, defaultValue) {
         return MapConverter.toNullableMap(value) || defaultValue;

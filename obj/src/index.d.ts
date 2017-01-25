@@ -1,6 +1,7 @@
 export * from './auth';
 export * from './cache';
 export * from './commands';
+export * from './config';
 export * from './connect';
 export * from './convert';
 export * from './count';

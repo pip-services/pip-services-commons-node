@@ -16,8 +16,7 @@ export class MapConverter {
     }
     
     public static toMap(value: any): any {
-        let map = MapConverter.toNullableMap(value);
-        return map != null ? map : {};
+        return MapConverter.toNullableMap(value) || {};
     }
 
     public static toMapWithDefault(value: any, defaultValue: any): any {

@@ -1,6 +1,8 @@
 "use strict";
 var _ = require('lodash');
 var NotFoundException_1 = require("../errors/NotFoundException");
+var TypeCode_1 = require("../convert/TypeCode");
+var TypeConverter_1 = require("../convert/TypeConverter");
 var TypeReflector = (function () {
     function TypeReflector() {
     }
@@ -57,6 +59,14 @@ var TypeReflector = (function () {
         if (type == null)
             throw new Error("Type descriptor cannot be null");
         return TypeReflector.createInstance(type.getName(), type.getLibrary(), args);
+    };
+    TypeReflector.isPrimitive = function (value) {
+        var typeCode = TypeConverter_1.TypeConverter.toTypeCode(value);
+        return typeCode == TypeCode_1.TypeCode.String || typeCode == TypeCode_1.TypeCode.Enum
+            || typeCode == TypeCode_1.TypeCode.Boolean || typeCode == TypeCode_1.TypeCode.Integer
+            || typeCode == TypeCode_1.TypeCode.Long || typeCode == TypeCode_1.TypeCode.Float
+            || typeCode == TypeCode_1.TypeCode.Double || typeCode == TypeCode_1.TypeCode.DateTime
+            || typeCode == TypeCode_1.TypeCode.Duration;
     };
     return TypeReflector;
 }());

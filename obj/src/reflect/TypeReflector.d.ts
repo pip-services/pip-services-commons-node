@@ -5,4 +5,5 @@ export declare class TypeReflector {
     static createInstanceByType(type: any, ...args: any[]): any;
     static createInstance(name: string, library: string, ...args: any[]): any;
     static createInstanceByDescriptor(type: TypeDescriptor, ...args: any[]): any;
+    static isPrimitive(value: any): boolean;
 }

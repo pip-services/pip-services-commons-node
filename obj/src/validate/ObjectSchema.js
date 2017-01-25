@@ -13,7 +13,7 @@ var ObjectReader_1 = require("../reflect/ObjectReader");
 var ObjectSchema = (function (_super) {
     __extends(ObjectSchema, _super);
     function ObjectSchema() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.apply(this, arguments) || this;
     }
     Object.defineProperty(ObjectSchema.prototype, "properties", {
         get: function () {
