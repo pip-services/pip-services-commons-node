@@ -1,3 +1,4 @@
+import { CounterType } from './CounterType';
 export declare class Counter {
     private _name;
     private _type;
@@ -7,11 +8,11 @@ export declare class Counter {
     private _max;
     private _average;
     private _time;
-    constructor(name: string, type: number);
+    constructor(name: string, type: CounterType);
     getName(): string;
     setName(name: string): void;
-    getType(): number;
-    setType(type: number): void;
+    getType(): CounterType;
+    setType(type: CounterType): void;
     getLast(): number;
     setLast(last: number): void;
     getCount(): number;

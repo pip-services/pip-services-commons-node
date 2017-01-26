@@ -1,12 +1,18 @@
-import { Timing } from './Timing';
 import { ICounters } from './ICounters';
+import { Timing } from './Timing';
+import { ITimingCallback } from './ITimingCallback';
+import { IReferenceable } from '../refer/IReferenceable';
+import { IReferences } from '../refer/IReferences';
 import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
-export declare class NullCounters implements ICounters, IDescriptable {
+export declare class CompositeCounters implements ICounters, ITimingCallback, IReferenceable, IDescriptable {
     static readonly descriptor: Descriptor;
-    NullCounters(): void;
+    protected readonly _counters: ICounters[];
+    CompositeCounters(references?: IReferences): void;
     getDescriptor(): Descriptor;
+    setReferences(references: IReferences): void;
     beginTiming(name: string): Timing;
+    endTiming(name: string, elapsed: number): void;
     stats(name: string, value: number): void;
     last(name: string, value: number): void;
     timestampNow(name: string): void;

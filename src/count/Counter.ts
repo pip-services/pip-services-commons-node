@@ -1,7 +1,8 @@
+import { CounterType } from './CounterType';
 
 export class Counter {
     private _name: string;
-    private _type: number;
+    private _type: CounterType;
     private _last: number;
     private _count: number;
     private _min: number;
@@ -9,7 +10,7 @@ export class Counter {
     private _average: number;
     private _time: Date;
 
-    public constructor(name: string, type: number) {
+    public constructor(name: string, type: CounterType) {
         this._name = name;
         this._type = type;
     }
@@ -17,8 +18,8 @@ export class Counter {
     public getName() : string { return this._name; }
     public setName(name: string) : void { this._name = name; }
 
-    public getType() : number { return this._type; }
-    public setType(type: number) : void { this._type = type; }
+    public getType() : CounterType { return this._type; }
+    public setType(type: CounterType) : void { this._type = type; }
 
     public getLast() : number { return this._last; }
     public setLast(last: number) : void { this._last = last; }

@@ -4,12 +4,12 @@ import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 
 export class NullCounters implements ICounters, IDescriptable {
-	private readonly _descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "null", "default", "1.0");
+	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "null", "default", "1.0");
 
 	public NullCounters() {}
 	
 	public getDescriptor() : Descriptor{ 
-		return this._descriptor; 
+		return NullCounters.descriptor; 
 	}
 	
     beginTiming(name: string) : Timing {

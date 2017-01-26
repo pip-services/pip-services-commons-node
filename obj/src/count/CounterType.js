@@ -1,13 +1,10 @@
 "use strict";
-var CounterType = (function () {
-    function CounterType() {
-        this.Interval = 0;
-        this.LastValue = 1;
-        this.Statistics = 2;
-        this.Timestamp = 3;
-        this.Increment = 4;
-    }
-    return CounterType;
-}());
-exports.CounterType = CounterType;
+var CounterType;
+(function (CounterType) {
+    CounterType[CounterType["Interval"] = 0] = "Interval";
+    CounterType[CounterType["LastValue"] = 1] = "LastValue";
+    CounterType[CounterType["Statistics"] = 2] = "Statistics";
+    CounterType[CounterType["Timestamp"] = 3] = "Timestamp";
+    CounterType[CounterType["Increment"] = 4] = "Increment";
+})(CounterType = exports.CounterType || (exports.CounterType = {}));
 //# sourceMappingURL=CounterType.js.map

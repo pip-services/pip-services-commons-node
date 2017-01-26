@@ -1,7 +1,7 @@
-export declare class CounterType {
-    readonly Interval: number;
-    readonly LastValue: number;
-    readonly Statistics: number;
-    readonly Timestamp: number;
-    readonly Increment: number;
+export declare enum CounterType {
+    Interval = 0,
+    LastValue = 1,
+    Statistics = 2,
+    Timestamp = 3,
+    Increment = 4,
 }
