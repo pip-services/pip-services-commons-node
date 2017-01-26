@@ -9,18 +9,26 @@ var CachedConfigReader = (function () {
         this._config = null;
         this._name = name;
     }
-    CachedConfigReader.prototype.getName = function () {
-        return this._name;
-    };
-    CachedConfigReader.prototype.setName = function (name) {
-        this._name = name;
-    };
-    CachedConfigReader.prototype.getTimeout = function () {
-        return this._timeout;
-    };
-    CachedConfigReader.prototype.setTimeout = function (timeout) {
-        this._timeout = timeout;
-    };
+    Object.defineProperty(CachedConfigReader.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (name) {
+            this._name = name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CachedConfigReader.prototype, "timeout", {
+        get: function () {
+            return this._timeout;
+        },
+        set: function (timeout) {
+            this._timeout = timeout;
+        },
+        enumerable: true,
+        configurable: true
+    });
     CachedConfigReader.prototype.configure = function (config) {
         this._name = NameResolver_1.NameResolver.resolve(config, this._name);
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);

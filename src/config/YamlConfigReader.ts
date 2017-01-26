@@ -19,7 +19,7 @@ export class YamlConfigReader extends FileConfigReader implements IDescriptable 
 
     public getDescriptor(): Descriptor
     {
-            return new Descriptor("pip-services-commons", "config-reader", "yaml", super.getName() || "default", "1.0");
+        return new Descriptor("pip-services-commons", "config-reader", "yaml", this.name || "default", "1.0");
     }
 
     public readObject(correlationId: string): any {

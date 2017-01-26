@@ -14,19 +14,19 @@ export abstract class CachedConfigReader implements IConfigReader, IReconfigurab
         this._name = name;
     }
 
-    public getName(): string {
+    public get name(): string {
         return this._name;
     }
 
-    public setName(name: string): void {
+    public set name(name: string) {
         this._name = name;
     }
 
-    public getTimeout(): number {
+    public get timeout(): number {
         return this._timeout;
     }
 
-    public setTimeout(timeout: number): void {
+    public set timeout(timeout: number) {
         this._timeout = timeout;
     }
 

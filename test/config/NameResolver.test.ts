@@ -3,9 +3,9 @@ let assert = require('chai').assert;
 import { ConfigParams } from '../../src/config/ConfigParams';
 import { NameResolver } from '../../src/config/NameResolver';
 
-suite('NameResolver', ()=> {
+suite('JsonConfigReader', ()=> {
 
-    test('Normal Name Resolution', (done) => {
+    test('Read Config', (done) => {
         var config = ConfigParams.fromTuples("id", "ABC");
         var name = NameResolver.resolve(config);
 		assert.equal(name, 'ABC');

@@ -18,7 +18,7 @@ export class JsonConfigReader extends FileConfigReader implements IDescriptable 
 
     public getDescriptor(): Descriptor
     {
-            return new Descriptor("pip-services-commons", "config-reader", "json", super.getName() || "default", "1.0");
+        return new Descriptor("pip-services-commons", "config-reader", "json", this.name || "default", "1.0");
     }
 
     public readObject(correlationId: string): any {

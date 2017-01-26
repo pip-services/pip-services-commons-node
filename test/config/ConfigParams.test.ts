@@ -1,11 +1,10 @@
 let assert = require('chai').assert;
 
 import { ConfigParams } from '../../src/config/ConfigParams';
-import { NameResolver } from '../../src/config/NameResolver';
 import { AnyValueMap } from '../../src/data/AnyValueMap';
 import { AnyValueArray } from '../../src/data/AnyValueArray';
 
-suite.only('ConfigParamsTest', ()=> {
+suite('ConfigParams', ()=> {
 
     test('Config Sections', () => {
         var config = ConfigParams.fromTuples(
