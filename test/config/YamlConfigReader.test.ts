@@ -1,12 +1,12 @@
 let assert = require('chai').assert;
 
 import { ConfigParams } from '../../src/config/ConfigParams';
-import { JsonConfigReader } from '../../src/config/JsonConfigReader';
+import { YamlConfigReader } from '../../src/config/YamlConfigReader';
 
-suite('JsonConfigReader', ()=> {
+suite('YamlConfigReader', ()=> {
 
     test('Config Sections', () => {
-        let config: ConfigParams = JsonConfigReader.readConfig(null, "./data/config.json");
+        let config: ConfigParams = YamlConfigReader.readConfig(null, "./data/config.yaml");
 
         assert.equal(config.getCount(), 7);
         assert.equal(config.getAsInteger("Field1.Field11"), 123);
@@ -20,7 +20,7 @@ suite('JsonConfigReader', ()=> {
     });    
 
     test('Read After Timeout', () => {
-        let reader: JsonConfigReader = new JsonConfigReader(null, "./data/config.json");
+        let reader: YamlConfigReader = new YamlConfigReader(null, "./data/config.yaml");
 
         reader.timeout = 100;
 
