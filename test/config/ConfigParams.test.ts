@@ -5,7 +5,7 @@ import { NameResolver } from '../../src/config/NameResolver';
 import { AnyValueMap } from '../../src/data/AnyValueMap';
 import { AnyValueArray } from '../../src/data/AnyValueArray';
 
-suite('ConfigParamsTest', ()=> {
+suite.only('ConfigParamsTest', ()=> {
 
     test('Config Sections', () => {
         var config = ConfigParams.fromTuples(
@@ -54,14 +54,14 @@ suite('ConfigParamsTest', ()=> {
         );
 
         var config = ConfigParams.fromValue(value);
-        // assert.equal(config.getCount(), 7);
-        // assert.equal(config.get("Field1.Field11"), 123);
-        // assert.equal(config.get("Field1.Field12"), "ABC");
-        // assert.equal(config.get("Field2.0"), 123);
-        // assert.equal(config.get("Field2.1"), "ABC");
-        // assert.equal(config.get("Field2.2.Field21"), 543);
-        // assert.equal(config.get("Field2.2.Field22"), "XYZ");
-        // assert.equal(config.get("Field3"), true);
+        assert.equal(config.getCount(), 7);
+        assert.equal(config.getAsInteger("Field1.Field11"), 123);
+        assert.equal(config.get("Field1.Field12"), "ABC");
+        assert.equal(config.getAsInteger("Field2.0"), 123);
+        assert.equal(config.get("Field2.1"), "ABC");
+        assert.equal(config.getAsInteger("Field2.2.Field21"), 543);
+        assert.equal(config.get("Field2.2.Field22"), "XYZ");
+        assert.equal(config.getAsBoolean("Field3"), true);
     });    
 
 });

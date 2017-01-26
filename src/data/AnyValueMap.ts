@@ -288,9 +288,9 @@ export class AnyValueMap {
             if (index + 1 >= tuples.length) break;
 
             let name = StringConverter.toString(tuples[index]);
-            let value = StringConverter.toNullableString(tuples[index + 1]);
+            let value = tuples[index + 1];
 
-            result[name] = value;
+            result.setAsObject(name, value);
         }
         
     	return result;

@@ -241,8 +241,8 @@ var AnyValueMap = (function () {
             if (index + 1 >= tuples.length)
                 break;
             var name_1 = StringConverter_1.StringConverter.toString(tuples[index]);
-            var value = StringConverter_1.StringConverter.toNullableString(tuples[index + 1]);
-            result[name_1] = value;
+            var value = tuples[index + 1];
+            result.setAsObject(name_1, value);
         }
         return result;
     };
