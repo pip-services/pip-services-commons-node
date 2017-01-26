@@ -9,7 +9,7 @@ export class NameResolver {
             let descriptorStr: string = config.getAsNullableString("descriptor");
             let descriptor: Descriptor = Descriptor.fromString(descriptorStr);
             if(descriptor != null) {
-                name = descriptor.name;
+                name = descriptor.getName();
             }
         }
 

@@ -44,7 +44,7 @@ export class DefaultCacheFactory implements IFactory, IDescriptable {
             return new NullCache();
 
         if (descriptor.match(MemoryCache.Descriptor))
-            return new MemoryCache(descriptor.name);
+            return new MemoryCache(descriptor.getName());
 		
 		throw new CreateException(null, locator);
 	}

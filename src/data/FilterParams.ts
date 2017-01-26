@@ -1,8 +1,8 @@
 import { StringValueMap } from './StringValueMap';
 
 export class FilterParams extends StringValueMap {
-	public constructor(map: any = null) {
-        super(map);
+    	public constructor(map: any = null) {
+		super(map);
 	}
 		
 	public static fromTuples(...tuples: any[]): FilterParams {

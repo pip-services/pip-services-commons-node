@@ -273,9 +273,8 @@ export class StringValueMap {
     public getCount(): number {
         let count: number = 0;
     	for (let key in this) {
-    		if (this.hasOwnProperty(key)) {
+    		if (this.hasOwnProperty(key))
                 count ++;
-            }
     	}        
         return count;
     }    
@@ -321,8 +320,7 @@ export class StringValueMap {
 		return result;
     }
 
-    public static fromMaps(...maps: any[]): StringValueMap
-    {
+    public static fromMaps(...maps: any[]): StringValueMap {
     	let result = new StringValueMap();
     	if (maps != null && maps.length > 0) {
 	    	for (let index = 0; index < maps.length; index++)

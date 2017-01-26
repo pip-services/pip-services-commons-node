@@ -16,8 +16,8 @@ suite('NullCache', ()=> {
 
 		// Check match by individual fields
         assert.isNotNull(descriptor);
-		assert.equal(descriptor.type, 'cache');
-		assert.equal(descriptor.kind, 'null');
+        assert.equal(descriptor.getType(), 'cache');
+        assert.equal(descriptor.getKind(), 'null');
 
         done();
     });    

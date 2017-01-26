@@ -38,8 +38,8 @@ suite('MemoryCache', ()=> {
 
 		// Check match by individual fields
         assert.isNotNull(descriptor);
-		assert.equal(descriptor.type, 'cache');
-		assert.equal(descriptor.kind, 'memory');
+        assert.equal(descriptor.getType(), 'cache');
+        assert.equal(descriptor.getKind(), 'memory');
 
         done();
     });    

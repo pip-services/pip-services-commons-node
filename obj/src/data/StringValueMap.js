@@ -225,9 +225,8 @@ var StringValueMap = (function () {
     StringValueMap.prototype.getCount = function () {
         var count = 0;
         for (var key in this) {
-            if (this.hasOwnProperty(key)) {
+            if (this.hasOwnProperty(key))
                 count++;
-            }
         }
         return count;
     };

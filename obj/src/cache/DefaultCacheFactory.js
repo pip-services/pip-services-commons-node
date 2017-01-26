@@ -30,7 +30,7 @@ var DefaultCacheFactory = (function () {
         if (descriptor.match(NullCache_1.NullCache.Descriptor))
             return new NullCache_1.NullCache();
         if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
-            return new MemoryCache_1.MemoryCache(descriptor.name);
+            return new MemoryCache_1.MemoryCache(descriptor.getName());
         throw new CreateException_1.CreateException(null, locator);
     };
     return DefaultCacheFactory;
