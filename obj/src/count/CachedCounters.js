@@ -8,20 +8,16 @@ var CachedCounters = (function () {
         this._lastDumpTime = new Date().getDate();
     }
     CachedCounters.prototype.CachedCounters = function () {
-        this.interval = CachedCounters.DefaultInterval;
+        this.setInterval(CachedCounters.DefaultInterval);
     };
-    Object.defineProperty(CachedCounters.prototype, "interval", {
-        get: function () {
-            return this._interval;
-        },
-        set: function (value) {
-            this._interval = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    CachedCounters.prototype.getInterval = function () {
+        return this._interval;
+    };
+    CachedCounters.prototype.setInterval = function (value) {
+        this._interval = value;
+    };
     CachedCounters.prototype.configure = function (config) {
-        this.interval = config.getAsLongWithDefault("interval", CachedCounters.DefaultInterval);
+        this.setInterval(config.getAsLongWithDefault("interval", this.getInterval()));
     };
     CachedCounters.prototype.clear = function (name) {
         delete this._cache[name];
@@ -34,7 +30,6 @@ var CachedCounters = (function () {
     CachedCounters.prototype.beginTiming = function (name) {
         return new Timing_1.Timing(name, this);
     };
-    ;
     CachedCounters.prototype.dump = function () {
         if (!this._updated)
             return;
@@ -45,7 +40,7 @@ var CachedCounters = (function () {
     };
     CachedCounters.prototype.update = function () {
         this._updated = true;
-        if (new Date().getDate() > this._lastDumpTime + this.interval) {
+        if (new Date().getDate() > this._lastDumpTime + this.getInterval()) {
             try {
                 this.dump();
             }
@@ -55,9 +50,8 @@ var CachedCounters = (function () {
     };
     CachedCounters.prototype.getAll = function () {
         var result = [];
-        for (var key in this._cache) {
+        for (var key in this._cache)
             result.push(this._cache[key]);
-        }
         return result;
     };
     CachedCounters.prototype.get = function (name, type) {
@@ -77,20 +71,19 @@ var CachedCounters = (function () {
         counter.setCount(counter.getCount() != null ? counter.getCount() + 1 : 1);
         counter.setMax(counter.getMax() != null ? Math.max(counter.getMax(), value) : value);
         counter.setMin(counter.getMin() != null ? Math.min(counter.getMin(), value) : value);
-        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1 ? (counter.getAverage() * (counter.getCount() - 1) + value) / counter.getCount() : value));
+        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1
+            ? (counter.getAverage() * (counter.getCount() - 1) + value) / counter.getCount() : value));
     };
     CachedCounters.prototype.endTiming = function (name, elapsed) {
         var counter = this.get(name, CounterType_1.CounterType.Interval);
         this.calculateStats(counter, elapsed);
         this.update();
     };
-    ;
     CachedCounters.prototype.stats = function (name, value) {
         var counter = this.get(name, CounterType_1.CounterType.Statistics);
         this.calculateStats(counter, value);
         this.update();
     };
-    ;
     CachedCounters.prototype.last = function (name, value) {
         var counter = this.get(name, CounterType_1.CounterType.LastValue);
         counter.setLast(value);

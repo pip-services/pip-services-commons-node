@@ -5,15 +5,14 @@ import { BadRequestException } from '../errors/BadRequestException';
 export class ValidationException extends BadRequestException {
     private static readonly SerialVersionUid: number = -1459801864235223845;
 
-    public constructor(correlationId: string, message?: string, results?: ValidationResult[])
-    {
+    public constructor(correlationId: string, message?: string, results?: ValidationResult[]) {
         super(correlationId, "INVALID_DATA", message || ValidationException.composeMessage(results));
 
         if (results)
             this.withDetails("results", results);
     }
-    
-    public static composeMessage(results: ValidationResult[]): string{
+
+    public static composeMessage(results: ValidationResult[]): string {
         let builder: string = "Validation failed";
 
         if (results && results.length > 0) {
@@ -21,28 +20,28 @@ export class ValidationException extends BadRequestException {
             for (var i = 0; i < results.length; i++) {
                 let result: ValidationResult = results[i];
 
-                if (result.type == ValidationResultType.Information)
+                if (result.getType() == ValidationResultType.Information)
                     continue;
 
                 builder += !first ? ": " : ", ";
-                builder += result.message;
+                builder += result.getMessage();
                 first = false;
             }
         }
 
         return builder;
     }
-    
+
     public static throwExceptionIfNeeded(correlationId: string, results: ValidationResult[], strict: boolean): void {
         var hasErrors = false;
 
         for (var i = 0; i < results.length; i++) {
             let result: ValidationResult = results[i];
 
-            if (result.type == ValidationResultType.Error)
+            if (result.getType() == ValidationResultType.Error)
                 hasErrors = true;
 
-            if (strict && result.type == ValidationResultType.Warning)
+            if (strict && result.getType() == ValidationResultType.Warning)
                 hasErrors = true;
         }
 

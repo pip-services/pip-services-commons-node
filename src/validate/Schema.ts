@@ -10,27 +10,26 @@ import { TypeConverter } from '../convert/TypeConverter';
 export class Schema {
     private _isRequired: boolean;
     private _rules: IValidationRule[];
-    
-    public constructor(required?: boolean, rules?: IValidationRule[])
-    {
+
+    public constructor(required?: boolean, rules?: IValidationRule[]) {
         this._isRequired = required;
         this._rules = rules;
     }
 
     public get isRequired(): boolean {
-        return this._isRequired; 
+        return this._isRequired;
     }
 
     public set isRequired(value: boolean) {
-        this._isRequired = value; 
+        this._isRequired = value;
     }
 
     public get rules(): IValidationRule[] {
-        return this._rules; 
+        return this._rules;
     }
 
     public set rules(value: IValidationRule[]) {
-        this._rules = value; 
+        this._rules = value;
     }
 
     public makeRequired(): Schema {
@@ -96,15 +95,15 @@ export class Schema {
             return;
 
         results.push(
-                new ValidationResult(
-                    path,
-                    ValidationResultType.Error,
-                    "TYPE_MISMATCH",
-                    "Expected type " + type + " but found " + valueType.toString(),
-                    type,
-                    valueType.toString()
-                )
-            );
+            new ValidationResult(
+                path,
+                ValidationResultType.Error,
+                "TYPE_MISMATCH",
+                "Expected type " + type + " but found " + valueType.toString(),
+                type,
+                valueType.toString()
+            )
+        );
     }
 
     public validate(value: any): ValidationResult[] {

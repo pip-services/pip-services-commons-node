@@ -14,48 +14,24 @@ var ValidationResult = (function () {
         this._expected = expected;
         this._actual = actual;
     }
-    Object.defineProperty(ValidationResult.prototype, "path", {
-        get: function () {
-            return this._path;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ValidationResult.prototype, "type", {
-        get: function () {
-            return this._type;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ValidationResult.prototype, "code", {
-        get: function () {
-            return this._code;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ValidationResult.prototype, "message", {
-        get: function () {
-            return this._message;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ValidationResult.prototype, "expected", {
-        get: function () {
-            return this._expected;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ValidationResult.prototype, "actual", {
-        get: function () {
-            return this._actual;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    ValidationResult.prototype.getPath = function () {
+        return this._path;
+    };
+    ValidationResult.prototype.getType = function () {
+        return this._type;
+    };
+    ValidationResult.prototype.getCode = function () {
+        return this._code;
+    };
+    ValidationResult.prototype.getMessage = function () {
+        return this._message;
+    };
+    ValidationResult.prototype.getExpected = function () {
+        return this._expected;
+    };
+    ValidationResult.prototype.getActual = function () {
+        return this._actual;
+    };
     return ValidationResult;
 }());
 exports.ValidationResult = ValidationResult;

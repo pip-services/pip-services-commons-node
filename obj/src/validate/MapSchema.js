@@ -20,26 +20,18 @@ var MapSchema = (function (_super) {
         _this._valueType = valueType;
         return _this;
     }
-    Object.defineProperty(MapSchema.prototype, "keyType", {
-        get: function () {
-            return this._keyType;
-        },
-        set: function (value) {
-            this._keyType = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MapSchema.prototype, "valueType", {
-        get: function () {
-            return this._valueType;
-        },
-        set: function (value) {
-            this._valueType = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    MapSchema.prototype.getKeyType = function () {
+        return this._keyType;
+    };
+    MapSchema.prototype.setKeyType = function (value) {
+        this._keyType = value;
+    };
+    MapSchema.prototype.getValueType = function () {
+        return this._valueType;
+    };
+    MapSchema.prototype.setValueType = function (value) {
+        this._valueType = value;
+    };
     MapSchema.prototype.performValidation = function (path, value, results) {
         value = ObjectReader_1.ObjectReader.getValue(value);
         _super.prototype.performValidation.call(this, path, value, results);
@@ -50,8 +42,8 @@ var MapSchema = (function (_super) {
         if (map) {
             for (var key in map) {
                 var elementPath = path ? path + "." + key : StringConverter_1.StringConverter.toString(key);
-                this.performTypeValidation(elementPath, this.keyType, key, results);
-                this.performTypeValidation(elementPath, this.valueType, map[key], results);
+                this.performTypeValidation(elementPath, this.getKeyType(), key, results);
+                this.performTypeValidation(elementPath, this.getValueType(), map[key], results);
             }
         }
         else {

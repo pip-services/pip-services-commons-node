@@ -8,8 +8,8 @@ export class ValidationResult {
     private _expected: any;
     private _actual: any;
 
-    public constructor(path: string = null, type: ValidationResultType = null, code: string = null, message: string = null, expected: any = null, actual: any = null)
-    {
+    public constructor(path: string = null, type: ValidationResultType = null, code: string = null, message: string = null, 
+        expected: any = null, actual: any = null) {
         this._path = path;
         this._type = type;
         this._code = code;
@@ -18,28 +18,27 @@ export class ValidationResult {
         this._actual = actual;
     }
 
-    public get path(): string {
+    public getPath(): string {
         return this._path; 
     }
 
-    public get type(): ValidationResultType {
+    public getType(): ValidationResultType {
         return this._type; 
     }
 
-    public get code(): string {
+    public getCode(): string {
         return this._code; 
     }
 
-    public get message(): string {
+    public getMessage(): string {
         return this._message; 
     }
 
-    public get expected(): any {
+    public getExpected(): any {
         return this._expected; 
     }
 
-    public get actual(): any {
+    public getActual(): any {
         return this._actual; 
     }
-
 }

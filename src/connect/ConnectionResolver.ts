@@ -7,16 +7,14 @@ import { IReferences } from '../refer/IReferences';
 import { ConfigException } from '../errors/ConfigException';
 import { Descriptor } from '../refer/Descriptor';
 
-
 export class ConnectionResolver {
-
     private readonly _connections: ConnectionParams[] = [];
     private _references: IReferences = null;
 
-	public constructor(config: ConfigParams = null, references: IReferences = null) {
-        if(config != null) this.configure(config);
-        if(references != null) this.setReferences(references);
-	}
+    public constructor(config: ConfigParams = null, references: IReferences = null) {
+        if (config != null) this.configure(config);
+        if (references != null) this.setReferences(references);
+    }
 
     public setReferences(references: IReferences): void {
         this._references = references;
@@ -35,18 +33,18 @@ export class ConnectionResolver {
         this._connections.push(connection);
     }
 
-    public resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void) : void {
+    public resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void {
 
-        if(!connection.getUseDiscovery()) {
+        if (!connection.getUseDiscovery()) {
             callback(null, null);
             return;
-        };
+        }
 
         let key: string = connection.getDiscoveryKey();
-        if(this._references == null) return;
+        if (this._references == null) return;
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if(discoveries.length == 0) {
+        if (discoveries.length == 0) {
             throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
         }
 
@@ -57,7 +55,7 @@ export class ConnectionResolver {
             (discovery, cb) => {
                 let discoveryTyped: IDiscovery = discovery;
                 discoveryTyped.resolveOne(correlationId, key, (err, result) => {
-                    if(err || result == null) {
+                    if (err || result == null) {
                         cb(err, false);
                     } else {
                         firstResult = result;
@@ -65,67 +63,66 @@ export class ConnectionResolver {
                     }
 
                 });
-            }, 
+            },
             (err) => {
-                if(callback) callback(err, firstResult);
+                if (callback) callback(err, firstResult);
             }
         );
     }
 
     public Resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void {
 
-        if(this._connections.length == 0) {
-            if(callback) callback(null, null);
+        if (this._connections.length == 0) {
+            if (callback) callback(null, null);
             return;
-        };
+        }
 
         let connections: ConnectionParams[] = [];
 
-        for(let index = 0; index < this._connections.length; index++) {
-            if(!this._connections[index].getUseDiscovery()) {
-                if(callback) callback(null, this._connections[index]);
+        for (let index = 0; index < this._connections.length; index++) {
+            if (!this._connections[index].getUseDiscovery()) {
+                if (callback) callback(null, this._connections[index]);
                 return;
             } else {
                 connections.push(this._connections[index]);
             }
         }
 
-        if(connections.length == 0) return null;
+        if (connections.length == 0) return null;
 
         let firstResult: ConnectionParams = null;
         async.any(
             connections,
             (connection, cb) => {
                 this.resolveInDiscovery(correlationId, connection, (err, result) => {
-                    if(err || result == null) {
+                    if (err || result == null) {
                         cb(err, false);
                     } else {
                         firstResult = new ConnectionParams(ConfigParams.mergeConfigs(connection, result));
                         cb(err, true);
                     }
                 });
-            }, 
+            },
             (err) => {
-                if(callback) callback(err, firstResult);
+                if (callback) callback(err, firstResult);
             }
-        );        
+        );
     }
 
-    
-    public resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void) : void {
-        
+
+    public resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void {
         let result: ConnectionParams[] = [];
         let key: string = connection.getDiscoveryKey();
 
-        if(!connection.getUseDiscovery()) {
+        if (!connection.getUseDiscovery()) {
             callback(null, null);
             return;
-        };
+        }
 
-        if(this._references == null) return;
+        if (this._references == null) return;
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if(discoveries.length == 0) {
+        if (discoveries.length == 0) {
             throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
         }
 
@@ -134,7 +131,7 @@ export class ConnectionResolver {
             (discovery, cb) => {
                 let discoveryTyped: IDiscovery = discovery;
                 discoveryTyped.resolveAll(correlationId, key, (err, result) => {
-                    if(err || result == null) {
+                    if (err || result == null) {
                         cb(err);
                     } else {
                         result.push(...result);
@@ -142,30 +139,26 @@ export class ConnectionResolver {
                     }
 
                 });
-            }, 
+            },
             (err) => {
-                if(callback) callback(err, result);
+                if (callback) callback(err, result);
             }
         );
     }
 
-    public resolveAll(correlationId: string, callback: (err: any, result: ConnectionParams[]) => void) : void {
-        
+    public resolveAll(correlationId: string, callback: (err: any, result: ConnectionParams[]) => void): void {
         let resolved: ConnectionParams[] = [];
         let toResolve: ConnectionParams[] = [];
 
-    
-        for(let index = 0; index < this._connections.length; index++) {
-            if(this._connections[index].getUseDiscovery()) {
+        for (let index = 0; index < this._connections.length; index++) {
+            if (this._connections[index].getUseDiscovery()) 
                 toResolve.push(this._connections[index]);
-            } else {
+            else 
                 resolved.push(this._connections[index]);
-
-            }
         }
 
-        if(toResolve.length <= 0) {
-            if(callback) callback(null, resolved);
+        if (toResolve.length <= 0) {
+            if (callback) callback(null, resolved);
             return;
         }
 
@@ -173,20 +166,20 @@ export class ConnectionResolver {
             toResolve,
             (connection, cb) => {
                 this.resolveAllInDiscovery(correlationId, connection, (err, result) => {
-                    if(err) {
+                    if (err) {
                         cb(err);
                     } else {
-                        for(let index = 0; index < result.length; index++) {
+                        for (let index = 0; index < result.length; index++) {
                             let localResolvedConnection: ConnectionParams = new ConnectionParams(ConfigParams.mergeConfigs(connection, result[index]));
                             resolved.push(localResolvedConnection);
                         }
                         cb(null);
                     }
                 });
-            }, 
+            },
             (err) => {
-                if(callback) callback(err, resolved);
+                if (callback) callback(err, resolved);
             }
         );
-    }    
+    }
 }

@@ -16,21 +16,19 @@ export class JsonConfigReader extends FileConfigReader implements IDescriptable 
         super(name, path);
     }
 
-    public getDescriptor(): Descriptor
-    {
-        return new Descriptor("pip-services-commons", "config-reader", "json", this.name || "default", "1.0");
+    public getDescriptor(): Descriptor {
+        return new Descriptor("pip-services-commons", "config-reader", "json", this.getName() || "default", "1.0");
     }
 
     public readObject(correlationId: string): any {
-        if(super.getPath() == null) {
+        if (super.getPath() == null)
             throw new ConfigException(correlationId, "NO_PATH", "Missing config file path");
-        }
 
-        try{
+        try {
             // Todo: make this async?
             let data: any = fs.readFileSync(super.getPath(), "utf8");
             return  JsonConverter.toNullableMap(data);
-        } catch(e) {
+        } catch (e) {
                 throw new FileException(
                     correlationId,
                     "READ_FAILED",

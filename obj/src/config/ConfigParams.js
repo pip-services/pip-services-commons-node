@@ -72,7 +72,7 @@ var ConfigParams = (function (_super) {
     };
     ConfigParams.prototype.isShadowName = function (name) {
         return name == null || name.length == 0
-            || _.startsWith(name, "#") || _.startsWith(name, "!");
+            || _.startsWith(name, "_");
     };
     ConfigParams.prototype.addSection = function (section, sectionParams) {
         if (section == null)

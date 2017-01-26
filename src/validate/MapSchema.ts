@@ -13,27 +13,26 @@ export class MapSchema extends Schema {
     private _keyType: any;
     private _valueType: any;
     
-    public constructor(required?: boolean, rules?: IValidationRule[], keyType?: any, valueType?: any)
-    {
+    public constructor(required?: boolean, rules?: IValidationRule[], keyType?: any, valueType?: any) {
         super(required, rules);
 
         this._keyType = keyType;
         this._valueType = valueType;
     }
 
-    public get keyType(): any {
+    public getKeyType(): any {
         return this._keyType; 
     }
 
-    public set keyType(value: any) {
+    public setKeyType(value: any) {
         this._keyType = value; 
     }
 
-    public get valueType(): any {
+    public getValueType(): any {
         return this._valueType; 
     }
 
-    public set valueType(value: any) {
+    public setValueType(value: any) {
         this._valueType = value; 
     }
 
@@ -45,19 +44,17 @@ export class MapSchema extends Schema {
         if (!value) return;
 
         let valueType: TypeCode = TypeConverter.toTypeCode(value);
-
         let map: any = valueType === TypeCode.Map ? value : null;
 
         if (map) {
             for (var key in map) {
                 var elementPath = path ? path + "." + key : StringConverter.toString(key);
 
-                this.performTypeValidation(elementPath, this.keyType, key, results);
-                this.performTypeValidation(elementPath, this.valueType, map[key], results);
+                this.performTypeValidation(elementPath, this.getKeyType(), key, results);
+                this.performTypeValidation(elementPath, this.getValueType(), map[key], results);
             }
         } else {
             if (this.isRequired) {
-
                 results.push(new ValidationResult(
                     path,
                     ValidationResultType.Error,

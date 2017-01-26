@@ -19,9 +19,8 @@ export class OnlyOneExistRule implements IValidationRule {
 
             var propertyValue = ObjectReader.getProperty(value, property);
 
-            if (propertyValue) {
+            if (propertyValue)
                 found.push(property);
-            }
         }
 
         if (found.length == 0) {
@@ -35,7 +34,7 @@ export class OnlyOneExistRule implements IValidationRule {
                     null
                 )
             );
-        } else if (found.length > 1){
+        } else if (found.length > 1) {
             results.push(
                 new ValidationResult(
                     path,

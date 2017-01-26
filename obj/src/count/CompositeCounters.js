@@ -24,7 +24,6 @@ var CompositeCounters = (function () {
     CompositeCounters.prototype.beginTiming = function (name) {
         return new Timing_1.Timing();
     };
-    ;
     CompositeCounters.prototype.endTiming = function (name, elapsed) {
         for (var i = 0; i < this._counters.length; i++) {
             var counter = this._counters[i];
@@ -33,25 +32,20 @@ var CompositeCounters = (function () {
                 callback.endTiming(name, elapsed);
         }
     };
-    ;
     CompositeCounters.prototype.stats = function (name, value) {
-        for (var i = 0; i < this._counters.length; i++) {
+        for (var i = 0; i < this._counters.length; i++)
             this._counters[i].stats(name, value);
-        }
     };
-    ;
     CompositeCounters.prototype.last = function (name, value) {
-        for (var i = 0; i < this._counters.length; i++) {
+        for (var i = 0; i < this._counters.length; i++)
             this._counters[i].last(name, value);
-        }
     };
     CompositeCounters.prototype.timestampNow = function (name) {
         this.timestamp(name, new Date());
     };
     CompositeCounters.prototype.timestamp = function (name, value) {
-        for (var i = 0; i < this._counters.length; i++) {
+        for (var i = 0; i < this._counters.length; i++)
             this._counters[i].timestamp(name, value);
-        }
     };
     CompositeCounters.prototype.incrementOne = function (name) {
         this.increment(name, 1);
@@ -59,9 +53,8 @@ var CompositeCounters = (function () {
     CompositeCounters.prototype.increment = function (name, value) {
         if (!name)
             throw new Error("Name cannot be null");
-        for (var i = 0; i < this._counters.length; i++) {
+        for (var i = 0; i < this._counters.length; i++)
             this._counters[i].increment(name, value);
-        }
     };
     return CompositeCounters;
 }());

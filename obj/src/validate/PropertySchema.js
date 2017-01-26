@@ -13,30 +13,22 @@ var PropertySchema = (function (_super) {
         _this._type = type;
         return _this;
     }
-    Object.defineProperty(PropertySchema.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            this._name = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PropertySchema.prototype, "type", {
-        get: function () {
-            return this._type;
-        },
-        set: function (value) {
-            this._type = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    PropertySchema.prototype.getName = function () {
+        return this._name;
+    };
+    PropertySchema.prototype.setName = function (value) {
+        this._name = value;
+    };
+    PropertySchema.prototype.getType = function () {
+        return this._type;
+    };
+    PropertySchema.prototype.setType = function (value) {
+        this._type = value;
+    };
     PropertySchema.prototype.performValidation = function (path, value, results) {
-        path = path ? this.name : path + "." + this.name;
+        path = path ? this.getName() : path + "." + this.getName();
         _super.prototype.performValidation.call(this, path, value, results);
-        _super.prototype.performTypeValidation.call(this, path, this.type, value, results);
+        _super.prototype.performTypeValidation.call(this, path, this.getType(), value, results);
     };
     return PropertySchema;
 }(Schema_1.Schema));

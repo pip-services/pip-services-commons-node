@@ -23,7 +23,7 @@ export class ObjectComparator {
         if (operation == "LIKE")
             return ObjectComparator.match(value1, value2);
 
-            return true;
+        return true;
     }
 
     public static areEqual(value1: any, value2: any): boolean {

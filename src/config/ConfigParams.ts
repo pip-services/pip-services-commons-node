@@ -77,7 +77,7 @@ export class ConfigParams extends StringValueMap {
 	
 	protected isShadowName(name: string): boolean {
 		return name == null || name.length == 0
-			|| _.startsWith(name, "#") || _.startsWith(name, "!");
+			|| _.startsWith(name, "_");
 	}
 	
 	public addSection(section: string, sectionParams: ConfigParams): void {

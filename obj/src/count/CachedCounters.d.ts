@@ -12,7 +12,8 @@ export declare abstract class CachedCounters implements ICounters, IReconfigurab
     private _updated;
     private _lastDumpTime;
     CachedCounters(): void;
-    interval: number;
+    getInterval(): number;
+    setInterval(value: number): void;
     protected abstract save(counters: Counter[]): void;
     configure(config: ConfigParams): void;
     clear(name: string): void;

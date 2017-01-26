@@ -6,36 +6,35 @@ export class PropertySchema extends Schema {
     private _name: string;
     private _type: any;
     
-    public constructor(required?: boolean, rules?: IValidationRule[], name?: string, type?: any)
-    {
+    public constructor(required?: boolean, rules?: IValidationRule[], name?: string, type?: any) {
         super(required, rules);
 
         this._name = name;
         this._type = type;
     }
 
-    public get name(): string {
+    public getName(): string {
         return this._name; 
     }
 
-    public set name(value: string) {
+    public setName(value: string) {
         this._name = value; 
     }
 
-    public get type(): any {
+    public getType(): any {
         return this._type; 
     }
 
-    public set type(value: any) {
+    public setType(value: any) {
         this._type = value; 
     }
 
     public performValidation(path: string, value: any, results: ValidationResult[]): void {
-        path = path ? this.name : path + "." + this.name;
+        path = path ? this.getName() : path + "." + this.getName();
 
         super.performValidation(path, value, results);
 
-        super.performTypeValidation(path, this.type, value, results);
+        super.performTypeValidation(path, this.getType(), value, results);
     }
 
 }

@@ -14,7 +14,7 @@ export class AtLeastOneExistRule implements IValidationRule {
     public validate(path: string, schema: Schema, value: any, results: ValidationResult[]): void {
         let found: string[] = [];
 
-        for(var i = 0; i < this._properties.length; i++) {
+        for (var i = 0; i < this._properties.length; i++) {
             var propertyValue = ObjectReader.getProperty(value, this._properties[i]);
             if (propertyValue != null)
                 found.push(this._properties[i]);
@@ -26,7 +26,7 @@ export class AtLeastOneExistRule implements IValidationRule {
                     path,
                     ValidationResultType.Error,
                     "VALUE_NULL",
-                    "At least one property expected from " +this._properties,
+                    "At least one property expected from " + this._properties,
                     this._properties,
                     null
                 )

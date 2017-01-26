@@ -7,8 +7,10 @@ export declare abstract class CachedConfigReader implements IConfigReader, IReco
     private _timeout;
     private _config;
     constructor(name?: string);
-    name: string;
-    timeout: number;
+    getName(): string;
+    setName(name: string): void;
+    getTimeout(): number;
+    setTimeout(timeout: number): void;
     configure(config: ConfigParams): void;
     protected abstract performReadConfig(correlationId: string): ConfigParams;
     readConfig(correlationId: string): ConfigParams;

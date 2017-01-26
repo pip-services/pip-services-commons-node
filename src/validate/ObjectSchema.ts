@@ -11,19 +11,19 @@ export class ObjectSchema extends Schema {
     private _isUndefinedAllowed: boolean;
 
     public get properties(): PropertySchema[] {
-        return this._properties; 
+        return this._properties;
     }
 
     public set properties(value: PropertySchema[]) {
-        this._properties = value; 
+        this._properties = value;
     }
 
     public get isUndefinedAllowed(): boolean {
-        return this._isUndefinedAllowed; 
+        return this._isUndefinedAllowed;
     }
 
     public set isUndefinedAllowed(value: boolean) {
-        this._isUndefinedAllowed = value; 
+        this._isUndefinedAllowed = value;
     }
 
     public allowUndefined(value: boolean): ObjectSchema {
@@ -73,18 +73,17 @@ export class ObjectSchema extends Schema {
                     var propertyName = key;
                     var propertyValue = properties[key];
 
-                    if (ObjectComparator.areEqual(propertySchema.name, propertyName)) {
+                    if (ObjectComparator.areEqual(propertySchema.getName(), propertyName)) {
                         propertySchema.performValidation(path, propertyValue, results);
                         processedName = propertyName;
                         break;
                     }
                 }
 
-                if (processedName) {
+                if (processedName)
                     delete properties[processedName];
-                } else {
+                else
                     propertySchema.performValidation(path, null, results);
-                }
             }
         }
 

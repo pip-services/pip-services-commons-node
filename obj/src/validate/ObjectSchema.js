@@ -78,18 +78,16 @@ var ObjectSchema = (function (_super) {
                 for (var key in properties) {
                     var propertyName = key;
                     var propertyValue = properties[key];
-                    if (ObjectComparator_1.ObjectComparator.areEqual(propertySchema.name, propertyName)) {
+                    if (ObjectComparator_1.ObjectComparator.areEqual(propertySchema.getName(), propertyName)) {
                         propertySchema.performValidation(path, propertyValue, results);
                         processedName = propertyName;
                         break;
                     }
                 }
-                if (processedName) {
+                if (processedName)
                     delete properties[processedName];
-                }
-                else {
+                else
                     propertySchema.performValidation(path, null, results);
-                }
             }
         }
         for (var key in properties) {

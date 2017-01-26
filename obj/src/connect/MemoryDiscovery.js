@@ -8,7 +8,6 @@ var DiscoveryItem = (function () {
     }
     return DiscoveryItem;
 }());
-;
 var MemoryDiscovery = (function () {
     function MemoryDiscovery(name, config) {
         if (name === void 0) { name = null; }

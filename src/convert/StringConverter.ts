@@ -5,7 +5,7 @@ export class StringConverter {
     public static toNullableString(value: any): string {
         if (value == null) return null;
         if (_.isString(value)) return value;
-        if (_.isDate(value)) value.toISOString();        
+        if (_.isDate(value)) value.toISOString();
         return value.toString();
     }
 

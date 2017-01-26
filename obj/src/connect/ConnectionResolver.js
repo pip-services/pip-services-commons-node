@@ -35,7 +35,6 @@ var ConnectionResolver = (function () {
             callback(null, null);
             return;
         }
-        ;
         var key = connection.getDiscoveryKey();
         if (this._references == null)
             return;
@@ -67,7 +66,6 @@ var ConnectionResolver = (function () {
                 callback(null, null);
             return;
         }
-        ;
         var connections = [];
         for (var index = 0; index < this._connections.length; index++) {
             if (!this._connections[index].getUseDiscovery()) {
@@ -104,7 +102,6 @@ var ConnectionResolver = (function () {
             callback(null, null);
             return;
         }
-        ;
         if (this._references == null)
             return;
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
@@ -132,12 +129,10 @@ var ConnectionResolver = (function () {
         var resolved = [];
         var toResolve = [];
         for (var index = 0; index < this._connections.length; index++) {
-            if (this._connections[index].getUseDiscovery()) {
+            if (this._connections[index].getUseDiscovery())
                 toResolve.push(this._connections[index]);
-            }
-            else {
+            else
                 resolved.push(this._connections[index]);
-            }
         }
         if (toResolve.length <= 0) {
             if (callback)

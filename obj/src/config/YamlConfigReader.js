@@ -19,7 +19,7 @@ var YamlConfigReader = (function (_super) {
         return _super.call(this, name, path) || this;
     }
     YamlConfigReader.prototype.getDescriptor = function () {
-        return new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "yaml", this.name || "default", "1.0");
+        return new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "yaml", this.getName() || "default", "1.0");
     };
     YamlConfigReader.prototype.readObject = function (correlationId) {
         if (_super.prototype.getPath.call(this) == null) {

@@ -15,7 +15,7 @@ export class ExcludedRule implements IValidationRule {
 
         let found: boolean = false;
 
-        for(var i = 0; i < this._values.length && !found; i++) {
+        for (var i = 0; i < this._values.length && !found; i++) {
             let thisValue: any = this._values[i];
 
             if (thisValue && thisValue == value) {

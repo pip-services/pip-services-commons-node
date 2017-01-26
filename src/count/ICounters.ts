@@ -1,7 +1,6 @@
 import { Timing } from './Timing';
 
 export interface ICounters {
-
     beginTiming(name: string) : Timing;
 	stats(name: string, value: number) : void;
 	last(name: string, value: number) : void;

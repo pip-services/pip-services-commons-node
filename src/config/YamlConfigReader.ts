@@ -17,21 +17,20 @@ export class YamlConfigReader extends FileConfigReader implements IDescriptable 
         super(name, path);
     }
 
-    public getDescriptor(): Descriptor
-    {
-        return new Descriptor("pip-services-commons", "config-reader", "yaml", this.name || "default", "1.0");
+    public getDescriptor(): Descriptor {
+        return new Descriptor("pip-services-commons", "config-reader", "yaml", this.getName() || "default", "1.0");
     }
 
     public readObject(correlationId: string): any {
-        if(super.getPath() == null) {
+        if (super.getPath() == null) {
             throw new ConfigException(correlationId, "NO_PATH", "Missing config file path");
         }
 
-        try{
+        try {
             // Todo: make this async?
             let data = yaml.safeLoad(fs.readFileSync(super.getPath(), 'utf8'));
             return data;
-        } catch(e) {
+        } catch (e) {
                 throw new FileException(
                     correlationId,
                     "READ_FAILED",

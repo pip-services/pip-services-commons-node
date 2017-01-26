@@ -22,7 +22,7 @@ suite('JsonConfigReader', ()=> {
     test('Read After Timeout', () => {
         let reader: JsonConfigReader = new JsonConfigReader(null, "./data/config.json");
 
-        reader.timeout = 100;
+        reader.setTimeout(100);
 
         var config: ConfigParams = reader.readConfig(null);
         assert.equal(config.getCount(), 7);

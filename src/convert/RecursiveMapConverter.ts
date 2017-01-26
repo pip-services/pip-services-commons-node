@@ -7,13 +7,13 @@ import { TypeReflector } from '../reflect/TypeReflector';
 export class RecursiveMapConverter {
 
     private static objectToMap(value: any): any {
-        if (value == null) 
+        if (value == null)
             return null;
 
         var result = {};
         var props = Object.keys(value);
 
-        for(var i = 0; i < props.length; i++) {
+        for (var i = 0; i < props.length; i++) {
             var propValue = value[props[i]];
             propValue = RecursiveMapConverter.valueToMap(propValue);
             result[props[i]] = propValue;
@@ -46,7 +46,7 @@ export class RecursiveMapConverter {
         var result = {};
         var keys = Object.keys(value);
 
-        for(var i = 0; i < keys.length; i++) {
+        for (var i = 0; i < keys.length; i++) {
             result[keys[i]] = RecursiveMapConverter.valueToMap(value[keys[i]]);
         }
     }
@@ -54,7 +54,7 @@ export class RecursiveMapConverter {
     private static arrayToMap(value: any[]): any {
         var result: any[] = [];
 
-        for(var i = 0; i < value.length; i++) {
+        for (var i = 0; i < value.length; i++) {
             result[i] = RecursiveMapConverter.valueToMap(value[i]);
         }
 
@@ -64,7 +64,7 @@ export class RecursiveMapConverter {
     public static toNullableMap(value: any): any {
         return RecursiveMapConverter.valueToMap(value);
     }
-    
+
     public static toMap(value: any): any {
         return RecursiveMapConverter.toNullableMap(value) || {};
     }

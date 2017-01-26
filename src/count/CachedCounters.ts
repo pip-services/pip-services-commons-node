@@ -10,27 +10,27 @@ import { InvocationException } from '../errors/InvocationException';
 export abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
     private static readonly DefaultInterval = 300000;
     private _interval: number;
-	
+
     private readonly _cache: { [id: string]: Counter } = {};
     private _updated: boolean;
     private _lastDumpTime: number = new Date().getDate();
 
-	public CachedCounters() {
-        this.interval = CachedCounters.DefaultInterval;
+    public CachedCounters() {
+        this.setInterval(CachedCounters.DefaultInterval);
     }
-	
-    public get interval() {
+
+    public getInterval() {
         return this._interval;
     }
 
-    public set interval(value: number) {
+    public setInterval(value: number) {
         this._interval = value;
     }
 
     protected abstract save(counters: Counter[]): void;
 
     public configure(config: ConfigParams): void {
-        this.interval = config.getAsLongWithDefault("interval", CachedCounters.DefaultInterval);
+        this.setInterval(config.getAsLongWithDefault("interval", this.getInterval()));
     }
 
     public clear(name: string): void {
@@ -38,15 +38,15 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
     }
 
     public clearAll(): void {
-        for(var key in this._cache)
+        for (var key in this._cache)
             delete this._cache[key];
 
         this._updated = false;
     }
 
-    public beginTiming(name: string) : Timing {
+    public beginTiming(name: string): Timing {
         return new Timing(name, this);
-    };
+    }
 
     public dump(): void {
         if (!this._updated) return;
@@ -61,7 +61,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
     protected update(): void {
         this._updated = true;
-        if (new Date().getDate() > this._lastDumpTime + this.interval) {
+        if (new Date().getDate() > this._lastDumpTime + this.getInterval()) {
             try {
                 this.dump();
             } catch (InvocationException) {
@@ -73,9 +73,8 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
     public getAll(): Counter[] {
         let result: Counter[] = [];
 
-        for(var key in this._cache) {
+        for (var key in this._cache)
             result.push(this._cache[key]);
-        }
 
         return result;
     }
@@ -102,20 +101,21 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
         counter.setCount(counter.getCount() != null ? counter.getCount() + 1 : 1);
         counter.setMax(counter.getMax() != null ? Math.max(counter.getMax(), value) : value);
         counter.setMin(counter.getMin() != null ? Math.min(counter.getMin(), value) : value);
-        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1 ? (counter.getAverage()*(counter.getCount() - 1) + value) / counter.getCount() : value));
+        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1
+            ? (counter.getAverage() * (counter.getCount() - 1) + value) / counter.getCount() : value));
     }
 
-    public endTiming(name: string, elapsed: number) : void {
+    public endTiming(name: string, elapsed: number): void {
         let counter: Counter = this.get(name, CounterType.Interval);
         this.calculateStats(counter, elapsed);
         this.update();
-    };
+    }
 
-    public stats(name: string, value: number) : void {
+    public stats(name: string, value: number): void {
         let counter: Counter = this.get(name, CounterType.Statistics);
         this.calculateStats(counter, value);
         this.update();
-    };
+    }
 
     public last(name: string, value: number): void {
         let counter: Counter = this.get(name, CounterType.LastValue);

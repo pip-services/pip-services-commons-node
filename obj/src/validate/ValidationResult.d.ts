@@ -7,10 +7,10 @@ export declare class ValidationResult {
     private _expected;
     private _actual;
     constructor(path?: string, type?: ValidationResultType, code?: string, message?: string, expected?: any, actual?: any);
-    readonly path: string;
-    readonly type: ValidationResultType;
-    readonly code: string;
-    readonly message: string;
-    readonly expected: any;
-    readonly actual: any;
+    getPath(): string;
+    getType(): ValidationResultType;
+    getCode(): string;
+    getMessage(): string;
+    getExpected(): any;
+    getActual(): any;
 }

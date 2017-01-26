@@ -15,9 +15,8 @@ var OnlyOneExistRule = (function () {
         for (var i = 0; i < this._properties.length; i++) {
             var property = this._properties[i];
             var propertyValue = ObjectReader_1.ObjectReader.getProperty(value, property);
-            if (propertyValue) {
+            if (propertyValue)
                 found.push(property);
-            }
         }
         if (found.length == 0) {
             results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_NULL", "At least one property expected from " + this._properties, this._properties, null));

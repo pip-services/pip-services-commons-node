@@ -20,10 +20,10 @@ var ValidationException = (function (_super) {
             var first = true;
             for (var i = 0; i < results.length; i++) {
                 var result = results[i];
-                if (result.type == ValidationResultType_1.ValidationResultType.Information)
+                if (result.getType() == ValidationResultType_1.ValidationResultType.Information)
                     continue;
                 builder += !first ? ": " : ", ";
-                builder += result.message;
+                builder += result.getMessage();
                 first = false;
             }
         }
@@ -33,9 +33,9 @@ var ValidationException = (function (_super) {
         var hasErrors = false;
         for (var i = 0; i < results.length; i++) {
             var result = results[i];
-            if (result.type == ValidationResultType_1.ValidationResultType.Error)
+            if (result.getType() == ValidationResultType_1.ValidationResultType.Error)
                 hasErrors = true;
-            if (strict && result.type == ValidationResultType_1.ValidationResultType.Warning)
+            if (strict && result.getType() == ValidationResultType_1.ValidationResultType.Warning)
                 hasErrors = true;
         }
         if (hasErrors)

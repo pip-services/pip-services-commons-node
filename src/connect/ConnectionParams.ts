@@ -42,13 +42,13 @@ export class ConnectionParams extends ConfigParams {
 
     public setPort(value: number): void {
         return super.put("port", value);
-    }    
+    }
 
     public getUri(): string {
         return this.getProtocol() + "://" + this.getHost() + ":" + this.getPort();
     }
 
-    public static fromString(line: string) : ConnectionParams {
+    public static fromString(line: string): ConnectionParams {
         let map: StringValueMap = StringValueMap.fromString(line);
         return new ConnectionParams(map);
     }
@@ -57,20 +57,20 @@ export class ConnectionParams extends ConfigParams {
         let result: ConnectionParams[] = [];
         let connections: ConfigParams = config.getSection("connections");
 
-        if(connections.getCount() > 0) {
+        if (connections.getCount() > 0) {
             let connectionSections: string[] = connections.getSectionNames();
-            for(let index: 0; index < connectionSections.length; index ++) {
+            for (let index: 0; index < connectionSections.length; index++) {
                 let connection: ConfigParams = connections.getSection(connectionSections[index]);
                 result.push(new ConnectionParams(connection));
             }
-         } else {
-             let connection: ConfigParams = config.getSection("connection");
-             if(connection.getCount() > 0) {
-                    result.push(new ConnectionParams(connection));
-             } 
-             else {
-                 result.push(new ConnectionParams(config));
-             }
+        } else {
+            let connection: ConfigParams = config.getSection("connection");
+            if (connection.getCount() > 0) {
+                result.push(new ConnectionParams(connection));
+            }
+            else {
+                result.push(new ConnectionParams(config));
+            }
         }
 
         return result;
@@ -80,7 +80,5 @@ export class ConnectionParams extends ConfigParams {
         let connections: ConnectionParams[] = this.manyFromConfig(config, configAsDefault);
         return connections.length > 0 ? connections[0] : null;
     }
-
-
 
 }

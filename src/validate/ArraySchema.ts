@@ -17,9 +17,9 @@ export class ArraySchema extends Schema {
     }
 
     public get valueType(): any {
-        return this._valueType; 
+        return this._valueType;
     }
-    
+
     protected performValidation(path: string, value: any, results: ValidationResult[]): void {
         value = ObjectReader.getValue(value);
 
