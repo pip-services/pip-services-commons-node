@@ -4,6 +4,7 @@ export { IntegerConverter } from './IntegerConverter';
 export { LongConverter } from './LongConverter';
 export { FloatConverter } from './FloatConverter';
 export { DoubleConverter } from './DoubleConverter';
+export { DecimalConverter } from './DecimalConverter';
 export { DateTimeConverter } from './DateTimeConverter';
 export { ArrayConverter } from './ArrayConverter';
 export { MapConverter } from './MapConverter';
