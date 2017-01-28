@@ -3,7 +3,6 @@ import { CachedConfigReader } from './CachedConfigReader';
 import { IConfigurable } from './IConfigurable'
 
 export abstract class FileConfigReader extends CachedConfigReader implements IConfigurable {
-
     private _path: string;
 
     public constructor(name: string = null, path: string = null) {

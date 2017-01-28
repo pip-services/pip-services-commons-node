@@ -39,9 +39,8 @@ var ConnectionResolver = (function () {
         if (this._references == null)
             return;
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
-        if (discoveries.length == 0) {
+        if (discoveries.length == 0)
             throw new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
-        }
         var firstResult = null;
         async.any(discoveries, function (discovery, cb) {
             var discoveryTyped = discovery;
@@ -105,9 +104,8 @@ var ConnectionResolver = (function () {
         if (this._references == null)
             return;
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
-        if (discoveries.length == 0) {
+        if (discoveries.length == 0)
             throw new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
-        }
         async.each(discoveries, function (discovery, cb) {
             var discoveryTyped = discovery;
             discoveryTyped.resolveAll(correlationId, key, function (err, result) {

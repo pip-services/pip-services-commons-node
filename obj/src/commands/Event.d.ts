@@ -5,8 +5,8 @@ export declare class Event implements IEvent {
     private _name;
     private _listeners;
     constructor(name: string);
-    readonly name: string;
-    readonly listeners: IEventListener[];
+    getName(): string;
+    getListeners(): IEventListener[];
     addListener(listener: IEventListener): void;
     removeListener(listener: IEventListener): void;
     notify(correlationId: string, args: Parameters): void;

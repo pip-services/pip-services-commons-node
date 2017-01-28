@@ -18,7 +18,7 @@ export class RandomString {
     }
 
     public static pick(values: string[]): string {
-    	if (values == null || values.length == 0)
+        if (values == null || values.length == 0)
             return '';
 
         let index = RandomInteger.nextInteger(values.length);
@@ -38,16 +38,16 @@ export class RandomString {
     }
 
     public static nextAlphaChar(): string {
-    	let index = RandomInteger.nextInteger(RandomString._alpha.length);
+        let index = RandomInteger.nextInteger(RandomString._alpha.length);
         return RandomString._alpha.charAt(index);
     }
 
     public static nextString(minLength: number, maxLength: number): string {
         let result = '';
-        
+
         let length = RandomInteger.nextInteger(minLength, maxLength);
         for (let i = 0; i < length; i++) {
-        	let index = RandomInteger.nextInteger(RandomString._chars.length);
+            let index = RandomInteger.nextInteger(RandomString._chars.length);
             result += RandomString._chars.charAt(index);
         }
 

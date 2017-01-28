@@ -13,20 +13,12 @@ var CommandSet = (function () {
         this._commandsByName = {};
         this._eventsByName = {};
     }
-    Object.defineProperty(CommandSet.prototype, "commands", {
-        get: function () {
-            return this._commands;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CommandSet.prototype, "events", {
-        get: function () {
-            return this._events;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    CommandSet.prototype.getCommands = function () {
+        return this._commands;
+    };
+    CommandSet.prototype.getEvents = function () {
+        return this._events;
+    };
     CommandSet.prototype.findCommand = function (commandName) {
         return this._commandsByName[commandName];
     };
@@ -37,7 +29,7 @@ var CommandSet = (function () {
         var next = command;
         for (var i = this._intercepters.length - 1; i >= 0; i--)
             next = new InterceptedCommand_1.InterceptedCommand(this._intercepters[i], next);
-        this._commandsByName[next.name] = next;
+        this._commandsByName[next.getName()] = next;
     };
     CommandSet.prototype.rebuildAllCommandChains = function () {
         this._commandsByName = {};
@@ -51,32 +43,28 @@ var CommandSet = (function () {
         this.buildCommandChain(command);
     };
     CommandSet.prototype.addCommands = function (commands) {
-        for (var i = 0; i < commands.length; i++) {
+        for (var i = 0; i < commands.length; i++)
             this.addCommand(commands[i]);
-        }
     };
     CommandSet.prototype.addEvent = function (event) {
         this._events.push(event);
-        this._eventsByName[event.name] = event;
+        this._eventsByName[event.getName()] = event;
     };
     CommandSet.prototype.addEvents = function (events) {
-        for (var i = 0; i < events.length; i++) {
+        for (var i = 0; i < events.length; i++)
             this.addEvent(events[i]);
-        }
     };
     CommandSet.prototype.addCommandSet = function (commandSet) {
-        this.addCommands(commandSet.commands);
-        this.addEvents(commandSet.events);
+        this.addCommands(commandSet.getCommands());
+        this.addEvents(commandSet.getEvents());
     };
     CommandSet.prototype.addListener = function (listener) {
-        for (var i = 0; i < this._events.length; i++) {
+        for (var i = 0; i < this._events.length; i++)
             this._events[i].addListener(listener);
-        }
     };
     CommandSet.prototype.removeListener = function (listener) {
-        for (var i = 0; i < this._events.length; i++) {
+        for (var i = 0; i < this._events.length; i++)
             this._events[i].removeListener(listener);
-        }
     };
     CommandSet.prototype.addInterceptor = function (intercepter) {
         this._intercepters.push(intercepter);

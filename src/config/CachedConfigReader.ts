@@ -4,7 +4,6 @@ import { ConfigParams } from './ConfigParams';
 import { NameResolver } from './NameResolver';
 
 export abstract class CachedConfigReader implements IConfigReader, IReconfigurable {
-
     private _lastRead: number = 0;
     private _name: string = null;
     private _timeout: number = 60000;
@@ -41,7 +40,7 @@ export abstract class CachedConfigReader implements IConfigReader, IReconfigurab
 
         let timestamp: number = new Date().getTime();
 
-        if(this._config != null && timestamp < this._lastRead + this._timeout) {
+        if (this._config != null && timestamp < this._lastRead + this._timeout) {
             return this._config;
         }
 

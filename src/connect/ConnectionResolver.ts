@@ -44,9 +44,8 @@ export class ConnectionResolver {
         if (this._references == null) return;
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if (discoveries.length == 0) {
+        if (discoveries.length == 0)
             throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
-        }
 
         let firstResult: ConnectionParams = null;
 
@@ -122,9 +121,8 @@ export class ConnectionResolver {
         if (this._references == null) return;
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if (discoveries.length == 0) {
+        if (discoveries.length == 0) 
             throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
-        }
 
         async.each(
             discoveries,
@@ -151,9 +149,9 @@ export class ConnectionResolver {
         let toResolve: ConnectionParams[] = [];
 
         for (let index = 0; index < this._connections.length; index++) {
-            if (this._connections[index].getUseDiscovery()) 
+            if (this._connections[index].getUseDiscovery())
                 toResolve.push(this._connections[index]);
-            else 
+            else
                 resolved.push(this._connections[index]);
         }
 

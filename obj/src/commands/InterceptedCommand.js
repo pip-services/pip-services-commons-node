@@ -4,13 +4,9 @@ var InterceptedCommand = (function () {
         this._intercepter = intercepter;
         this._next = next;
     }
-    Object.defineProperty(InterceptedCommand.prototype, "name", {
-        get: function () {
-            return this._intercepter.getName(this._next);
-        },
-        enumerable: true,
-        configurable: true
-    });
+    InterceptedCommand.prototype.getName = function () {
+        return this._intercepter.getName(this._next);
+    };
     InterceptedCommand.prototype.execute = function (correlationId, args, callback) {
         this._intercepter.execute(correlationId, this._next, args, callback);
     };

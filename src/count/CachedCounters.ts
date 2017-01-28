@@ -8,16 +8,14 @@ import { ConfigParams } from '../config/ConfigParams';
 import { InvocationException } from '../errors/InvocationException';
 
 export abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
-    private static readonly DefaultInterval = 300000;
-    private _interval: number;
+    private static readonly _defaultInterval = 300000;
+    private _interval: number = CachedCounters._defaultInterval;
 
     private readonly _cache: { [id: string]: Counter } = {};
     private _updated: boolean;
     private _lastDumpTime: number = new Date().getDate();
 
-    public CachedCounters() {
-        this.setInterval(CachedCounters.DefaultInterval);
-    }
+    public CachedCounters() { }
 
     public getInterval() {
         return this._interval;
@@ -30,7 +28,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
     protected abstract save(counters: Counter[]): void;
 
     public configure(config: ConfigParams): void {
-        this.setInterval(config.getAsLongWithDefault("interval", this.getInterval()));
+        this._interval = config.getAsLongWithDefault("interval", this._interval);
     }
 
     public clear(name: string): void {

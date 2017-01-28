@@ -4,12 +4,11 @@ var CounterType_1 = require("./CounterType");
 var Counter_1 = require("./Counter");
 var CachedCounters = (function () {
     function CachedCounters() {
+        this._interval = CachedCounters._defaultInterval;
         this._cache = {};
         this._lastDumpTime = new Date().getDate();
     }
-    CachedCounters.prototype.CachedCounters = function () {
-        this.setInterval(CachedCounters.DefaultInterval);
-    };
+    CachedCounters.prototype.CachedCounters = function () { };
     CachedCounters.prototype.getInterval = function () {
         return this._interval;
     };
@@ -17,7 +16,7 @@ var CachedCounters = (function () {
         this._interval = value;
     };
     CachedCounters.prototype.configure = function (config) {
-        this.setInterval(config.getAsLongWithDefault("interval", this.getInterval()));
+        this._interval = config.getAsLongWithDefault("interval", this._interval);
     };
     CachedCounters.prototype.clear = function (name) {
         delete this._cache[name];
@@ -107,6 +106,6 @@ var CachedCounters = (function () {
     };
     return CachedCounters;
 }());
-CachedCounters.DefaultInterval = 300000;
+CachedCounters._defaultInterval = 300000;
 exports.CachedCounters = CachedCounters;
 //# sourceMappingURL=CachedCounters.js.map

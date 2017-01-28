@@ -65,12 +65,10 @@ export class ConnectionParams extends ConfigParams {
             }
         } else {
             let connection: ConfigParams = config.getSection("connection");
-            if (connection.getCount() > 0) {
+            if (connection.getCount() > 0)
                 result.push(new ConnectionParams(connection));
-            }
-            else {
+            else
                 result.push(new ConnectionParams(config));
-            }
         }
 
         return result;

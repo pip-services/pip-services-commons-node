@@ -10,9 +10,8 @@ var MemoryCredentialStore = (function () {
         if (credentials === void 0) { credentials = null; }
         this._items = new StringValueMap_1.StringValueMap();
         name = name;
-        if (credentials != null) {
+        if (credentials != null)
             this.configure(credentials);
-        }
     }
     MemoryCredentialStore.prototype.getName = function () {
         return this._name;
@@ -26,30 +25,24 @@ var MemoryCredentialStore = (function () {
     };
     MemoryCredentialStore.prototype.readCredentials = function (credentials) {
         this._items.clear();
-        for (var key in credentials.getKeyNames()) {
+        for (var key in credentials.getKeyNames())
             this._items.put(key, CredentialParams_1.CredentialParams.fromTuples([key, credentials.getAsNullableString(key)]));
-        }
     };
     MemoryCredentialStore.prototype.store = function (correlationId, key, credential, callback) {
-        if (credential != null) {
+        if (credential != null)
             this._items.put(key, credential);
-        }
-        else {
+        else
             this._items.delete(key);
-        }
         if (callback)
             callback(null);
     };
     MemoryCredentialStore.prototype.lookup = function (correlationId, key, callback) {
         var credential = this._items.getAsObject(key);
-        if (credential instanceof CredentialParams_1.CredentialParams) {
+        if (credential instanceof CredentialParams_1.CredentialParams)
             if (callback)
                 callback(null, credential);
-        }
-        else {
-            if (callback)
+            else if (callback)
                 callback(null, null);
-        }
     };
     return MemoryCredentialStore;
 }());

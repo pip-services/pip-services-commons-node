@@ -9,11 +9,11 @@ export class FloatConverter {
     }
 
     public static toFloat(value: any): number {
-       return DoubleConverter.toDouble(value);
+        return DoubleConverter.toDouble(value);
     }
 
     public static toFloatWithDefault(value: any, defaultValue: number): number {
-       return DoubleConverter.toDoubleWithDefault(value, defaultValue);
+        return DoubleConverter.toDoubleWithDefault(value, defaultValue);
     }
 
 }

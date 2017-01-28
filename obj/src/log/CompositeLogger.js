@@ -26,9 +26,8 @@ var CompositeLogger = (function (_super) {
         var _a;
     };
     CompositeLogger.prototype.write = function (level, correlationId, error, message) {
-        for (var index = 0; index < this._loggers.length; index++) {
+        for (var index = 0; index < this._loggers.length; index++)
             this._loggers[index].log(level, correlationId, error, message);
-        }
     };
     return CompositeLogger;
 }(Logger_1.Logger));

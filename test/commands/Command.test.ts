@@ -12,7 +12,7 @@ suite('Command', ()=> {
 
 		// Check match by individual fields
         assert.isNotNull(command);
-		assert.equal(command.name, 'name');
+        assert.equal(command.getName(), 'name');
 
         done();
     });    

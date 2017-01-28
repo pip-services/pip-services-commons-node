@@ -13,12 +13,12 @@ export class DoubleConverter {
     }
 
     public static toDouble(value: any): number {
-       return DoubleConverter.toDoubleWithDefault(value, 0);
+        return DoubleConverter.toDoubleWithDefault(value, 0);
     }
 
     public static toDoubleWithDefault(value: any, defaultValue: number = 0): number {
-       var result = DoubleConverter.toNullableDouble(value);
-       return result != null ? result : defaultValue;
+        var result = DoubleConverter.toNullableDouble(value);
+        return result != null ? result : defaultValue;
     }
 
 }

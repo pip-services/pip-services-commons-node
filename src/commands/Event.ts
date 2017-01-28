@@ -8,22 +8,21 @@ export class Event implements IEvent {
     private _name: string;
     private _listeners: IEventListener[];
 
-    public constructor(name: string)
-    {
+    public constructor(name: string) {
         if (!name)
-			throw new Error("Name cannot be null");
+            throw new Error("Name cannot be null");
 
-        this._name  = name;
+        this._name = name;
     }
 
-    public get name(): string {
-        return this._name; 
+    public getName(): string {
+        return this._name;
     }
- 
-    public get listeners(): IEventListener[] {
-        return this._listeners; 
+
+    public getListeners(): IEventListener[] {
+        return this._listeners;
     }
-   
+
     public addListener(listener: IEventListener): void {
         this._listeners.push(listener);
     }
@@ -42,11 +41,11 @@ export class Event implements IEvent {
                 let listener: IEventListener = this._listeners[i];
                 listener.onEvent(correlationId, this, args);
             } catch (ex) {
-                throw new InvocationException(                        
+                throw new InvocationException(
                     correlationId,
                     "EXEC_FAILED",
-                    "Raising event " + this.name + " failed: " + ex)
-                    .withDetails("event", this.name)
+                    "Raising event " + this.getName() + " failed: " + ex)
+                    .withDetails("event", this.getName())
                     .wrap(ex);
             }
         }

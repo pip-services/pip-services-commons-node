@@ -3,8 +3,8 @@ import { RandomString } from './RandomString';
 import { RandomBoolean } from './RandomBoolean';
 
 export class RandomText {
-    private static readonly _namePrefixes = [ "Dr.", "Mr.", "Mrs" ];
-    private static readonly _nameSuffixes = [ "Jr.", "Sr.", "II", "III" ];
+    private static readonly _namePrefixes = ["Dr.", "Mr.", "Mrs"];
+    private static readonly _nameSuffixes = ["Jr.", "Sr.", "II", "III"];
     private static readonly _firstNames = [
         "John", "Bill", "Andrew", "Nick", "Pamela", "Bela", "Sergio", "George", "Hurry", "Cecilia", "Vesta", "Terry", "Patrick"
     ];
@@ -61,7 +61,7 @@ export class RandomText {
     //     "Washington", "Water", "Wayne", "Westminster", "Westport", "White", "Whitemarsh", "Wild Rose", "William", "Williams", "Wilson", "Winchester", "Windfall", "Winding Way",
     //     "Winding", "Windsor", "Wintergreen", "Wood", "Woodland", "Woodside", "Woodsman", "Wrangler", "York",
     // ];
-    
+
     private static readonly _allWords = RandomText._firstNames.concat(RandomText._lastNames).concat(RandomText._colors)
         .concat(RandomText._stuffs).concat(RandomText._adjectives).concat(RandomText._verbs);
 
@@ -85,7 +85,7 @@ export class RandomText {
         maxSize = Math.max(minSize, maxSize || minSize);
         let size = RandomInteger.nextInteger(minSize, maxSize);
         if (size <= 0) return "";
-        
+
         let result = '';
         result += RandomString.pick(RandomText._allWords);
         while (result.length < size) {
@@ -102,7 +102,7 @@ export class RandomText {
             result += RandomString.pick(RandomText._namePrefixes) + " ";
 
         result += RandomString.pick(RandomText._firstNames)
-        	+ " " + RandomString.pick(RandomText._lastNames);
+            + " " + RandomString.pick(RandomText._lastNames);
 
         if (RandomBoolean.chance(5, 10))
             result += " " + RandomString.pick(RandomText._nameSuffixes);
@@ -116,8 +116,8 @@ export class RandomText {
 
     public static words(min: number, max: number = null): string {
         let result = '';
-        
-        let count = RandomInteger.nextInteger(min, max || min);        
+
+        let count = RandomInteger.nextInteger(min, max || min);
         for (let i = 0; i < count; i++)
             result += RandomString.pick(RandomText._allWords);
 
@@ -126,28 +126,28 @@ export class RandomText {
 
     public static phone(): string {
         let result = '';
-        
+
         result += "("
-        	+ RandomInteger.nextInteger(111, 999)
-        	+ ") "
-    		+ RandomInteger.nextInteger(111, 999)
-    		+ "-"
-    		+ RandomInteger.nextInteger(0, 9999);
+            + RandomInteger.nextInteger(111, 999)
+            + ") "
+            + RandomInteger.nextInteger(111, 999)
+            + "-"
+            + RandomInteger.nextInteger(0, 9999);
 
         return result;
     }
 
     public static email(): string {
-        return RandomText.words(2,6) + "@" + RandomText.words(1,3) + ".com";
+        return RandomText.words(2, 6) + "@" + RandomText.words(1, 3) + ".com";
     }
 
     public static text(minSize: number, maxSize: number = null): string {
         maxSize = Math.max(minSize, maxSize || minSize);
         let size = RandomInteger.nextInteger(minSize, maxSize);
 
-        let result = '';        
+        let result = '';
         result += RandomString.pick(RandomText._allWords);
-        
+
         while (result.length < size) {
             let next = RandomString.pick(RandomText._allWords);
             if (RandomBoolean.chance(4, 6))
@@ -164,5 +164,5 @@ export class RandomText {
 
         return result;
     }
-    
+
 }

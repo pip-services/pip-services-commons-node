@@ -11,8 +11,8 @@ export declare class CommandSet {
     private _commandsByName;
     private _eventsByName;
     constructor();
-    readonly commands: ICommand[];
-    readonly events: IEvent[];
+    getCommands(): ICommand[];
+    getEvents(): IEvent[];
     findCommand(commandName: string): ICommand;
     findEvent(eventName: string): IEvent;
     private buildCommandChain(command);

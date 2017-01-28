@@ -15,23 +15,23 @@ export class CommandSet {
     private readonly _events: IEvent[] = [];
     private readonly _intercepters: ICommandIntercepter[] = [];
 
-    private _commandsByName: { [name: string] : ICommand } = {};
-    private _eventsByName: { [name: string] : IEvent } = {};
+    private _commandsByName: { [name: string]: ICommand } = {};
+    private _eventsByName: { [name: string]: IEvent } = {};
 
-    public constructor() {}
+    public constructor() { }
 
-    public get commands(): ICommand[] {
-        return this._commands; 
+    public getCommands(): ICommand[] {
+        return this._commands;
     }
 
-    public get events(): IEvent[] {
-        return this._events; 
+    public getEvents(): IEvent[] {
+        return this._events;
     }
-    
+
     public findCommand(commandName: string): ICommand {
         return this._commandsByName[commandName];
     }
-    
+
     public findEvent(eventName: string): IEvent {
         return this._eventsByName[eventName];
     }
@@ -39,10 +39,10 @@ export class CommandSet {
     private buildCommandChain(command: ICommand): void {
         let next: ICommand = command;
 
-        for(var i = this._intercepters.length - 1; i >= 0; i--)
+        for (var i = this._intercepters.length - 1; i >= 0; i--)
             next = new InterceptedCommand(this._intercepters[i], next);
 
-        this._commandsByName[next.name] = next;
+        this._commandsByName[next.getName()] = next;
     }
 
     private rebuildAllCommandChains(): void {
@@ -60,37 +60,33 @@ export class CommandSet {
     }
 
     public addCommands(commands: ICommand[]): void {
-        for (var i = 0; i < commands.length; i++) {
+        for (var i = 0; i < commands.length; i++) 
             this.addCommand(commands[i]);
-        }
     }
 
     public addEvent(event: IEvent): void {
         this._events.push(event);
-        this._eventsByName[event.name] = event;
+        this._eventsByName[event.getName()] = event;
     }
 
     public addEvents(events: IEvent[]): void {
-        for (var i = 0; i < events.length; i++) {
+        for (var i = 0; i < events.length; i++)
             this.addEvent(events[i]);
-        }
     }
 
     public addCommandSet(commandSet: CommandSet): void {
-        this.addCommands(commandSet.commands);
-        this.addEvents(commandSet.events);
+        this.addCommands(commandSet.getCommands());
+        this.addEvents(commandSet.getEvents());
     }
 
     public addListener(listener: IEventListener): void {
-        for (var i = 0; i < this._events.length; i++) {
+        for (var i = 0; i < this._events.length; i++)
             this._events[i].addListener(listener);
-        }
     }
 
     public removeListener(listener: IEventListener): void {
-        for (var i = 0; i < this._events.length; i++) {
+        for (var i = 0; i < this._events.length; i++)
             this._events[i].removeListener(listener);
-        }
     }
 
     public addInterceptor(intercepter: ICommandIntercepter): void {
@@ -124,7 +120,14 @@ export class CommandSet {
 
         if (!cref) {
             let result: ValidationResult[] = [];
-            result.push(new ValidationResult(null, ValidationResultType.Error, "CMD_NOT_FOUND", "Requested command does not exist", null, null))
+            result.push(new ValidationResult(
+                null, 
+                ValidationResultType.Error, 
+                "CMD_NOT_FOUND", 
+                "Requested command does not exist", 
+                null, 
+                null
+            ));
             return result;
         }
 

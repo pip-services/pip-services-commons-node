@@ -9,11 +9,11 @@ export class IntegerConverter {
     }
 
     public static toInteger(value: any): number {
-       return LongConverter.toLong(value);
+        return LongConverter.toLong(value);
     }
 
     public static toIntegerWithDefault(value: any, defaultValue: number): number {
-       return LongConverter.toLongWithDefault(value, defaultValue);
+        return LongConverter.toLongWithDefault(value, defaultValue);
     }
 
 }

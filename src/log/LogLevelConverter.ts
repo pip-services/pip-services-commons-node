@@ -24,24 +24,24 @@ export class LogLevelConverter {
         else
             return LogLevel.Info;
     }
-    
+
     public static toString(level: LogLevel): string {
-		if (level == LogLevel.Fatal) return "FATAL"; 
-		if (level == LogLevel.Error) return "ERROR"; 
-		if (level == LogLevel.Warn)  return "WARN"; 
-		if (level == LogLevel.Info)  return "INFO"; 
-		if (level == LogLevel.Debug) return "DEBUG"; 
-		if (level == LogLevel.Trace) return "TRACE";
-		return "UNDEF";
+        if (level == LogLevel.Fatal) return "FATAL";
+        if (level == LogLevel.Error) return "ERROR";
+        if (level == LogLevel.Warn) return "WARN";
+        if (level == LogLevel.Info) return "INFO";
+        if (level == LogLevel.Debug) return "DEBUG";
+        if (level == LogLevel.Trace) return "TRACE";
+        return "UNDEF";
     }
 
     public static toInteger(level: LogLevel): number {
-		if (level == LogLevel.Fatal) return 1; 
-		if (level == LogLevel.Error) return 2; 
-		if (level == LogLevel.Warn)  return 3; 
-		if (level == LogLevel.Info)  return 4; 
-		if (level == LogLevel.Debug) return 5; 
-		if (level == LogLevel.Trace) return 6;
-		return 0;
+        if (level == LogLevel.Fatal) return 1;
+        if (level == LogLevel.Error) return 2;
+        if (level == LogLevel.Warn) return 3;
+        if (level == LogLevel.Info) return 4;
+        if (level == LogLevel.Debug) return 5;
+        if (level == LogLevel.Trace) return 6;
+        return 0;
     }
 }

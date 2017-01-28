@@ -14,9 +14,8 @@ var MemoryDiscovery = (function () {
         if (config === void 0) { config = null; }
         this._items = [];
         name = name;
-        if (config != null) {
+        if (config != null)
             this.configure(config);
-        }
     }
     MemoryDiscovery.prototype.getName = function () {
         return this._name;
@@ -59,9 +58,8 @@ var MemoryDiscovery = (function () {
     MemoryDiscovery.prototype.resolveAll = function (correlationId, key, callback) {
         var connections = [];
         for (var index = void 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null) {
+            if (this._items[index].key == key && this._items[index].connection != null)
                 connections.push(this._items[index].connection);
-            }
         }
         if (callback)
             callback(null, connections);

@@ -9,15 +9,15 @@ export class ArrayConverter {
 		// Convert list
 		if (_.isArray(value))
 			return <any[]>value;
-        // Convert map
-        else if (_.isObject(value)) {
-            let array = [];
-            for (let prop in value)
-                array.push(value[prop]);
-            return array;
-        } 
+		// Convert map
+		else if (_.isObject(value)) {
+			let array = [];
+			for (let prop in value)
+				array.push(value[prop]);
+			return array;
+		}
 		// Convert single values
-        else 
+		else
 			return [value];
 	}
 
@@ -31,10 +31,10 @@ export class ArrayConverter {
 		return result || defaultValue;
 	}
 
-    public static listToArray(value: any): any[] {
-        if (value == null) return [];
-        if (_.isString(value)) value = value.split(',');
+	public static listToArray(value: any): any[] {
+		if (value == null) return [];
+		if (_.isString(value)) value = value.split(',');
 		return ArrayConverter.toArray(value);
-    }
-    
+	}
+
 }

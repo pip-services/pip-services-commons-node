@@ -8,7 +8,7 @@ export declare class Command implements ICommand {
     private readonly _function;
     private _name;
     constructor(name: string, schema: Schema, func: IExecutable);
-    readonly name: string;
+    getName(): string;
     execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void;
     validate(args: Parameters): ValidationResult[];
 }

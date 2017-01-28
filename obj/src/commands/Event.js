@@ -6,20 +6,12 @@ var Event = (function () {
             throw new Error("Name cannot be null");
         this._name = name;
     }
-    Object.defineProperty(Event.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Event.prototype, "listeners", {
-        get: function () {
-            return this._listeners;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    Event.prototype.getName = function () {
+        return this._name;
+    };
+    Event.prototype.getListeners = function () {
+        return this._listeners;
+    };
     Event.prototype.addListener = function (listener) {
         this._listeners.push(listener);
     };
@@ -36,8 +28,8 @@ var Event = (function () {
                 listener.onEvent(correlationId, this, args);
             }
             catch (ex) {
-                throw new InvocationException_1.InvocationException(correlationId, "EXEC_FAILED", "Raising event " + this.name + " failed: " + ex)
-                    .withDetails("event", this.name)
+                throw new InvocationException_1.InvocationException(correlationId, "EXEC_FAILED", "Raising event " + this.getName() + " failed: " + ex)
+                    .withDetails("event", this.getName())
                     .wrap(ex);
             }
         }

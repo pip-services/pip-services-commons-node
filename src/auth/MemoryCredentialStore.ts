@@ -9,16 +9,14 @@ import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 import { StringValueMap } from '../data/StringValueMap';
 
-export class MemoryCredentialStore implements ICredentialStore, IReconfigurable, IDescriptable  {
-
+export class MemoryCredentialStore implements ICredentialStore, IReconfigurable, IDescriptable {
     private readonly _items: StringValueMap = new StringValueMap();
     private _name: string;
 
     public constructor(name: string = null, credentials: ConfigParams = null) {
         name = name;
-        if(credentials != null) {
+        if (credentials != null)
             this.configure(credentials);
-        }
     }
 
     public getName(): string {
@@ -36,28 +34,26 @@ export class MemoryCredentialStore implements ICredentialStore, IReconfigurable,
 
     public readCredentials(credentials: ConfigParams) {
         this._items.clear();
-		for (let key in credentials.getKeyNames()) {
-            this._items.put(key, CredentialParams.fromTuples([key, credentials.getAsNullableString(key)]));            
-
-        }
+        for (let key in credentials.getKeyNames())
+            this._items.put(key, CredentialParams.fromTuples([key, credentials.getAsNullableString(key)]));
     }
 
-    public store(correlationId: string, key: string, credential: CredentialParams, callback: (err: any) => void) : void {
-        if(credential != null) {
+    public store(correlationId: string, key: string, credential: CredentialParams, callback: (err: any) => void): void {
+        if (credential != null)
             this._items.put(key, credential);
-        } else {
+        else
             this._items.delete(key);
-        }
-        if(callback) callback(null);
+
+        if (callback) callback(null);
     }
 
-    public lookup(correlationId: string, key: string, callback: (err: any, result: CredentialParams) => void) : void {
+    public lookup(correlationId: string, key: string, callback: (err: any, result: CredentialParams) => void): void {
         let credential: any = this._items.getAsObject(key);
 
-        if(credential instanceof CredentialParams) {
-            if(callback) callback(null, <CredentialParams>credential);
-        } else {
-            if(callback) callback(null, null);
-        }                    
+        if (credential instanceof CredentialParams)
+            if (callback) 
+                callback(null, <CredentialParams>credential);
+            else
+                if (callback) callback(null, null);
     }
 }

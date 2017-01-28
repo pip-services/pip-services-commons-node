@@ -3,9 +3,9 @@ export declare class CacheEntry {
     private _value;
     private _expiration;
     constructor(key: string, value: any, timeout: number);
-    readonly key: string;
-    readonly value: any;
-    readonly expiration: number;
+    getKey(): string;
+    getValue(): any;
+    getExpiration(): number;
     setValue(value: any, timeout: number): void;
     isExpired(): boolean;
 }

@@ -9,9 +9,8 @@ var NameResolver = (function () {
         if (name == null) {
             var descriptorStr = config.getAsNullableString("descriptor");
             var descriptor = Descriptor_1.Descriptor.fromString(descriptorStr);
-            if (descriptor != null) {
+            if (descriptor != null)
                 name = descriptor.getName();
-            }
         }
         return name || defaultName;
     };

@@ -22,9 +22,8 @@ var YamlConfigReader = (function (_super) {
         return new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "yaml", this.getName() || "default", "1.0");
     };
     YamlConfigReader.prototype.readObject = function (correlationId) {
-        if (_super.prototype.getPath.call(this) == null) {
+        if (_super.prototype.getPath.call(this) == null)
             throw new ConfigException_1.ConfigException(correlationId, "NO_PATH", "Missing config file path");
-        }
         try {
             // Todo: make this async?
             var data = yaml.safeLoad(fs.readFileSync(_super.prototype.getPath.call(this), 'utf8'));

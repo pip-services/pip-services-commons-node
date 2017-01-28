@@ -12,12 +12,12 @@ export class DateTimeConverter {
     }
 
     public static toDateTime(value: any): Date {
-       return DateTimeConverter.toDateTimeWithDefault(value, new Date());
+        return DateTimeConverter.toDateTimeWithDefault(value, new Date());
     }
 
     public static toDateTimeWithDefault(value: any, defaultValue: Date = null): Date {
-       var result = DateTimeConverter.toNullableDateTime(value);
-       return result != null ? result : defaultValue;
+        var result = DateTimeConverter.toNullableDateTime(value);
+        return result != null ? result : defaultValue;
     }
-    
+
 }

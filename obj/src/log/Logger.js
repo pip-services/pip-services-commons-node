@@ -22,9 +22,7 @@ var Logger = (function () {
         message = message != null ? message : "";
         if (args != null && args.length > 0) {
             message = message.replace(/{(\d+)}/g, function (match, number) {
-                return typeof args[number] != 'undefined'
-                    ? args[number]
-                    : match;
+                return typeof args[number] != 'undefined' ? args[number] : match;
             });
         }
         this.write(level, correlationId, error, message);

@@ -61,16 +61,15 @@ var CredentialParams = (function (_super) {
         }
         else {
             var credential = config.getSection("credential");
-            if (credential.getCount() > 0) {
+            if (credential.getCount() > 0)
                 result.push(new CredentialParams(credential));
-            }
-            else if (configAsDefault) {
+            else if (configAsDefault)
                 result.push(new CredentialParams(config));
-            }
         }
         return null;
     };
     CredentialParams.fromConfig = function (config, configAsDefault) {
+        if (configAsDefault === void 0) { configAsDefault = true; }
         var connections = this.manyFromConfig(config, configAsDefault);
         return connections.length > 0 ? connections[0] : null;
     };

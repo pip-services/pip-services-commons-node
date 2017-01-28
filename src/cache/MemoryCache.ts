@@ -10,8 +10,10 @@ import { ApplicationException } from '../errors/ApplicationException';
 
 export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	/**
-	 * Default configuration for memory cache component
+	 * Unique descriptor for the Memory Cache component
 	 */
+    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
+
     //milliseconds
     private static readonly _defaultTimeout: number = 60000;
     private static readonly _defaultMaxSize: number = 1000;
@@ -25,15 +27,9 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
     private _maxSize: number;
 
 	/**
-	 * Unique descriptor for the Memory Cache component
-	 */
-    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-common", "cache", "memory", "default", "1.0");
-
-	/**
 	 * Creates instance of local in-memory cache component
 	 */
-    public constructor(name: string = null, config: ConfigParams = null)
-    {
+    public constructor(name: string = null, config: ConfigParams = null) {
         this._name = name;
         this._timeout = MemoryCache._defaultTimeout;
         this._maxSize = MemoryCache._defaultMaxSize;
@@ -42,29 +38,29 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
     }
 
     public get name(): string {
-        return this._name; 
+        return this._name;
     }
 
     public set name(value: string) {
-        this._name = value; 
+        this._name = value;
     }
 
     public get timeout(): number {
-        return this._timeout; 
+        return this._timeout;
     }
 
     public set timeout(value: number) {
-        this._timeout = value; 
+        this._timeout = value;
     }
-   
+
     public get maxSize(): number {
-        return this._maxSize; 
+        return this._maxSize;
     }
 
     public set maxSize(value: number) {
-        this._maxSize = value; 
+        this._maxSize = value;
     }
- 
+
     public getDescriptor(): Descriptor {
         return MemoryCache.Descriptor;
     }
@@ -93,7 +89,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
         let oldest: CacheEntry = null;
         let now: number = new Date().getTime();
         this._count = 0;
-        
+
         // Cleanup obsolete entries and find the oldest
         for (var prop in this._cache) {
             if (this._cache.hasOwnProperty(prop)) {
@@ -105,15 +101,15 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
                 // Count the remaining entry 
                 else {
                     this._count++;
-                    if (oldest == null || oldest.expiration > entry.expiration)
+                    if (oldest == null || oldest.getExpiration() > entry.getExpiration())
                         oldest = entry;
                 }
             }
         }
-        
+
         // Remove the oldest if cache size exceeded maximum
         if (this._count > this._maxSize && oldest != null) {
-            delete this._cache[oldest.key];
+            delete this._cache[oldest.getKey()];
             this._count--;
         }
     }
@@ -135,13 +131,13 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 
         // Get entry from the cache
         let entry: CacheEntry = <CacheEntry>this._cache[key];
-        
+
         // Cache has nothing
         if (entry == null) {
             callback(null, null);
             return;
         }
-        
+
         // Remove entry if expiration set and entry is expired
         if (this._timeout > 0 && entry.isExpired()) {
             delete this._cache[key];
@@ -149,10 +145,10 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
             callback(null, null);
             return;
         }
-                
-        callback(null, entry.value);
+
+        callback(null, entry.getValue());
     }
-    
+
 	/**
 	 * Stores value identified by unique key in the cache. 
 	 * Stale timeout is configured in the component options. 
@@ -176,9 +172,9 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
                 this._count--;
             }
             if (callback) callback(null, value);
-            return;        
+            return;
         }
-        
+
         timeout = timeout != null && timeout > 0 ? timeout : this._timeout;
 
         // Update the entry
@@ -195,10 +191,10 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
         // Clean up the cache
         if (this._maxSize > 0 && this._count > this._maxSize)
             this.cleanup();
-        
-        if (callback) callback(null, value);        
+
+        if (callback) callback(null, value);
     }
-    
+
 	/**
 	 * Removes value stored in the cache.
 	 * @param correlationId a unique id to correlate across all request flow.

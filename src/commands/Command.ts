@@ -11,23 +11,22 @@ export class Command implements ICommand {
 
     private _name: string;
 
-    public constructor(name: string, schema: Schema, func: IExecutable)
-    {
+    public constructor(name: string, schema: Schema, func: IExecutable) {
         if (!name)
-			throw new Error("Name cannot be null");
+            throw new Error("Name cannot be null");
 
         if (!func)
-			throw new Error("Function cannot be null");
+            throw new Error("Function cannot be null");
 
         this._name = name;
         this._schema = schema;
         this._function = func;
     }
 
-    public get name(): string {
-        return this._name; 
+    public getName(): string {
+        return this._name;
     }
-    
+
     public execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void {
         if (this._schema)
             this._schema.validateAndThrowException(correlationId, args);
@@ -36,16 +35,13 @@ export class Command implements ICommand {
             this._function.execute(correlationId, args, callback);
         } catch (ex) {
             var err = new InvocationException(
-                correlationId, 
-                "EXEC_FAILED", 
-                "Execution " + this.name + " failed: " + ex
-            ).withDetails("command", this.name).wrap(ex);
+                correlationId,
+                "EXEC_FAILED",
+                "Execution " + this.getName() + " failed: " + ex
+            ).withDetails("command", this.getName()).wrap(ex);
 
-            if (callback) {
-                callback(err, null);
-            } else {
-                throw err;
-            }
+            if (callback) callback(err, null);
+            else throw err;
         }
     }
 
@@ -55,5 +51,4 @@ export class Command implements ICommand {
 
         return [];
     }
-
 }

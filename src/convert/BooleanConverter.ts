@@ -9,24 +9,24 @@ export class BooleanConverter {
 
         value = value.toString().toLowerCase();
 
-        if (value == '1' || value == 'true' || value == 't' 
+        if (value == '1' || value == 'true' || value == 't'
             || value == 'yes' || value == 'y')
             return true;
 
-        if (value == '0' || value == 'false' || value == 'f' 
+        if (value == '0' || value == 'false' || value == 'f'
             || value == 'no' || value == 'n')
             return false;
-            
-       return null;
+
+        return null;
     }
 
     public static toBoolean(value: any): boolean {
-       return BooleanConverter.toBooleanWithDefault(value, false);
+        return BooleanConverter.toBooleanWithDefault(value, false);
     }
 
     public static toBooleanWithDefault(value: any, defaultValue: boolean = false): boolean {
-       var result = BooleanConverter.toNullableBoolean(value);
-       return result != null ? result : defaultValue;
+        var result = BooleanConverter.toNullableBoolean(value);
+        return result != null ? result : defaultValue;
     }
-    
+
 }

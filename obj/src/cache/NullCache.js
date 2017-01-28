@@ -17,6 +17,6 @@ var NullCache = (function () {
     };
     return NullCache;
 }());
-NullCache.Descriptor = new Descriptor_1.Descriptor("pip-services-common", "cache", "null", "default", "1.0");
+NullCache.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "null", "default", "1.0");
 exports.NullCache = NullCache;
 //# sourceMappingURL=NullCache.js.map

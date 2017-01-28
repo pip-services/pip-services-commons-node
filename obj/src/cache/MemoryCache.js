@@ -84,14 +84,14 @@ var MemoryCache = (function () {
                 }
                 else {
                     this._count++;
-                    if (oldest == null || oldest.expiration > entry.expiration)
+                    if (oldest == null || oldest.getExpiration() > entry.getExpiration())
                         oldest = entry;
                 }
             }
         }
         // Remove the oldest if cache size exceeded maximum
         if (this._count > this._maxSize && oldest != null) {
-            delete this._cache[oldest.key];
+            delete this._cache[oldest.getKey()];
             this._count--;
         }
     };
@@ -123,7 +123,7 @@ var MemoryCache = (function () {
             callback(null, null);
             return;
         }
-        callback(null, entry.value);
+        callback(null, entry.getValue());
     };
     /**
      * Stores value identified by unique key in the cache.
@@ -188,14 +188,11 @@ var MemoryCache = (function () {
     return MemoryCache;
 }());
 /**
- * Default configuration for memory cache component
+ * Unique descriptor for the Memory Cache component
  */
+MemoryCache.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
 //milliseconds
 MemoryCache._defaultTimeout = 60000;
 MemoryCache._defaultMaxSize = 1000;
-/**
- * Unique descriptor for the Memory Cache component
- */
-MemoryCache.Descriptor = new Descriptor_1.Descriptor("pip-services-common", "cache", "memory", "default", "1.0");
 exports.MemoryCache = MemoryCache;
 //# sourceMappingURL=MemoryCache.js.map

@@ -27,89 +27,88 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	public getSectionNames(): string[] {
-        let sections: string[] = [];
-		
-		for (let key in this) {
-            if (this.hasOwnProperty(key)) {
-                let pos = key.indexOf('.');
-                let section: string = key;
-                if (pos > 0)
-                    section = key.substring(0, pos);
+		let sections: string[] = [];
 
-                // Perform case sensitive search
-                let found = false;
-                for (let index = 0; index < sections.length; index++) {
-                    if (section.toLowerCase() == sections[index].toLowerCase()) {
-                        found = true;
-                        break;
-                    }
-                }
-                    
-                if (!found)
-                    sections.push(section);
-            }
+		for (let key in this) {
+			if (this.hasOwnProperty(key)) {
+				let pos = key.indexOf('.');
+				let section: string = key;
+				if (pos > 0)
+					section = key.substring(0, pos);
+
+				// Perform case sensitive search
+				let found = false;
+				for (let index = 0; index < sections.length; index++) {
+					if (section.toLowerCase() == sections[index].toLowerCase()) {
+						found = true;
+						break;
+					}
+				}
+
+				if (!found)
+					sections.push(section);
+			}
 		}
-		
+
 		return sections;
 	}
-	
+
 	public getSection(section: string): ConfigParams {
 		let result = new ConfigParams();
 		let prefix = section.toLowerCase() + ".";
-		
+
 		for (let key in this) {
-            if (this.hasOwnProperty(key)) {
-                // Prevents exception on the next line
-                if (key.length < prefix.length)
-                    continue;
-                
-                // Perform case sensitive match
-                let keyPrefix = key.substring(0, prefix.length).toLowerCase();
-                if (keyPrefix == prefix) {
-                    let name = key.substring(prefix.length);
-                    result.put(name, this[key]);
-                }
-            }
+			if (this.hasOwnProperty(key)) {
+				// Prevents exception on the next line
+				if (key.length < prefix.length)
+					continue;
+
+				// Perform case sensitive match
+				let keyPrefix = key.substring(0, prefix.length).toLowerCase();
+				if (keyPrefix == prefix) {
+					let name = key.substring(prefix.length);
+					result.put(name, this[key]);
+				}
+			}
 		}
-		
+
 		return result;
 	}
-	
+
 	protected isShadowName(name: string): boolean {
-		return name == null || name.length == 0
-			|| _.startsWith(name, "_");
+		return name == null || name.length == 0 || _.startsWith(name, "_");
 	}
-	
+
 	public addSection(section: string, sectionParams: ConfigParams): void {
 		if (section == null)
 			throw new Error("Section name cannot be null");
 
-		section = this.isShadowName(section) ? "" : section; 
-		
+		section = this.isShadowName(section) ? "" : section;
+
 		if (sectionParams != null) {
 			for (let key in sectionParams) {
-                if (sectionParams.hasOwnProperty(key)) {
-                    let name = key;
-                    name = this.isShadowName(name) ? "" : name;
-                    
-                    if (name.length > 0 && section.length > 0)
-                        name = section + "." + name;
-                    else if (name.length == 0)
-                        name = section;
+				if (sectionParams.hasOwnProperty(key)) {
+					let name = key;
+					name = this.isShadowName(name) ? "" : name;
 
-                    let value = sectionParams[key];
-                    
-                    this.put(name, value);
-                }
+					if (name.length > 0 && section.length > 0)
+						name = section + "." + name;
+					else if (name.length == 0)
+						name = section;
+
+					let value = sectionParams[key];
+
+					this.put(name, value);
+				}
 			}
 		}
 	}
-	
+
 	public override(configParams: ConfigParams): ConfigParams {
 		let map = StringValueMap.fromMaps(this, configParams);
 		return new ConfigParams(map);
 	}
-	
+
 	public setDefaults(defaultConfigParams: ConfigParams): ConfigParams {
 		let map = StringValueMap.fromMaps(defaultConfigParams, this);
 		return new ConfigParams(map);
@@ -119,17 +118,17 @@ export class ConfigParams extends StringValueMap {
 		let map = RecursiveObjectReader.getProperties(value);
 		return new ConfigParams(map);
 	}
-	
+
 	public static fromTuples(...tuples: any[]): ConfigParams {
 		let map = StringValueMap.fromTuplesArray(tuples);
 		return new ConfigParams(map);
 	}
-	
+
 	public static fromString(line: string): ConfigParams {
 		let map = StringValueMap.fromString(line);
 		return new ConfigParams(map);
 	}
-	
+
 	public static mergeConfigs(...configs: ConfigParams[]): ConfigParams {
 		let map = StringValueMap.fromMaps(configs);
 		return new ConfigParams(map);

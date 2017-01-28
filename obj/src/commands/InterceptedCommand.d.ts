@@ -6,7 +6,7 @@ export declare class InterceptedCommand implements ICommand {
     private readonly _intercepter;
     private readonly _next;
     constructor(intercepter: ICommandIntercepter, next: ICommand);
-    readonly name: string;
+    getName(): string;
     execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void;
     validate(args: Parameters): ValidationResult[];
 }

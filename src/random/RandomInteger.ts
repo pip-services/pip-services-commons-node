@@ -5,13 +5,13 @@ export class RandomInteger {
             min = 0;
         }
 
-    	if (max - min <= 0)
-    		return min;
-    	
+        if (max - min <= 0)
+            return min;
+
         return Math.floor(min + Math.random() * (max - min));
     }
 
-	public static updateInteger(value: number, range: number = null): number {		
+    public static updateInteger(value: number, range: number = null): number {
         if (range == null) range = 0;
         range = range == 0 ? Math.floor(0.1 * value) : range;
         let minValue = value - range;
@@ -24,9 +24,9 @@ export class RandomInteger {
         let count = RandomInteger.nextInteger(min, max);
 
         let result: number[] = [];
-        for (let i = 0; i < count; i++) 
+        for (let i = 0; i < count; i++)
             result.push(i);
-        
+
         return result;
     }
 }

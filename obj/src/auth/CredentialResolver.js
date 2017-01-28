@@ -34,14 +34,12 @@ var CredentialResolver = (function () {
             callback(null, null);
             return;
         }
-        ;
         var key = credential.getStoreKey();
         if (this._references == null)
             return;
         var components = this._references.getOptional(new Descriptor_1.Descriptor("*", "credential_store", "*", "*", "*"));
-        if (components.length == 0) {
+        if (components.length == 0)
             throw new ReferenceException_1.ReferenceException(correlationId, "Credential store wasn't found to make lookup");
-        }
         var firstResult = null;
         async.any(components, function (component, cb) {
             var store = component;
@@ -66,7 +64,6 @@ var CredentialResolver = (function () {
                 callback(null, null);
             return;
         }
-        ;
         var lookupCredentials = [];
         for (var index = 0; index < this._credentials.length; index++) {
             if (!this._credentials[index].useCredentialStore()) {

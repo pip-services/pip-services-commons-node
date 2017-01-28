@@ -62,12 +62,10 @@ var ConnectionParams = (function (_super) {
         }
         else {
             var connection = config.getSection("connection");
-            if (connection.getCount() > 0) {
+            if (connection.getCount() > 0)
                 result.push(new ConnectionParams(connection));
-            }
-            else {
+            else
                 result.push(new ConnectionParams(config));
-            }
         }
         return result;
     };

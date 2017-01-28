@@ -5,27 +5,15 @@ var CacheEntry = (function () {
         this._value = value;
         this._expiration = new Date().getTime() + timeout;
     }
-    Object.defineProperty(CacheEntry.prototype, "key", {
-        get: function () {
-            return this._key;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CacheEntry.prototype, "value", {
-        get: function () {
-            return this._value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CacheEntry.prototype, "expiration", {
-        get: function () {
-            return this._expiration;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    CacheEntry.prototype.getKey = function () {
+        return this._key;
+    };
+    CacheEntry.prototype.getValue = function () {
+        return this._value;
+    };
+    CacheEntry.prototype.getExpiration = function () {
+        return this._expiration;
+    };
     CacheEntry.prototype.setValue = function (value, timeout) {
         this._value = value;
         this._expiration = new Date().getTime() + timeout;

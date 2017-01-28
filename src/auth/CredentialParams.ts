@@ -3,9 +3,9 @@ import { StringValueMap } from '../data/StringValueMap';
 
 export class CredentialParams extends ConfigParams {
 
-	public constructor(values: any = null) {
-		super(values);
-	}
+    public constructor(values: any = null) {
+        super(values);
+    }
 
     public useCredentialStore(): boolean {
         return super.getAsNullableString("store_key") != null;
@@ -52,8 +52,8 @@ export class CredentialParams extends ConfigParams {
     }
 
     public static fromString(line: string): CredentialParams {
-		let map = StringValueMap.fromString(line);
-		return new CredentialParams(map);
+        let map = StringValueMap.fromString(line);
+        return new CredentialParams(map);
     }
 
     public static manyFromConfig(config: ConfigParams, configAsDefault: boolean = true): CredentialParams[] {
@@ -61,24 +61,23 @@ export class CredentialParams extends ConfigParams {
 
         let credentials: ConfigParams = config.getSection("credentials");
 
-        if(credentials.getCount() > 0) {
-            for(let section in credentials.getSectionNames()) {
-                        let credential: ConfigParams = credentials.getSection(section);
-                        result.push(new CredentialParams(credential));
+        if (credentials.getCount() > 0) {
+            for (let section in credentials.getSectionNames()) {
+                let credential: ConfigParams = credentials.getSection(section);
+                result.push(new CredentialParams(credential));
             }
         } else {
             let credential: ConfigParams = config.getSection("credential");
-            if(credential.getCount() > 0) {
+            if (credential.getCount() > 0) 
                 result.push(new CredentialParams(credential));
-            } else if(configAsDefault) {
+            else if (configAsDefault)
                 result.push(new CredentialParams(config));
-            }
         }
-        
+
         return null;
     }
 
-    public static fromConfig(config: ConfigParams, configAsDefault: boolean) : CredentialParams {
+    public static fromConfig(config: ConfigParams, configAsDefault: boolean = true): CredentialParams {
         let connections: CredentialParams[] = this.manyFromConfig(config, configAsDefault);
         return connections.length > 0 ? connections[0] : null;
     }

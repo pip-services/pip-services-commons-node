@@ -20,9 +20,8 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable, IDescriptab
 
     public constructor(name: string = null, config: ConfigParams = null) {
         name = name;
-        if (config != null) {
+        if (config != null)
             this.configure(config);
-        }
     }
 
     public getName(): string {
@@ -70,9 +69,8 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable, IDescriptab
     public resolveAll(correlationId: string, key: string, callback: (err: any, result: ConnectionParams[]) => void): void {
         let connections: ConnectionParams[] = [];
         for (let index: 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null) {
+            if (this._items[index].key == key && this._items[index].connection != null)
                 connections.push(this._items[index].connection);
-            }
         }
         if (callback) callback(null, connections);
     }

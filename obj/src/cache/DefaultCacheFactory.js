@@ -38,6 +38,6 @@ var DefaultCacheFactory = (function () {
 /**
  * Unique descriptor for the Memory Cache component
  */
-DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-common", "cache", "memory", "default", "1.0");
+DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
 exports.DefaultCacheFactory = DefaultCacheFactory;
 //# sourceMappingURL=DefaultCacheFactory.js.map

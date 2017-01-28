@@ -27,15 +27,15 @@ export class JsonConfigReader extends FileConfigReader implements IDescriptable 
         try {
             // Todo: make this async?
             let data: any = fs.readFileSync(super.getPath(), "utf8");
-            return  JsonConverter.toNullableMap(data);
+            return JsonConverter.toNullableMap(data);
         } catch (e) {
-                throw new FileException(
-                    correlationId,
-                    "READ_FAILED",
-                    "Failed reading configuration " + super.getPath() + ": " + e
-                )
-                .withDetails("path", super.getPath())
-                .withCause(e);
+            throw new FileException(
+                correlationId,
+                "READ_FAILED",
+                "Failed reading configuration " + super.getPath() + ": " + e
+            )
+            .withDetails("path", super.getPath())
+            .withCause(e);
         }
     }
 

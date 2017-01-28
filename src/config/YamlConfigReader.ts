@@ -22,22 +22,21 @@ export class YamlConfigReader extends FileConfigReader implements IDescriptable 
     }
 
     public readObject(correlationId: string): any {
-        if (super.getPath() == null) {
+        if (super.getPath() == null)
             throw new ConfigException(correlationId, "NO_PATH", "Missing config file path");
-        }
 
         try {
             // Todo: make this async?
             let data = yaml.safeLoad(fs.readFileSync(super.getPath(), 'utf8'));
             return data;
         } catch (e) {
-                throw new FileException(
-                    correlationId,
-                    "READ_FAILED",
-                    "Failed reading configuration " + super.getPath() + ": " + e
-                )
-                .withDetails("path", super.getPath())
-                .withCause(e);
+            throw new FileException(
+                correlationId,
+                "READ_FAILED",
+                "Failed reading configuration " + super.getPath() + ": " + e
+            )
+            .withDetails("path", super.getPath())
+            .withCause(e);
         }
     }
 
