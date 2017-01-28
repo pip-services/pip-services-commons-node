@@ -9,15 +9,18 @@ over most fundamental functions and delivers symmetric implementation that can b
 
 All functionality is decomposed into several packages:
 
+- **Auth** - authentication and authorization primitives
 - **Build** - component factories framework
+- **Cache** - object caching
 - **Commands** - Commanding and Eventing patterns
 - **Config** - configuration framework
+- **Connect** - connection management
 - **Convert** - portable soft value converters
-- **Random** - random data generators
 - **Count** - performance counters components
 - **Data** - data value objects and random value generators
 - **Errors** - portable application errors
 - **Log** - logging components
+- **Random** - random data generators
 - **Refer** - component referencing framework
 - **Reflect** - portable reflection helpers
 - **Run** - execution framework
