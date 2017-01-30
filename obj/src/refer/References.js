@@ -23,7 +23,7 @@ var References = (function () {
         else if (component instanceof Reference_1.Reference)
             this._references.push(component);
         else
-            this._references.push(new Reference_1.Reference(component));
+            this._references.push(new Reference_1.Reference(null, null, component));
     };
     References.prototype.putAll = function () {
         var components = [];

@@ -13,7 +13,8 @@ var CompositeLogger = (function (_super) {
         var _this = _super.call(this) || this;
         _this._descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
         _this._loggers = [];
-        _this.setReferences(references);
+        if (references)
+            _this.setReferences(references);
         return _this;
     }
     CompositeLogger.prototype.getDescriptor = function () {

@@ -12,7 +12,9 @@ export class CompositeLogger extends Logger implements IReferenceable, IDescript
 
 	public constructor(references: IReferences = null) {
 		super();
-		this.setReferences(references);
+
+		if (references)
+			this.setReferences(references);
 	}
 
 	public getDescriptor(): Descriptor {

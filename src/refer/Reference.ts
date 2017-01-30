@@ -7,32 +7,36 @@ import { Descriptor } from './Descriptor';
  */
 export class Reference implements ILocateable {
 	private _locator: any;
-	private _reference: any;
-	private _locateableReference: ILocateable;
+	private _component: any;
+	private _locateable: ILocateable;
 
 	/**
 	 * Create a new reference for an object
 	 * @param locator a component locator for the reference
 	 * @param reference a component reference
 	 */
-	public constructor(reference: any, locator: any = null) {
-		if (locator == null)
+	public constructor(component: any, locator: any = null, reference: any = null) {
+		if (component == null && reference == null)
+			throw new Error("Component cannot be null");
+		if (locator == null && reference == null)
 			throw new Error("Locator cannot be null");
-		if (reference == null)
-			throw new Error("Object reference cannot be null");
 		
-        if (locator != null) {
+		if (component != null && locator != null) {
             this._locator = locator;
-            this._reference = reference;
-        } else if (reference.locate != null) {
-			this._locateableReference = <ILocateable>reference;
-			this._reference = reference;
-		} else if (reference.getDescriptor != null) {
-			let descriptable = <IDescriptable>reference; 
-			this._locator = descriptable.getDescriptor();
-			this._reference = reference;
-		} else
-			throw new Error("Reference must implement ILocateable or IDescriptable interface");		
+            this._component = component;
+		} else {
+            let locatable: ILocateable = reference as ILocateable;
+            let descriptable: IDescriptable = reference as IDescriptable;
+			
+			if (locatable == null && descriptable == null)
+				throw new Error("Reference must implement ILocateable or IDescriptable interface");
+
+			this._locateable = locatable;
+			this._component = reference;
+
+			if (descriptable != null)
+				this._locator = descriptable.getDescriptor();
+		}
 	}
 	
 	/**
@@ -42,11 +46,11 @@ export class Reference implements ILocateable {
 	 */
 	public locate(locator: any): boolean {
 		// Locate by direct reference matching
-		if (this._reference == locator)
+		if (this._component == locator)
 			return true;
 		// Locate locateable objects
-		else if (this._locateableReference != null)
-			return this._locateableReference.locate(locator);
+		else if (this._locateable != null)
+			return this._locateable.locate(locator);
 		// Locate by direct locator matching
 		else if (this._locator instanceof Descriptor)
             return (<Descriptor>this._locator).equals(locator);
@@ -60,6 +64,6 @@ export class Reference implements ILocateable {
 	 * @return a component itself
 	 */
 	public getComponent(): any { 
-		return this._reference; 
+		return this._component; 
 	}
 }

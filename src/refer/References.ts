@@ -25,7 +25,7 @@ export class References implements IReferences {
         else if (component instanceof Reference)
             this._references.push(component);
         else
-            this._references.push(new Reference(component));
+            this._references.push(new Reference(null, null, component));
 	}
 	
 	public putAll(...components: any[]): void {

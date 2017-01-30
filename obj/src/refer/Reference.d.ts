@@ -4,14 +4,14 @@ import { ILocateable } from './ILocateable';
  */
 export declare class Reference implements ILocateable {
     private _locator;
-    private _reference;
-    private _locateableReference;
+    private _component;
+    private _locateable;
     /**
      * Create a new reference for an object
      * @param locator a component locator for the reference
      * @param reference a component reference
      */
-    constructor(reference: any, locator?: any);
+    constructor(component: any, locator?: any, reference?: any);
     /**
      * Checks if locator matches the current component
      * @param locator a location object. It can be standard Descriptor or something else

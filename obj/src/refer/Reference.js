@@ -9,27 +9,27 @@ var Reference = (function () {
      * @param locator a component locator for the reference
      * @param reference a component reference
      */
-    function Reference(reference, locator) {
+    function Reference(component, locator, reference) {
         if (locator === void 0) { locator = null; }
-        if (locator == null)
+        if (reference === void 0) { reference = null; }
+        if (component == null && reference == null)
+            throw new Error("Component cannot be null");
+        if (locator == null && reference == null)
             throw new Error("Locator cannot be null");
-        if (reference == null)
-            throw new Error("Object reference cannot be null");
-        if (locator != null) {
+        if (component != null && locator != null) {
             this._locator = locator;
-            this._reference = reference;
+            this._component = component;
         }
-        else if (reference.locate != null) {
-            this._locateableReference = reference;
-            this._reference = reference;
-        }
-        else if (reference.getDescriptor != null) {
+        else {
+            var locatable = reference;
             var descriptable = reference;
-            this._locator = descriptable.getDescriptor();
-            this._reference = reference;
+            if (locatable == null && descriptable == null)
+                throw new Error("Reference must implement ILocateable or IDescriptable interface");
+            this._locateable = locatable;
+            this._component = reference;
+            if (descriptable != null)
+                this._locator = descriptable.getDescriptor();
         }
-        else
-            throw new Error("Reference must implement ILocateable or IDescriptable interface");
     }
     /**
      * Checks if locator matches the current component
@@ -38,10 +38,10 @@ var Reference = (function () {
      */
     Reference.prototype.locate = function (locator) {
         // Locate by direct reference matching
-        if (this._reference == locator)
+        if (this._component == locator)
             return true;
-        else if (this._locateableReference != null)
-            return this._locateableReference.locate(locator);
+        else if (this._locateable != null)
+            return this._locateable.locate(locator);
         else if (this._locator instanceof Descriptor_1.Descriptor)
             return this._locator.equals(locator);
         else
@@ -52,7 +52,7 @@ var Reference = (function () {
      * @return a component itself
      */
     Reference.prototype.getComponent = function () {
-        return this._reference;
+        return this._component;
     };
     return Reference;
 }());
