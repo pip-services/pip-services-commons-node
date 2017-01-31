@@ -3,6 +3,7 @@ export { AnyValueArray } from './AnyValueArray';
 export { AnyValueMap } from './AnyValueMap';
 export { StringValueMap } from './StringValueMap';
 export { IIdentifiable } from './IIdentifiable';
+export { ICloneable } from './ICloneable';
 export { IStringIdentifiable } from './IStringIdentifiable';
 export { INamed } from './INamed';
 export { ITrackable } from './ITrackable';

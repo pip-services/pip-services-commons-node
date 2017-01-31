@@ -7,10 +7,11 @@ import { LongConverter } from '../convert/LongConverter';
 import { FloatConverter } from '../convert/FloatConverter';
 import { DoubleConverter } from '../convert/DoubleConverter';
 import { DateTimeConverter } from '../convert/DateTimeConverter';
+import { ICloneable } from './ICloneable';
 import { AnyValueArray } from './AnyValueArray';
 import { AnyValueMap } from './AnyValueMap';
 
-export class AnyValue {
+export class AnyValue implements ICloneable {
 	public value: any;
 
     public constructor(value: any = null) {

@@ -10,10 +10,11 @@ import { FloatConverter } from '../convert/FloatConverter';
 import { DoubleConverter } from '../convert/DoubleConverter';
 import { DateTimeConverter } from '../convert/DateTimeConverter';
 import { MapConverter } from '../convert/MapConverter';
+import { ICloneable } from './ICloneable';
 import { AnyValue } from './AnyValue';
 import { AnyValueArray } from './AnyValueArray';
 
-export class AnyValueMap {
+export class AnyValueMap implements ICloneable {
 
     private count: number;
 

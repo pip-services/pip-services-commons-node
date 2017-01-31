@@ -1,7 +1,8 @@
 import { TypeCode } from '../convert/TypeCode';
+import { ICloneable } from './ICloneable';
 import { AnyValue } from './AnyValue';
 import { AnyValueMap } from './AnyValueMap';
-export declare class AnyValueArray extends Array<any> {
+export declare class AnyValueArray extends Array<any> implements ICloneable {
     constructor(values?: any[]);
     get(index: number): any;
     put(index: number, value: any): void;

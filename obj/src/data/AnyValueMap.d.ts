@@ -1,7 +1,8 @@
 import { TypeCode } from '../convert/TypeCode';
+import { ICloneable } from './ICloneable';
 import { AnyValue } from './AnyValue';
 import { AnyValueArray } from './AnyValueArray';
-export declare class AnyValueMap {
+export declare class AnyValueMap implements ICloneable {
     private count;
     constructor(values?: any);
     get(name: string): any;

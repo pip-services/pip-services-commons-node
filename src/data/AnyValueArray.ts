@@ -10,10 +10,11 @@ import { FloatConverter } from '../convert/FloatConverter';
 import { DoubleConverter } from '../convert/DoubleConverter';
 import { DateTimeConverter } from '../convert/DateTimeConverter';
 import { ArrayConverter } from '../convert/ArrayConverter';
+import { ICloneable } from './ICloneable';
 import { AnyValue } from './AnyValue';
 import { AnyValueMap } from './AnyValueMap';
 
-export class AnyValueArray extends Array<any> {
+export class AnyValueArray extends Array<any> implements ICloneable {
 
     public constructor(values: any[] = null) {
         super();
