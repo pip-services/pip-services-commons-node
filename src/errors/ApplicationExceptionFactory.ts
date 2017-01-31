@@ -16,7 +16,7 @@ import { InvalidStateException } from './InvalidStateException';
 
 export class ApplicationExceptionFactory {
 	
-    public create(description: ErrorDescription): ApplicationException {
+    public static create(description: ErrorDescription): ApplicationException {
     	if (description == null)
     		throw new Error("Description cannot be null");
     	
@@ -61,7 +61,7 @@ export class ApplicationExceptionFactory {
     	error.details = description.details;
         error.setCauseString(description.cause);
         error.setStackTraceString(description.stack_trace);
-    	
+
     	return error;
     }
 

@@ -16,8 +16,9 @@ import { AnyValueMap } from './AnyValueMap';
 
 export class StringValueMap {
 
-    public constructor(map: any = null) { 
-    	this.append(map);
+    public constructor(map: any = null) {
+        if (map != null)
+    	    this.append(map);
     }
     
     public get(name: string): string {

@@ -1,16 +1,17 @@
 let _ = require('lodash');
 
 import { ErrorCategory } from './ErrorCategory';
+import { StringValueMap } from '../data/StringValueMap';
 
 export class ApplicationException extends Error {
     public message: string;
     public category: string;
     public status: number = 500;
     public code: string = 'UNKNOWN';
-    public details: any;   
+    public details: StringValueMap;   
     public correlation_id: string;
     public stack_trace: string;
-    public cause: any;
+    public cause: string;
 
     constructor(category: string = null, correlation_id: string = null, code: string = null, message: string = null) {
         super(message);
@@ -48,8 +49,9 @@ export class ApplicationException extends Error {
         return this;
     }
         
-    public withCause(cause: any): ApplicationException {
-        this.cause = cause;
+    public withCause(cause: Error): ApplicationException {
+        if (cause)
+            this.cause = cause.message;
         return this;
     }
     
@@ -59,13 +61,18 @@ export class ApplicationException extends Error {
     }
     
     public withDetails(key: string, value: any): ApplicationException {
-        this.details = this.details || {};
-        this.details[key] = value;
+        this.details = this.details || new StringValueMap();
+        this.details.setAsObject(key, value);
         return this;
     }
     
     public withCorrelationId(correlation_id: string): ApplicationException {
         this.correlation_id = correlation_id;
+        return this;
+    }
+
+    public withStackTrace(stackTrace: string): ApplicationException {
+        this.stack_trace = stackTrace;
         return this;
     }
 

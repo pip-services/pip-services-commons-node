@@ -15,7 +15,7 @@ var InvalidStateException_1 = require("./InvalidStateException");
 var ApplicationExceptionFactory = (function () {
     function ApplicationExceptionFactory() {
     }
-    ApplicationExceptionFactory.prototype.create = function (description) {
+    ApplicationExceptionFactory.create = function (description) {
         if (description == null)
             throw new Error("Description cannot be null");
         var error = null;

@@ -127,7 +127,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 */
     public retrieve(correlationId: string, key: string, callback: (err: any, value: any) => void): void {
         if (key == null)
-            throw new ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
 
         // Get entry from the cache
         let entry: CacheEntry = <CacheEntry>this._cache[key];
@@ -160,7 +160,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 */
     public store(correlationId: string, key: string, value: any, timeout: number, callback: (err: any, value: any) => void): void {
         if (key == null)
-            throw new ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
 
         // Get the entry
         let entry: CacheEntry = <CacheEntry>this._cache[key];
@@ -204,7 +204,7 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 */
     public remove(correlationId: string, key: string, callback: (err: any) => void): void {
         if (key == null)
-            throw new ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
 
         // Get the entry
         let entry: CacheEntry = <CacheEntry>this._cache[key];

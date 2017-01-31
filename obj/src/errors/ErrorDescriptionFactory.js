@@ -23,7 +23,7 @@ var ErrorDescriptionFactory = (function () {
             description.type = error.name;
             description.category = ErrorCategory_1.ErrorCategory.Unknown;
             description.status = 500;
-            description.code = "Unknown";
+            description.code = "UNKNOWN";
             description.message = error.message || error.toString();
             description.stack_trace = error.stack;
         }

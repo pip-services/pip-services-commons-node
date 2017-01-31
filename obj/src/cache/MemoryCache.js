@@ -2,7 +2,6 @@
 var CacheEntry_1 = require("./CacheEntry");
 var Descriptor_1 = require("../refer/Descriptor");
 var NameResolver_1 = require("../config/NameResolver");
-var ApplicationException_1 = require("../errors/ApplicationException");
 var MemoryCache = (function () {
     /**
      * Creates instance of local in-memory cache component
@@ -108,7 +107,7 @@ var MemoryCache = (function () {
      */
     MemoryCache.prototype.retrieve = function (correlationId, key, callback) {
         if (key == null)
-            throw new ApplicationException_1.ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
         // Get entry from the cache
         var entry = this._cache[key];
         // Cache has nothing
@@ -136,7 +135,7 @@ var MemoryCache = (function () {
      */
     MemoryCache.prototype.store = function (correlationId, key, value, timeout, callback) {
         if (key == null)
-            throw new ApplicationException_1.ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
         // Get the entry
         var entry = this._cache[key];
         // Shortcut to remove entry from the cache
@@ -174,7 +173,7 @@ var MemoryCache = (function () {
      */
     MemoryCache.prototype.remove = function (correlationId, key, callback) {
         if (key == null)
-            throw new ApplicationException_1.ApplicationException(null, correlationId, null, 'Key cannot be null');
+            throw new Error('Key cannot be null');
         // Get the entry
         var entry = this._cache[key];
         // Remove entry from the cache

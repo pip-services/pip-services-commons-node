@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var _ = require('lodash');
 var ErrorCategory_1 = require("./ErrorCategory");
+var StringValueMap_1 = require("../data/StringValueMap");
 var ApplicationException = (function (_super) {
     __extends(ApplicationException, _super);
     function ApplicationException(category, correlation_id, code, message) {
@@ -45,7 +46,8 @@ var ApplicationException = (function (_super) {
         return this;
     };
     ApplicationException.prototype.withCause = function (cause) {
-        this.cause = cause;
+        if (cause)
+            this.cause = cause.message;
         return this;
     };
     ApplicationException.prototype.withStatus = function (status) {
@@ -53,12 +55,16 @@ var ApplicationException = (function (_super) {
         return this;
     };
     ApplicationException.prototype.withDetails = function (key, value) {
-        this.details = this.details || {};
-        this.details[key] = value;
+        this.details = this.details || new StringValueMap_1.StringValueMap();
+        this.details.setAsObject(key, value);
         return this;
     };
     ApplicationException.prototype.withCorrelationId = function (correlation_id) {
         this.correlation_id = correlation_id;
+        return this;
+    };
+    ApplicationException.prototype.withStackTrace = function (stackTrace) {
+        this.stack_trace = stackTrace;
         return this;
     };
     ApplicationException.prototype.wrap = function (cause) {

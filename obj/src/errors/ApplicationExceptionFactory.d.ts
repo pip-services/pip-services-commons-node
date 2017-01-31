@@ -1,5 +1,5 @@
 import { ErrorDescription } from './ErrorDescription';
 import { ApplicationException } from './ApplicationException';
 export declare class ApplicationExceptionFactory {
-    create(description: ErrorDescription): ApplicationException;
+    static create(description: ErrorDescription): ApplicationException;
 }

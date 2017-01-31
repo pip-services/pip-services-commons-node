@@ -15,7 +15,8 @@ var AnyValueMap_1 = require("./AnyValueMap");
 var StringValueMap = (function () {
     function StringValueMap(map) {
         if (map === void 0) { map = null; }
-        this.append(map);
+        if (map != null)
+            this.append(map);
     }
     StringValueMap.prototype.get = function (name) {
         if (name == null)
