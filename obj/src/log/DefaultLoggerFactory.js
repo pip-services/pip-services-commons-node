@@ -1,6 +1,6 @@
 "use strict";
 var NullLogger_1 = require("./NullLogger");
-//import { ConsoleLogger } from './ConsoleLogger';
+var ConsoleLogger_1 = require("./ConsoleLogger");
 var CompositeLogger_1 = require("./CompositeLogger");
 var CreateException_1 = require("../build/CreateException");
 var Descriptor_1 = require("../refer/Descriptor");
@@ -18,8 +18,8 @@ var DefaultLoggerFactory = (function () {
             return false;
         if (descriptor.match(NullLogger_1.NullLogger.descriptor))
             return true;
-        // if (descriptor.match(ConsoleLogger.descriptor))
-        //     return true;
+        if (descriptor.match(ConsoleLogger_1.ConsoleLogger.descriptor))
+            return true;
         if (descriptor.match(CompositeLogger_1.CompositeLogger.descriptor))
             return true;
         return false;
@@ -32,8 +32,8 @@ var DefaultLoggerFactory = (function () {
             return null;
         if (descriptor.match(NullLogger_1.NullLogger.descriptor))
             return new NullLogger_1.NullLogger();
-        // if (descriptor.match(ConsoleLogger.descriptor))
-        //     return new ConsoleLogger();
+        if (descriptor.match(ConsoleLogger_1.ConsoleLogger.descriptor))
+            return new ConsoleLogger_1.ConsoleLogger();
         if (descriptor.match(CompositeLogger_1.CompositeLogger.descriptor))
             return new CompositeLogger_1.CompositeLogger();
         throw new CreateException_1.CreateException(null, locator);

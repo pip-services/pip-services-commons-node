@@ -4,7 +4,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var os = require('os');
 var Descriptor_1 = require("../refer/Descriptor");
 var StringConverter_1 = require("../convert/StringConverter");
 var LogLevel_1 = require("./LogLevel");
@@ -12,7 +11,7 @@ var Logger_1 = require("./Logger");
 var ConsoleLogger = (function (_super) {
     __extends(ConsoleLogger, _super);
     function ConsoleLogger() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this) || this;
     }
     ConsoleLogger.prototype.getDescriptor = function () {
         return ConsoleLogger.descriptor;
@@ -42,6 +41,6 @@ var ConsoleLogger = (function (_super) {
     };
     return ConsoleLogger;
 }(Logger_1.Logger));
-ConsoleLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
+ConsoleLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "default", "1.0");
 exports.ConsoleLogger = ConsoleLogger;
 //# sourceMappingURL=ConsoleLogger.js.map
