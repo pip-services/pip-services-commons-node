@@ -1,14 +1,19 @@
 let assert = require('chai').assert;
 
 import { NullLogger } from '../../src/log/NullLogger';
+import { ConsoleLogger } from '../../src/log/ConsoleLogger';
+import { CompositeLogger } from '../../src/log/CompositeLogger';
 import { LogLevel } from '../../src/log/LogLevel';
+import { References } from '../../src/refer/References';
 
-suite('NullLogger', ()=> {
+suite('CompositeLogger', ()=> {
     
-    var _logger: NullLogger;
+    var _logger: CompositeLogger;
 
     beforeEach(function() {
-        _logger = new NullLogger();
+        _logger = new CompositeLogger();
+        var refs = References.fromList(new NullLogger(), new ConsoleLogger())
+        _logger.setReferences(refs);
     });
 
     test('Log Level', () => {

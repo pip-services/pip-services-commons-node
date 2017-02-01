@@ -1,14 +1,14 @@
 let assert = require('chai').assert;
 
-import { NullLogger } from '../../src/log/NullLogger';
+import { ConsoleLogger } from '../../src/log/ConsoleLogger';
 import { LogLevel } from '../../src/log/LogLevel';
 
-suite('NullLogger', ()=> {
+suite('ConsoleLogger', ()=> {
     
-    var _logger: NullLogger;
+    var _logger: ConsoleLogger;
 
     beforeEach(function() {
-        _logger = new NullLogger();
+        _logger = new ConsoleLogger();
     });
 
     test('Log Level', () => {
