@@ -63,4 +63,17 @@ export abstract class Logger implements ILogger, IReconfigurable {
     public trace(correlationId: string, message: string, ...args: any[]): void {
         this.formatAndWrite(LogLevel.Warn, correlationId, null, message, args);
     }
+
+    protected composeError(error: Error): string {
+        let builder: string = "";
+
+        if (builder.length > 0)
+            builder += " Caused by error: ";
+
+        builder += error.message;
+        builder += " StackTrace: ";
+        builder += error.stack;
+
+        return builder;
+    }
 }

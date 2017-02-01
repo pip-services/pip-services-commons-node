@@ -17,4 +17,5 @@ export declare abstract class Logger implements ILogger, IReconfigurable {
     info(correlationId: string, message: string, ...args: any[]): void;
     debug(correlationId: string, message: string, ...args: any[]): void;
     trace(correlationId: string, message: string, ...args: any[]): void;
+    protected composeError(error: Error): string;
 }

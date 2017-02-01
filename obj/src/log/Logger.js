@@ -76,6 +76,15 @@ var Logger = (function () {
         }
         this.formatAndWrite(LogLevel_1.LogLevel.Warn, correlationId, null, message, args);
     };
+    Logger.prototype.composeError = function (error) {
+        var builder = "";
+        if (builder.length > 0)
+            builder += " Caused by error: ";
+        builder += error.message;
+        builder += " StackTrace: ";
+        builder += error.stack;
+        return builder;
+    };
     return Logger;
 }());
 exports.Logger = Logger;
