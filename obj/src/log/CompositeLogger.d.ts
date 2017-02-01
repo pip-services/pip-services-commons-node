@@ -5,7 +5,7 @@ import { IReferences } from '../refer/IReferences';
 import { IReferenceable } from '../refer/IReferenceable';
 import { Descriptor } from '../refer/Descriptor';
 export declare class CompositeLogger extends Logger implements IReferenceable, IDescriptable {
-    private readonly _descriptor;
+    static readonly descriptor: Descriptor;
     private readonly _loggers;
     constructor(references?: IReferences);
     getDescriptor(): Descriptor;

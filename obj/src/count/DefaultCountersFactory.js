@@ -40,6 +40,6 @@ var DefaultCountersFactory = (function () {
     };
     return DefaultCountersFactory;
 }());
-DefaultCountersFactory.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "default", "1.0");
+DefaultCountersFactory.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "counters", "default", "1.0");
 exports.DefaultCountersFactory = DefaultCountersFactory;
 //# sourceMappingURL=DefaultCountersFactory.js.map

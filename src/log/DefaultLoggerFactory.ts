@@ -1,16 +1,16 @@
-import { NullCounters } from './NullCounters';
-import { LogCounters } from './LogCounters';
-import { CompositeCounters } from './CompositeCounters';
+import { NullLogger } from './NullLogger';
+//import { ConsoleLogger } from './ConsoleLogger';
+import { CompositeLogger } from './CompositeLogger';
 import { IFactory } from '../build/IFactory';
 import { CreateException } from '../build/CreateException';
 import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 
-export class DefaultCountersFactory implements IFactory, IDescriptable {
-	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "counters", "default", "1.0");
+export class DefaultLoggerFactory implements IFactory, IDescriptable {
+	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "logger", "default", "1.0");
 
 	public getDescriptor(): Descriptor {
-		return DefaultCountersFactory.descriptor;
+		return DefaultLoggerFactory.descriptor;
 	}
 
     public canCreate(locator: any): boolean {
@@ -21,13 +21,13 @@ export class DefaultCountersFactory implements IFactory, IDescriptable {
 
         if (descriptor == null) return false;
 
-        if (descriptor.match(NullCounters.descriptor))
+        if (descriptor.match(NullLogger.descriptor))
             return true;
 
-        if (descriptor.match(LogCounters.descriptor))
-            return true;
+        // if (descriptor.match(ConsoleLogger.descriptor))
+        //     return true;
 
-        if (descriptor.match(CompositeCounters.descriptor))
+        if (descriptor.match(CompositeLogger.descriptor))
             return true;
 
         return false;
@@ -41,14 +41,14 @@ export class DefaultCountersFactory implements IFactory, IDescriptable {
 
         if (descriptor == null) return null;
 
-        if (descriptor.match(NullCounters.descriptor))
-            return new NullCounters();
+        if (descriptor.match(NullLogger.descriptor))
+            return new NullLogger();
 
-        if (descriptor.match(LogCounters.descriptor))
-            return new LogCounters();
+        // if (descriptor.match(ConsoleLogger.descriptor))
+        //     return new ConsoleLogger();
 
-        if (descriptor.match(CompositeCounters.descriptor))
-            return new CompositeCounters();
+        if (descriptor.match(CompositeLogger.descriptor))
+            return new CompositeLogger();
 
         throw new CreateException(null, locator);
     }

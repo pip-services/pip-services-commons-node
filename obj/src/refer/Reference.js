@@ -21,8 +21,12 @@ var Reference = (function () {
             this._component = component;
         }
         else {
-            var locatable = reference;
-            var descriptable = reference;
+            var locatable = null;
+            var descriptable = null;
+            if (reference.locate)
+                locatable = reference;
+            if (reference.getDescriptor)
+                descriptable = reference;
             if (locatable == null && descriptable == null)
                 throw new Error("Reference must implement ILocateable or IDescriptable interface");
             this._locateable = locatable;

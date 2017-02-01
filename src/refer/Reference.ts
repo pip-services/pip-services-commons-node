@@ -25,8 +25,13 @@ export class Reference implements ILocateable {
             this._locator = locator;
             this._component = component;
 		} else {
-            let locatable: ILocateable = reference as ILocateable;
-            let descriptable: IDescriptable = reference as IDescriptable;
+			let locatable: ILocateable = null;
+			let descriptable: IDescriptable = null;
+
+			if (reference.locate)
+				locatable = reference as ILocateable;
+			if (reference.getDescriptor)
+            	descriptable = reference as IDescriptable;
 			
 			if (locatable == null && descriptable == null)
 				throw new Error("Reference must implement ILocateable or IDescriptable interface");

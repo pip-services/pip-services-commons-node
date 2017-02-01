@@ -11,14 +11,13 @@ var CompositeLogger = (function (_super) {
     function CompositeLogger(references) {
         if (references === void 0) { references = null; }
         var _this = _super.call(this) || this;
-        _this._descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
         _this._loggers = [];
         if (references)
             _this.setReferences(references);
         return _this;
     }
     CompositeLogger.prototype.getDescriptor = function () {
-        return this._descriptor;
+        return CompositeLogger.descriptor;
     };
     CompositeLogger.prototype.setReferences = function (references) {
         var loggers = references.getOptional(new Descriptor_1.Descriptor(null, "logger", null, null, null));
@@ -32,5 +31,6 @@ var CompositeLogger = (function (_super) {
     };
     return CompositeLogger;
 }(Logger_1.Logger));
+CompositeLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
 exports.CompositeLogger = CompositeLogger;
 //# sourceMappingURL=CompositeLogger.js.map

@@ -3,7 +3,7 @@ import { LogLevel } from './LogLevel';
 import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 export declare class NullLogger implements ILogger, IDescriptable {
-    private readonly _descriptor;
+    static readonly descriptor: Descriptor;
     constructor();
     getDescriptor(): Descriptor;
     getLevel(): LogLevel;

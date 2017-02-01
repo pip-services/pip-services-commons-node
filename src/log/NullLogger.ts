@@ -4,12 +4,12 @@ import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 
 export class NullLogger implements ILogger, IDescriptable {
-	private readonly _descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "null", "default", "1.0");
+	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "null", "default", "1.0");
 
 	public constructor() { }
 
 	public getDescriptor(): Descriptor {
-		return this._descriptor;
+		return NullLogger.descriptor;
 	}
 
 	public getLevel(): LogLevel { return LogLevel.None; }
