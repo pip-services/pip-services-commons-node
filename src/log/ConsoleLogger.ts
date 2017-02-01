@@ -1,19 +1,17 @@
-let os = require('os');
-
 import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 import { StringConverter } from '../convert/StringConverter';
-
-import { ErrorDescription } from '../errors/ErrorDescription';
-import { ErrorDescriptionFactory } from '../errors/ErrorDescriptionFactory';
 import { LogLevel } from './LogLevel';
 import { Logger } from './Logger';
-import { LogMessage } from './LogMessage';
 
-export abstract class ConsoleLogger extends Logger implements IDescriptable {
+export class ConsoleLogger extends Logger implements IDescriptable {
 
-	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
+	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "console", "default", "1.0");
 	
+    public constructor() {
+        super();
+    }
+
 	public getDescriptor(): Descriptor {
 		return ConsoleLogger.descriptor;
 	}

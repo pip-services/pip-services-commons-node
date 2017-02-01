@@ -1,5 +1,5 @@
 import { NullLogger } from './NullLogger';
-//import { ConsoleLogger } from './ConsoleLogger';
+import { ConsoleLogger } from './ConsoleLogger';
 import { CompositeLogger } from './CompositeLogger';
 import { IFactory } from '../build/IFactory';
 import { CreateException } from '../build/CreateException';
@@ -24,8 +24,8 @@ export class DefaultLoggerFactory implements IFactory, IDescriptable {
         if (descriptor.match(NullLogger.descriptor))
             return true;
 
-        // if (descriptor.match(ConsoleLogger.descriptor))
-        //     return true;
+        if (descriptor.match(ConsoleLogger.descriptor))
+            return true;
 
         if (descriptor.match(CompositeLogger.descriptor))
             return true;
@@ -44,8 +44,8 @@ export class DefaultLoggerFactory implements IFactory, IDescriptable {
         if (descriptor.match(NullLogger.descriptor))
             return new NullLogger();
 
-        // if (descriptor.match(ConsoleLogger.descriptor))
-        //     return new ConsoleLogger();
+        if (descriptor.match(ConsoleLogger.descriptor))
+            return new ConsoleLogger();
 
         if (descriptor.match(CompositeLogger.descriptor))
             return new CompositeLogger();
