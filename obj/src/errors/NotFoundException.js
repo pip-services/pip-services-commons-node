@@ -16,6 +16,9 @@ var NotFoundException = (function (_super) {
         if (code === void 0) { code = null; }
         if (message === void 0) { message = null; }
         var _this = _super.call(this, ErrorCategory_1.ErrorCategory.NotFound, correlation_id, code, message) || this;
+        // Set the prototype explicitly.
+        // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+        _this.__proto__ = NotFoundException.prototype;
         _this.status = 404;
         return _this;
     }

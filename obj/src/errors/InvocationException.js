@@ -16,6 +16,9 @@ var InvocationException = (function (_super) {
         if (code === void 0) { code = null; }
         if (message === void 0) { message = null; }
         var _this = _super.call(this, ErrorCategory_1.ErrorCategory.FailedInvocation, correlation_id, code, message) || this;
+        // Set the prototype explicitly.
+        // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+        _this.__proto__ = InvocationException.prototype;
         _this.status = 500;
         return _this;
     }

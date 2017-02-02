@@ -6,6 +6,17 @@ import { ErrorDescription } from '../../src/errors/ErrorDescription';
 import { ApplicationExceptionFactory } from '../../src/errors/ApplicationExceptionFactory';
 import { ApplicationException } from '../../src/errors/ApplicationException';
 import { UnknownException } from '../../src/errors/UnknownException';
+import { InternalException } from '../../src/errors/InternalException';
+import { InvalidStateException } from '../../src/errors/InvalidStateException';
+import { ConfigException } from '../../src/errors/ConfigException';
+import { ConnectionException } from '../../src/errors/ConnectionException';
+import { InvocationException } from '../../src/errors/InvocationException';
+import { FileException } from '../../src/errors/FileException';
+import { BadRequestException } from '../../src/errors/BadRequestException';
+import { UnauthorizedException } from '../../src/errors/UnauthorizedException';
+import { ConflictException } from '../../src/errors/ConflictException';
+import { NotFoundException } from '../../src/errors/NotFoundException';
+import { UnsupportedException } from '../../src/errors/UnsupportedException';
 
 suite('ApplicationExceptionFactory', ()=> {
 
@@ -42,7 +53,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof UnknownException);
     });
 
     test('Create From Internal', () => {
@@ -52,7 +63,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof InternalException);
     });
 
     test('Create From Misconfiguration', () => {
@@ -62,7 +73,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof ConfigException);
     });
 
     test('Create From No Response', () => {
@@ -72,7 +83,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof ConnectionException);
     });
 
     test('Create From Failed Invocation', () => {
@@ -82,7 +93,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof InvocationException);
     });
 
     test('Create From No File Access', () => {
@@ -92,7 +103,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof FileException);
     });
 
     test('Create From Bad Request', () => {
@@ -102,7 +113,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof BadRequestException);
     });
 
     test('Create From From Unauthorized', () => {
@@ -112,7 +123,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof UnauthorizedException);
     });
 
     test('Create From Conflict', () => {
@@ -122,7 +133,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof ConflictException);
     });
 
     test('Create From Not Found', () => {
@@ -132,7 +143,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof NotFoundException);
     });
 
     test('Create From Unsupported', () => {
@@ -142,7 +153,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof UnsupportedException);
     });
 
     test('Create From Default', () => {
@@ -152,7 +163,7 @@ suite('ApplicationExceptionFactory', ()=> {
 
         checkProperties(ex);
 
-        assert.isTrue(ex instanceof ApplicationException);
+        assert.isTrue(ex instanceof UnknownException);
     });
 
 });
