@@ -69,7 +69,7 @@ export class ConnectionResolver {
         );
     }
 
-    public Resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void {
+    public resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void {
 
         if (this._connections.length == 0) {
             if (callback) callback(null, null);

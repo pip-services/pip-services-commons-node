@@ -10,7 +10,7 @@ export declare class ConnectionResolver {
     getAll(): ConnectionParams[];
     add(connection: ConnectionParams): void;
     resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void;
-    Resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void;
+    resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void;
     resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void;
     resolveAll(correlationId: string, callback: (err: any, result: ConnectionParams[]) => void): void;
 }

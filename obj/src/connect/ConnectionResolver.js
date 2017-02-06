@@ -58,7 +58,7 @@ var ConnectionResolver = (function () {
                 callback(err, firstResult);
         });
     };
-    ConnectionResolver.prototype.Resolve = function (correlationId, callback) {
+    ConnectionResolver.prototype.resolve = function (correlationId, callback) {
         var _this = this;
         if (this._connections.length == 0) {
             if (callback)
