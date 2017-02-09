@@ -31,7 +31,7 @@ suite('ApplicationExceptionFactory', ()=> {
         assert.equal(_descr.category, ex.category);
     }
 
-    beforeEach(function() {
+    beforeEach(() => {
         _descr = new ErrorDescription();
         _descr.correlation_id = "correlationId";
         _descr.code = "code";
