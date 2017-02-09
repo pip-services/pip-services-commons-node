@@ -1,4 +1,5 @@
 export * from './auth';
+export * from './build';
 export * from './cache';
 export * from './commands';
 export * from './config';
