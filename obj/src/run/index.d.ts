@@ -10,3 +10,4 @@ export { Closer } from './Closer';
 export { Cleaner } from './Cleaner';
 export { Executor } from './Executor';
 export { Notifier } from './Notifier';
+export { FixedRateTimer } from './FixedRateTimer';

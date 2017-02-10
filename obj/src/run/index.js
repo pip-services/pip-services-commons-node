@@ -11,4 +11,6 @@ var Executor_1 = require("./Executor");
 exports.Executor = Executor_1.Executor;
 var Notifier_1 = require("./Notifier");
 exports.Notifier = Notifier_1.Notifier;
+var FixedRateTimer_1 = require("./FixedRateTimer");
+exports.FixedRateTimer = FixedRateTimer_1.FixedRateTimer;
 //# sourceMappingURL=index.js.map
