@@ -37,31 +37,31 @@ export abstract class Logger implements ILogger, IReconfigurable {
     }
 
     public log(level: LogLevel, correlationId: string, error: Error, message: string, ...args: any[]): void {
-        this.formatAndWrite(level, correlationId, error, message, args);
+        this.formatAndWrite(level, correlationId, error, message, ...args);
     }
 
     public fatal(correlationId: string, error: Error, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Fatal, correlationId, error, message, args);
+        this.formatAndWrite(LogLevel.Fatal, correlationId, error, message, ...args);
     }
 
     public error(correlationId: string, error: Error, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Error, correlationId, error, message, args);
+        this.formatAndWrite(LogLevel.Error, correlationId, error, message, ...args);
     }
 
     public warn(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
     }
 
     public info(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
     }
 
     public debug(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
     }
 
     public trace(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
     }
 
     protected composeError(error: Error): string {

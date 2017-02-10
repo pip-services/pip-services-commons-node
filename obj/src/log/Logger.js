@@ -32,49 +32,49 @@ var Logger = (function () {
         for (var _i = 4; _i < arguments.length; _i++) {
             args[_i - 4] = arguments[_i];
         }
-        this.formatAndWrite(level, correlationId, error, message, args);
+        this.formatAndWrite.apply(this, [level, correlationId, error, message].concat(args));
     };
     Logger.prototype.fatal = function (correlationId, error, message) {
         var args = [];
         for (var _i = 3; _i < arguments.length; _i++) {
             args[_i - 3] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Fatal, correlationId, error, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Fatal, correlationId, error, message].concat(args));
     };
     Logger.prototype.error = function (correlationId, error, message) {
         var args = [];
         for (var _i = 3; _i < arguments.length; _i++) {
             args[_i - 3] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Error, correlationId, error, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Error, correlationId, error, message].concat(args));
     };
     Logger.prototype.warn = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
     };
     Logger.prototype.info = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
     };
     Logger.prototype.debug = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
     };
     Logger.prototype.trace = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite(LogLevel_1.LogLevel.Warn, correlationId, null, message, args);
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
     };
     Logger.prototype.composeError = function (error) {
         var builder = "";
