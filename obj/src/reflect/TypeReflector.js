@@ -3,13 +3,17 @@ var _ = require('lodash');
 var NotFoundException_1 = require("../errors/NotFoundException");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
+var path = require("path");
 var TypeReflector = (function () {
     function TypeReflector() {
     }
     TypeReflector.getType = function (name, library) {
         try {
+            if (!library)
+                library = name;
+            var absPath = path.resolve(library);
             // Load module
-            var type = require(library);
+            var type = require(absPath);
             if (type == null)
                 return null;
             // Get exported type by name
@@ -35,10 +39,7 @@ var TypeReflector = (function () {
             throw new Error("Type constructor cannot be null");
         if (!_.isFunction(type))
             throw new Error("Type contructor has to be a function");
-        var typeConstructor = function () {
-            type.apply(this, args);
-        };
-        return new typeConstructor();
+        return new (type.bind.apply(type, [void 0].concat(args)))();
     };
     TypeReflector.createInstance = function (name, library) {
         var args = [];
@@ -49,7 +50,7 @@ var TypeReflector = (function () {
         if (type == null)
             throw new NotFoundException_1.NotFoundException(null, "TYPE_NOT_FOUND", "Type " + name + "," + library + " was not found")
                 .withDetails("type", name).withDetails("library", library);
-        return TypeReflector.createInstanceByType(type, args);
+        return TypeReflector.createInstanceByType.apply(TypeReflector, [type].concat(args));
     };
     TypeReflector.createInstanceByDescriptor = function (type) {
         var args = [];
@@ -58,7 +59,7 @@ var TypeReflector = (function () {
         }
         if (type == null)
             throw new Error("Type descriptor cannot be null");
-        return TypeReflector.createInstance(type.getName(), type.getLibrary(), args);
+        return TypeReflector.createInstance.apply(TypeReflector, [type.getName(), type.getLibrary()].concat(args));
     };
     TypeReflector.isPrimitive = function (value) {
         var typeCode = TypeConverter_1.TypeConverter.toTypeCode(value);
