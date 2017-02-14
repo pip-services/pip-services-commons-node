@@ -9,8 +9,10 @@ export declare class ConnectionResolver {
     configure(config: ConfigParams, configAsDefault?: boolean): void;
     getAll(): ConnectionParams[];
     add(connection: ConnectionParams): void;
-    resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void;
+    private resolveInDiscovery(correlationId, connection, callback);
     resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void;
-    resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void;
+    private resolveAllInDiscovery(correlationId, connection, callback);
     resolveAll(correlationId: string, callback: (err: any, result: ConnectionParams[]) => void): void;
+    private registerInDiscovery(correlationId, connection, callback);
+    register(correlationId: string, connection: ConnectionParams, callback: (err: any) => void): void;
 }

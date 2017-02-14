@@ -155,6 +155,38 @@ var ConnectionResolver = (function () {
                 callback(err, resolved);
         });
     };
+    ConnectionResolver.prototype.registerInDiscovery = function (correlationId, connection, callback) {
+        if (!connection.getUseDiscovery()) {
+            callback(null, false);
+            return;
+        }
+        var key = connection.getDiscoveryKey();
+        if (this._references == null) {
+            callback(null, false);
+            return;
+        }
+        var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
+        if (discoveries == null) {
+            callback(null, false);
+            return;
+        }
+        async.each(discoveries, function (discovery, cb) {
+            discovery.register(correlationId, key, connection, function (err, result) {
+                cb(err);
+            });
+        }, function (err) {
+            if (callback)
+                callback(err, err == null);
+        });
+    };
+    ConnectionResolver.prototype.register = function (correlationId, connection, callback) {
+        var _this = this;
+        var result = this.registerInDiscovery(correlationId, connection, function (err) {
+            if (result)
+                _this._connections.push(connection);
+            callback(err);
+        });
+    };
     return ConnectionResolver;
 }());
 exports.ConnectionResolver = ConnectionResolver;

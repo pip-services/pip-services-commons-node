@@ -33,7 +33,7 @@ export class ConnectionResolver {
         this._connections.push(connection);
     }
 
-    public resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void {
+    private resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void {
 
         if (!connection.getUseDiscovery()) {
             callback(null, null);
@@ -109,7 +109,7 @@ export class ConnectionResolver {
     }
 
 
-    public resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void {
+    private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void {
         let result: ConnectionParams[] = [];
         let key: string = connection.getDiscoveryKey();
 
@@ -180,4 +180,44 @@ export class ConnectionResolver {
             }
         );
     }
+
+    private registerInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: boolean) => void) {
+        if (!connection.getUseDiscovery()) {
+            callback(null, false);
+            return;
+        }
+
+        var key = connection.getDiscoveryKey();
+        if (this._references == null) {
+            callback(null, false);
+            return;
+        }
+
+        var discoveries = this._references.getOptional<IDiscovery>(new Descriptor("*", "discovery", "*", "*", "*"));
+        if (discoveries == null) {
+            callback(null, false);
+            return;
+        }
+
+        async.each(
+            discoveries,
+            (discovery, cb) => {
+                discovery.register(correlationId, key, connection, (err, result) => {
+                    cb(err);
+                });
+            },
+            (err) => {
+                if (callback) callback(err, err == null);
+            }
+        );
+    }
+
+    public register(correlationId: string, connection: ConnectionParams, callback: (err: any) => void): void {
+        var result = this.registerInDiscovery(correlationId, connection, (err) => {
+            if (result)
+                this._connections.push(connection);
+            callback(err);
+        });
+    }
+
 }
