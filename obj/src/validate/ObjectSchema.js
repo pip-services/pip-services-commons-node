@@ -17,8 +17,11 @@ var ObjectComparator_1 = require("./ObjectComparator");
 var ObjectReader_1 = require("../reflect/ObjectReader");
 var ObjectSchema = (function (_super) {
     __extends(ObjectSchema, _super);
-    function ObjectSchema() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function ObjectSchema(allowExcessProperies, required, rules) {
+        var _this = _super.call(this, required, rules) || this;
+        _this._allowExcess = false;
+        _this._allowExcess = allowExcessProperies;
+        return _this;
     }
     Object.defineProperty(ObjectSchema.prototype, "properties", {
         get: function () {
@@ -95,10 +98,11 @@ var ObjectSchema = (function (_super) {
                     propertySchema.performValidation(path, null, results);
             }
         }
-        for (var key in properties) {
-            var propertyPath = key ? path + "." + key : key;
-            results.push(new ValidationResult_1.ValidationResult(propertyPath, ValidationResultType_1.ValidationResultType.Warning, "UNEXPECTED_PROPERTY", "Found unexpected property " + key, null, key));
-        }
+        if (!this._allowExcess)
+            for (var key in properties) {
+                var propertyPath = key ? path + "." + key : key;
+                results.push(new ValidationResult_1.ValidationResult(propertyPath, ValidationResultType_1.ValidationResultType.Warning, "UNEXPECTED_PROPERTY", "Found unexpected property " + key, null, key));
+            }
     };
     return ObjectSchema;
 }(Schema_1.Schema));

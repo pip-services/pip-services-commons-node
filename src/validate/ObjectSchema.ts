@@ -9,6 +9,12 @@ import { ObjectReader } from '../reflect/ObjectReader';
 export class ObjectSchema extends Schema {
     private _properties: PropertySchema[];
     private _isUndefinedAllowed: boolean;
+    private _allowExcess: boolean = false;
+
+    public constructor(allowExcessProperies?: boolean, required?: boolean, rules?: IValidationRule[]) {
+        super(required, rules);
+        this._allowExcess = allowExcessProperies;
+    }
 
     public get properties(): PropertySchema[] {
         return this._properties;
@@ -87,18 +93,19 @@ export class ObjectSchema extends Schema {
             }
         }
 
-        for (var key in properties) {
-            let propertyPath: string = key ? path + "." + key : key;
+        if (!this._allowExcess)
+            for (var key in properties) {
+                let propertyPath: string = key ? path + "." + key : key;
 
-            results.push(new ValidationResult(
-                propertyPath,
-                ValidationResultType.Warning,
-                "UNEXPECTED_PROPERTY",
-                "Found unexpected property " + key,
-                null,
-                key
-            ));
-        }
+                results.push(new ValidationResult(
+                    propertyPath,
+                    ValidationResultType.Warning,
+                    "UNEXPECTED_PROPERTY",
+                    "Found unexpected property " + key,
+                    null,
+                    key
+                ));
+            }
     }
 
 }
