@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ConfigParams_1 = require("./ConfigParams");
 var NameResolver_1 = require("./NameResolver");
 var Descriptor_1 = require("../refer/Descriptor");

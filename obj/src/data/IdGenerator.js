@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var shortid = require('shortid');
 var uuid = require('node-uuid');
 // Maps for number <-> hex string conversion

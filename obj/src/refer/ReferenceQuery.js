@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ReferenceQuery = (function () {
     function ReferenceQuery(locator, startLocator, ascending) {
         if (startLocator === void 0) { startLocator = null; }

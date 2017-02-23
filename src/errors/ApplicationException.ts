@@ -36,7 +36,7 @@ export class ApplicationException extends Error {
     }    
 
     public getStackTraceString(): string {
-        return this.stack_trace || super.stack;
+        return this.stack_trace || (<any>this).stack;
     }
 
     public setStackTraceString(value: string): void {

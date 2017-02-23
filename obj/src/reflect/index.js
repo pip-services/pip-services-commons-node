@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var MethodReflector_1 = require("./MethodReflector");
 exports.MethodReflector = MethodReflector_1.MethodReflector;
 var ObjectReader_1 = require("./ObjectReader");

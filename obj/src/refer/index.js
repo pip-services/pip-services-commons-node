@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Descriptor_1 = require("./Descriptor");
 exports.Descriptor = Descriptor_1.Descriptor;
 var ReferenceQuery_1 = require("./ReferenceQuery");

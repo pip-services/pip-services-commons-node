@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var DataPage = (function () {
     function DataPage(data, total) {
         if (data === void 0) { data = null; }

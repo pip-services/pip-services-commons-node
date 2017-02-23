@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationResultType;
 (function (ValidationResultType) {
     ValidationResultType[ValidationResultType["Information"] = 0] = "Information";

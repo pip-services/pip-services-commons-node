@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ErrorCategory_1 = require("./ErrorCategory");
 var ErrorDescription_1 = require("./ErrorDescription");
 var ApplicationException_1 = require("./ApplicationException");

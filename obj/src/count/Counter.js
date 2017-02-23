@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Counter = (function () {
     function Counter(name, type) {
         this._name = name;

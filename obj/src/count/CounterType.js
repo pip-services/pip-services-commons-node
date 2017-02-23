@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CounterType;
 (function (CounterType) {
     CounterType[CounterType["Interval"] = 0] = "Interval";

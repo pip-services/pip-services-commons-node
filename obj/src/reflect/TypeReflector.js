@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var NotFoundException_1 = require("../errors/NotFoundException");
 var TypeCode_1 = require("../convert/TypeCode");

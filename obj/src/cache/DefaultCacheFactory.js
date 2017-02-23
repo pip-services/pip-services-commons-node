@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CreateException_1 = require("../build/CreateException");
 var Descriptor_1 = require("../refer/Descriptor");
 var NullCache_1 = require("./NullCache");

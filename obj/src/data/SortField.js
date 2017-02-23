@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var SortField = (function () {
     function SortField(name, ascending) {
         if (name === void 0) { name = null; }

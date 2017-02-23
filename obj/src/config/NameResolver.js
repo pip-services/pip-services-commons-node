@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Descriptor_1 = require("../refer/Descriptor");
 var NameResolver = (function () {
     function NameResolver() {

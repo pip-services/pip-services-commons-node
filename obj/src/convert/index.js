@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var StringConverter_1 = require("./StringConverter");
 exports.StringConverter = StringConverter_1.StringConverter;
 var BooleanConverter_1 = require("./BooleanConverter");

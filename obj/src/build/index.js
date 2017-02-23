@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CreateException_1 = require("./CreateException");
 exports.CreateException = CreateException_1.CreateException;
 var CompositeFactory_1 = require("./CompositeFactory");

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
 exports.Command = Command_1.Command;
 var CommandSet_1 = require("./CommandSet");

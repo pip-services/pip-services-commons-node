@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Parameters_1 = require("./Parameters");
 var FixedRateTimer = (function () {
     function FixedRateTimer(task, interval, delay) {
@@ -30,6 +31,7 @@ var FixedRateTimer = (function () {
                     _this._task.notify("pip-commons-timer", new Parameters_1.Parameters());
                 }
                 catch (ex) {
+                    // Ignore or better log!
                 }
             }, _this._interval);
         }, delay);

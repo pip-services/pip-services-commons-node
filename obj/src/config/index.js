@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CachedConfigReader_1 = require("./CachedConfigReader");
 exports.CachedConfigReader = CachedConfigReader_1.CachedConfigReader;
 var ConfigParams_1 = require("./ConfigParams");

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var AndRule_1 = require("./AndRule");
 exports.AndRule = AndRule_1.AndRule;
 var ArraySchema_1 = require("./ArraySchema");

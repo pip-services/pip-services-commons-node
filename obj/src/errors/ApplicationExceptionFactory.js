@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ErrorCategory_1 = require("./ErrorCategory");
 var UnknownException_1 = require("./UnknownException");
 var InternalException_1 = require("./InternalException");

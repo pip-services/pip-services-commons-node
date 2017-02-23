@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Timing = (function () {
     function Timing(counter, callback) {
         if (counter === void 0) { counter = null; }

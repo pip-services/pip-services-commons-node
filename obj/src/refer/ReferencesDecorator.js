@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ReferenceQuery_1 = require("./ReferenceQuery");
 var ReferencesDecorator = (function () {
     function ReferencesDecorator(baseReferences, parentReferences) {

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var PropertyReflector_1 = require("./PropertyReflector");
 var IntegerConverter_1 = require("../convert/IntegerConverter");
@@ -42,6 +43,7 @@ var ObjectReader = (function () {
     ObjectReader.getPropertyNames = function (obj) {
         var properties = [];
         if (obj == null) {
+            // Do nothing
         }
         else if (_.isObject(obj) && !_.isDate(obj)) {
             properties = PropertyReflector_1.PropertyReflector.getPropertyNames(obj);
@@ -52,12 +54,14 @@ var ObjectReader = (function () {
                 properties.push(index.toString());
         }
         else {
+            // Do nothing
         }
         return properties;
     };
     ObjectReader.getProperties = function (obj) {
         var map = {};
         if (obj == null) {
+            // Do nothing
         }
         else if (_.isObject(obj) && !_.isDate(obj)) {
             map = PropertyReflector_1.PropertyReflector.getProperties(obj);
@@ -68,6 +72,7 @@ var ObjectReader = (function () {
                 map[index.toString()] = obj[index];
         }
         else {
+            // Do nothing
         }
         return map;
     };

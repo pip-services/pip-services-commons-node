@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var IntegerConverter_1 = require("../convert/IntegerConverter");
 var BooleanConverter_1 = require("../convert/BooleanConverter");
 var AnyValueMap_1 = require("./AnyValueMap");

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var MethodReflector = (function () {
     function MethodReflector() {
@@ -42,6 +43,7 @@ var MethodReflector = (function () {
                     return methodValue.apply(obj, args);
             }
             catch (ex) {
+                // Ignore exceptions
             }
         }
         return null;

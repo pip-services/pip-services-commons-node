@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
 var CredentialParams_1 = require("./CredentialParams");
 var ReferenceException_1 = require("../refer/ReferenceException");

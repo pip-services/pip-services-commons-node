@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var NullCounters_1 = require("./NullCounters");
 var LogCounters_1 = require("./LogCounters");
 var CompositeCounters_1 = require("./CompositeCounters");

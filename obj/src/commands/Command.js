@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var InvocationException_1 = require("../errors/InvocationException");
 var Command = (function () {
     function Command(name, schema, func) {

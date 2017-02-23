@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var NameResolver_1 = require("./NameResolver");
 var CachedConfigReader = (function () {
     function CachedConfigReader(name) {

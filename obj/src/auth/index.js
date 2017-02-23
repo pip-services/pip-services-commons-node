@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CredentialParams_1 = require("./CredentialParams");
 exports.CredentialParams = CredentialParams_1.CredentialParams;
 var CredentialResolver_1 = require("./CredentialResolver");

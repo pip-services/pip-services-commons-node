@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry_1 = require("./CacheEntry");
 var Descriptor_1 = require("../refer/Descriptor");
 var NameResolver_1 = require("../config/NameResolver");

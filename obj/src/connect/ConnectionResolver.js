@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
 var ConnectionParams_1 = require("./ConnectionParams");
 var ConfigParams_1 = require("../config/ConfigParams");

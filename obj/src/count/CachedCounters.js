@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
 var CounterType_1 = require("./CounterType");
 var Counter_1 = require("./Counter");
@@ -44,6 +45,7 @@ var CachedCounters = (function () {
                 this.dump();
             }
             catch (InvocationException) {
+                // Todo: decide what to do
             }
         }
     };

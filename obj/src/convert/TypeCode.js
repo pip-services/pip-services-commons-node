@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var TypeCode;
 (function (TypeCode) {
     TypeCode[TypeCode["Unknown"] = 0] = "Unknown";

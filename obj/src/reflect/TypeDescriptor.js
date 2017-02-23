@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ConfigException_1 = require("../errors/ConfigException");
 var TypeDescriptor = (function () {
     function TypeDescriptor(name, library) {

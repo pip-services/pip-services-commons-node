@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry = (function () {
     function CacheEntry(key, value, timeout) {
         this._key = key;

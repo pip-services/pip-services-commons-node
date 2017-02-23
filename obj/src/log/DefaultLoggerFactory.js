@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var NullLogger_1 = require("./NullLogger");
 var ConsoleLogger_1 = require("./ConsoleLogger");
 var CompositeLogger_1 = require("./CompositeLogger");

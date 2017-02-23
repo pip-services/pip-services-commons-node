@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
 exports.Timing = Timing_1.Timing;
 var NullCounters_1 = require("./NullCounters");

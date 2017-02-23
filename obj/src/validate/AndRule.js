@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var AndRule = (function () {
     function AndRule() {
         var rules = [];

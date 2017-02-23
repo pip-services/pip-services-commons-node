@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var LogLevel_1 = require("./LogLevel");
 var LogLevelConverter_1 = require("./LogLevelConverter");
 var Logger = (function () {

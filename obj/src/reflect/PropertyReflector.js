@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var PropertyReflector = (function () {
     function PropertyReflector() {
@@ -38,6 +39,7 @@ var PropertyReflector = (function () {
                     return fieldValue;
             }
             catch (ex) {
+                // Ignore exceptions
             }
         }
         return null;
@@ -60,6 +62,7 @@ var PropertyReflector = (function () {
                     map[field] = fieldValue;
             }
             catch (ex) {
+                // Ignore exception
             }
         }
         return map;
@@ -79,6 +82,7 @@ var PropertyReflector = (function () {
                 }
             }
             catch (ex) {
+                // Ignore exception
             }
         }
         // If no existing properties found set it directly

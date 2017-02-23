@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry_1 = require("./CacheEntry");
 exports.CacheEntry = CacheEntry_1.CacheEntry;
 var DefaultCacheFactory_1 = require("./DefaultCacheFactory");
