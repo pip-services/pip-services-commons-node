@@ -1,7 +1,7 @@
 {
     "name":  "pip-services-commons-node",
-    "version":  "1.0.1",
-    "author":  "Conceptual Vision Consulting LLC <www.conceptual.vision>",
+    "version":  "1.0.2",
+    "author":  "Conceptual Vision Consulting LLC \u003cwww.conceptual.vision\u003e",
     "description":  "Basic portable abstraction for Pip.Services in Node.js",
     "contributors":  [
                          {
@@ -32,16 +32,16 @@
                    },
     "license":  "MIT",
     "engines":  {
-                    "node":  ">=0.6.14"
+                    "node":  "\u003e=0.6.14"
                 },
     "private":  false,
     "scripts":  {
                     "build":  "tsc",
                     "watch":  "tsc --watch",
                     "test":  "mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
-                    "retest":  "tsc && mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
+                    "retest":  "tsc \u0026\u0026 mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
                     "benchmark":  "matcha -R clean -I tdd ./obj/benchmark/run.js",
-                    "rebenchmark":  "tsc && matcha -R clean -I tdd ./obj/benchmark/run.js",
+                    "rebenchmark":  "tsc \u0026\u0026 matcha -R clean -I tdd ./obj/benchmark/run.js",
                     "docgen":  "typedoc --out doc/api src --mode file --excludeExternals --target ES5 --ignoreCompilerErrors --readme doc/ApiReference.md"
                 },
     "dependencies":  {
