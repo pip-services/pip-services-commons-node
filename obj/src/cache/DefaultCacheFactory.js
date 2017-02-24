@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var CreateException_1 = require("../build/CreateException");
 var Descriptor_1 = require("../refer/Descriptor");
 var NullCache_1 = require("./NullCache");
 var MemoryCache_1 = require("./MemoryCache");
@@ -11,28 +10,24 @@ var DefaultCacheFactory = (function () {
         return DefaultCacheFactory.Descriptor;
     };
     DefaultCacheFactory.prototype.canCreate = function (locator) {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
-        var descriptor = locator;
-        if (descriptor == null)
-            return false;
-        if (descriptor.match(NullCache_1.NullCache.Descriptor))
-            return true;
-        if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
-            return true;
+        if (locator instanceof Descriptor_1.Descriptor) {
+            var descriptor = locator;
+            if (descriptor.match(NullCache_1.NullCache.Descriptor))
+                return true;
+            if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
+                return true;
+        }
         return false;
     };
     DefaultCacheFactory.prototype.create = function (locator) {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
-        var descriptor = locator;
-        if (descriptor == null)
-            return null;
-        if (descriptor.match(NullCache_1.NullCache.Descriptor))
-            return new NullCache_1.NullCache();
-        if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
-            return new MemoryCache_1.MemoryCache(descriptor.getName());
-        throw new CreateException_1.CreateException(null, locator);
+        if (locator instanceof Descriptor_1.Descriptor) {
+            var descriptor = locator;
+            if (descriptor.match(NullCache_1.NullCache.Descriptor))
+                return new NullCache_1.NullCache();
+            if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
+                return new MemoryCache_1.MemoryCache();
+        }
+        return null;
     };
     return DefaultCacheFactory;
 }());

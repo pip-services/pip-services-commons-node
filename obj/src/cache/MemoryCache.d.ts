@@ -12,16 +12,15 @@ export declare class MemoryCache implements ICache, IDescriptable, IReconfigurab
     private static readonly _defaultMaxSize;
     private _cache;
     private _count;
-    private _name;
     private _timeout;
     private _maxSize;
     /**
      * Creates instance of local in-memory cache component
      */
-    constructor(name?: string, config?: ConfigParams);
-    name: string;
-    timeout: number;
-    maxSize: number;
+    constructor();
+    /**
+     * Gets the component descriptor
+     */
     getDescriptor(): Descriptor;
     /**
      * Sets component configuration parameters and switches component

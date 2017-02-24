@@ -52,18 +52,20 @@ suite('LogCounters', ()=> {
         counters.dump();
     });    
 
-    test('Measure Elapsed Time', () => {
+    test('Measure Elapsed Time', (done) => {
         let timer: Timing = _counters.beginTiming("Test.Elapsed");
 
         setTimeout(function() {
             timer.endTiming();
 
             var counter = _counters.get("Test.Elapsed", CounterType.Interval);
-            assert.isNotNull(counter);
+            console.log(counter.getLast());
             assert.isTrue(counter.getLast() > 50);
             assert.isTrue(counter.getLast() < 5000);
 
             _counters.dump();
+
+            done()
         }, 100);
 
     });    

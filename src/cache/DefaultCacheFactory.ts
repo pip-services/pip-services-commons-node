@@ -16,37 +16,31 @@ export class DefaultCacheFactory implements IFactory, IDescriptable {
     }
 
     public canCreate(locator: any): boolean {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
+        if (locator instanceof Descriptor) {
+            let descriptor: Descriptor = <Descriptor>locator;
 
-        let descriptor: Descriptor = <Descriptor>locator;
+            if (descriptor.match(NullCache.Descriptor))
+                return true;
 
-        if (descriptor == null) return false;
-
-        if (descriptor.match(NullCache.Descriptor))
-            return true;
-
-        if (descriptor.match(MemoryCache.Descriptor))
-            return true;
+            if (descriptor.match(MemoryCache.Descriptor))
+                return true;
+        }
 
         return false;
     }
 
     public create(locator: any): any {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
+        if (locator instanceof Descriptor) {
+            let descriptor: Descriptor = <Descriptor>locator;
 
-        let descriptor: Descriptor = <Descriptor>locator;
+            if (descriptor.match(NullCache.Descriptor))
+                return new NullCache();
 
-        if (descriptor == null) return null;
+            if (descriptor.match(MemoryCache.Descriptor))
+                return new MemoryCache();
+        }
 
-        if (descriptor.match(NullCache.Descriptor))
-            return new NullCache();
-
-        if (descriptor.match(MemoryCache.Descriptor))
-            return new MemoryCache(descriptor.getName());
-
-        throw new CreateException(null, locator);
+        return null;
     }
 
 }

@@ -21,46 +21,18 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
     private _cache: any = {};
     private _count: number = 0;
 
-    private _name: string;
     //milliseconds
-    private _timeout: number;
-    private _maxSize: number;
+    private _timeout: number = MemoryCache._defaultTimeout;
+    private _maxSize: number = MemoryCache._defaultMaxSize;
 
 	/**
 	 * Creates instance of local in-memory cache component
 	 */
-    public constructor(name: string = null, config: ConfigParams = null) {
-        this._name = name;
-        this._timeout = MemoryCache._defaultTimeout;
-        this._maxSize = MemoryCache._defaultMaxSize;
+    public constructor() { }
 
-        if (config != null) this.configure(config);
-    }
-
-    public get name(): string {
-        return this._name;
-    }
-
-    public set name(value: string) {
-        this._name = value;
-    }
-
-    public get timeout(): number {
-        return this._timeout;
-    }
-
-    public set timeout(value: number) {
-        this._timeout = value;
-    }
-
-    public get maxSize(): number {
-        return this._maxSize;
-    }
-
-    public set maxSize(value: number) {
-        this._maxSize = value;
-    }
-
+    /**
+     * Gets the component descriptor
+     */
     public getDescriptor(): Descriptor {
         return MemoryCache.Descriptor;
     }
@@ -75,9 +47,8 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 * or configuration validation fails. 
 	 */
     public configure(config: ConfigParams): void {
-        this.name = NameResolver.resolve(config, this.name);
-        this.timeout = config.getAsLongWithDefault("timeout", this.timeout);
-        this.maxSize = config.getAsLongWithDefault("max_size", this.maxSize);
+        this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
+        this._maxSize = config.getAsLongWithDefault("max_size", this._maxSize);
     }
 
 	/**
@@ -126,8 +97,11 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 * when value was not found
 	 */
     public retrieve(correlationId: string, key: string, callback: (err: any, value: any) => void): void {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            let err = new Error('Key cannot be null');
+            callback(err, null);
+            return;
+        }
 
         // Get entry from the cache
         let entry: CacheEntry = <CacheEntry>this._cache[key];
@@ -159,8 +133,11 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 * or stored value
 	 */
     public store(correlationId: string, key: string, value: any, timeout: number, callback: (err: any, value: any) => void): void {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            let err = new Error('Key cannot be null');
+            if (callback) callback(err, null);
+            return;
+        }
 
         // Get the entry
         let entry: CacheEntry = <CacheEntry>this._cache[key];
@@ -203,8 +180,11 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 * with error or success
 	 */
     public remove(correlationId: string, key: string, callback: (err: any) => void): void {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            let err = new Error('Key cannot be null');
+            if (callback) callback(err);
+            return;
+        }
 
         // Get the entry
         let entry: CacheEntry = <CacheEntry>this._cache[key];

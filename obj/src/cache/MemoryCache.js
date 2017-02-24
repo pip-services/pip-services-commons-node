@@ -2,52 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry_1 = require("./CacheEntry");
 var Descriptor_1 = require("../refer/Descriptor");
-var NameResolver_1 = require("../config/NameResolver");
 var MemoryCache = (function () {
     /**
      * Creates instance of local in-memory cache component
      */
-    function MemoryCache(name, config) {
-        if (name === void 0) { name = null; }
-        if (config === void 0) { config = null; }
+    function MemoryCache() {
         this._cache = {};
         this._count = 0;
-        this._name = name;
+        //milliseconds
         this._timeout = MemoryCache._defaultTimeout;
         this._maxSize = MemoryCache._defaultMaxSize;
-        if (config != null)
-            this.configure(config);
     }
-    Object.defineProperty(MemoryCache.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            this._name = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MemoryCache.prototype, "timeout", {
-        get: function () {
-            return this._timeout;
-        },
-        set: function (value) {
-            this._timeout = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MemoryCache.prototype, "maxSize", {
-        get: function () {
-            return this._maxSize;
-        },
-        set: function (value) {
-            this._maxSize = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    /**
+     * Gets the component descriptor
+     */
     MemoryCache.prototype.getDescriptor = function () {
         return MemoryCache.Descriptor;
     };
@@ -61,9 +29,8 @@ var MemoryCache = (function () {
      * or configuration validation fails.
      */
     MemoryCache.prototype.configure = function (config) {
-        this.name = NameResolver_1.NameResolver.resolve(config, this.name);
-        this.timeout = config.getAsLongWithDefault("timeout", this.timeout);
-        this.maxSize = config.getAsLongWithDefault("max_size", this.maxSize);
+        this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
+        this._maxSize = config.getAsLongWithDefault("max_size", this._maxSize);
     };
     /**
      * Cleans up cache from obsolete values and shrinks the cache
@@ -107,8 +74,11 @@ var MemoryCache = (function () {
      * when value was not found
      */
     MemoryCache.prototype.retrieve = function (correlationId, key, callback) {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            var err = new Error('Key cannot be null');
+            callback(err, null);
+            return;
+        }
         // Get entry from the cache
         var entry = this._cache[key];
         // Cache has nothing
@@ -135,8 +105,12 @@ var MemoryCache = (function () {
      * or stored value
      */
     MemoryCache.prototype.store = function (correlationId, key, value, timeout, callback) {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            var err = new Error('Key cannot be null');
+            if (callback)
+                callback(err, null);
+            return;
+        }
         // Get the entry
         var entry = this._cache[key];
         // Shortcut to remove entry from the cache
@@ -173,8 +147,12 @@ var MemoryCache = (function () {
      * with error or success
      */
     MemoryCache.prototype.remove = function (correlationId, key, callback) {
-        if (key == null)
-            throw new Error('Key cannot be null');
+        if (key == null) {
+            var err = new Error('Key cannot be null');
+            if (callback)
+                callback(err);
+            return;
+        }
         // Get the entry
         var entry = this._cache[key];
         // Remove entry from the cache
