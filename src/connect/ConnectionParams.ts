@@ -6,7 +6,7 @@ export class ConnectionParams extends ConfigParams {
         super(values);
     }
 
-    public getUseDiscovery(): boolean {
+    public useDiscovery(): boolean {
         return super.getAsNullableString("discovery_key") != null;
     }
 
@@ -19,7 +19,7 @@ export class ConnectionParams extends ConfigParams {
     }
 
     public getProtocol(defaultValue: string = null): string {
-        return super.getAsStringWithDefault("protocol", defaultValue || "http");
+        return super.getAsStringWithDefault("protocol", defaultValue);
     }
 
     public setProtocol(value: string): void {
@@ -28,8 +28,8 @@ export class ConnectionParams extends ConfigParams {
 
     public getHost(): string {
         let host: string = super.getAsNullableString("host");
-        host = host || super.getAsNullableString("ip") || "";
-        return host.length == 0 ? "localhost" : host;
+        host = host || super.getAsNullableString("ip");
+        return host;
     }
 
     public setHost(value: string): void {
@@ -45,7 +45,11 @@ export class ConnectionParams extends ConfigParams {
     }
 
     public getUri(): string {
-        return this.getProtocol() + "://" + this.getHost() + ":" + this.getPort();
+        let protocol = this.getProtocol() || "http";
+        let host = this.getHost() || "localhost";
+        let port = this.getPort() || 80;
+
+        return protocol + "://" + host + ":" + port;
     }
 
     public static fromString(line: string): ConnectionParams {

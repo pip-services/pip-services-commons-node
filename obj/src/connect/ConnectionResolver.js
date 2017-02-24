@@ -32,95 +32,102 @@ var ConnectionResolver = (function () {
         this._connections.push(connection);
     };
     ConnectionResolver.prototype.resolveInDiscovery = function (correlationId, connection, callback) {
-        if (!connection.getUseDiscovery()) {
+        if (!connection.useDiscovery()) {
             callback(null, null);
             return;
         }
         var key = connection.getDiscoveryKey();
-        if (this._references == null)
+        if (this._references == null) {
+            callback(null, null);
             return;
+        }
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
-        if (discoveries.length == 0)
-            throw new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+        if (discoveries.length == 0) {
+            var err = new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            callback(err, null);
+            return;
+        }
         var firstResult = null;
-        async.any(discoveries, function (discovery, cb) {
+        async.any(discoveries, function (discovery, callback) {
             var discoveryTyped = discovery;
             discoveryTyped.resolveOne(correlationId, key, function (err, result) {
                 if (err || result == null) {
-                    cb(err, false);
+                    callback(err, false);
                 }
                 else {
                     firstResult = result;
-                    cb(err, true);
+                    callback(err, true);
                 }
             });
         }, function (err) {
-            if (callback)
-                callback(err, firstResult);
+            callback(err, firstResult);
         });
     };
     ConnectionResolver.prototype.resolve = function (correlationId, callback) {
         var _this = this;
         if (this._connections.length == 0) {
-            if (callback)
-                callback(null, null);
+            callback(null, null);
             return;
         }
         var connections = [];
         for (var index = 0; index < this._connections.length; index++) {
-            if (!this._connections[index].getUseDiscovery()) {
-                if (callback)
-                    callback(null, this._connections[index]);
+            if (!this._connections[index].useDiscovery()) {
+                callback(null, this._connections[index]);
                 return;
             }
             else {
                 connections.push(this._connections[index]);
             }
         }
-        if (connections.length == 0)
-            return null;
+        if (connections.length == 0) {
+            callback(null, null);
+            return;
+        }
         var firstResult = null;
-        async.any(connections, function (connection, cb) {
+        async.any(connections, function (connection, callback) {
             _this.resolveInDiscovery(correlationId, connection, function (err, result) {
                 if (err || result == null) {
-                    cb(err, false);
+                    callback(err, false);
                 }
                 else {
                     firstResult = new ConnectionParams_1.ConnectionParams(ConfigParams_1.ConfigParams.mergeConfigs(connection, result));
-                    cb(err, true);
+                    callback(err, true);
                 }
             });
         }, function (err) {
-            if (callback)
-                callback(err, firstResult);
+            callback(err, firstResult);
         });
     };
     ConnectionResolver.prototype.resolveAllInDiscovery = function (correlationId, connection, callback) {
         var result = [];
         var key = connection.getDiscoveryKey();
-        if (!connection.getUseDiscovery()) {
-            callback(null, null);
+        if (!connection.useDiscovery()) {
+            callback(null, []);
             return;
         }
-        if (this._references == null)
+        if (this._references == null) {
+            callback(null, []);
             return;
+        }
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
-        if (discoveries.length == 0)
-            throw new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
-        async.each(discoveries, function (discovery, cb) {
+        if (discoveries.length == 0) {
+            var err = new ConfigException_1.ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            callback(err, null);
+            return;
+        }
+        async.each(discoveries, function (discovery, callback) {
             var discoveryTyped = discovery;
             discoveryTyped.resolveAll(correlationId, key, function (err, result) {
                 if (err || result == null) {
-                    cb(err);
+                    callback(err);
                 }
                 else {
                     result.push.apply(result, result);
-                    cb(null);
+                    callback(null);
                 }
             });
         }, function (err) {
-            if (callback)
-                callback(err, result);
+            callback(err, result);
         });
     };
     ConnectionResolver.prototype.resolveAll = function (correlationId, callback) {
@@ -128,52 +135,53 @@ var ConnectionResolver = (function () {
         var resolved = [];
         var toResolve = [];
         for (var index = 0; index < this._connections.length; index++) {
-            if (this._connections[index].getUseDiscovery())
+            if (this._connections[index].useDiscovery())
                 toResolve.push(this._connections[index]);
             else
                 resolved.push(this._connections[index]);
         }
         if (toResolve.length <= 0) {
-            if (callback)
-                callback(null, resolved);
+            callback(null, resolved);
             return;
         }
-        async.each(toResolve, function (connection, cb) {
+        async.each(toResolve, function (connection, callback) {
             _this.resolveAllInDiscovery(correlationId, connection, function (err, result) {
                 if (err) {
-                    cb(err);
+                    callback(err);
                 }
                 else {
                     for (var index = 0; index < result.length; index++) {
                         var localResolvedConnection = new ConnectionParams_1.ConnectionParams(ConfigParams_1.ConfigParams.mergeConfigs(connection, result[index]));
                         resolved.push(localResolvedConnection);
                     }
-                    cb(null);
+                    callback(null);
                 }
             });
         }, function (err) {
-            if (callback)
-                callback(err, resolved);
+            callback(err, resolved);
         });
     };
     ConnectionResolver.prototype.registerInDiscovery = function (correlationId, connection, callback) {
-        if (!connection.getUseDiscovery()) {
-            callback(null, false);
+        if (!connection.useDiscovery()) {
+            if (callback)
+                callback(null, false);
             return;
         }
         var key = connection.getDiscoveryKey();
         if (this._references == null) {
-            callback(null, false);
+            if (callback)
+                callback(null, false);
             return;
         }
         var discoveries = this._references.getOptional(new Descriptor_1.Descriptor("*", "discovery", "*", "*", "*"));
         if (discoveries == null) {
-            callback(null, false);
+            if (callback)
+                callback(null, false);
             return;
         }
-        async.each(discoveries, function (discovery, cb) {
+        async.each(discoveries, function (discovery, callback) {
             discovery.register(correlationId, key, connection, function (err, result) {
-                cb(err);
+                callback(err);
             });
         }, function (err) {
             if (callback)
@@ -185,7 +193,8 @@ var ConnectionResolver = (function () {
         var result = this.registerInDiscovery(correlationId, connection, function (err) {
             if (result)
                 _this._connections.push(connection);
-            callback(err);
+            if (callback)
+                callback(err);
         });
     };
     return ConnectionResolver;

@@ -18,7 +18,7 @@ var ConnectionParams = (function (_super) {
         if (values === void 0) { values = null; }
         return _super.call(this, values) || this;
     }
-    ConnectionParams.prototype.getUseDiscovery = function () {
+    ConnectionParams.prototype.useDiscovery = function () {
         return _super.prototype.getAsNullableString.call(this, "discovery_key") != null;
     };
     ConnectionParams.prototype.getDiscoveryKey = function () {
@@ -29,15 +29,15 @@ var ConnectionParams = (function (_super) {
     };
     ConnectionParams.prototype.getProtocol = function (defaultValue) {
         if (defaultValue === void 0) { defaultValue = null; }
-        return _super.prototype.getAsStringWithDefault.call(this, "protocol", defaultValue || "http");
+        return _super.prototype.getAsStringWithDefault.call(this, "protocol", defaultValue);
     };
     ConnectionParams.prototype.setProtocol = function (value) {
         return _super.prototype.put.call(this, "protocol", value);
     };
     ConnectionParams.prototype.getHost = function () {
         var host = _super.prototype.getAsNullableString.call(this, "host");
-        host = host || _super.prototype.getAsNullableString.call(this, "ip") || "";
-        return host.length == 0 ? "localhost" : host;
+        host = host || _super.prototype.getAsNullableString.call(this, "ip");
+        return host;
     };
     ConnectionParams.prototype.setHost = function (value) {
         return _super.prototype.put.call(this, "host", value);
@@ -49,7 +49,10 @@ var ConnectionParams = (function (_super) {
         return _super.prototype.put.call(this, "port", value);
     };
     ConnectionParams.prototype.getUri = function () {
-        return this.getProtocol() + "://" + this.getHost() + ":" + this.getPort();
+        var protocol = this.getProtocol() || "http";
+        var host = this.getHost() || "localhost";
+        var port = this.getPort() || 80;
+        return protocol + "://" + host + ":" + port;
     };
     ConnectionParams.fromString = function (line) {
         var map = StringValueMap_1.StringValueMap.fromString(line);

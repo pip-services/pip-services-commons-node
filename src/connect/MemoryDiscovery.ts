@@ -63,7 +63,7 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable, IDescriptab
                 break;
             }
         }
-        if (callback) callback(null, connection);
+        callback(null, connection);
     }
 
     public resolveAll(correlationId: string, key: string, callback: (err: any, result: ConnectionParams[]) => void): void {
@@ -72,6 +72,6 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable, IDescriptab
             if (this._items[index].key == key && this._items[index].connection != null)
                 connections.push(this._items[index].connection);
         }
-        if (callback) callback(null, connections);
+        callback(null, connections);
     }
 }

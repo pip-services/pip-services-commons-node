@@ -33,113 +33,131 @@ export class ConnectionResolver {
         this._connections.push(connection);
     }
 
-    private resolveInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams) => void): void {
-
-        if (!connection.getUseDiscovery()) {
+    private resolveInDiscovery(correlationId: string, connection: ConnectionParams, 
+        callback: (err: any, result: ConnectionParams) => void): void {
+        
+        if (!connection.useDiscovery()) {
             callback(null, null);
             return;
         }
 
         let key: string = connection.getDiscoveryKey();
-        if (this._references == null) return;
+        if (this._references == null) {
+            callback(null, null);
+            return;
+        }
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if (discoveries.length == 0)
-            throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+        if (discoveries.length == 0) {
+            let err = new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            callback(err, null);
+            return;
+        }
 
         let firstResult: ConnectionParams = null;
 
         async.any(
             discoveries,
-            (discovery, cb) => {
+            (discovery, callback) => {
                 let discoveryTyped: IDiscovery = discovery;
                 discoveryTyped.resolveOne(correlationId, key, (err, result) => {
                     if (err || result == null) {
-                        cb(err, false);
+                        callback(err, false);
                     } else {
                         firstResult = result;
-                        cb(err, true);
+                        callback(err, true);
                     }
-
                 });
             },
             (err) => {
-                if (callback) callback(err, firstResult);
+                callback(err, firstResult);
             }
         );
     }
 
-    public resolve(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void {
+    public resolve(correlationId: string, 
+        callback: (err: any, result: ConnectionParams) => void): void {
 
         if (this._connections.length == 0) {
-            if (callback) callback(null, null);
+            callback(null, null);
             return;
         }
 
         let connections: ConnectionParams[] = [];
 
         for (let index = 0; index < this._connections.length; index++) {
-            if (!this._connections[index].getUseDiscovery()) {
-                if (callback) callback(null, this._connections[index]);
+            if (!this._connections[index].useDiscovery()) {
+                callback(null, this._connections[index]);
                 return;
             } else {
                 connections.push(this._connections[index]);
             }
         }
 
-        if (connections.length == 0) return null;
+        if (connections.length == 0) {
+            callback(null, null);
+            return;
+        }
 
         let firstResult: ConnectionParams = null;
         async.any(
             connections,
-            (connection, cb) => {
+            (connection, callback) => {
                 this.resolveInDiscovery(correlationId, connection, (err, result) => {
                     if (err || result == null) {
-                        cb(err, false);
+                        callback(err, false);
                     } else {
                         firstResult = new ConnectionParams(ConfigParams.mergeConfigs(connection, result));
-                        cb(err, true);
+                        callback(err, true);
                     }
                 });
             },
             (err) => {
-                if (callback) callback(err, firstResult);
+                callback(err, firstResult);
             }
         );
     }
 
 
-    private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: ConnectionParams[]) => void): void {
+    private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, 
+        callback: (err: any, result: ConnectionParams[]) => void): void {
+        
         let result: ConnectionParams[] = [];
         let key: string = connection.getDiscoveryKey();
 
-        if (!connection.getUseDiscovery()) {
-            callback(null, null);
+        if (!connection.useDiscovery()) {
+            callback(null, []);
             return;
         }
 
-        if (this._references == null) return;
+        if (this._references == null) {
+            callback(null, []);
+            return;
+        }
 
         let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
-        if (discoveries.length == 0) 
-            throw new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+        if (discoveries.length == 0) {
+            let err = new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            callback(err, null);
+            return;
+        }
 
         async.each(
             discoveries,
-            (discovery, cb) => {
+            (discovery, callback) => {
                 let discoveryTyped: IDiscovery = discovery;
                 discoveryTyped.resolveAll(correlationId, key, (err, result) => {
                     if (err || result == null) {
-                        cb(err);
+                        callback(err);
                     } else {
                         result.push(...result);
-                        cb(null);
+                        callback(null);
                     }
 
                 });
             },
             (err) => {
-                if (callback) callback(err, result);
+                callback(err, result);
             }
         );
     }
@@ -149,61 +167,61 @@ export class ConnectionResolver {
         let toResolve: ConnectionParams[] = [];
 
         for (let index = 0; index < this._connections.length; index++) {
-            if (this._connections[index].getUseDiscovery())
+            if (this._connections[index].useDiscovery())
                 toResolve.push(this._connections[index]);
             else
                 resolved.push(this._connections[index]);
         }
 
         if (toResolve.length <= 0) {
-            if (callback) callback(null, resolved);
+            callback(null, resolved);
             return;
         }
 
         async.each(
             toResolve,
-            (connection, cb) => {
+            (connection, callback) => {
                 this.resolveAllInDiscovery(correlationId, connection, (err, result) => {
                     if (err) {
-                        cb(err);
+                        callback(err);
                     } else {
                         for (let index = 0; index < result.length; index++) {
                             let localResolvedConnection: ConnectionParams = new ConnectionParams(ConfigParams.mergeConfigs(connection, result[index]));
                             resolved.push(localResolvedConnection);
                         }
-                        cb(null);
+                        callback(null);
                     }
                 });
             },
             (err) => {
-                if (callback) callback(err, resolved);
+                callback(err, resolved);
             }
         );
     }
 
     private registerInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: boolean) => void) {
-        if (!connection.getUseDiscovery()) {
-            callback(null, false);
+        if (!connection.useDiscovery()) {
+            if (callback) callback(null, false);
             return;
         }
 
         var key = connection.getDiscoveryKey();
         if (this._references == null) {
-            callback(null, false);
+            if (callback) callback(null, false);
             return;
         }
 
         var discoveries = this._references.getOptional<IDiscovery>(new Descriptor("*", "discovery", "*", "*", "*"));
         if (discoveries == null) {
-            callback(null, false);
+            if (callback) callback(null, false);
             return;
         }
 
         async.each(
             discoveries,
-            (discovery, cb) => {
+            (discovery, callback) => {
                 discovery.register(correlationId, key, connection, (err, result) => {
-                    cb(err);
+                    callback(err);
                 });
             },
             (err) => {
@@ -216,7 +234,7 @@ export class ConnectionResolver {
         var result = this.registerInDiscovery(correlationId, connection, (err) => {
             if (result)
                 this._connections.push(connection);
-            callback(err);
+            if (callback) callback(err);
         });
     }
 

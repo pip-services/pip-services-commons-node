@@ -1,7 +1,7 @@
 import { ConfigParams } from '../config/ConfigParams';
 export declare class ConnectionParams extends ConfigParams {
     constructor(values?: any);
-    getUseDiscovery(): boolean;
+    useDiscovery(): boolean;
     getDiscoveryKey(): string;
     setDiscoveryKey(value: string): void;
     getProtocol(defaultValue?: string): string;

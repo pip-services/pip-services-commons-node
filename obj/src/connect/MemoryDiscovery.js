@@ -53,8 +53,7 @@ var MemoryDiscovery = (function () {
                 break;
             }
         }
-        if (callback)
-            callback(null, connection);
+        callback(null, connection);
     };
     MemoryDiscovery.prototype.resolveAll = function (correlationId, key, callback) {
         var connections = [];
@@ -62,8 +61,7 @@ var MemoryDiscovery = (function () {
             if (this._items[index].key == key && this._items[index].connection != null)
                 connections.push(this._items[index].connection);
         }
-        if (callback)
-            callback(null, connections);
+        callback(null, connections);
     };
     return MemoryDiscovery;
 }());
