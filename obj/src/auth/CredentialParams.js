@@ -72,7 +72,7 @@ var CredentialParams = (function (_super) {
             else if (configAsDefault)
                 result.push(new CredentialParams(config));
         }
-        return null;
+        return result;
     };
     CredentialParams.fromConfig = function (config, configAsDefault) {
         if (configAsDefault === void 0) { configAsDefault = true; }

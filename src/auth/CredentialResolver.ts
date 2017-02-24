@@ -42,24 +42,31 @@ export class CredentialResolver {
         }
 
         let key: string = credential.getStoreKey();
-        if (this._references == null) return;
+        if (this._references == null) {
+            callback(null, null);
+            return;
+        }
 
-        let components: any[] = this._references.getOptional<any>(new Descriptor("*", "credential_store", "*", "*", "*"))
-        if (components.length == 0) 
-            throw new ReferenceException(correlationId, "Credential store wasn't found to make lookup");
+        let storeDescriptor = new Descriptor("*", "credential_store", "*", "*", "*")
+        let components: any[] = this._references.getOptional<any>(storeDescriptor)
+        if (components.length == 0) {
+            let err = new ReferenceException(correlationId, storeDescriptor);
+            callback(err, null);
+            return;
+        }
 
         let firstResult: CredentialParams = null;
 
         async.any(
             components,
-            (component, cb) => {
+            (component, callback) => {
                 let store: ICredentialStore = component;
                 store.lookup(correlationId, key, (err, result) => {
                     if (err || result == null) {
-                        cb(err, false);
+                        callback(err, false);
                     } else {
                         firstResult = result;
-                        cb(err, true);
+                        callback(err, true);
                     }
 
                 });
@@ -91,13 +98,13 @@ export class CredentialResolver {
         let firstResult: CredentialParams = null;
         async.any(
             lookupCredentials,
-            (credential, cb) => {
+            (credential, callback) => {
                 this.lookupInStores(correlationId, credential, (err, result) => {
                     if (err || result == null) {
-                        cb(err, false);
+                        callback(err, false);
                     } else {
                         firstResult = result;
-                        cb(err, true);
+                        callback(err, true);
                     }
                 });
             },

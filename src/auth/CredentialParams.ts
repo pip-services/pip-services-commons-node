@@ -74,7 +74,7 @@ export class CredentialParams extends ConfigParams {
                 result.push(new CredentialParams(config));
         }
 
-        return null;
+        return result;
     }
 
     public static fromConfig(config: ConfigParams, configAsDefault: boolean = true): CredentialParams {

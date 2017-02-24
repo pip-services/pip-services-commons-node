@@ -36,21 +36,27 @@ var CredentialResolver = (function () {
             return;
         }
         var key = credential.getStoreKey();
-        if (this._references == null)
+        if (this._references == null) {
+            callback(null, null);
             return;
-        var components = this._references.getOptional(new Descriptor_1.Descriptor("*", "credential_store", "*", "*", "*"));
-        if (components.length == 0)
-            throw new ReferenceException_1.ReferenceException(correlationId, "Credential store wasn't found to make lookup");
+        }
+        var storeDescriptor = new Descriptor_1.Descriptor("*", "credential_store", "*", "*", "*");
+        var components = this._references.getOptional(storeDescriptor);
+        if (components.length == 0) {
+            var err = new ReferenceException_1.ReferenceException(correlationId, storeDescriptor);
+            callback(err, null);
+            return;
+        }
         var firstResult = null;
-        async.any(components, function (component, cb) {
+        async.any(components, function (component, callback) {
             var store = component;
             store.lookup(correlationId, key, function (err, result) {
                 if (err || result == null) {
-                    cb(err, false);
+                    callback(err, false);
                 }
                 else {
                     firstResult = result;
-                    cb(err, true);
+                    callback(err, true);
                 }
             });
         }, function (err) {
@@ -77,14 +83,14 @@ var CredentialResolver = (function () {
             }
         }
         var firstResult = null;
-        async.any(lookupCredentials, function (credential, cb) {
+        async.any(lookupCredentials, function (credential, callback) {
             _this.lookupInStores(correlationId, credential, function (err, result) {
                 if (err || result == null) {
-                    cb(err, false);
+                    callback(err, false);
                 }
                 else {
                     firstResult = result;
-                    cb(err, true);
+                    callback(err, true);
                 }
             });
         }, function (err) {
