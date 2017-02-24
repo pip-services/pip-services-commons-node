@@ -1,5 +1,4 @@
-let shortid = require('shortid');
-let uuid = require('node-uuid');
+let uuid = require('uuid');
 
 // Maps for number <-> hex string conversion
 let byteToHex = [];
@@ -10,11 +9,7 @@ for (let i = 0; i < 256; i++) {
 export class IdGenerator {
     
     public static nextShort(): string {
-        return shortid.generate();
-    }
-
-    public static nextShort2(): string {
-        return Math.random().toString(36).substr(2, 10); // remove `0.`
+        return Math.ceil(100000000 + Math.random() * 899999999).toString();
     }
 
     private static uuidToHex(buffer) {

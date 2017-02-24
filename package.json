@@ -47,8 +47,7 @@
     "dependencies":  {
                          "lodash":  "*",
                          "async":  "*",
-                         "node-uuid":  "*",
-                         "shortid":  "*",
+                         "uuid":  "*",
                          "js-yaml":  "*"
                      },
     "devDependencies":  {

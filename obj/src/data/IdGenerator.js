@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var shortid = require('shortid');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 // Maps for number <-> hex string conversion
 var byteToHex = [];
 for (var i = 0; i < 256; i++) {
@@ -11,10 +10,7 @@ var IdGenerator = (function () {
     function IdGenerator() {
     }
     IdGenerator.nextShort = function () {
-        return shortid.generate();
-    };
-    IdGenerator.nextShort2 = function () {
-        return Math.random().toString(36).substr(2, 10); // remove `0.`
+        return Math.ceil(100000000 + Math.random() * 899999999).toString();
     };
     IdGenerator.uuidToHex = function (buffer) {
         return byteToHex[buffer[0]] + byteToHex[buffer[1]]
