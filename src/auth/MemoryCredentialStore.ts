@@ -24,11 +24,12 @@ export class MemoryCredentialStore implements ICredentialStore, IReconfigurable,
     }
 
     public getDescriptor(): Descriptor {
-        return new Descriptor("pip-services-commons", "credential-store", "memory", name || "default", "1.0");
+        let name = this._name || "default";
+        return new Descriptor("pip-services-commons", "credential-store", "memory", name, "1.0");
     }
 
     public configure(config: ConfigParams): void {
-        this._name = NameResolver.resolve(config, name);
+        this._name = NameResolver.resolve(config, this._name);
         this.readCredentials(config);
     }
 
@@ -49,11 +50,6 @@ export class MemoryCredentialStore implements ICredentialStore, IReconfigurable,
 
     public lookup(correlationId: string, key: string, callback: (err: any, result: CredentialParams) => void): void {
         let credential: any = this._items.getAsObject(key);
-
-        if (credential instanceof CredentialParams)
-            if (callback) 
-                callback(null, <CredentialParams>credential);
-            else
-                if (callback) callback(null, null);
+        callback(null, <CredentialParams>credential);
     }
 }

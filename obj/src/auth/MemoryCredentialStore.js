@@ -18,10 +18,11 @@ var MemoryCredentialStore = (function () {
         return this._name;
     };
     MemoryCredentialStore.prototype.getDescriptor = function () {
-        return new Descriptor_1.Descriptor("pip-services-commons", "credential-store", "memory", name || "default", "1.0");
+        var name = this._name || "default";
+        return new Descriptor_1.Descriptor("pip-services-commons", "credential-store", "memory", name, "1.0");
     };
     MemoryCredentialStore.prototype.configure = function (config) {
-        this._name = NameResolver_1.NameResolver.resolve(config, name);
+        this._name = NameResolver_1.NameResolver.resolve(config, this._name);
         this.readCredentials(config);
     };
     MemoryCredentialStore.prototype.readCredentials = function (credentials) {
@@ -39,11 +40,7 @@ var MemoryCredentialStore = (function () {
     };
     MemoryCredentialStore.prototype.lookup = function (correlationId, key, callback) {
         var credential = this._items.getAsObject(key);
-        if (credential instanceof CredentialParams_1.CredentialParams)
-            if (callback)
-                callback(null, credential);
-            else if (callback)
-                callback(null, null);
+        callback(null, credential);
     };
     return MemoryCredentialStore;
 }());
