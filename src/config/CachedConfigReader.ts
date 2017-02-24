@@ -3,6 +3,7 @@ import { IReconfigurable } from './IReconfigurable';
 import { ConfigParams } from './ConfigParams';
 import { NameResolver } from './NameResolver';
 
+// Todo: Deprecate name
 export abstract class CachedConfigReader implements IConfigReader, IReconfigurable {
     private _lastRead: number = 0;
     private _name: string = null;
@@ -37,12 +38,10 @@ export abstract class CachedConfigReader implements IConfigReader, IReconfigurab
     protected abstract performReadConfig(correlationId: string): ConfigParams;
 
     public readConfig(correlationId: string): ConfigParams {
-
         let timestamp: number = new Date().getTime();
 
-        if (this._config != null && timestamp < this._lastRead + this._timeout) {
+        if (this._config != null && timestamp < this._lastRead + this._timeout)
             return this._config;
-        }
 
         this._config = this.performReadConfig(correlationId);
         this._lastRead = timestamp;

@@ -20,7 +20,6 @@ export declare class ConfigParams extends StringValueMap {
     constructor(values?: any);
     getSectionNames(): string[];
     getSection(section: string): ConfigParams;
-    protected isShadowName(name: string): boolean;
     addSection(section: string, sectionParams: ConfigParams): void;
     override(configParams: ConfigParams): ConfigParams;
     setDefaults(defaultConfigParams: ConfigParams): ConfigParams;

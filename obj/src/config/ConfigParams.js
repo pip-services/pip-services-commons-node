@@ -76,18 +76,13 @@ var ConfigParams = (function (_super) {
         }
         return result;
     };
-    ConfigParams.prototype.isShadowName = function (name) {
-        return name == null || name.length == 0 || _.startsWith(name, "_");
-    };
     ConfigParams.prototype.addSection = function (section, sectionParams) {
         if (section == null)
             throw new Error("Section name cannot be null");
-        section = this.isShadowName(section) ? "" : section;
         if (sectionParams != null) {
             for (var key in sectionParams) {
                 if (sectionParams.hasOwnProperty(key)) {
                     var name_2 = key;
-                    name_2 = this.isShadowName(name_2) ? "" : name_2;
                     if (name_2.length > 0 && section.length > 0)
                         name_2 = section + "." + name_2;
                     else if (name_2.length == 0)

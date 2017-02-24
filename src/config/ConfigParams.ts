@@ -75,21 +75,14 @@ export class ConfigParams extends StringValueMap {
 		return result;
 	}
 
-	protected isShadowName(name: string): boolean {
-		return name == null || name.length == 0 || _.startsWith(name, "_");
-	}
-
 	public addSection(section: string, sectionParams: ConfigParams): void {
 		if (section == null)
 			throw new Error("Section name cannot be null");
-
-		section = this.isShadowName(section) ? "" : section;
 
 		if (sectionParams != null) {
 			for (let key in sectionParams) {
 				if (sectionParams.hasOwnProperty(key)) {
 					let name = key;
-					name = this.isShadowName(name) ? "" : name;
 
 					if (name.length > 0 && section.length > 0)
 						name = section + "." + name;

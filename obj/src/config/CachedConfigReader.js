@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var NameResolver_1 = require("./NameResolver");
+// Todo: Deprecate name
 var CachedConfigReader = (function () {
     function CachedConfigReader(name) {
         if (name === void 0) { name = null; }
@@ -28,9 +29,8 @@ var CachedConfigReader = (function () {
     };
     CachedConfigReader.prototype.readConfig = function (correlationId) {
         var timestamp = new Date().getTime();
-        if (this._config != null && timestamp < this._lastRead + this._timeout) {
+        if (this._config != null && timestamp < this._lastRead + this._timeout)
             return this._config;
-        }
         this._config = this.performReadConfig(correlationId);
         this._lastRead = timestamp;
         return this._config;
