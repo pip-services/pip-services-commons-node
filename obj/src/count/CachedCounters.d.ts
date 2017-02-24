@@ -8,7 +8,7 @@ import { ConfigParams } from '../config/ConfigParams';
 export declare abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
     private static readonly _defaultInterval;
     private _interval;
-    private readonly _cache;
+    private _cache;
     private _updated;
     private _lastDumpTime;
     CachedCounters(): void;

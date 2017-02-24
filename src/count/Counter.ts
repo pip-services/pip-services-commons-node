@@ -1,41 +1,17 @@
 import { CounterType } from './CounterType';
 
 export class Counter {
-    private _name: string;
-    private _type: CounterType;
-    private _last: number;
-    private _count: number;
-    private _min: number;
-    private _max: number;
-    private _average: number;
-    private _time: Date;
-
     public constructor(name: string, type: CounterType) {
-        this._name = name;
-        this._type = type;
+        this.name = name;
+        this.type = type;
     }
 
-    public getName() : string { return this._name; }
-    public setName(name: string) : void { this._name = name; }
-
-    public getType() : CounterType { return this._type; }
-    public setType(type: CounterType) : void { this._type = type; }
-
-    public getLast() : number { return this._last; }
-    public setLast(last: number) : void { this._last = last; }
-
-    public getCount() : number { return this._count; }
-    public setCount(count: number) : void { this._count = count; }
-
-    public getMin() : number { return this._min; }
-    public setMin(min: number) : void { this._min = min; }
-
-    public getMax() : number { return this._max; }
-    public setMax(max: number) : void { this._max = max; }
-
-    public getAverage() : number { return this._average; }
-    public setAverage(average: number) : void { this._average = average; }
-
-    public getTime() : Date { return this._time; }
-    public setTime(time: Date) : void { this._time = time; }
+    public name: string;
+    public type: CounterType;
+    public last: number;
+    public count: number;
+    public min: number;
+    public max: number;
+    public average: number;
+    public time: Date;
 }

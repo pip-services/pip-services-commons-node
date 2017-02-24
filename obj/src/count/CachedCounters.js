@@ -7,7 +7,7 @@ var CachedCounters = (function () {
     function CachedCounters() {
         this._interval = CachedCounters._defaultInterval;
         this._cache = {};
-        this._lastDumpTime = new Date().getDate();
+        this._lastDumpTime = new Date().getTime();
     }
     CachedCounters.prototype.CachedCounters = function () { };
     CachedCounters.prototype.getInterval = function () {
@@ -23,8 +23,7 @@ var CachedCounters = (function () {
         delete this._cache[name];
     };
     CachedCounters.prototype.clearAll = function () {
-        for (var key in this._cache)
-            delete this._cache[key];
+        this._cache = {};
         this._updated = false;
     };
     CachedCounters.prototype.beginTiming = function (name) {
@@ -36,15 +35,15 @@ var CachedCounters = (function () {
         var counters = this.getAll();
         this.save(counters);
         this._updated = false;
-        this._lastDumpTime = new Date().getDate();
+        this._lastDumpTime = new Date().getTime();
     };
     CachedCounters.prototype.update = function () {
         this._updated = true;
-        if (new Date().getDate() > this._lastDumpTime + this.getInterval()) {
+        if (new Date().getTime() > this._lastDumpTime + this.getInterval()) {
             try {
                 this.dump();
             }
-            catch (InvocationException) {
+            catch (ex) {
                 // Todo: decide what to do
             }
         }
@@ -59,7 +58,7 @@ var CachedCounters = (function () {
         if (!name)
             throw new Error("Name cannot be null");
         var counter = this._cache[name];
-        if (counter == null || counter.getType() != type) {
+        if (counter == null || counter.type != type) {
             counter = new Counter_1.Counter(name, type);
             this._cache[name] = counter;
         }
@@ -68,12 +67,12 @@ var CachedCounters = (function () {
     CachedCounters.prototype.calculateStats = function (counter, value) {
         if (counter == null)
             throw new Error("Counter cannot be null");
-        counter.setLast(value);
-        counter.setCount(counter.getCount() != null ? counter.getCount() + 1 : 1);
-        counter.setMax(counter.getMax() != null ? Math.max(counter.getMax(), value) : value);
-        counter.setMin(counter.getMin() != null ? Math.min(counter.getMin(), value) : value);
-        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1
-            ? (counter.getAverage() * (counter.getCount() - 1) + value) / counter.getCount() : value));
+        counter.last = value;
+        counter.count = counter.count != null ? counter.count + 1 : 1;
+        counter.max = counter.max != null ? Math.max(counter.max, value) : value;
+        counter.min = counter.min != null ? Math.min(counter.min, value) : value;
+        counter.average = (counter.average != null && counter.count > 1
+            ? (counter.average * (counter.count - 1) + value) / counter.count : value);
     };
     CachedCounters.prototype.endTiming = function (name, elapsed) {
         var counter = this.get(name, CounterType_1.CounterType.Interval);
@@ -87,7 +86,7 @@ var CachedCounters = (function () {
     };
     CachedCounters.prototype.last = function (name, value) {
         var counter = this.get(name, CounterType_1.CounterType.LastValue);
-        counter.setLast(value);
+        counter.last = value;
         this.update();
     };
     CachedCounters.prototype.timestampNow = function (name) {
@@ -95,7 +94,7 @@ var CachedCounters = (function () {
     };
     CachedCounters.prototype.timestamp = function (name, value) {
         var counter = this.get(name, CounterType_1.CounterType.Timestamp);
-        counter.setTime(value);
+        counter.time = value;
         this.update();
     };
     CachedCounters.prototype.incrementOne = function (name) {
@@ -103,7 +102,7 @@ var CachedCounters = (function () {
     };
     CachedCounters.prototype.increment = function (name, value) {
         var counter = this.get(name, CounterType_1.CounterType.Increment);
-        counter.setCount(counter.getCount() ? counter.getCount() + value : value);
+        counter.count = counter.count ? counter.count + value : value;
         this.update();
     };
     return CachedCounters;

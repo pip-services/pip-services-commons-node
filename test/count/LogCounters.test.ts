@@ -24,22 +24,22 @@ suite('LogCounters', ()=> {
 
         var counter = counters.get("Test.LastValue", CounterType.LastValue);
         assert.isNotNull(counter);
-        assert.isNotNull(counter.getLast());
-        assert.equal(counter.getLast(), 123456, 3);
+        assert.isNotNull(counter.last);
+        assert.equal(counter.last, 123456, 3);
 
         counters.incrementOne("Test.Increment");
         counters.increment("Test.Increment", 3);
 
         counter = counters.get("Test.Increment", CounterType.Increment);
         assert.isNotNull(counter);
-        assert.equal(counter.getCount(), 4);
+        assert.equal(counter.count, 4);
 
         counters.timestampNow("Test.Timestamp");
         counters.timestampNow("Test.Timestamp");
 
         counter = counters.get("Test.Timestamp", CounterType.Timestamp);
         assert.isNotNull(counter);
-        assert.isNotNull(counter.getTime());
+        assert.isNotNull(counter.time);
 
         counters.stats("Test.Statistics", 1);
         counters.stats("Test.Statistics", 2);
@@ -47,7 +47,7 @@ suite('LogCounters', ()=> {
 
         counter = counters.get("Test.Statistics", CounterType.Statistics);
         assert.isNotNull(counter);
-        assert.equal(counter.getAverage(), 2, 3);
+        assert.equal(counter.average, 2, 3);
 
         counters.dump();
     });    
@@ -59,9 +59,9 @@ suite('LogCounters', ()=> {
             timer.endTiming();
 
             var counter = _counters.get("Test.Elapsed", CounterType.Interval);
-            console.log(counter.getLast());
-            assert.isTrue(counter.getLast() > 50);
-            assert.isTrue(counter.getLast() < 5000);
+            console.log(counter.last);
+            assert.isTrue(counter.last > 50);
+            assert.isTrue(counter.last < 5000);
 
             _counters.dump();
 

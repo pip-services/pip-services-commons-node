@@ -9,11 +9,11 @@ import { InvocationException } from '../errors/InvocationException';
 
 export abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
     private static readonly _defaultInterval = 300000;
-    private _interval: number = CachedCounters._defaultInterval;
 
-    private readonly _cache: { [id: string]: Counter } = {};
+    private _interval: number = CachedCounters._defaultInterval;
+    private _cache: { [id: string]: Counter } = {};
     private _updated: boolean;
-    private _lastDumpTime: number = new Date().getDate();
+    private _lastDumpTime: number = new Date().getTime();
 
     public CachedCounters() { }
 
@@ -36,9 +36,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
     }
 
     public clearAll(): void {
-        for (var key in this._cache)
-            delete this._cache[key];
-
+        this._cache = {};
         this._updated = false;
     }
 
@@ -54,15 +52,15 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
         this.save(counters);
 
         this._updated = false;
-        this._lastDumpTime = new Date().getDate();
+        this._lastDumpTime = new Date().getTime();
     }
 
     protected update(): void {
         this._updated = true;
-        if (new Date().getDate() > this._lastDumpTime + this.getInterval()) {
+        if (new Date().getTime() > this._lastDumpTime + this.getInterval()) {
             try {
                 this.dump();
-            } catch (InvocationException) {
+            } catch (ex) {
                 // Todo: decide what to do
             }
         }
@@ -83,7 +81,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
         let counter: Counter = this._cache[name];
 
-        if (counter == null || counter.getType() != type) {
+        if (counter == null || counter.type != type) {
             counter = new Counter(name, type);
             this._cache[name] = counter;
         }
@@ -95,12 +93,12 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
         if (counter == null)
             throw new Error("Counter cannot be null");
 
-        counter.setLast(value);
-        counter.setCount(counter.getCount() != null ? counter.getCount() + 1 : 1);
-        counter.setMax(counter.getMax() != null ? Math.max(counter.getMax(), value) : value);
-        counter.setMin(counter.getMin() != null ? Math.min(counter.getMin(), value) : value);
-        counter.setAverage((counter.getAverage() != null && counter.getCount() > 1
-            ? (counter.getAverage() * (counter.getCount() - 1) + value) / counter.getCount() : value));
+        counter.last = value;
+        counter.count = counter.count != null ? counter.count + 1 : 1;
+        counter.max = counter.max != null ? Math.max(counter.max, value) : value;
+        counter.min = counter.min != null ? Math.min(counter.min, value) : value;
+        counter.average = (counter.average != null && counter.count > 1
+            ? (counter.average * (counter.count - 1) + value) / counter.count : value);
     }
 
     public endTiming(name: string, elapsed: number): void {
@@ -117,7 +115,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
     public last(name: string, value: number): void {
         let counter: Counter = this.get(name, CounterType.LastValue);
-        counter.setLast(value);
+        counter.last = value;
         this.update();
     }
 
@@ -127,7 +125,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
     public timestamp(name: string, value: Date): void {
         let counter: Counter = this.get(name, CounterType.Timestamp);
-        counter.setTime(value);
+        counter.time = value;
         this.update();
     }
 
@@ -137,7 +135,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
     public increment(name: string, value: number): void {
         let counter: Counter = this.get(name, CounterType.Increment);
-        counter.setCount(counter.getCount() ? counter.getCount() + value : value);
+        counter.count = counter.count ? counter.count + value : value;
         this.update();
     }
 

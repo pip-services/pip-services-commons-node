@@ -23,20 +23,20 @@ export class LogCounters extends CachedCounters implements IDescriptable, IRefer
     }
 
     private counterToString(counter: Counter): string {
-        var result = "Counter " + counter.getName() + " { ";
-        result += "\"type\": " + counter.getType();
-        if (counter.getLast() != null)
-            result += ", \"last\": " + StringConverter.toString(counter.getLast());
-        if (counter.getCount() != null)
-            result += ", \"count\": " + StringConverter.toString(counter.getCount());
-        if (counter.getMin() != null)
-            result += ", \"min\": " + StringConverter.toString(counter.getMin());
-        if (counter.getMax() != null)
-            result += ", \"max\": " + StringConverter.toString(counter.getMax());
-        if (counter.getAverage() != null)
-            result += ", \"avg\": " + StringConverter.toString(counter.getAverage());
-        if (counter.getTime() != null)
-            result += ", \"time\": " + StringConverter.toString(counter.getTime());
+        var result = "Counter " + counter.name + " { ";
+        result += "\"type\": " + counter.type;
+        if (counter.last != null)
+            result += ", \"last\": " + StringConverter.toString(counter.last);
+        if (counter.count != null)
+            result += ", \"count\": " + StringConverter.toString(counter.count);
+        if (counter.min != null)
+            result += ", \"min\": " + StringConverter.toString(counter.min);
+        if (counter.max != null)
+            result += ", \"max\": " + StringConverter.toString(counter.max);
+        if (counter.average != null)
+            result += ", \"avg\": " + StringConverter.toString(counter.average);
+        if (counter.time != null)
+            result += ", \"time\": " + StringConverter.toString(counter.time);
         result += " }";
         return result;
     }
@@ -48,8 +48,8 @@ export class LogCounters extends CachedCounters implements IDescriptable, IRefer
         if (counters.length == 0) return;
 
         counters.sort((c1, c2) => {
-            if (c1.getName() < c2.getName()) return -1;
-            if (c1.getName() > c2.getName()) return 1;
+            if (c1.name < c2.name) return -1;
+            if (c1.name > c2.name) return 1;
             return 0;
         });
 
