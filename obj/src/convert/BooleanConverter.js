@@ -12,11 +12,9 @@ var BooleanConverter = (function () {
         if (_.isNumber(value))
             return !!value;
         value = value.toString().toLowerCase();
-        if (value == '1' || value == 'true' || value == 't'
-            || value == 'yes' || value == 'y')
+        if (value == '1' || value == 'true' || value == 't' || value == 'yes' || value == 'y')
             return true;
-        if (value == '0' || value == 'false' || value == 'f'
-            || value == 'no' || value == 'n')
+        if (value == '0' || value == 'false' || value == 'f' || value == 'no' || value == 'n')
             return false;
         return null;
     };
