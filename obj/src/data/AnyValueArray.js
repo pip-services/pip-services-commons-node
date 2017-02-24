@@ -190,14 +190,13 @@ var AnyValueArray = (function (_super) {
         return result != null ? AnyValueMap_1.AnyValueMap.fromValue(result) : defaultValue;
     };
     AnyValueArray.prototype.contains = function (value) {
-        var strValue = StringConverter_1.StringConverter.toNullableString(value);
         for (var index = 0; index < this.length; index++) {
-            var strElement = StringConverter_1.StringConverter.toNullableString(this[index]);
-            if (strValue == null && strElement == null)
+            var element = this[index];
+            if (value == null && element == null)
                 return true;
-            if (strValue == null || strElement == null)
+            if (value == null || element == null)
                 continue;
-            if (strValue == strElement)
+            if (value == element)
                 return true;
         }
         return false;

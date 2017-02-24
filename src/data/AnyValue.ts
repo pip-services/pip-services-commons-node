@@ -24,8 +24,7 @@ export class AnyValue implements ICloneable {
     public getTypeCode(): TypeCode {
     	return TypeConverter.toTypeCode(this.value);
     }
-    
-    
+        
     public getAsObject(): any {
         return this.value;
     }

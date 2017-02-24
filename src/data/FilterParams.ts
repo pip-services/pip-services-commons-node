@@ -1,7 +1,7 @@
 import { StringValueMap } from './StringValueMap';
 
 export class FilterParams extends StringValueMap {
-    	public constructor(map: any = null) {
+    public constructor(map: any = null) {
 		super(map);
 	}
 		

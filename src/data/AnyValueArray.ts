@@ -218,16 +218,14 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     }
 
     public contains(value: any): boolean {
-        let strValue = StringConverter.toNullableString(value);
-
         for (let index = 0; index < this.length; index++) {
-            let strElement = StringConverter.toNullableString(this[index]);
+            let element = this[index];
             
-            if (strValue == null && strElement == null)
+            if (value == null && element == null)
             	return true;
-            if (strValue == null || strElement == null)
+            if (value == null || element == null)
             	continue;
-            if (strValue == strElement)
+            if (value == element)
                 return true;
         }
 
