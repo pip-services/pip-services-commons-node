@@ -74,14 +74,20 @@ var CommandSet = (function () {
     CommandSet.prototype.execute = function (correlationId, commandName, args, callback) {
         var cref = this.findCommand(commandName);
         if (!cref) {
-            throw new BadRequestException_1.BadRequestException(correlationId, "CMD_NOT_FOUND", "Request command does not exist")
+            var err = new BadRequestException_1.BadRequestException(correlationId, "CMD_NOT_FOUND", "Request command does not exist")
                 .withDetails("command", commandName);
+            callback(err, null);
         }
         if (!correlationId)
             correlationId = IdGenerator_1.IdGenerator.nextShort();
         var results = cref.validate(args);
-        ValidationException_1.ValidationException.throwExceptionIfNeeded(correlationId, results, false);
-        cref.execute(correlationId, args, callback);
+        try {
+            ValidationException_1.ValidationException.throwExceptionIfNeeded(correlationId, results, false);
+            cref.execute(correlationId, args, callback);
+        }
+        catch (ex) {
+            callback(ex, null);
+        }
     };
     CommandSet.prototype.validate = function (commandName, args) {
         var cref = this.findCommand(commandName);

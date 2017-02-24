@@ -8,13 +8,11 @@ import { ValidationResult } from '../validate/ValidationResult';
 export class Command implements ICommand {
     private readonly _schema: Schema;
     private readonly _function: IExecutable;
-
     private _name: string;
 
     public constructor(name: string, schema: Schema, func: IExecutable) {
         if (!name)
             throw new Error("Name cannot be null");
-
         if (!func)
             throw new Error("Function cannot be null");
 
@@ -28,8 +26,14 @@ export class Command implements ICommand {
     }
 
     public execute(correlationId: string, args: Parameters, callback: (err: any, result: any) => void): void {
-        if (this._schema)
-            this._schema.validateAndThrowException(correlationId, args);
+        if (this._schema) {
+            try {
+                this._schema.validateAndThrowException(correlationId, args);
+            } catch (ex) {
+                callback(ex, null);
+                return;
+            }
+        }
 
         try {
             this._function.execute(correlationId, args, callback);
@@ -40,8 +44,7 @@ export class Command implements ICommand {
                 "Execution " + this.getName() + " failed: " + ex
             ).withDetails("command", this.getName()).wrap(ex);
 
-            if (callback) callback(err, null);
-            else throw err;
+            callback(err, null);
         }
     }
 

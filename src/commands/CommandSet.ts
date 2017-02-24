@@ -95,28 +95,34 @@ export class CommandSet {
     }
 
     public execute(correlationId: string, commandName: string, args: Parameters, callback: (err: any, result: any) => void): void {
-        var cref = this.findCommand(commandName);
+        let cref = this.findCommand(commandName);
 
         if (!cref) {
-            throw new BadRequestException(
+            let err =  new BadRequestException(
                 correlationId,
                 "CMD_NOT_FOUND",
                 "Request command does not exist"
             )
             .withDetails("command", commandName);
+
+            callback(err, null);
         }
 
         if (!correlationId)
             correlationId = IdGenerator.nextShort();
 
-        var results = cref.validate(args);
-        ValidationException.throwExceptionIfNeeded(correlationId, results, false);
+        let results = cref.validate(args);
+        try {
+            ValidationException.throwExceptionIfNeeded(correlationId, results, false);
+            cref.execute(correlationId, args, callback);
+        } catch (ex) {
+            callback(ex, null);
+        }
 
-        cref.execute(correlationId, args, callback);
     }
 
     public validate(commandName: string, args: Parameters): ValidationResult[] {
-        var cref = this.findCommand(commandName);
+        let cref = this.findCommand(commandName);
 
         if (!cref) {
             let result: ValidationResult[] = [];
@@ -135,7 +141,7 @@ export class CommandSet {
     }
 
     public notify(correlationId: string, eventName: string, args: Parameters): void {
-        var event = this.findEvent(eventName);
+        let event = this.findEvent(eventName);
 
         if (event) event.notify(correlationId, args);
     }

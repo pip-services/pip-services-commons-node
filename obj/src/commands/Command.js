@@ -15,17 +15,21 @@ var Command = (function () {
         return this._name;
     };
     Command.prototype.execute = function (correlationId, args, callback) {
-        if (this._schema)
-            this._schema.validateAndThrowException(correlationId, args);
+        if (this._schema) {
+            try {
+                this._schema.validateAndThrowException(correlationId, args);
+            }
+            catch (ex) {
+                callback(ex, null);
+                return;
+            }
+        }
         try {
             this._function.execute(correlationId, args, callback);
         }
         catch (ex) {
             var err = new InvocationException_1.InvocationException(correlationId, "EXEC_FAILED", "Execution " + this.getName() + " failed: " + ex).withDetails("command", this.getName()).wrap(ex);
-            if (callback)
-                callback(err, null);
-            else
-                throw err;
+            callback(err, null);
         }
     };
     Command.prototype.validate = function (args) {

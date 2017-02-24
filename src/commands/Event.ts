@@ -30,9 +30,8 @@ export class Event implements IEvent {
     public removeListener(listener: IEventListener): void {
         var index = this._listeners.indexOf(listener);
 
-        if (index > -1) {
+        if (index > -1)
             this._listeners.splice(index, 1);
-        }
     }
 
     public notify(correlationId: string, args: Parameters): void {

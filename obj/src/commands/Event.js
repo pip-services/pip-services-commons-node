@@ -18,9 +18,8 @@ var Event = (function () {
     };
     Event.prototype.removeListener = function (listener) {
         var index = this._listeners.indexOf(listener);
-        if (index > -1) {
+        if (index > -1)
             this._listeners.splice(index, 1);
-        }
     };
     Event.prototype.notify = function (correlationId, args) {
         for (var i = 0; i < this._listeners.length; i++) {
