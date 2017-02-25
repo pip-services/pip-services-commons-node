@@ -27,9 +27,11 @@ var CompositeLogger = (function (_super) {
     };
     CompositeLogger.prototype.setReferences = function (references) {
         var loggers = references.getOptional(new Descriptor_1.Descriptor(null, "logger", null, null, null));
-        // there is no interface type checking in ts, so add all loggers without checking if they implement ILogger
-        (_a = this._loggers).push.apply(_a, loggers);
-        var _a;
+        for (var i = 0; i < loggers.length; i++) {
+            var logger = loggers[i];
+            if (logger != this)
+                this._loggers.push(logger);
+        }
     };
     CompositeLogger.prototype.write = function (level, correlationId, error, message) {
         for (var index = 0; index < this._loggers.length; index++)

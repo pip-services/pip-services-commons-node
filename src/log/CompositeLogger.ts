@@ -23,8 +23,12 @@ export class CompositeLogger extends Logger implements IReferenceable, IDescript
 
 	public setReferences(references: IReferences): void {
 		let loggers: any[] = references.getOptional<any>(new Descriptor(null, "logger", null, null, null));
-		// there is no interface type checking in ts, so add all loggers without checking if they implement ILogger
-		this._loggers.push(...loggers);
+        for (var i = 0; i < loggers.length; i++) {
+            let logger: ILogger = loggers[i];
+
+            if (logger != this as ILogger)
+                this._loggers.push(logger);
+        }
 	}
 
 	protected write(level: LogLevel, correlationId: string, error: Error, message: string): void {
