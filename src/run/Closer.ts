@@ -16,12 +16,10 @@ export class Closer {
 			try {
 				component.close(correlationId, callback);
 			} catch (err) {
-				if (callback != null)
-					callback(err);
-				else
-					throw err;
+				if (callback) callback(err);
+				else throw err;
 			}
-		} else if (callback != null) 
+		} else if (callback) 
 			callback(null);
 	}
 
@@ -38,10 +36,8 @@ export class Closer {
 				Closer.closeOne(correlationId, component, callback);
             }, 
             (err) => {
-				if (callback != null) 
-					callback(err);
-				else if (err != null)
-					throw err;
+				if (callback) callback(err);
+				else if (err) throw err;
 			}
         );
 	}

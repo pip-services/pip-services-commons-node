@@ -1,4 +1,3 @@
-export { IProperties } from './IProperties';
 export { MethodReflector } from './MethodReflector';
 export { ObjectReader } from './ObjectReader';
 export { ObjectWriter } from './ObjectWriter';

@@ -17,8 +17,8 @@ export declare class Descriptor {
     /**
      * Creates instance of a component locator
      * @param group - logical group: 'pip-services-runtime', 'pip-services-logging'
-     * @param type - external type: 'cache', 'services' or 'controllers'
-     * @param kind - internal implementation: 'memory', 'file' or 'memcached'
+     * @param type - logical type: 'cache', 'services' or 'controllers'
+     * @param kind - implementation: 'memory', 'file' or 'memcached'
      * @param name - internal content
      * @param version - implementation version: '1.0'. '1.5' or '10.4'
      */

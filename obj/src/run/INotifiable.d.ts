@@ -9,5 +9,5 @@ export interface INotifiable {
      * @param correlationId a unique transaction id to trace calls across components
      * @param args a set of parameters for execution
      */
-    notify(correlationId: string, args: Parameters, callback?: (err?) => void): void;
+    notify(correlationId: string, args: Parameters): void;
 }

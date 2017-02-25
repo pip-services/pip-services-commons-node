@@ -1,12 +1,11 @@
 let _ = require('lodash');
+let path = require("path");
 
 import { TypeDescriptor } from './TypeDescriptor';
 import { NotFoundException } from '../errors/NotFoundException';
 import { UnsupportedException } from '../errors/UnsupportedException';
 import { TypeCode } from '../convert/TypeCode';
 import { TypeConverter } from '../convert/TypeConverter';
-
-var path = require("path");
 
 export class TypeReflector {
 

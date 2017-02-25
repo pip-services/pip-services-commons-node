@@ -42,13 +42,13 @@ var Opener = (function () {
                 component.open(correlationId, callback);
             }
             catch (err) {
-                if (callback != null)
+                if (callback)
                     callback(err);
-                else
+                else if (err)
                     throw err;
             }
         }
-        else if (callback != null)
+        else if (callback)
             callback(null);
     };
     /**
@@ -61,9 +61,9 @@ var Opener = (function () {
         async.eachSeries(components, function (component, callback) {
             Opener.openOne(correlationId, component, callback);
         }, function (err) {
-            if (callback != null)
+            if (callback)
                 callback(err);
-            else if (err != null)
+            else if (err)
                 throw err;
         });
     };

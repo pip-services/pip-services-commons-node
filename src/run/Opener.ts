@@ -41,12 +41,10 @@ export class Opener {
 			try {
 				component.open(correlationId, callback);
 			} catch (err) {
-				if (callback != null)
-					callback(err);
-				else
-					throw err;
+				if (callback) callback(err);
+				else if (err) throw err;
 			}
-		} else if (callback != null)
+		} else if (callback)
 			callback(null);
 	}	
 
@@ -63,10 +61,8 @@ export class Opener {
                 Opener.openOne(correlationId, component, callback);
             }, 
             (err) => {
-				if (callback != null) 
-					callback(err);
-				else if (err != null)
-					throw err;
+				if (callback) callback(err);
+				else if (err) throw err;
 			}
         );
 	}

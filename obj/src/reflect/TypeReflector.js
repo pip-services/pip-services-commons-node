@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
+var path = require("path");
 var NotFoundException_1 = require("../errors/NotFoundException");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
-var path = require("path");
 var TypeReflector = (function () {
     function TypeReflector() {
     }

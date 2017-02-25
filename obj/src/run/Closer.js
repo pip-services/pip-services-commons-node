@@ -20,13 +20,13 @@ var Closer = (function () {
                 component.close(correlationId, callback);
             }
             catch (err) {
-                if (callback != null)
+                if (callback)
                     callback(err);
                 else
                     throw err;
             }
         }
-        else if (callback != null)
+        else if (callback)
             callback(null);
     };
     /**
@@ -39,9 +39,9 @@ var Closer = (function () {
         async.eachSeries(components, function (component, callback) {
             Closer.closeOne(correlationId, component, callback);
         }, function (err) {
-            if (callback != null)
+            if (callback)
                 callback(err);
-            else if (err != null)
+            else if (err)
                 throw err;
         });
     };

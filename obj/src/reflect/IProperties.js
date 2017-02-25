@@ -1,3 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+// export interface IProperties {
+//     getPropertyNames(): string[];
+//     getProperty(name: string): any;
+//     setProperty(name: string, value: string): void;
+// } 
 //# sourceMappingURL=IProperties.js.map
