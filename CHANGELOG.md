@@ -1,6 +1,6 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
-## <a name="1.0.0"></a> 1.0.0 (2017-01-28)
+## <a name="1.0.0"></a> 1.0.0-1.0.3 (2017-01-28 - 2017-02-24)
 
 Initial public release
 
