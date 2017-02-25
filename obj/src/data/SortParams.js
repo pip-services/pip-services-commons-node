@@ -15,6 +15,9 @@ var SortParams = (function (_super) {
     function SortParams(fields) {
         if (fields === void 0) { fields = null; }
         var _this = _super.call(this) || this;
+        // Set the prototype explicitly.
+        // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+        _this.__proto__ = SortParams.prototype;
         if (fields != null) {
             for (var index = 0; index < fields.length; index++)
                 _this.push(fields[index]);
