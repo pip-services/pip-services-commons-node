@@ -60,7 +60,7 @@ var ObjectSchema = (function (_super) {
         }
         this.properties = this.properties || [];
         var schema = new PropertySchema_1.PropertySchema(null, null, name, type);
-        schema.rules = rules.slice();
+        schema.setRules(rules.slice());
         schema.makeRequired();
         return this.withProperty(schema);
     };
@@ -71,7 +71,7 @@ var ObjectSchema = (function (_super) {
         }
         this.properties = this.properties || [];
         var schema = new PropertySchema_1.PropertySchema(null, null, name, type);
-        schema.rules = rules.slice();
+        schema.setRules(rules.slice());
         schema.makeOptional();
         return this.withProperty(schema);
     };

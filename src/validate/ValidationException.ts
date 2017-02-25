@@ -32,7 +32,7 @@ export class ValidationException extends BadRequestException {
         return builder;
     }
 
-    public static throwExceptionIfNeeded(correlationId: string, results: ValidationResult[], strict: boolean): void {
+    public static fromResults(correlationId: string, results: ValidationResult[], strict: boolean): ValidationException {
         var hasErrors = false;
 
         for (var i = 0; i < results.length; i++) {
@@ -45,8 +45,12 @@ export class ValidationException extends BadRequestException {
                 hasErrors = true;
         }
 
-        if (hasErrors)
-            throw new ValidationException(correlationId, null, results);
+        return hasErrors ? new ValidationException(correlationId, null, results) : null;
+    }
+
+    public static throwExceptionIfNeeded(correlationId: string, results: ValidationResult[], strict: boolean): void {
+        let ex = ValidationException.fromResults(correlationId, results, strict);
+        if (ex) throw ex;
     }
 
 }

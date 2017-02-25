@@ -35,7 +35,7 @@ var ValidationException = (function (_super) {
         }
         return builder;
     };
-    ValidationException.throwExceptionIfNeeded = function (correlationId, results, strict) {
+    ValidationException.fromResults = function (correlationId, results, strict) {
         var hasErrors = false;
         for (var i = 0; i < results.length; i++) {
             var result = results[i];
@@ -44,8 +44,12 @@ var ValidationException = (function (_super) {
             if (strict && result.getType() == ValidationResultType_1.ValidationResultType.Warning)
                 hasErrors = true;
         }
-        if (hasErrors)
-            throw new ValidationException(correlationId, null, results);
+        return hasErrors ? new ValidationException(correlationId, null, results) : null;
+    };
+    ValidationException.throwExceptionIfNeeded = function (correlationId, results, strict) {
+        var ex = ValidationException.fromResults(correlationId, results, strict);
+        if (ex)
+            throw ex;
     };
     return ValidationException;
 }(BadRequestException_1.BadRequestException));

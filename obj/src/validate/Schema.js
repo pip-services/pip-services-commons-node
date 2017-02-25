@@ -8,35 +8,27 @@ var TypeMatcher_1 = require("../reflect/TypeMatcher");
 var TypeConverter_1 = require("../convert/TypeConverter");
 var Schema = (function () {
     function Schema(required, rules) {
-        this._isRequired = required;
+        this._required = required;
         this._rules = rules;
     }
-    Object.defineProperty(Schema.prototype, "isRequired", {
-        get: function () {
-            return this._isRequired;
-        },
-        set: function (value) {
-            this._isRequired = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Schema.prototype, "rules", {
-        get: function () {
-            return this._rules;
-        },
-        set: function (value) {
-            this._rules = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    Schema.prototype.isRequired = function () {
+        return this._required;
+    };
+    Schema.prototype.setRequired = function (value) {
+        this._required = value;
+    };
+    Schema.prototype.getRules = function () {
+        return this._rules;
+    };
+    Schema.prototype.setRules = function (value) {
+        this._rules = value;
+    };
     Schema.prototype.makeRequired = function () {
-        this._isRequired = true;
+        this._required = true;
         return this;
     };
     Schema.prototype.makeOptional = function () {
-        this._isRequired = false;
+        this._required = false;
         return this;
     };
     Schema.prototype.withRule = function (rule) {
@@ -46,16 +38,16 @@ var Schema = (function () {
     };
     Schema.prototype.performValidation = function (path, value, results) {
         if (value == null) {
-            if (this.isRequired) {
+            if (this.isRequired()) {
                 results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_IS_NULL", "value cannot be null", "NOT NULL", null));
             }
         }
         else {
             value = ObjectReader_1.ObjectReader.getValue(value);
             // Check validation rules
-            if (this.rules != null) {
-                for (var i = 0; i < this.rules.length; i++) {
-                    var rule = this.rules[i];
+            if (this._rules != null) {
+                for (var i = 0; i < this._rules.length; i++) {
+                    var rule = this._rules[i];
                     rule.validate(path, this, value, results);
                 }
             }
@@ -85,6 +77,11 @@ var Schema = (function () {
         var results = [];
         this.performValidation("", value, results);
         return results;
+    };
+    Schema.prototype.validateAndReturnException = function (correlationId, value, strict) {
+        if (strict === void 0) { strict = false; }
+        var results = this.validate(value);
+        return ValidationException_1.ValidationException.fromResults(correlationId, results, strict);
     };
     Schema.prototype.validateAndThrowException = function (correlationId, value, strict) {
         if (strict === void 0) { strict = false; }

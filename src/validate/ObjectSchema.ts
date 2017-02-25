@@ -47,7 +47,7 @@ export class ObjectSchema extends Schema {
         this.properties = this.properties || [];
 
         var schema = new PropertySchema(null, null, name, type);
-        schema.rules = rules.slice();
+        schema.setRules(rules.slice());
         schema.makeRequired();
 
         return this.withProperty(schema);
@@ -57,7 +57,7 @@ export class ObjectSchema extends Schema {
         this.properties = this.properties || [];
 
         var schema = new PropertySchema(null, null, name, type);
-        schema.rules = rules.slice();
+        schema.setRules(rules.slice());
         schema.makeOptional();
 
         return this.withProperty(schema);

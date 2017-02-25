@@ -8,37 +8,37 @@ import { TypeCode } from '../convert/TypeCode';
 import { TypeConverter } from '../convert/TypeConverter';
 
 export class Schema {
-    private _isRequired: boolean;
+    private _required: boolean;
     private _rules: IValidationRule[];
 
     public constructor(required?: boolean, rules?: IValidationRule[]) {
-        this._isRequired = required;
+        this._required = required;
         this._rules = rules;
     }
 
-    public get isRequired(): boolean {
-        return this._isRequired;
+    public isRequired(): boolean {
+        return this._required;
     }
 
-    public set isRequired(value: boolean) {
-        this._isRequired = value;
+    public setRequired(value: boolean) {
+        this._required = value;
     }
 
-    public get rules(): IValidationRule[] {
+    public getRules(): IValidationRule[] {
         return this._rules;
     }
 
-    public set rules(value: IValidationRule[]) {
+    public setRules(value: IValidationRule[]) {
         this._rules = value;
     }
 
     public makeRequired(): Schema {
-        this._isRequired = true;
+        this._required = true;
         return this;
     }
 
     public makeOptional(): Schema {
-        this._isRequired = false;
+        this._required = false;
         return this;
     }
 
@@ -50,7 +50,7 @@ export class Schema {
 
     protected performValidation(path: string, value: any, results: ValidationResult[]): void {
         if (value == null) {
-            if (this.isRequired) {
+            if (this.isRequired()) {
                 results.push(new ValidationResult(
                     path,
                     ValidationResultType.Error,
@@ -64,9 +64,9 @@ export class Schema {
             value = ObjectReader.getValue(value);
 
             // Check validation rules
-            if (this.rules != null) {
-                for (var i = 0; i < this.rules.length; i++) {
-                    let rule: IValidationRule = this.rules[i];
+            if (this._rules != null) {
+                for (var i = 0; i < this._rules.length; i++) {
+                    let rule: IValidationRule = this._rules[i];
                     rule.validate(path, this, value, results);
                 }
             }
@@ -110,6 +110,11 @@ export class Schema {
         let results: ValidationResult[] = [];
         this.performValidation("", value, results);
         return results;
+    }
+
+    public validateAndReturnException(correlationId: string, value: any, strict: boolean = false): ValidationException {
+        let results: ValidationResult[] = this.validate(value);
+        return ValidationException.fromResults(correlationId, results, strict);
     }
 
     public validateAndThrowException(correlationId: string, value: any, strict: boolean = false): void {

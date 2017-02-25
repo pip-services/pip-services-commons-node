@@ -12,7 +12,7 @@ import { TypeCode } from '../../src/convert/TypeCode';
 
 suite('SchemasTest', ()=> {
 
-    test('Test Empty Schema', (done) => {
+    test('Test empty schema', (done) => {
         var schema = new ObjectSchema();
         var results = schema.validate(null);
         assert.equal(results.length, 0);
@@ -20,7 +20,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Required', (done) => {
+    test('Test required', (done) => {
         var schema = new Schema().makeRequired();
         var results = schema.validate(null);
         assert.equal(results.length, 1);
@@ -28,7 +28,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Unexpected', (done) => {
+    test('Test unexpected', (done) => {
         var schema = new ObjectSchema();
         var obj = new TestObject();
         var results = schema.validate(obj);
@@ -37,7 +37,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Optional Properties', (done) => {
+    test('Test optional properties', (done) => {
         var schema = new ObjectSchema()
             .withOptionalProperty("intField")
             .withOptionalProperty("stringProperty")
@@ -55,7 +55,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Required Properties', (done) => {
+    test('Test required properties', (done) => {
         var schema = new ObjectSchema()
             .withRequiredProperty("privateField")
             .withRequiredProperty("privateProperty")
@@ -77,7 +77,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Types', (done) => {
+    test('Test types', (done) => {
         var schema = new ObjectSchema()
             .withRequiredProperty("privateField")
             .withRequiredProperty("privateProperty")
@@ -97,7 +97,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Sub Schema', (done) => {
+    test('Test sub schema', (done) => {
         var sunSchema = new ObjectSchema()
             .withRequiredProperty("id", TypeCode.String)
             .withRequiredProperty("floatField", TypeCode.Double)
@@ -122,7 +122,7 @@ suite('SchemasTest', ()=> {
         done();
     });    
 
-    test('Test Array and Map Schemas', (done) => {
+    test('Test array and map schemas', (done) => {
         var sunSchema = new ObjectSchema()
             .withRequiredProperty("id", TypeCode.String)
             .withRequiredProperty("floatField", TypeCode.Double)
