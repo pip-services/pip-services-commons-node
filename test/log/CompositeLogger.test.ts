@@ -4,6 +4,7 @@ import { NullLogger } from '../../src/log/NullLogger';
 import { ConsoleLogger } from '../../src/log/ConsoleLogger';
 import { CompositeLogger } from '../../src/log/CompositeLogger';
 import { LogLevel } from '../../src/log/LogLevel';
+import { DefaultLoggerFactory } from '../../src/log/DefaultLoggerFactory';
 import { References } from '../../src/refer/References';
 
 suite('CompositeLogger', ()=> {
@@ -12,7 +13,10 @@ suite('CompositeLogger', ()=> {
 
     beforeEach(function() {
         _logger = new CompositeLogger();
-        var refs = References.fromList(new NullLogger(), new ConsoleLogger())
+        var refs = References.fromTuples(
+            DefaultLoggerFactory.NullLoggerDescriptor, new NullLogger(), 
+            DefaultLoggerFactory.ConsoleLoggerDescriptor, new ConsoleLogger()
+        );
         _logger.setReferences(refs);
     });
 

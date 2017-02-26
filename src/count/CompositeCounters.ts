@@ -3,22 +3,15 @@ import { Timing } from './Timing';
 import { ITimingCallback } from './ITimingCallback';
 import { IReferenceable } from '../refer/IReferenceable';
 import { IReferences } from '../refer/IReferences';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 import { InternalException } from '../errors/InternalException';
 
-export class CompositeCounters implements ICounters, ITimingCallback, IReferenceable, IDescriptable {
-    public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "composite", "default", "1.0");
-
+export class CompositeCounters implements ICounters, ITimingCallback, IReferenceable {
     protected readonly _counters: ICounters[] = [];
 
     public CompositeCounters(references: IReferences = null) {
         if (references != null)
             this.setReferences(references);
-    }
-
-    public getDescriptor(): Descriptor {
-        return CompositeCounters.descriptor;
     }
 
     public setReferences(references: IReferences): void {

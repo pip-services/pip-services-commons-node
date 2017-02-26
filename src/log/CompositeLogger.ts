@@ -1,12 +1,11 @@
 import { ILogger } from './ILogger';
 import { Logger } from './Logger';
 import { LogLevel } from './LogLevel';
-import { IDescriptable } from '../refer/IDescriptable';
 import { IReferences } from '../refer/IReferences';
 import { IReferenceable } from '../refer/IReferenceable';
 import { Descriptor } from '../refer/Descriptor';
 
-export class CompositeLogger extends Logger implements IReferenceable, IDescriptable {
+export class CompositeLogger extends Logger implements IReferenceable {
 	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
 	private readonly _loggers: ILogger[] = [];
 
@@ -15,10 +14,6 @@ export class CompositeLogger extends Logger implements IReferenceable, IDescript
 
 		if (references)
 			this.setReferences(references);
-	}
-
-	public getDescriptor(): Descriptor {
-		return CompositeLogger.descriptor;
 	}
 
 	public setReferences(references: IReferences): void {

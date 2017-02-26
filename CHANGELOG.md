@@ -1,5 +1,13 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.0.0"></a> 2.0.0 (2017-02-24)
+
+Cleaned up and simplified programming model.
+
+### Breaking Changes
+* Refactored **refer** package. Removed IDescriptable and ILocateable interface. Made locator a mandatory requirement to place component into references.
+* Moved **ManagedReferences** to **pip-services-container**
+
 ## <a name="1.0.0"></a> 1.0.0-1.0.3 (2017-01-28 - 2017-02-24)
 
 Initial public release

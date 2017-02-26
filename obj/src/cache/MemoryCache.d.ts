@@ -1,13 +1,7 @@
 import { ICache } from './ICache';
-import { Descriptor } from '../refer/Descriptor';
-import { IDescriptable } from '../refer/IDescriptable';
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ConfigParams } from '../config/ConfigParams';
-export declare class MemoryCache implements ICache, IDescriptable, IReconfigurable {
-    /**
-     * Unique descriptor for the Memory Cache component
-     */
-    static readonly Descriptor: Descriptor;
+export declare class MemoryCache implements ICache, IReconfigurable {
     private static readonly _defaultTimeout;
     private static readonly _defaultMaxSize;
     private _cache;
@@ -18,10 +12,6 @@ export declare class MemoryCache implements ICache, IDescriptable, IReconfigurab
      * Creates instance of local in-memory cache component
      */
     constructor();
-    /**
-     * Gets the component descriptor
-     */
-    getDescriptor(): Descriptor;
     /**
      * Sets component configuration parameters and switches component
      * to 'Configured' state. The configuration is only allowed once

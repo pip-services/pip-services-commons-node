@@ -5,31 +5,18 @@ import { IReconfigurable } from '../config/IReconfigurable';
 import { NameResolver } from '../config/NameResolver';
 import { CredentialParams } from './CredentialParams';
 import { ICredentialStore } from './ICredentialStore';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 import { StringValueMap } from '../data/StringValueMap';
 
-export class MemoryCredentialStore implements ICredentialStore, IReconfigurable, IDescriptable {
+export class MemoryCredentialStore implements ICredentialStore, IReconfigurable {
     private readonly _items: StringValueMap = new StringValueMap();
-    private _name: string;
 
-    public constructor(name: string = null, credentials: ConfigParams = null) {
-        name = name;
+    public constructor(credentials: ConfigParams = null) {
         if (credentials != null)
             this.configure(credentials);
     }
 
-    public getName(): string {
-        return this._name;
-    }
-
-    public getDescriptor(): Descriptor {
-        let name = this._name || "default";
-        return new Descriptor("pip-services-commons", "credential-store", "memory", name, "1.0");
-    }
-
     public configure(config: ConfigParams): void {
-        this._name = NameResolver.resolve(config, this._name);
         this.readCredentials(config);
     }
 

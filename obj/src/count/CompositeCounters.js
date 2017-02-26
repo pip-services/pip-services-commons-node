@@ -11,9 +11,6 @@ var CompositeCounters = (function () {
         if (references != null)
             this.setReferences(references);
     };
-    CompositeCounters.prototype.getDescriptor = function () {
-        return CompositeCounters.descriptor;
-    };
     CompositeCounters.prototype.setReferences = function (references) {
         var counters = references.getOptional(new Descriptor_1.Descriptor(null, "counters", null, null, null));
         for (var i = 0; i < counters.length; i++) {
@@ -59,6 +56,5 @@ var CompositeCounters = (function () {
     };
     return CompositeCounters;
 }());
-CompositeCounters.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "default", "1.0");
 exports.CompositeCounters = CompositeCounters;
 //# sourceMappingURL=CompositeCounters.js.map

@@ -20,7 +20,7 @@ suite('YamlConfigReader', ()=> {
     });    
 
     test('Read After Timeout', () => {
-        let reader: YamlConfigReader = new YamlConfigReader(null, "./data/config.yaml");
+        let reader: YamlConfigReader = new YamlConfigReader("./data/config.yaml");
 
         reader.setTimeout(100);
 

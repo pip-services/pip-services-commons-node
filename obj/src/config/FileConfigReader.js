@@ -13,10 +13,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var CachedConfigReader_1 = require("./CachedConfigReader");
 var FileConfigReader = (function (_super) {
     __extends(FileConfigReader, _super);
-    function FileConfigReader(name, path) {
-        if (name === void 0) { name = null; }
+    function FileConfigReader(path) {
         if (path === void 0) { path = null; }
-        var _this = _super.call(this, name) || this;
+        var _this = _super.call(this) || this;
         _this._path = path;
         return _this;
     }

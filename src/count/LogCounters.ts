@@ -1,22 +1,14 @@
 import { Counter } from './Counter';
 import { CachedCounters } from './CachedCounters';
 import { CompositeLogger } from '../log/CompositeLogger';
-import { IDescriptable } from '../refer/IDescriptable';
 import { IReferenceable } from '../refer/IReferenceable';
 import { IReferences } from '../refer/IReferences';
-import { Descriptor } from '../refer/Descriptor';
 import { StringConverter } from '../convert/StringConverter';
 
-export class LogCounters extends CachedCounters implements IDescriptable, IReferenceable {
-	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "log", "default", "1.0");
-
+export class LogCounters extends CachedCounters implements IReferenceable {
     private readonly _logger: CompositeLogger = new CompositeLogger();
 
     public LogCounters() { }
-
-	public getDescriptor(): Descriptor {
-		return LogCounters.descriptor;
-	}
 
     public setReferences(references: IReferences): void {
         this._logger.setReferences(references);

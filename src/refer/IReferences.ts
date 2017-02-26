@@ -12,14 +12,7 @@ export interface IReferences {
 	 * @param component a component reference to be added
 	 * @param callback callback function with execution error
 	 */
-	put(component: any, locator?: any);
-
-	/**
-	 * Puts list of component references
-	 * @param reference a component reference to be added
-	 * @param callback callback function with execution error
-	 */
-	putAll(...components: any[]): void;
+	putX(locator: any, component: any);
 
 	/**
 	 * Removes component reference from the set. 

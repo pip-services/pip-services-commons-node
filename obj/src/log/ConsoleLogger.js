@@ -10,7 +10,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Descriptor_1 = require("../refer/Descriptor");
 var StringConverter_1 = require("../convert/StringConverter");
 var LogLevel_1 = require("./LogLevel");
 var Logger_1 = require("./Logger");
@@ -19,9 +18,6 @@ var ConsoleLogger = (function (_super) {
     function ConsoleLogger() {
         return _super.call(this) || this;
     }
-    ConsoleLogger.prototype.getDescriptor = function () {
-        return ConsoleLogger.descriptor;
-    };
     ConsoleLogger.prototype.write = function (level, correlationId, ex, message) {
         if (this.getLevel() < level)
             return;
@@ -47,6 +43,5 @@ var ConsoleLogger = (function (_super) {
     };
     return ConsoleLogger;
 }(Logger_1.Logger));
-ConsoleLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "default", "1.0");
 exports.ConsoleLogger = ConsoleLogger;
 //# sourceMappingURL=ConsoleLogger.js.map

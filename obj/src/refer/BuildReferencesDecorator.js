@@ -46,16 +46,13 @@ var BuildReferencesDecorator = (function (_super) {
     };
     BuildReferencesDecorator.prototype.find = function (query, required) {
         var components = _super.prototype.find.call(this, query, false);
+        var locator = query.locator;
         // Try to create component
         if (components.length == 0 && this.buildEnabled) {
-            var component = this.create(query.locator);
+            var component = this.create(locator);
             if (component != null) {
-                var locator = query.locator;
-                // Replace locator
-                if (_.isFunction(component.getDescritor))
-                    locator = component.getDescriptor();
                 try {
-                    this.parentReferences.put(component, locator);
+                    this.parentReferences.putX(locator, component);
                     components.push(component);
                 }
                 catch (ex) {
@@ -65,7 +62,7 @@ var BuildReferencesDecorator = (function (_super) {
         }
         // Throw exception is no required components found
         if (required && components.length == 0)
-            throw new ReferenceException_1.ReferenceException(null, query.locator);
+            throw new ReferenceException_1.ReferenceException(null, locator);
         return components;
     };
     return BuildReferencesDecorator;

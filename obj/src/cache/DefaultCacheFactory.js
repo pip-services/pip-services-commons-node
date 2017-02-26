@@ -6,15 +6,12 @@ var MemoryCache_1 = require("./MemoryCache");
 var DefaultCacheFactory = (function () {
     function DefaultCacheFactory() {
     }
-    DefaultCacheFactory.prototype.getDescriptor = function () {
-        return DefaultCacheFactory.Descriptor;
-    };
     DefaultCacheFactory.prototype.canCreate = function (locator) {
         if (locator instanceof Descriptor_1.Descriptor) {
             var descriptor = locator;
-            if (descriptor.match(NullCache_1.NullCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.NullCacheDescriptor))
                 return true;
-            if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.MemoryCacheDescriptor))
                 return true;
         }
         return false;
@@ -22,18 +19,17 @@ var DefaultCacheFactory = (function () {
     DefaultCacheFactory.prototype.create = function (locator) {
         if (locator instanceof Descriptor_1.Descriptor) {
             var descriptor = locator;
-            if (descriptor.match(NullCache_1.NullCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.NullCacheDescriptor))
                 return new NullCache_1.NullCache();
-            if (descriptor.match(MemoryCache_1.MemoryCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.MemoryCacheDescriptor))
                 return new MemoryCache_1.MemoryCache();
         }
         return null;
     };
     return DefaultCacheFactory;
 }());
-/**
- * Unique descriptor for the Memory Cache component
- */
-DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
+DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "cache", "default", "1.0");
+DefaultCacheFactory.NullCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "null", "default", "1.0");
+DefaultCacheFactory.MemoryCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
 exports.DefaultCacheFactory = DefaultCacheFactory;
 //# sourceMappingURL=DefaultCacheFactory.js.map

@@ -3,13 +3,9 @@ import { Timing } from './Timing';
 import { ITimingCallback } from './ITimingCallback';
 import { IReferenceable } from '../refer/IReferenceable';
 import { IReferences } from '../refer/IReferences';
-import { IDescriptable } from '../refer/IDescriptable';
-import { Descriptor } from '../refer/Descriptor';
-export declare class CompositeCounters implements ICounters, ITimingCallback, IReferenceable, IDescriptable {
-    static readonly descriptor: Descriptor;
+export declare class CompositeCounters implements ICounters, ITimingCallback, IReferenceable {
     protected readonly _counters: ICounters[];
     CompositeCounters(references?: IReferences): void;
-    getDescriptor(): Descriptor;
     setReferences(references: IReferences): void;
     beginTiming(name: string): Timing;
     endTiming(name: string, elapsed: number): void;

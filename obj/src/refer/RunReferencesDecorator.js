@@ -21,8 +21,8 @@ var RunReferencesDecorator = (function (_super) {
         _this.closeEnabled = true;
         return _this;
     }
-    RunReferencesDecorator.prototype.put = function (component, locator) {
-        _super.prototype.put.call(this, component, locator);
+    RunReferencesDecorator.prototype.putX = function (locator, component) {
+        _super.prototype.putX.call(this, locator, component);
         if (this.openEnabled)
             Opener_1.Opener.openOne(null, component, null);
     };

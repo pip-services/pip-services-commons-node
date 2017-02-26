@@ -12,8 +12,8 @@ export class RunReferencesDecorator extends ReferencesDecorator {
 	public openEnabled: boolean = true;
 	public closeEnabled: boolean = true;
 
-    public put(component: any, locator: any): void {
-        super.put(component, locator);
+    public putX(locator: any, component: any): void {
+        super.putX(locator, component);
 
         if (this.openEnabled)
             Opener.openOne(null, component, null);

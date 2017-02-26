@@ -11,17 +11,6 @@ suite('NullCache', ()=> {
         done();
     });
 
-    test('Returns NullCache Descriptor', (done) => {
-        let descriptor: Descriptor = cache.getDescriptor();
-
-		// Check match by individual fields
-        assert.isNotNull(descriptor);
-        assert.equal(descriptor.getType(), 'cache');
-        assert.equal(descriptor.getKind(), 'null');
-
-        done();
-    });    
-
     test('Retrieve Returns Null', (done) => {
         cache.retrieve(null, "key1", (err, val) => {
             assert.isNull(err);

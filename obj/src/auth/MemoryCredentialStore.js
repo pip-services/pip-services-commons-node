@@ -1,28 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
-var NameResolver_1 = require("../config/NameResolver");
 var CredentialParams_1 = require("./CredentialParams");
-var Descriptor_1 = require("../refer/Descriptor");
 var StringValueMap_1 = require("../data/StringValueMap");
 var MemoryCredentialStore = (function () {
-    function MemoryCredentialStore(name, credentials) {
-        if (name === void 0) { name = null; }
+    function MemoryCredentialStore(credentials) {
         if (credentials === void 0) { credentials = null; }
         this._items = new StringValueMap_1.StringValueMap();
-        name = name;
         if (credentials != null)
             this.configure(credentials);
     }
-    MemoryCredentialStore.prototype.getName = function () {
-        return this._name;
-    };
-    MemoryCredentialStore.prototype.getDescriptor = function () {
-        var name = this._name || "default";
-        return new Descriptor_1.Descriptor("pip-services-commons", "credential-store", "memory", name, "1.0");
-    };
     MemoryCredentialStore.prototype.configure = function (config) {
-        this._name = NameResolver_1.NameResolver.resolve(config, this._name);
         this.readCredentials(config);
     };
     MemoryCredentialStore.prototype.readCredentials = function (credentials) {

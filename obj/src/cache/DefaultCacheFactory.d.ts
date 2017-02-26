@@ -1,12 +1,9 @@
 import { IFactory } from '../build/IFactory';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
-export declare class DefaultCacheFactory implements IFactory, IDescriptable {
-    /**
-     * Unique descriptor for the Memory Cache component
-     */
+export declare class DefaultCacheFactory implements IFactory {
     static readonly Descriptor: Descriptor;
-    getDescriptor(): Descriptor;
+    static readonly NullCacheDescriptor: Descriptor;
+    static readonly MemoryCacheDescriptor: Descriptor;
     canCreate(locator: any): boolean;
     create(locator: any): any;
 }

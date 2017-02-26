@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry_1 = require("./CacheEntry");
-var Descriptor_1 = require("../refer/Descriptor");
 var MemoryCache = (function () {
     /**
      * Creates instance of local in-memory cache component
@@ -13,12 +12,6 @@ var MemoryCache = (function () {
         this._timeout = MemoryCache._defaultTimeout;
         this._maxSize = MemoryCache._defaultMaxSize;
     }
-    /**
-     * Gets the component descriptor
-     */
-    MemoryCache.prototype.getDescriptor = function () {
-        return MemoryCache.Descriptor;
-    };
     /**
      * Sets component configuration parameters and switches component
      * to 'Configured' state. The configuration is only allowed once
@@ -165,10 +158,6 @@ var MemoryCache = (function () {
     };
     return MemoryCache;
 }());
-/**
- * Unique descriptor for the Memory Cache component
- */
-MemoryCache.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
 //milliseconds
 MemoryCache._defaultTimeout = 60000;
 MemoryCache._defaultMaxSize = 1000;

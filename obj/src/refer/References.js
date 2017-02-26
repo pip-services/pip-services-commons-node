@@ -7,39 +7,28 @@ var ReferenceException_1 = require("./ReferenceException");
  * Basic implementation of IReferences that stores component as a flat list
  */
 var References = (function () {
-    function References(components) {
-        if (components === void 0) { components = null; }
+    function References(tuples) {
+        if (tuples === void 0) { tuples = null; }
         this._references = [];
-        if (components != null) {
-            for (var index = 0; index < components.length; index++)
-                this.put(components[index]);
+        if (tuples != null) {
+            for (var index = 0; index < tuples.length; index += 2) {
+                if (index + 1 >= tuples.length)
+                    break;
+                this.putX(tuples[index], tuples[index + 1]);
+            }
         }
     }
-    References.prototype.put = function (component, locator) {
-        if (locator === void 0) { locator = null; }
+    References.prototype.putX = function (locator, component) {
         if (component == null)
             throw new Error("Reference cannot be null");
-        if (locator != null)
-            this._references.push(new Reference_1.Reference(component, locator));
-        else if (component instanceof Reference_1.Reference)
-            this._references.push(component);
-        else
-            this._references.push(new Reference_1.Reference(null, null, component));
-    };
-    References.prototype.putAll = function () {
-        var components = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            components[_i] = arguments[_i];
-        }
-        for (var index = 0; index < components.length; index++)
-            this.put(components[index]);
+        this._references.push(new Reference_1.Reference(locator, component));
     };
     References.prototype.remove = function (locator) {
         if (locator == null)
             return null;
         for (var index = this._references.length - 1; index >= 0; index--) {
             var reference = this._references[index];
-            if (reference.locate(locator)) {
+            if (reference.match(locator)) {
                 this._references.splice(index, 1);
                 return reference.getComponent();
             }
@@ -52,7 +41,7 @@ var References = (function () {
             return components;
         for (var index = this._references.length - 1; index >= 0; index--) {
             var reference = this._references[index];
-            if (reference.locate(locator)) {
+            if (reference.match(locator)) {
                 this._references.splice(index, 1);
                 components.push(reference.getComponent());
             }
@@ -100,7 +89,7 @@ var References = (function () {
         if (query.startLocator != null) {
             while (index >= 0 && index < this._references.length) {
                 var reference = this._references[index];
-                if (reference.locate(query.startLocator))
+                if (reference.match(query.startLocator))
                     break;
                 index += query.ascending ? 1 : -1;
             }
@@ -108,7 +97,7 @@ var References = (function () {
         // Search all references
         while (index >= 0 && index < this._references.length) {
             var reference = this._references[index];
-            if (reference.locate(query.locator)) {
+            if (reference.match(query.locator)) {
                 var component = reference.getComponent();
                 components.push(component);
             }
@@ -118,15 +107,12 @@ var References = (function () {
             throw new ReferenceException_1.ReferenceException(null, query.locator);
         return components;
     };
-    References.fromList = function () {
-        var components = [];
+    References.fromTuples = function () {
+        var tuples = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            components[_i] = arguments[_i];
+            tuples[_i] = arguments[_i];
         }
-        var result = new References();
-        for (var index = 0; index < components.length; index++)
-            result.put(components[index]);
-        return result;
+        return new References(tuples);
     };
     return References;
 }());

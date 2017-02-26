@@ -2,6 +2,7 @@ let assert = require('chai').assert;
 
 import { LogCounters } from '../../src/count/LogCounters';
 import { CounterType } from '../../src/count/CounterType';
+import { DefaultLoggerFactory } from '../../src/log/DefaultLoggerFactory';
 import { NullLogger } from '../../src/log/NullLogger';
 import { References } from '../../src/refer/References';
 import { Timing } from '../../src/count/Timing';
@@ -11,7 +12,9 @@ suite('LogCounters', ()=> {
 
     beforeEach(function() {
         let log: NullLogger = new NullLogger();
-        let refs: References = References.fromList(log);
+        let refs: References = References.fromTuples(
+            DefaultLoggerFactory.NullLoggerDescriptor, log
+        );
         _counters = new LogCounters();
         _counters.setReferences(refs);
     });

@@ -6,21 +6,10 @@ import { NameResolver } from './NameResolver';
 // Todo: Deprecate name
 export abstract class CachedConfigReader implements IConfigReader, IReconfigurable {
     private _lastRead: number = 0;
-    private _name: string = null;
     private _timeout: number = 60000;
     private _config: ConfigParams = null;
 
-    public constructor(name: string = null) {
-        this._name = name;
-    }
-
-    public getName(): string {
-        return this._name;
-    }
-
-    public setName(name: string) {
-        this._name = name;
-    }
+    public constructor() {}
 
     public getTimeout(): number {
         return this._timeout;
@@ -31,7 +20,6 @@ export abstract class CachedConfigReader implements IConfigReader, IReconfigurab
     }
 
     public configure(config: ConfigParams): void {
-        this._name = NameResolver.resolve(config, this._name);
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
     }
 

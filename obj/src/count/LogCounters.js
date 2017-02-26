@@ -12,7 +12,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var CachedCounters_1 = require("./CachedCounters");
 var CompositeLogger_1 = require("../log/CompositeLogger");
-var Descriptor_1 = require("../refer/Descriptor");
 var StringConverter_1 = require("../convert/StringConverter");
 var LogCounters = (function (_super) {
     __extends(LogCounters, _super);
@@ -22,9 +21,6 @@ var LogCounters = (function (_super) {
         return _this;
     }
     LogCounters.prototype.LogCounters = function () { };
-    LogCounters.prototype.getDescriptor = function () {
-        return LogCounters.descriptor;
-    };
     LogCounters.prototype.setReferences = function (references) {
         this._logger.setReferences(references);
     };
@@ -64,6 +60,5 @@ var LogCounters = (function (_super) {
     };
     return LogCounters;
 }(CachedCounters_1.CachedCounters));
-LogCounters.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "default", "1.0");
 exports.LogCounters = LogCounters;
 //# sourceMappingURL=LogCounters.js.map

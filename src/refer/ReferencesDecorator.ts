@@ -11,15 +11,10 @@ export class ReferencesDecorator implements IReferences {
 	public baseReferences: IReferences;
 	public parentReferences: IReferences;
 
-	public put(component: any, locator: any = null): any {
-		this.baseReferences.put(component, locator);
+	public putX(locator: any, component: any): any {
+		this.baseReferences.putX(locator, component);
 	}
 	
-	public putAll(...components: any[]): void {
-		for (let index = 0; index < components.length; index++)
-			this.put(components[index]);
-	}
-
 	public remove(locator: any): any {
 		return this.baseReferences.remove(locator);
 	}

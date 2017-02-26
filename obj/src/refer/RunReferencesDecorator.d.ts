@@ -4,7 +4,7 @@ export declare class RunReferencesDecorator extends ReferencesDecorator {
     constructor(baseReferences: IReferences, parentReferences: IReferences);
     openEnabled: boolean;
     closeEnabled: boolean;
-    put(component: any, locator: any): void;
+    putX(locator: any, component: any): void;
     remove(locator: any): any;
     removeAll(locator: any): any[];
 }

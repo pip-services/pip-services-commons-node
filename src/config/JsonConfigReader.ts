@@ -4,20 +4,14 @@ import { ConfigParams } from './ConfigParams';
 import { CachedConfigReader } from './CachedConfigReader';
 import { IConfigurable } from './IConfigurable';
 import { FileConfigReader } from './FileConfigReader';
-import { IDescriptable } from '../refer/IDescriptable';
-import { Descriptor } from '../refer/Descriptor';
 import { ConfigException } from '../errors/ConfigException'
 import { FileException } from '../errors/FileException'
 import { JsonConverter } from '../convert/JsonConverter'
 
-export class JsonConfigReader extends FileConfigReader implements IDescriptable {
+export class JsonConfigReader extends FileConfigReader {
 
-    public constructor(name: string = null, path: string = null) {
-        super(name, path);
-    }
-
-    public getDescriptor(): Descriptor {
-        return new Descriptor("pip-services-commons", "config-reader", "json", this.getName() || "default", "1.0");
+    public constructor(path: string = null) {
+        super(path);
     }
 
     public readObject(correlationId: string): any {
@@ -45,10 +39,10 @@ export class JsonConfigReader extends FileConfigReader implements IDescriptable 
     }
 
     public static readObject(correlationId: string, path: string): void {
-        return new JsonConfigReader(null, path).readObject(correlationId);
+        return new JsonConfigReader(path).readObject(correlationId);
     }
 
     public static readConfig(correlationId: string, path: string): ConfigParams {
-        return new JsonConfigReader(null, path).readConfig(correlationId);
+        return new JsonConfigReader(path).readConfig(correlationId);
     }
 }

@@ -9,8 +9,8 @@ export class LinkReferencesDecorator extends ReferencesDecorator {
 
 	public linkEnabled: boolean = true;
 
-    public put(component: any, locator: any = null): any {
-        super.put(component, locator);
+    public putX(locator: any, component: any): any {
+        super.putX(locator, component);
 
         if (this.linkEnabled)
             Referencer.setReferencesForOne(this.parentReferences, component);

@@ -33,17 +33,6 @@ suite('MemoryCache', ()=> {
         ], done);
     });
 
-    test('Returns MemoryCache Descriptor', (done) => {
-        let descriptor: Descriptor = cache.getDescriptor();
-
-		// Check match by individual fields
-        assert.isNotNull(descriptor);
-        assert.equal(descriptor.getType(), 'cache');
-        assert.equal(descriptor.getKind(), 'memory');
-
-        done();
-    });    
-
     test('Retrieve Both Value In 500 ms', (done) => {
         async.series([
             (callback) => {

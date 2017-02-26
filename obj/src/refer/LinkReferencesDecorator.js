@@ -19,9 +19,8 @@ var LinkReferencesDecorator = (function (_super) {
         _this.linkEnabled = true;
         return _this;
     }
-    LinkReferencesDecorator.prototype.put = function (component, locator) {
-        if (locator === void 0) { locator = null; }
-        _super.prototype.put.call(this, component, locator);
+    LinkReferencesDecorator.prototype.putX = function (locator, component) {
+        _super.prototype.putX.call(this, locator, component);
         if (this.linkEnabled)
             Referencer_1.Referencer.setReferencesForOne(this.parentReferences, component);
     };

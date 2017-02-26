@@ -20,10 +20,10 @@ var LinkReferencesDecorator_1 = require("./LinkReferencesDecorator");
 var RunReferencesDecorator_1 = require("./RunReferencesDecorator");
 var ManagedReferences = (function (_super) {
     __extends(ManagedReferences, _super);
-    function ManagedReferences(components) {
-        if (components === void 0) { components = null; }
+    function ManagedReferences(tuples) {
+        if (tuples === void 0) { tuples = null; }
         var _this = _super.call(this, null, null) || this;
-        _this._references = new References_1.References(components);
+        _this._references = new References_1.References(tuples);
         _this._builder = new BuildReferencesDecorator_1.BuildReferencesDecorator(_this._references, _this);
         _this._linker = new LinkReferencesDecorator_1.LinkReferencesDecorator(_this._builder, _this);
         _this._runner = new RunReferencesDecorator_1.RunReferencesDecorator(_this._linker, _this);
@@ -43,6 +43,13 @@ var ManagedReferences = (function (_super) {
         var components = this._references.getAll();
         Closer_1.Closer.close(correlationId, components);
         Referencer_1.Referencer.unsetReferences(components);
+    };
+    ManagedReferences.fromTuples = function () {
+        var tuples = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            tuples[_i] = arguments[_i];
+        }
+        return new ManagedReferences(tuples);
     };
     return ManagedReferences;
 }(ReferencesDecorator_1.ReferencesDecorator));

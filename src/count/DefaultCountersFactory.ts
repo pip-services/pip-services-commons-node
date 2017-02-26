@@ -3,15 +3,13 @@ import { LogCounters } from './LogCounters';
 import { CompositeCounters } from './CompositeCounters';
 import { IFactory } from '../build/IFactory';
 import { CreateException } from '../build/CreateException';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 
-export class DefaultCountersFactory implements IFactory, IDescriptable {
-	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "counters", "counters", "default", "1.0");
-
-	public getDescriptor(): Descriptor {
-		return DefaultCountersFactory.descriptor;
-	}
+export class DefaultCountersFactory implements IFactory {
+	public static readonly Descriptor = new Descriptor("pip-services-commons", "factory", "counters", "default", "1.0");
+	public static readonly NullCountersDescriptor = new Descriptor("pip-services-commons", "counters", "null", "default", "1.0");
+	public static readonly LogCountersDescriptor = new Descriptor("pip-services-commons", "counters", "log", "default", "1.0");
+	public static readonly CompositeCountersDescriptor = new Descriptor("pip-services-commons", "counters", "composite", "default", "1.0");
 
     public canCreate(locator: any): boolean {
         if (locator == null)
@@ -21,13 +19,13 @@ export class DefaultCountersFactory implements IFactory, IDescriptable {
 
         if (descriptor == null) return false;
 
-        if (descriptor.match(NullCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.NullCountersDescriptor))
             return true;
 
-        if (descriptor.match(LogCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.LogCountersDescriptor))
             return true;
 
-        if (descriptor.match(CompositeCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.CompositeCountersDescriptor))
             return true;
 
         return false;
@@ -41,13 +39,13 @@ export class DefaultCountersFactory implements IFactory, IDescriptable {
 
         if (descriptor == null) return null;
 
-        if (descriptor.match(NullCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.NullCountersDescriptor))
             return new NullCounters();
 
-        if (descriptor.match(LogCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.LogCountersDescriptor))
             return new LogCounters();
 
-        if (descriptor.match(CompositeCounters.descriptor))
+        if (descriptor.match(DefaultCountersFactory.CompositeCountersDescriptor))
             return new CompositeCounters();
 
         throw new CreateException(null, locator);

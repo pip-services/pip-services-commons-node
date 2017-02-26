@@ -1,28 +1,22 @@
 import { IFactory } from '../build/IFactory';
 import { CreateException } from '../build/CreateException';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 import { NullCache } from './NullCache';
 import { MemoryCache } from './MemoryCache';
 
-export class DefaultCacheFactory implements IFactory, IDescriptable {
-	/**
-	 * Unique descriptor for the Memory Cache component
-	 */
-    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
-
-    public getDescriptor(): Descriptor {
-        return DefaultCacheFactory.Descriptor;
-    }
+export class DefaultCacheFactory implements IFactory {
+    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-commons", "factory", "cache", "default", "1.0");
+    public static readonly NullCacheDescriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "null", "default", "1.0");
+    public static readonly MemoryCacheDescriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
 
     public canCreate(locator: any): boolean {
         if (locator instanceof Descriptor) {
             let descriptor: Descriptor = <Descriptor>locator;
 
-            if (descriptor.match(NullCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.NullCacheDescriptor))
                 return true;
 
-            if (descriptor.match(MemoryCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.MemoryCacheDescriptor))
                 return true;
         }
 
@@ -33,10 +27,10 @@ export class DefaultCacheFactory implements IFactory, IDescriptable {
         if (locator instanceof Descriptor) {
             let descriptor: Descriptor = <Descriptor>locator;
 
-            if (descriptor.match(NullCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.NullCacheDescriptor))
                 return new NullCache();
 
-            if (descriptor.match(MemoryCache.Descriptor))
+            if (descriptor.match(DefaultCacheFactory.MemoryCacheDescriptor))
                 return new MemoryCache();
         }
 

@@ -6,9 +6,8 @@ import { ReferenceQuery } from './ReferenceQuery';
  */
 export declare class References implements IReferences {
     protected _references: Reference[];
-    constructor(components?: any[]);
-    put(component: any, locator?: any): void;
-    putAll(...components: any[]): void;
+    constructor(tuples?: any[]);
+    putX(locator: any, component: any): void;
     remove(locator: any): any;
     removeAll(locator: any): any[];
     getAll(): any[];
@@ -17,5 +16,5 @@ export declare class References implements IReferences {
     getOptional<T>(locator: any): T[];
     getRequired<T>(locator: any): T[];
     find<T>(query: ReferenceQuery, required: boolean): T[];
-    static fromList(...components: any[]): References;
+    static fromTuples(...tuples: any[]): References;
 }

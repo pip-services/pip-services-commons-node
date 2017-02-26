@@ -6,17 +6,8 @@ var ReferencesDecorator = (function () {
         this.baseReferences = baseReferences != null ? baseReferences : parentReferences;
         this.parentReferences = parentReferences != null ? parentReferences : baseReferences;
     }
-    ReferencesDecorator.prototype.put = function (component, locator) {
-        if (locator === void 0) { locator = null; }
-        this.baseReferences.put(component, locator);
-    };
-    ReferencesDecorator.prototype.putAll = function () {
-        var components = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            components[_i] = arguments[_i];
-        }
-        for (var index = 0; index < components.length; index++)
-            this.put(components[index]);
+    ReferencesDecorator.prototype.putX = function (locator, component) {
+        this.baseReferences.putX(locator, component);
     };
     ReferencesDecorator.prototype.remove = function (locator) {
         return this.baseReferences.remove(locator);

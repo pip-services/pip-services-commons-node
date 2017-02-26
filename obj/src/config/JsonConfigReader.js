@@ -13,20 +13,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require('fs');
 var ConfigParams_1 = require("./ConfigParams");
 var FileConfigReader_1 = require("./FileConfigReader");
-var Descriptor_1 = require("../refer/Descriptor");
 var ConfigException_1 = require("../errors/ConfigException");
 var FileException_1 = require("../errors/FileException");
 var JsonConverter_1 = require("../convert/JsonConverter");
 var JsonConfigReader = (function (_super) {
     __extends(JsonConfigReader, _super);
-    function JsonConfigReader(name, path) {
-        if (name === void 0) { name = null; }
+    function JsonConfigReader(path) {
         if (path === void 0) { path = null; }
-        return _super.call(this, name, path) || this;
+        return _super.call(this, path) || this;
     }
-    JsonConfigReader.prototype.getDescriptor = function () {
-        return new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "json", this.getName() || "default", "1.0");
-    };
     JsonConfigReader.prototype.readObject = function (correlationId) {
         if (_super.prototype.getPath.call(this) == null)
             throw new ConfigException_1.ConfigException(correlationId, "NO_PATH", "Missing config file path");
@@ -46,10 +41,10 @@ var JsonConfigReader = (function (_super) {
         return ConfigParams_1.ConfigParams.fromValue(value);
     };
     JsonConfigReader.readObject = function (correlationId, path) {
-        return new JsonConfigReader(null, path).readObject(correlationId);
+        return new JsonConfigReader(path).readObject(correlationId);
     };
     JsonConfigReader.readConfig = function (correlationId, path) {
-        return new JsonConfigReader(null, path).readConfig(correlationId);
+        return new JsonConfigReader(path).readConfig(correlationId);
     };
     return JsonConfigReader;
 }(FileConfigReader_1.FileConfigReader));

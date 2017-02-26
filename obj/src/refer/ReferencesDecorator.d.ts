@@ -4,8 +4,7 @@ export declare class ReferencesDecorator implements IReferences {
     constructor(baseReferences: IReferences, parentReferences: IReferences);
     baseReferences: IReferences;
     parentReferences: IReferences;
-    put(component: any, locator?: any): any;
-    putAll(...components: any[]): void;
+    putX(locator: any, component: any): any;
     remove(locator: any): any;
     removeAll(locator: any): any[];
     getAll(): any[];

@@ -41,19 +41,14 @@ export class BuildReferencesDecorator extends ReferencesDecorator {
 
     public find<T>(query: ReferenceQuery, required: boolean): T[] {
         let components = super.find<T>(query, false);
+        let locator = query.locator;
 
         // Try to create component
         if (components.length == 0 && this.buildEnabled) {
-            let component = this.create(query.locator);
+            let component = this.create(locator);
             if (component != null) {
-                let locator = query.locator;
-
-                // Replace locator
-                if (_.isFunction(component.getDescritor))
-                    locator = component.getDescriptor();
-
                 try {
-                    this.parentReferences.put(component, locator);
+                    this.parentReferences.putX(locator, component);
                     components.push(component);
                 } catch (ex) {
                     // Ignore exception
@@ -63,7 +58,7 @@ export class BuildReferencesDecorator extends ReferencesDecorator {
 
         // Throw exception is no required components found
         if (required && components.length == 0)
-            throw new ReferenceException(null, query.locator);
+            throw new ReferenceException(null, locator);
 
         return components;
     }

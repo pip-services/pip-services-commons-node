@@ -15,10 +15,10 @@ export class ManagedReferences extends ReferencesDecorator implements IOpenable 
     protected _linker: LinkReferencesDecorator;
     protected _runner: RunReferencesDecorator;
 
-    public constructor(components: any[] = null) {
+    public constructor(tuples: any[] = null) {
         super(null, null);
 
-        this._references = new References(components);
+        this._references = new References(tuples);
         this._builder = new BuildReferencesDecorator(this._references, this);
         this._linker = new LinkReferencesDecorator(this._builder, this);
         this._runner = new RunReferencesDecorator(this._linker, this);
@@ -42,4 +42,8 @@ export class ManagedReferences extends ReferencesDecorator implements IOpenable 
         Closer.close(correlationId, components);
         Referencer.unsetReferences(components);
     }
+
+	public static fromTuples(...tuples: any[]): ManagedReferences {
+		return new ManagedReferences(tuples);
+	}
 }

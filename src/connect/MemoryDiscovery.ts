@@ -5,8 +5,6 @@ import { IReconfigurable } from '../config/IReconfigurable';
 import { NameResolver } from '../config/NameResolver';
 import { ConnectionParams } from './ConnectionParams';
 import { IDiscovery } from './IDiscovery';
-import { IDescriptable } from '../refer/IDescriptable';
-import { Descriptor } from '../refer/Descriptor';
 import { StringValueMap } from '../data/StringValueMap';
 
 class DiscoveryItem {
@@ -14,26 +12,15 @@ class DiscoveryItem {
     public connection: ConnectionParams;
 }
 
-export class MemoryDiscovery implements IDiscovery, IReconfigurable, IDescriptable {
+export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     private readonly _items: DiscoveryItem[] = [];
-    private _name: string;
 
-    public constructor(name: string = null, config: ConfigParams = null) {
-        name = name;
+    public constructor(config: ConfigParams = null) {
         if (config != null)
             this.configure(config);
     }
 
-    public getName(): string {
-        return this._name;
-    }
-
-    public getDescriptor(): Descriptor {
-        return new Descriptor("pip-services-commons", "discovery", "memory", name || "default", "1.0");
-    }
-
     public configure(config: ConfigParams): void {
-        this._name = NameResolver.resolve(config, name);
         this.readConnections(config);
     }
 

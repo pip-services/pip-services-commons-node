@@ -1,13 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogLevel_1 = require("./LogLevel");
-var Descriptor_1 = require("../refer/Descriptor");
 var NullLogger = (function () {
     function NullLogger() {
     }
-    NullLogger.prototype.getDescriptor = function () {
-        return NullLogger.descriptor;
-    };
     NullLogger.prototype.getLevel = function () { return LogLevel_1.LogLevel.None; };
     NullLogger.prototype.setLevel = function (value) { };
     NullLogger.prototype.log = function (level, correlationId, error, message) {
@@ -54,6 +50,5 @@ var NullLogger = (function () {
     };
     return NullLogger;
 }());
-NullLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "null", "default", "1.0");
 exports.NullLogger = NullLogger;
 //# sourceMappingURL=NullLogger.js.map

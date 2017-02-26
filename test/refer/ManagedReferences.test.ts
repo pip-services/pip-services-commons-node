@@ -11,7 +11,7 @@ suite('ManagedReferences', ()=> {
         var refs = new ManagedReferences();
 
         var factory = new DefaultLoggerFactory();
-        refs.put(factory);
+        refs.putX(null, factory);
 
         var logger = refs.getOneRequired<ILogger>(new Descriptor("*", "logger", "*", "*", "*"));
         assert.isNotNull(logger);
@@ -21,7 +21,7 @@ suite('ManagedReferences', ()=> {
         var refs = new ManagedReferences();
 
         var factory = new DefaultLoggerFactory();
-        refs.put(factory);
+        refs.putX(null, factory);
 
         var component = refs.getOneOptional("ABC");
         assert.isNull(component);
@@ -31,7 +31,7 @@ suite('ManagedReferences', ()=> {
         var refs = new ManagedReferences();
 
         var factory = new DefaultLoggerFactory();
-        refs.put(factory);
+        refs.putX(null, factory);
 
         var component = refs.getOneOptional(null);
         assert.isNull(component);

@@ -1,14 +1,7 @@
 import { ICache } from './ICache';
-import { Descriptor } from '../refer/Descriptor';
-import { IDescriptable } from '../refer/IDescriptable';
 
-export class NullCache implements ICache, IDescriptable {
-    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "null", "default", "1.0");
-
-    public getDescriptor(): Descriptor {
-        return NullCache.Descriptor;
-    }
-
+export class NullCache implements ICache {
+    
     public retrieve(correlationId: string, key: string, callback: (err: any, value: any) => void): void {
         callback(null, null);
     }

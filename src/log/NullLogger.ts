@@ -1,16 +1,10 @@
 import { ILogger } from './ILogger';
 import { LogLevel } from './LogLevel';
-import { IDescriptable } from '../refer/IDescriptable';
 import { Descriptor } from '../refer/Descriptor';
 
-export class NullLogger implements ILogger, IDescriptable {
-	public static readonly descriptor: Descriptor = new Descriptor("pip-services-commons", "logger", "null", "default", "1.0");
+export class NullLogger implements ILogger {
 
 	public constructor() { }
-
-	public getDescriptor(): Descriptor {
-		return NullLogger.descriptor;
-	}
 
 	public getLevel(): LogLevel { return LogLevel.None; }
 	public setLevel(value: LogLevel): void { }

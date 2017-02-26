@@ -1,26 +1,29 @@
-import { ILocateable } from './ILocateable';
 /**
  * Placeholder to store component references.
  */
-export declare class Reference implements ILocateable {
+export declare class Reference {
     private _locator;
     private _component;
-    private _locateable;
     /**
      * Create a new reference for an object
      * @param locator a component locator for the reference
      * @param reference a component reference
      */
-    constructor(component: any, locator?: any, reference?: any);
+    constructor(locator: any, component: any);
     /**
      * Checks if locator matches the current component
      * @param locator a location object. It can be standard Descriptor or something else
      * @return <code>true</code> if component matches the locator or <code>false</code> otherwise.
      */
-    locate(locator: any): boolean;
+    match(locator: any): boolean;
     /**
      * Gets component reference
      * @return a component itself
      */
     getComponent(): any;
+    /**
+     * Gets component locator
+     * @return a component locator
+     */
+    getLocator(): any;
 }

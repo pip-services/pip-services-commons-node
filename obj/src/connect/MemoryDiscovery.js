@@ -1,31 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
-var NameResolver_1 = require("../config/NameResolver");
 var ConnectionParams_1 = require("./ConnectionParams");
-var Descriptor_1 = require("../refer/Descriptor");
 var DiscoveryItem = (function () {
     function DiscoveryItem() {
     }
     return DiscoveryItem;
 }());
 var MemoryDiscovery = (function () {
-    function MemoryDiscovery(name, config) {
-        if (name === void 0) { name = null; }
+    function MemoryDiscovery(config) {
         if (config === void 0) { config = null; }
         this._items = [];
-        name = name;
         if (config != null)
             this.configure(config);
     }
-    MemoryDiscovery.prototype.getName = function () {
-        return this._name;
-    };
-    MemoryDiscovery.prototype.getDescriptor = function () {
-        return new Descriptor_1.Descriptor("pip-services-commons", "discovery", "memory", name || "default", "1.0");
-    };
     MemoryDiscovery.prototype.configure = function (config) {
-        this._name = NameResolver_1.NameResolver.resolve(config, name);
         this.readConnections(config);
     };
     MemoryDiscovery.prototype.readConnections = function (connections) {

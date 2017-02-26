@@ -1,11 +1,7 @@
 import { ILogger } from './ILogger';
 import { LogLevel } from './LogLevel';
-import { IDescriptable } from '../refer/IDescriptable';
-import { Descriptor } from '../refer/Descriptor';
-export declare class NullLogger implements ILogger, IDescriptable {
-    static readonly descriptor: Descriptor;
+export declare class NullLogger implements ILogger {
     constructor();
-    getDescriptor(): Descriptor;
     getLevel(): LogLevel;
     setLevel(value: LogLevel): void;
     log(level: LogLevel, correlationId: string, error: Error, message: string, ...args: any[]): void;

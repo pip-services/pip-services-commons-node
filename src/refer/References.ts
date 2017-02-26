@@ -9,36 +9,29 @@ import { ReferenceException } from './ReferenceException';
 export class References implements IReferences {	
 	protected _references: Reference[] = [];
 	
-	public constructor(components: any[] = null) {
-		if (components != null) {
-			for (let index = 0; index < components.length; index++)
-				this.put(components[index]);
+	public constructor(tuples: any[] = null) {
+		if (tuples != null) {
+	        for (let index = 0; index < tuples.length; index += 2) {
+	            if (index + 1 >= tuples.length) break;
+	
+	            this.putX(tuples[index], tuples[index + 1]);
+	        }
 		}
 	}
 	
-	public put(component: any, locator: any = null): void {
+	public putX(locator: any, component: any): void {
 		if (component == null)
 			throw new Error("Reference cannot be null");
 
-        if (locator != null)
-			this._references.push(new Reference(component, locator));
-        else if (component instanceof Reference)
-            this._references.push(component);
-        else
-            this._references.push(new Reference(null, null, component));
+        this._references.push(new Reference(locator, component));
 	}
 	
-	public putAll(...components: any[]): void {
-		for (let index = 0; index < components.length; index++)
-			this.put(components[index]);
-	}
-
 	public remove(locator: any): any {
 		if (locator == null) return null;
 
         for (let index = this._references.length - 1; index >= 0; index--) {
             let reference = this._references[index];
-            if (reference.locate(locator)) {
+            if (reference.match(locator)) {
                 this._references.splice(index, 1);
                 return reference.getComponent();
             }
@@ -54,7 +47,7 @@ export class References implements IReferences {
 
         for (let index = this._references.length - 1; index >= 0; index--) {
             let reference = this._references[index];
-            if (reference.locate(locator)) {
+            if (reference.match(locator)) {
                 this._references.splice(index, 1);
                 components.push(reference.getComponent());
             }
@@ -112,7 +105,7 @@ export class References implements IReferences {
         if (query.startLocator != null) {
             while (index >= 0 && index < this._references.length) {
                 let reference = this._references[index];
-                if (reference.locate(query.startLocator))
+                if (reference.match(query.startLocator))
                     break;
                 index += query.ascending ? 1 : -1;
             }
@@ -121,7 +114,7 @@ export class References implements IReferences {
         // Search all references
         while (index >= 0 && index < this._references.length) {
             let reference = this._references[index];
-            if (reference.locate(query.locator)) {
+            if (reference.match(query.locator)) {
                 let component = reference.getComponent();
                 components.push(component);
             }
@@ -135,10 +128,7 @@ export class References implements IReferences {
     }
 
 	
-	public static fromList(...components: any[]): References {
-		let result = new References();
-		for (let index = 0; index < components.length; index++)
-			result.put(components[index]);
-		return result;
+	public static fromTuples(...tuples: any[]): References {
+		return new References(tuples);
 	}
 }

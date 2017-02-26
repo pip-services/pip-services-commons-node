@@ -1,19 +1,11 @@
-
 import { ICache } from './ICache';
 import { CacheEntry } from './CacheEntry';
-import { Descriptor } from '../refer/Descriptor';
-import { IDescriptable } from '../refer/IDescriptable';
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ConfigParams } from '../config/ConfigParams';
 import { NameResolver } from '../config/NameResolver';
 import { ApplicationException } from '../errors/ApplicationException';
 
-export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
-	/**
-	 * Unique descriptor for the Memory Cache component
-	 */
-    public static readonly Descriptor: Descriptor = new Descriptor("pip-services-commons", "cache", "memory", "default", "1.0");
-
+export class MemoryCache implements ICache, IReconfigurable {
     //milliseconds
     private static readonly _defaultTimeout: number = 60000;
     private static readonly _defaultMaxSize: number = 1000;
@@ -29,13 +21,6 @@ export class MemoryCache implements ICache, IDescriptable, IReconfigurable {
 	 * Creates instance of local in-memory cache component
 	 */
     public constructor() { }
-
-    /**
-     * Gets the component descriptor
-     */
-    public getDescriptor(): Descriptor {
-        return MemoryCache.Descriptor;
-    }
 
 	/**
 	 * Sets component configuration parameters and switches component

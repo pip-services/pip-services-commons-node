@@ -1,22 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var NameResolver_1 = require("./NameResolver");
 // Todo: Deprecate name
 var CachedConfigReader = (function () {
-    function CachedConfigReader(name) {
-        if (name === void 0) { name = null; }
+    function CachedConfigReader() {
         this._lastRead = 0;
-        this._name = null;
         this._timeout = 60000;
         this._config = null;
-        this._name = name;
     }
-    CachedConfigReader.prototype.getName = function () {
-        return this._name;
-    };
-    CachedConfigReader.prototype.setName = function (name) {
-        this._name = name;
-    };
     CachedConfigReader.prototype.getTimeout = function () {
         return this._timeout;
     };
@@ -24,7 +14,6 @@ var CachedConfigReader = (function () {
         this._timeout = timeout;
     };
     CachedConfigReader.prototype.configure = function (config) {
-        this._name = NameResolver_1.NameResolver.resolve(config, this._name);
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
     };
     CachedConfigReader.prototype.readConfig = function (correlationId) {

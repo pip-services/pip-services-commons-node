@@ -1,6 +1,4 @@
 export { Descriptor } from './Descriptor';
-export { IDescriptable } from './IDescriptable';
-export { ILocateable } from './ILocateable';
 
 export { ReferenceQuery } from './ReferenceQuery';
 export { IReferences } from './IReferences';
