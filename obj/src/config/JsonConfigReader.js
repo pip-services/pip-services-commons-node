@@ -36,15 +36,23 @@ var JsonConfigReader = (function (_super) {
                 .withCause(e);
         }
     };
-    JsonConfigReader.prototype.performReadConfig = function (correlationId) {
-        var value = this.readObject(correlationId);
-        return ConfigParams_1.ConfigParams.fromValue(value);
+    JsonConfigReader.prototype.performReadConfig = function (correlationId, callback) {
+        try {
+            var value = this.readObject(correlationId);
+            var config = ConfigParams_1.ConfigParams.fromValue(value);
+            callback(null, config);
+        }
+        catch (ex) {
+            callback(ex, null);
+        }
     };
     JsonConfigReader.readObject = function (correlationId, path) {
         return new JsonConfigReader(path).readObject(correlationId);
     };
     JsonConfigReader.readConfig = function (correlationId, path) {
-        return new JsonConfigReader(path).readConfig(correlationId);
+        var value = new JsonConfigReader(path).readObject(correlationId);
+        var config = ConfigParams_1.ConfigParams.fromValue(value);
+        return config;
     };
     return JsonConfigReader;
 }(FileConfigReader_1.FileConfigReader));

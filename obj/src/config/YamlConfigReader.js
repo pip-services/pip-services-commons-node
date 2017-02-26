@@ -36,15 +36,23 @@ var YamlConfigReader = (function (_super) {
                 .withCause(e);
         }
     };
-    YamlConfigReader.prototype.performReadConfig = function (correlationId) {
-        var value = this.readObject(correlationId);
-        return ConfigParams_1.ConfigParams.fromValue(value);
+    YamlConfigReader.prototype.performReadConfig = function (correlationId, callback) {
+        try {
+            var value = this.readObject(correlationId);
+            var config = ConfigParams_1.ConfigParams.fromValue(value);
+            callback(null, config);
+        }
+        catch (ex) {
+            callback(ex, null);
+        }
     };
     YamlConfigReader.readObject = function (correlationId, path) {
         return new YamlConfigReader(path).readObject(correlationId);
     };
     YamlConfigReader.readConfig = function (correlationId, path) {
-        return new YamlConfigReader(path).readConfig(correlationId);
+        var value = new YamlConfigReader(path).readObject(correlationId);
+        var config = ConfigParams_1.ConfigParams.fromValue(value);
+        return config;
     };
     return YamlConfigReader;
 }(FileConfigReader_1.FileConfigReader));

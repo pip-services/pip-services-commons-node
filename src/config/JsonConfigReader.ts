@@ -33,9 +33,14 @@ export class JsonConfigReader extends FileConfigReader {
         }
     }
 
-    protected performReadConfig(correlationId: string): ConfigParams {
-        let value: any = this.readObject(correlationId);
-        return ConfigParams.fromValue(value);
+    protected performReadConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void {
+        try {
+            let value: any = this.readObject(correlationId);
+            let config = ConfigParams.fromValue(value);
+            callback(null, config);
+        } catch (ex) {
+            callback(ex, null);
+        }
     }
 
     public static readObject(correlationId: string, path: string): void {
@@ -43,6 +48,8 @@ export class JsonConfigReader extends FileConfigReader {
     }
 
     public static readConfig(correlationId: string, path: string): ConfigParams {
-        return new JsonConfigReader(path).readConfig(correlationId);
+        let value: any = new JsonConfigReader(path).readObject(correlationId);
+        let config = ConfigParams.fromValue(value);
+        return config;
     }
 }

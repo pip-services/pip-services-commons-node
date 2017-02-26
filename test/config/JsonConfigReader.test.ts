@@ -1,3 +1,4 @@
+let async = require('async');
 let assert = require('chai').assert;
 
 import { ConfigParams } from '../../src/config/ConfigParams';
@@ -19,19 +20,31 @@ suite('JsonConfigReader', ()=> {
         
     });    
 
-    test('Read After Timeout', () => {
+    test('Read After Timeout', (done) => {
         let reader: JsonConfigReader = new JsonConfigReader("./data/config.json");
+        let originalConfig: ConfigParams;
 
         reader.setTimeout(100);
 
-        var config: ConfigParams = reader.readConfig(null);
-        assert.equal(config.getCount(), 7);
-
-        setTimeout(function() {
-            var newConfig: ConfigParams = reader.readConfig(null);
-            assert.equal(config.getCount(), newConfig.getCount());
-        }, 500);
-
+        async.series([
+            (callback) => {
+                reader.readConfig(null, (err, config) => {
+                    assert.isNull(err);
+                    assert.equal(config.getCount(), 7);
+                    originalConfig = config;
+                    callback(err);
+                });
+            },
+            (callback) => {
+                setTimeout(function() {
+                    reader.readConfig(null, (err, config) => {
+                        assert.isNull(err);
+                        assert.equal(originalConfig.getCount(), config.getCount());
+                        callback(err);
+                    });
+                }, 500);
+            }
+        ], done);
     });    
 
 });

@@ -9,7 +9,7 @@ export declare abstract class CachedConfigReader implements IConfigReader, IReco
     getTimeout(): number;
     setTimeout(timeout: number): void;
     configure(config: ConfigParams): void;
-    protected abstract performReadConfig(correlationId: string): ConfigParams;
-    readConfig(correlationId: string): ConfigParams;
-    readConfigSection(correlationId: string, section: string): ConfigParams;
+    protected abstract performReadConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void;
+    readConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void;
+    readConfigSection(correlationId: string, section: string, callback: (err: any, config: ConfigParams) => void): void;
 }

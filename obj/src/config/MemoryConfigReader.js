@@ -10,11 +10,13 @@ var MemoryConfigReader = (function () {
     MemoryConfigReader.prototype.configure = function (config) {
         this._config = config;
     };
-    MemoryConfigReader.prototype.readConfig = function (correlationId) {
-        return new ConfigParams_1.ConfigParams(this._config);
+    MemoryConfigReader.prototype.readConfig = function (correlationId, callback) {
+        var config = new ConfigParams_1.ConfigParams(this._config);
+        callback(null, config);
     };
-    MemoryConfigReader.prototype.readConfigSection = function (correlationId, section) {
-        return this._config == null ? null : this._config.getSection(section);
+    MemoryConfigReader.prototype.readConfigSection = function (correlationId, section, callback) {
+        var config = this._config == null ? null : this._config.getSection(section);
+        callback(null, config);
     };
     return MemoryConfigReader;
 }());

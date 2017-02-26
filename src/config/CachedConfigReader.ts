@@ -3,7 +3,6 @@ import { IReconfigurable } from './IReconfigurable';
 import { ConfigParams } from './ConfigParams';
 import { NameResolver } from './NameResolver';
 
-// Todo: Deprecate name
 export abstract class CachedConfigReader implements IConfigReader, IReconfigurable {
     private _lastRead: number = 0;
     private _timeout: number = 60000;
@@ -23,22 +22,33 @@ export abstract class CachedConfigReader implements IConfigReader, IReconfigurab
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
     }
 
-    protected abstract performReadConfig(correlationId: string): ConfigParams;
+    protected abstract performReadConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void;
 
-    public readConfig(correlationId: string): ConfigParams {
+    public readConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void {
         let timestamp: number = new Date().getTime();
 
-        if (this._config != null && timestamp < this._lastRead + this._timeout)
-            return this._config;
+        if (this._config != null && timestamp < this._lastRead + this._timeout) {
+            callback(null, this._config);
+            return;
+        }
 
-        this._config = this.performReadConfig(correlationId);
-        this._lastRead = timestamp;
-
-        return this._config;
+        this.performReadConfig(correlationId, (err, config) => {
+            if (err) callback(err, null);
+            else {
+                this._config = config;
+                this._lastRead = timestamp;
+                callback(null, config);
+            }
+        });
     }
 
-    public readConfigSection(correlationId: string, section: string): ConfigParams {
-        let config: ConfigParams = this.readConfig(correlationId);
-        return config != null ? config.getSection(section) : null;
+    public readConfigSection(correlationId: string, section: string, callback: (err: any, config: ConfigParams) => void): void {
+        this.readConfig(correlationId, (err, config) => {
+            if (err) callback(err, null);
+            else {
+                config = config != null ? config.getSection(section) : null;
+                callback(null, config);
+            }
+        });
     }
 }

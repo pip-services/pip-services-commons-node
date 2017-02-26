@@ -7,6 +7,7 @@ Cleaned up and simplified programming model.
 ### Breaking Changes
 * Refactored **refer** package. Removed IDescriptable and ILocateable interface. Made locator a mandatory requirement to place component into references.
 * Moved **ManagedReferences** to **pip-services-container**
+* Made **IConfigReader** interface asynchronous
 
 ## <a name="1.0.0"></a> 1.0.0-1.0.3 (2017-01-28 - 2017-02-24)
 
