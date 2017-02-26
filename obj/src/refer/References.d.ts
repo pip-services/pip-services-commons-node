@@ -7,7 +7,7 @@ import { ReferenceQuery } from './ReferenceQuery';
 export declare class References implements IReferences {
     protected _references: Reference[];
     constructor(tuples?: any[]);
-    putX(locator: any, component: any): void;
+    put(locator: any, component: any): void;
     remove(locator: any): any;
     removeAll(locator: any): any[];
     getAll(): any[];

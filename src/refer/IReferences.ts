@@ -12,7 +12,7 @@ export interface IReferences {
 	 * @param component a component reference to be added
 	 * @param callback callback function with execution error
 	 */
-	putX(locator: any, component: any);
+	put(locator: any, component: any);
 
 	/**
 	 * Removes component reference from the set. 

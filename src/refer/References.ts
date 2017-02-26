@@ -14,12 +14,12 @@ export class References implements IReferences {
 	        for (let index = 0; index < tuples.length; index += 2) {
 	            if (index + 1 >= tuples.length) break;
 	
-	            this.putX(tuples[index], tuples[index + 1]);
+	            this.put(tuples[index], tuples[index + 1]);
 	        }
 		}
 	}
 	
-	public putX(locator: any, component: any): void {
+	public put(locator: any, component: any): void {
 		if (component == null)
 			throw new Error("Reference cannot be null");
 

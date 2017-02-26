@@ -14,11 +14,11 @@ var References = (function () {
             for (var index = 0; index < tuples.length; index += 2) {
                 if (index + 1 >= tuples.length)
                     break;
-                this.putX(tuples[index], tuples[index + 1]);
+                this.put(tuples[index], tuples[index + 1]);
             }
         }
     }
-    References.prototype.putX = function (locator, component) {
+    References.prototype.put = function (locator, component) {
         if (component == null)
             throw new Error("Reference cannot be null");
         this._references.push(new Reference_1.Reference(locator, component));
