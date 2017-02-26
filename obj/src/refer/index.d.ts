@@ -7,8 +7,3 @@ export { Reference } from './Reference';
 export { Referencer } from './Referencer';
 export { References } from './References';
 export { ReferenceException } from './ReferenceException';
-export { ReferencesDecorator } from './ReferencesDecorator';
-export { BuildReferencesDecorator } from './BuildReferencesDecorator';
-export { LinkReferencesDecorator } from './LinkReferencesDecorator';
-export { RunReferencesDecorator } from './RunReferencesDecorator';
-export { ManagedReferences } from './ManagedReferences';
