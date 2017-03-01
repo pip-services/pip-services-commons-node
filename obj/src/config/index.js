@@ -16,4 +16,6 @@ var OptionResolver_1 = require("./OptionResolver");
 exports.OptionResolver = OptionResolver_1.OptionResolver;
 var YamlConfigReader_1 = require("./YamlConfigReader");
 exports.YamlConfigReader = YamlConfigReader_1.YamlConfigReader;
+var DefaultConfigReaderFactory_1 = require("./DefaultConfigReaderFactory");
+exports.DefaultConfigReaderFactory = DefaultConfigReaderFactory_1.DefaultConfigReaderFactory;
 //# sourceMappingURL=index.js.map

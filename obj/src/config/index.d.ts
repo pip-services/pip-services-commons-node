@@ -9,3 +9,4 @@ export { MemoryConfigReader } from './MemoryConfigReader';
 export { NameResolver } from './NameResolver';
 export { OptionResolver } from './OptionResolver';
 export { YamlConfigReader } from './YamlConfigReader';
+export { DefaultConfigReaderFactory } from './DefaultConfigReaderFactory';

@@ -1,46 +1,34 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var NullCounters_1 = require("./NullCounters");
 var LogCounters_1 = require("./LogCounters");
 var CompositeCounters_1 = require("./CompositeCounters");
-var CreateException_1 = require("../build/CreateException");
+var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
-var DefaultCountersFactory = (function () {
+var DefaultCountersFactory = (function (_super) {
+    __extends(DefaultCountersFactory, _super);
     function DefaultCountersFactory() {
+        var _this = _super.call(this) || this;
+        _this.registerAsType(DefaultCountersFactory.NullCountersDescriptor, NullCounters_1.NullCounters);
+        _this.registerAsType(DefaultCountersFactory.LogCountersDescriptor, LogCounters_1.LogCounters);
+        _this.registerAsType(DefaultCountersFactory.CompositeCountersDescriptor, CompositeCounters_1.CompositeCounters);
+        return _this;
     }
-    DefaultCountersFactory.prototype.canCreate = function (locator) {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
-        var descriptor = locator;
-        if (descriptor == null)
-            return false;
-        if (descriptor.match(DefaultCountersFactory.NullCountersDescriptor))
-            return true;
-        if (descriptor.match(DefaultCountersFactory.LogCountersDescriptor))
-            return true;
-        if (descriptor.match(DefaultCountersFactory.CompositeCountersDescriptor))
-            return true;
-        return false;
-    };
-    DefaultCountersFactory.prototype.create = function (locator) {
-        if (locator == null)
-            throw new Error("Locator cannot be null");
-        var descriptor = locator;
-        if (descriptor == null)
-            return null;
-        if (descriptor.match(DefaultCountersFactory.NullCountersDescriptor))
-            return new NullCounters_1.NullCounters();
-        if (descriptor.match(DefaultCountersFactory.LogCountersDescriptor))
-            return new LogCounters_1.LogCounters();
-        if (descriptor.match(DefaultCountersFactory.CompositeCountersDescriptor))
-            return new CompositeCounters_1.CompositeCounters();
-        throw new CreateException_1.CreateException(null, locator);
-    };
     return DefaultCountersFactory;
-}());
+}(Factory_1.Factory));
 DefaultCountersFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "counters", "default", "1.0");
-DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "default", "1.0");
-DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "default", "1.0");
-DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "default", "1.0");
+DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "*", "1.0");
+DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "*", "1.0");
+DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "*", "1.0");
 exports.DefaultCountersFactory = DefaultCountersFactory;
 //# sourceMappingURL=DefaultCountersFactory.js.map
