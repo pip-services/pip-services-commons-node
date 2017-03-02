@@ -22,17 +22,18 @@ export class CompositeFactory implements IFactory {
 		this._factories = _.remove(this._factories, f => f == factory);
 	}
 	
-	public canCreate(locator: any): boolean {
+	public canCreate(locator: any): any {
 		if (locator == null)
 			throw new Error("Locator cannot be null");
 		
 		// Iterate from the latest factories
 		for (let index = this._factories.length - 1; index >= 0; index--) {
-            if (this._factories[index].canCreate(locator))
-				return true;
+			let thisLocator = this._factories[index].canCreate(locator);
+            if (thisLocator != null)
+				return thisLocator;
 		}
 		
-		return false;
+		return null;
 	}
 	
 	public create(locator: any): any {
@@ -42,7 +43,7 @@ export class CompositeFactory implements IFactory {
 		// Iterate from the latest factories
 		for (let index = this._factories.length - 1; index >= 0; index--) {
             let factory = this._factories[index];
-			if (factory.canCreate(locator))
+			if (factory.canCreate(locator) != null)
 				return factory.create(locator);
 		}
 		

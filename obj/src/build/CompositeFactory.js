@@ -25,10 +25,11 @@ var CompositeFactory = (function () {
             throw new Error("Locator cannot be null");
         // Iterate from the latest factories
         for (var index = this._factories.length - 1; index >= 0; index--) {
-            if (this._factories[index].canCreate(locator))
-                return true;
+            var thisLocator = this._factories[index].canCreate(locator);
+            if (thisLocator != null)
+                return thisLocator;
         }
-        return false;
+        return null;
     };
     CompositeFactory.prototype.create = function (locator) {
         if (locator == null)
@@ -36,7 +37,7 @@ var CompositeFactory = (function () {
         // Iterate from the latest factories
         for (var index = this._factories.length - 1; index >= 0; index--) {
             var factory = this._factories[index];
-            if (factory.canCreate(locator))
+            if (factory.canCreate(locator) != null)
                 return factory.create(locator);
         }
         throw new CreateException_1.CreateException(null, locator);

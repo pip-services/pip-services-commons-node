@@ -4,6 +4,6 @@ export declare class CompositeFactory implements IFactory {
     constructor(...factories: IFactory[]);
     add(factory: IFactory): void;
     remove(factory: IFactory): void;
-    canCreate(locator: any): boolean;
+    canCreate(locator: any): any;
     create(locator: any): any;
 }
