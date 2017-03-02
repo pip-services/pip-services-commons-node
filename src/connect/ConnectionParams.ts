@@ -61,7 +61,7 @@ export class ConnectionParams extends ConfigParams {
         let result: ConnectionParams[] = [];
         let connections: ConfigParams = config.getSection("connections");
 
-        if (connections.getCount() > 0) {
+        if (connections.length() > 0) {
             let connectionSections: string[] = connections.getSectionNames();
             for (let index: 0; index < connectionSections.length; index++) {
                 let connection: ConfigParams = connections.getSection(connectionSections[index]);
@@ -69,7 +69,7 @@ export class ConnectionParams extends ConfigParams {
             }
         } else {
             let connection: ConfigParams = config.getSection("connection");
-            if (connection.getCount() > 0)
+            if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
             else
                 result.push(new ConnectionParams(config));

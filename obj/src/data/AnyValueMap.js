@@ -51,7 +51,7 @@ var AnyValueMap = (function () {
                 delete this[key];
         }
     };
-    AnyValueMap.prototype.getCount = function () {
+    AnyValueMap.prototype.length = function () {
         var count = 0;
         for (var key in this) {
             if (this.hasOwnProperty(key) && !_.isFunction(this[key])) {

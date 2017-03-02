@@ -224,7 +224,7 @@ var StringValueMap = (function () {
     StringValueMap.prototype.clone = function () {
         return new StringValueMap(this);
     };
-    StringValueMap.prototype.getCount = function () {
+    StringValueMap.prototype.length = function () {
         var count = 0;
         for (var key in this) {
             if (this.hasOwnProperty(key))

@@ -13,7 +13,7 @@ suite('ConfigParams', ()=> {
             "Section1.Key3", "Value3"
         );
 
-        assert.equal(config.getCount(), 3);
+        assert.equal(config.length(), 3);
 		assert.equal(config.get("Section1.Key1"), "Value1");
 		assert.equal(config.get("Section1.Key2"), "Value2");
 		assert.equal(config.get("Section1.Key3"), "Value3");
@@ -25,12 +25,12 @@ suite('ConfigParams', ()=> {
         );
 
         config.addSection("Section2", section2);
-        assert.equal(config.getCount(), 5);
+        assert.equal(config.length(), 5);
 		assert.equal(config.get("Section2.Key1"), "ValueA");
 		assert.equal(config.get("Section2.Key2"), "ValueB");
 
         var section1 = config.getSection("Section1");
-        assert.equal(section1.getCount(), 3);
+        assert.equal(section1.length(), 3);
 		assert.equal(section1.get("Key1"), "Value1");
 		assert.equal(section1.get("Key2"), "Value2");
 		assert.equal(section1.get("Key3"), "Value3");
@@ -39,7 +39,7 @@ suite('ConfigParams', ()=> {
 
     test('Config From String', () => {
         var config = ConfigParams.fromString("Queue=TestQueue;Endpoint=sb://cvctestbus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K70UpCUXN1Q5RFykll6/gz4Et14iJrYFnGPlwiFBlow=");
-        assert.equal(config.getCount(), 4);
+        assert.equal(config.length(), 4);
         assert.equal(config.get("Queue"), "TestQueue");
     });    
 
@@ -53,7 +53,7 @@ suite('ConfigParams', ()=> {
         );
 
         var config = ConfigParams.fromValue(value);
-        assert.equal(config.getCount(), 7);
+        assert.equal(config.length(), 7);
         assert.equal(config.getAsInteger("Field1.Field11"), 123);
         assert.equal(config.get("Field1.Field12"), "ABC");
         assert.equal(config.getAsInteger("Field2.0"), 123);

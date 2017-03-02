@@ -62,7 +62,7 @@ var ConnectionParams = (function (_super) {
         if (configAsDefault === void 0) { configAsDefault = true; }
         var result = [];
         var connections = config.getSection("connections");
-        if (connections.getCount() > 0) {
+        if (connections.length() > 0) {
             var connectionSections = connections.getSectionNames();
             for (var index = void 0; index < connectionSections.length; index++) {
                 var connection = connections.getSection(connectionSections[index]);
@@ -71,7 +71,7 @@ var ConnectionParams = (function (_super) {
         }
         else {
             var connection = config.getSection("connection");
-            if (connection.getCount() > 0)
+            if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
             else
                 result.push(new ConnectionParams(config));

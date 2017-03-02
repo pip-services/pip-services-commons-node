@@ -61,14 +61,14 @@ export class CredentialParams extends ConfigParams {
 
         let credentials: ConfigParams = config.getSection("credentials");
 
-        if (credentials.getCount() > 0) {
+        if (credentials.length() > 0) {
             for (let section in credentials.getSectionNames()) {
                 let credential: ConfigParams = credentials.getSection(section);
                 result.push(new CredentialParams(credential));
             }
         } else {
             let credential: ConfigParams = config.getSection("credential");
-            if (credential.getCount() > 0) 
+            if (credential.length() > 0) 
                 result.push(new CredentialParams(credential));
             else if (configAsDefault)
                 result.push(new CredentialParams(config));

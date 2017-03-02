@@ -63,7 +63,7 @@ export class AnyValueMap implements ICloneable {
     	}
     }
 
-    public getCount(): number {
+    public length(): number {
         let count: number = 0;
     	for (let key in this) {
     		if (this.hasOwnProperty(key) && !_.isFunction(this[key])) {

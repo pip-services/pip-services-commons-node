@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Descriptor_1 = require("./Descriptor");
 exports.Descriptor = Descriptor_1.Descriptor;
+var DependencyResolver_1 = require("./DependencyResolver");
+exports.DependencyResolver = DependencyResolver_1.DependencyResolver;
 var ReferenceQuery_1 = require("./ReferenceQuery");
 exports.ReferenceQuery = ReferenceQuery_1.ReferenceQuery;
 var Reference_1 = require("./Reference");

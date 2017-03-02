@@ -10,7 +10,7 @@ export declare class AnyValueMap implements ICloneable {
     remove(key: string): void;
     append(map: any): void;
     clear(): any;
-    getCount(): number;
+    length(): number;
     getAsObject(key?: string): any;
     setAsObject(key: any, value?: any): void;
     getAsNullableString(key: string): string;

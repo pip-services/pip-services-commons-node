@@ -9,7 +9,7 @@ suite('JsonConfigReader', ()=> {
     test('Config Sections', () => {
         let config: ConfigParams = JsonConfigReader.readConfig(null, "./data/config.json");
 
-        assert.equal(config.getCount(), 7);
+        assert.equal(config.length(), 7);
         assert.equal(config.getAsInteger("Field1.Field11"), 123);
         assert.equal(config.get("Field1.Field12"), "ABC");
         assert.equal(config.getAsInteger("Field2.0"), 123);
@@ -30,7 +30,7 @@ suite('JsonConfigReader', ()=> {
             (callback) => {
                 reader.readConfig(null, (err, config) => {
                     assert.isNull(err);
-                    assert.equal(config.getCount(), 7);
+                    assert.equal(config.length(), 7);
                     originalConfig = config;
                     callback(err);
                 });
@@ -39,7 +39,7 @@ suite('JsonConfigReader', ()=> {
                 setTimeout(function() {
                     reader.readConfig(null, (err, config) => {
                         assert.isNull(err);
-                        assert.equal(originalConfig.getCount(), config.getCount());
+                        assert.equal(originalConfig.length(), config.length());
                         callback(err);
                     });
                 }, 500);

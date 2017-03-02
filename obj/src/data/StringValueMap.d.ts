@@ -45,7 +45,7 @@ export declare class StringValueMap {
     getAsMapWithDefault(key: string, defaultValue: AnyValueMap): AnyValueMap;
     toString(): string;
     clone(): any;
-    getCount(): number;
+    length(): number;
     static fromTuples(...tuples: any[]): StringValueMap;
     static fromTuplesArray(tuples: any[]): StringValueMap;
     static fromString(line: string): StringValueMap;

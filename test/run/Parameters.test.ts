@@ -16,7 +16,7 @@ suite('Parameters', ()=> {
             "value3", 345
         );
         result = result.setDefaults(defaults, false);
-        assert.equal(3, result.getCount());
+        assert.equal(3, result.length());
         assert.equal(123, result["value1"]);
         assert.equal(234, result["value2"]);
         assert.equal(345, result["value3"]);
@@ -31,12 +31,12 @@ suite('Parameters', ()=> {
         );
         result = result.setDefaults(defaults, true);
 
-        assert.equal(3, result.getCount());
+        assert.equal(3, result.length());
         assert.equal(123, result.get("value1"));
         assert.equal(345, result.get("value3"));
 
         var deepResult = result.getAsMap("value2");
-        assert.equal(3, deepResult.getCount());
+        assert.equal(3, deepResult.length());
         assert.equal(111, deepResult.getAsInteger("value21"));
         assert.equal(222, deepResult.getAsInteger("value22"));
         assert.equal(333, deepResult.getAsInteger("value23"));
@@ -48,7 +48,7 @@ suite('Parameters', ()=> {
         );
         result = result.override(null, true);
 
-        assert.equal(2, result.getCount());
+        assert.equal(2, result.length());
         assert.equal(123, result.get("value1"));
         assert.equal(234, result.get("value2"));
     });
@@ -132,21 +132,21 @@ suite('Parameters', ()=> {
         let config: Parameters = new Parameters();
 
         config.put(null, 123);
-        assert.equal(0, config.getCount());
+        assert.equal(0, config.length());
 
         config.put("field1", 123);
-        assert.equal(1, config.getCount());
+        assert.equal(1, config.length());
         assert.equal(123, config.getAsInteger("field1"));
 
         config.put("field2", "ABC");
-        assert.equal(2, config.getCount());
+        assert.equal(2, config.length());
         assert.equal("ABC", config.get("field2"));
 
         config.put("field2.field1", 123);
         assert.equal("ABC", config.get("field2"));
 
         config.put("field3.field31", 456);
-        assert.equal(3, config.getCount());
+        assert.equal(3, config.length());
         var subConfig = config.getAsMap("field3");
         assert.isNotNull(subConfig);
         assert.equal(456, subConfig.getAsInteger("field31"));
@@ -163,11 +163,11 @@ suite('Parameters', ()=> {
         );
 
         var parameters = Parameters.fromConfig(config);
-        assert.equal(2, parameters.getCount());
+        assert.equal(2, parameters.length());
         assert.equal("ABC", parameters.get("Field2"));
 
         var value = parameters.getAsMap("Field1");
-        assert.equal(2, value.getCount());
+        assert.equal(2, value.length());
         assert.equal("123", value.get("field11"));
         assert.equal("XYZ", value.get("Field12"));
     });

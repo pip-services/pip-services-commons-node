@@ -271,7 +271,7 @@ export class StringValueMap {
     	return new StringValueMap(this);
     }
 
-    public getCount(): number {
+    public length(): number {
         let count: number = 0;
     	for (let key in this) {
     		if (this.hasOwnProperty(key))

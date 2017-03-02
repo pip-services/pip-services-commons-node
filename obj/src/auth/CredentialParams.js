@@ -59,7 +59,7 @@ var CredentialParams = (function (_super) {
         if (configAsDefault === void 0) { configAsDefault = true; }
         var result = [];
         var credentials = config.getSection("credentials");
-        if (credentials.getCount() > 0) {
+        if (credentials.length() > 0) {
             for (var section in credentials.getSectionNames()) {
                 var credential = credentials.getSection(section);
                 result.push(new CredentialParams(credential));
@@ -67,7 +67,7 @@ var CredentialParams = (function (_super) {
         }
         else {
             var credential = config.getSection("credential");
-            if (credential.getCount() > 0)
+            if (credential.length() > 0)
                 result.push(new CredentialParams(credential));
             else if (configAsDefault)
                 result.push(new CredentialParams(config));
