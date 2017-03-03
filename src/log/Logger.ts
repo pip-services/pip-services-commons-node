@@ -1,3 +1,5 @@
+var util = require('util');
+
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ILogger } from './ILogger';
 import { LogLevel } from './LogLevel';
@@ -28,9 +30,10 @@ export abstract class Logger implements ILogger, IReconfigurable {
     protected formatAndWrite(level: LogLevel, correlationId: string, error: Error, message: string, ...args: any[]): void {
         message = message != null ? message : "";
         if (args != null && args.length > 0) {
-            message = message.replace(/{(\d+)}/g, function (match, number) {
-                return typeof args[number] != 'undefined' ? args[number] : match;
-            });
+            // message = message.replace(/{(\d+)}/g, function (match, number) {
+            //     return typeof args[number] != 'undefined' ? args[number] : match;
+            // });
+            message = util.format(message, ...args);
         }
 
         this.write(level, correlationId, error, message);

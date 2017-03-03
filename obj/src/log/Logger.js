@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var util = require('util');
 var LogLevel_1 = require("./LogLevel");
 var LogLevelConverter_1 = require("./LogLevelConverter");
 var Logger = (function () {
@@ -22,9 +23,10 @@ var Logger = (function () {
         }
         message = message != null ? message : "";
         if (args != null && args.length > 0) {
-            message = message.replace(/{(\d+)}/g, function (match, number) {
-                return typeof args[number] != 'undefined' ? args[number] : match;
-            });
+            // message = message.replace(/{(\d+)}/g, function (match, number) {
+            //     return typeof args[number] != 'undefined' ? args[number] : match;
+            // });
+            message = util.format.apply(util, [message].concat(args));
         }
         this.write(level, correlationId, error, message);
     };

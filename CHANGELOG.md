@@ -13,6 +13,9 @@ Cleaned up and simplified dependency management and object creation.
 * Moved **ManagedReferences** to **pip-services-container**
 * Made **IConfigReader** interface asynchronous
 
+### Bug Fixes
+* Replaced log formatting with C-like format from **util** package
+
 ## <a name="1.0.0"></a> 1.0.0-1.0.3 (2017-01-28 - 2017-02-24)
 
 Initial public release
@@ -31,10 +34,4 @@ Initial public release
 * **reflect** Portable reflection helpers
 * **run** Execution framework
 * **validate** Data validators
-
-### Breaking Changes
-No breaking changes since this is the first version
-
-### Bug Fixes
-No fixes in this version
 
