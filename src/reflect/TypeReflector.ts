@@ -14,10 +14,12 @@ export class TypeReflector {
 			if (!library)
 				library = name;
 
-			var absPath = path.resolve(library)
+			let absPath = library;
+			if (_.startsWith(absPath, '.'))
+				absPath = path.resolve(absPath)
 
 	        // Load module
-            var type = require(absPath);
+            let type = require(absPath);
             if (type == null) return null;
 
             // Get exported type by name
@@ -63,7 +65,7 @@ export class TypeReflector {
 	}
 
 	public static isPrimitive(value: any): boolean {
-		var typeCode = TypeConverter.toTypeCode(value);
+		let typeCode = TypeConverter.toTypeCode(value);
 		return typeCode == TypeCode.String || typeCode == TypeCode.Enum
 			|| typeCode == TypeCode.Boolean || typeCode == TypeCode.Integer
 			|| typeCode == TypeCode.Long || typeCode == TypeCode.Float

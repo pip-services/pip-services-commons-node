@@ -12,7 +12,9 @@ var TypeReflector = (function () {
         try {
             if (!library)
                 library = name;
-            var absPath = path.resolve(library);
+            var absPath = library;
+            if (_.startsWith(absPath, '.'))
+                absPath = path.resolve(absPath);
             // Load module
             var type = require(absPath);
             if (type == null)
