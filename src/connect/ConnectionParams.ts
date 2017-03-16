@@ -45,11 +45,11 @@ export class ConnectionParams extends ConfigParams {
     }
 
     public getUri(): string {
-        let protocol = this.getProtocol() || "http";
-        let host = this.getHost() || "localhost";
-        let port = this.getPort() || 80;
+        return super.getAsString("uri");
+    }
 
-        return protocol + "://" + host + ":" + port;
+    public setUri(value: string): void {
+        return super.put("uri", value);
     }
 
     public static fromString(line: string): ConnectionParams {

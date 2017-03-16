@@ -49,10 +49,10 @@ var ConnectionParams = (function (_super) {
         return _super.prototype.put.call(this, "port", value);
     };
     ConnectionParams.prototype.getUri = function () {
-        var protocol = this.getProtocol() || "http";
-        var host = this.getHost() || "localhost";
-        var port = this.getPort() || 80;
-        return protocol + "://" + host + ":" + port;
+        return _super.prototype.getAsString.call(this, "uri");
+    };
+    ConnectionParams.prototype.setUri = function (value) {
+        return _super.prototype.put.call(this, "uri", value);
     };
     ConnectionParams.fromString = function (line) {
         var map = StringValueMap_1.StringValueMap.fromString(line);

@@ -11,6 +11,7 @@ export declare class ConnectionParams extends ConfigParams {
     getPort(): number;
     setPort(value: number): void;
     getUri(): string;
+    setUri(value: string): void;
     static fromString(line: string): ConnectionParams;
     static manyFromConfig(config: ConfigParams, configAsDefault?: boolean): ConnectionParams[];
     static fromConfig(config: ConfigParams, configAsDefault?: boolean): ConnectionParams;

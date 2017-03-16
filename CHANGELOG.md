@@ -1,5 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.0.8"></a> 2.0.8 (2017-03-16)
+
+### Breaking Changes
+* ConnectionParams.getUri() now returns stored property instead of calculating it
+
 ## <a name="2.0.0"></a> 2.0.0 (2017-02-24)
 
 Cleaned up and simplified dependency management and object creation.

@@ -46,11 +46,9 @@ suite('ConnectionParams', ()=> {
 
     test('Gets and sets uri', () => {
 		let connection = new ConnectionParams();
-		assert.equal(connection.getUri(), "http://localhost:80");
+		assert.isNull(connection.getUri());
 		
-		connection.setProtocol("https");
-		connection.setPort(3000);
-		connection.setHost("pipgoals");
+		connection.setUri("https://pipgoals:3000");
 		assert.equal(connection.getUri(), "https://pipgoals:3000");
 	});
 
