@@ -1,10 +1,11 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
-## <a name="2.0.9"></a> 2.0.9 (2017-03-28)
+## <a name="2.0.10"></a> 2.0.10 (2017-03-28)
 
 ### Features
 * **command** Added ICommandable interface
 * **command** Command contructor not accepts a function
+* **data** Added fromValue static method to FilterParams, StringValueMap, Parameters
 
 ## <a name="2.0.8"></a> 2.0.8 (2017-03-16)
 
