@@ -10,7 +10,7 @@ var Command = (function () {
             throw new Error("Function cannot be null");
         this._name = name;
         this._schema = schema;
-        if (_.isObject(func))
+        if (!_.isFunction(func))
             this._function = func.execute;
         else
             this._function = func;

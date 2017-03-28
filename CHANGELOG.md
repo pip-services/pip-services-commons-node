@@ -1,6 +1,6 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
-## <a name="2.0.10"></a> 2.0.10 (2017-03-28)
+## <a name="2.0.11"></a> 2.0.11 (2017-03-28)
 
 ### Features
 * **command** Added ICommandable interface
