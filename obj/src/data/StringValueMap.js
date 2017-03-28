@@ -232,6 +232,9 @@ var StringValueMap = (function () {
         }
         return count;
     };
+    StringValueMap.fromValue = function (value) {
+        return new StringValueMap(value);
+    };
     StringValueMap.fromTuples = function () {
         var tuples = [];
         for (var _i = 0; _i < arguments.length; _i++) {

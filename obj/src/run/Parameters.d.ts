@@ -20,6 +20,7 @@ export declare class Parameters extends AnyValueMap {
     pick(...paths: string[]): Parameters;
     omit(...paths: string[]): Parameters;
     toJson(): string;
+    static fromValue(value: any): Parameters;
     static fromTuples(...tuples: any[]): Parameters;
     static mergeParams(...parameters: Parameters[]): Parameters;
     static fromJson(json: string): Parameters;

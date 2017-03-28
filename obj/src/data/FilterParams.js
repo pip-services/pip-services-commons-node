@@ -17,6 +17,9 @@ var FilterParams = (function (_super) {
         if (map === void 0) { map = null; }
         return _super.call(this, map) || this;
     }
+    FilterParams.fromValue = function (value) {
+        return new FilterParams(value);
+    };
     FilterParams.fromTuples = function () {
         var tuples = [];
         for (var _i = 0; _i < arguments.length; _i++) {

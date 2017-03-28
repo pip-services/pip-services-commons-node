@@ -280,6 +280,10 @@ export class StringValueMap {
         return count;
     }    
 
+    public static fromValue(value: any): StringValueMap {
+        return new StringValueMap(value);
+    }
+
     public static fromTuples(...tuples: any[]): StringValueMap {
         return StringValueMap.fromTuplesArray(tuples);
     }

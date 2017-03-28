@@ -107,6 +107,10 @@ export class Parameters extends AnyValueMap {
 		return JsonConverter.toJson(this);
 	}
 	
+    public static fromValue(value: any): Parameters {
+        return new Parameters(value);
+    }
+	
 	public static fromTuples(...tuples: any[]): Parameters {
 		let map = AnyValueMap.fromTuplesArray(tuples);
 		return new Parameters(map);

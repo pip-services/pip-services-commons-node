@@ -118,6 +118,9 @@ var Parameters = (function (_super) {
     Parameters.prototype.toJson = function () {
         return JsonConverter_1.JsonConverter.toJson(this);
     };
+    Parameters.fromValue = function (value) {
+        return new Parameters(value);
+    };
     Parameters.fromTuples = function () {
         var tuples = [];
         for (var _i = 0; _i < arguments.length; _i++) {

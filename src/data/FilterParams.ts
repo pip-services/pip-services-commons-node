@@ -4,6 +4,10 @@ export class FilterParams extends StringValueMap {
     public constructor(map: any = null) {
 		super(map);
 	}
+	
+	public static fromValue(value: any): FilterParams {
+		return new FilterParams(value);
+	}
 		
 	public static fromTuples(...tuples: any[]): FilterParams {
 		let map = StringValueMap.fromTuplesArray(tuples);
