@@ -6,3 +6,4 @@ export { Command } from './Command';
 export { CommandSet } from './CommandSet';
 export { Event } from './Event';
 export { InterceptedCommand } from './InterceptedCommand';
+export { ICommandable } from './ICommandable';

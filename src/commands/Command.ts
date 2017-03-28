@@ -1,3 +1,5 @@
+let _ = require('lodash');
+
 import { ICommand } from './ICommand';
 import { InvocationException } from '../errors/InvocationException';
 import { Schema } from '../validate/Schema';
@@ -7,10 +9,10 @@ import { ValidationResult } from '../validate/ValidationResult';
 
 export class Command implements ICommand {
     private readonly _schema: Schema;
-    private readonly _function: IExecutable;
+    private readonly _function: (correlationId: string, args: Parameters, callback: (err: any, result: any) => void) => void;
     private _name: string;
 
-    public constructor(name: string, schema: Schema, func: IExecutable) {
+    public constructor(name: string, schema: Schema, func: any) {
         if (!name)
             throw new Error("Name cannot be null");
         if (!func)
@@ -18,7 +20,14 @@ export class Command implements ICommand {
 
         this._name = name;
         this._schema = schema;
-        this._function = func;
+
+        if (_.isObject(func))
+            this._function = func.execute;
+        else
+            this._function = func;
+
+        if (!_.isFunction(this._function))
+            throw new Error("Function doesn't have function type");
     }
 
     public getName(): string {
@@ -36,9 +45,9 @@ export class Command implements ICommand {
         }
 
         try {
-            this._function.execute(correlationId, args, callback);
+            this._function(correlationId, args, callback);
         } catch (ex) {
-            var err = new InvocationException(
+            let err = new InvocationException(
                 correlationId,
                 "EXEC_FAILED",
                 "Execution " + this.getName() + " failed: " + ex

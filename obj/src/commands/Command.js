@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require('lodash');
 var InvocationException_1 = require("../errors/InvocationException");
 var Command = (function () {
     function Command(name, schema, func) {
@@ -9,7 +10,12 @@ var Command = (function () {
             throw new Error("Function cannot be null");
         this._name = name;
         this._schema = schema;
-        this._function = func;
+        if (_.isObject(func))
+            this._function = func.execute;
+        else
+            this._function = func;
+        if (!_.isFunction(this._function))
+            throw new Error("Function doesn't have function type");
     }
     Command.prototype.getName = function () {
         return this._name;
@@ -25,7 +31,7 @@ var Command = (function () {
             }
         }
         try {
-            this._function.execute(correlationId, args, callback);
+            this._function(correlationId, args, callback);
         }
         catch (ex) {
             var err = new InvocationException_1.InvocationException(correlationId, "EXEC_FAILED", "Execution " + this.getName() + " failed: " + ex).withDetails("command", this.getName()).wrap(ex);
