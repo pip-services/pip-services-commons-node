@@ -1,5 +1,11 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.1.0"></a> 2.1.0 (2017-03-31)
+
+### Features
+* **data** Added MultiString class
+* **data** Added TagsProcessor class
+
 ## <a name="2.0.11"></a> 2.0.11 (2017-03-28)
 
 ### Features
