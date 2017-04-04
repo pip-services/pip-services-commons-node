@@ -73,8 +73,8 @@ var ConnectionParams = (function (_super) {
             var connection = config.getSection("connection");
             if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
-            else
-                result.push(new ConnectionParams(config));
+            // else
+            //     result.push(new ConnectionParams(config));
         }
         return result;
     };

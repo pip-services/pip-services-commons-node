@@ -71,8 +71,8 @@ export class ConnectionParams extends ConfigParams {
             let connection: ConfigParams = config.getSection("connection");
             if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
-            else
-                result.push(new ConnectionParams(config));
+            // else
+            //     result.push(new ConnectionParams(config));
         }
 
         return result;

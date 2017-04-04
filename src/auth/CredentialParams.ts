@@ -70,8 +70,8 @@ export class CredentialParams extends ConfigParams {
             let credential: ConfigParams = config.getSection("credential");
             if (credential.length() > 0) 
                 result.push(new CredentialParams(credential));
-            else if (configAsDefault)
-                result.push(new CredentialParams(config));
+            // else if (configAsDefault)
+            //     result.push(new CredentialParams(config));
         }
 
         return result;
