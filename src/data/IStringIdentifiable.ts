@@ -5,4 +5,8 @@ import { IIdentifiable } from './IIdentifiable';
  * This is the recommended way to identify objects by string GUIDs  
  */
 export interface IStringIdentifiable extends IIdentifiable<string> {
+	/**
+	 * The unique object id
+	 */
+	id: string;
 }
