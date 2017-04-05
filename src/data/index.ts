@@ -6,6 +6,7 @@ export { IIdentifiable } from './IIdentifiable';
 export { ICloneable } from './ICloneable';
 export { IStringIdentifiable } from './IStringIdentifiable';
 export { INamed } from './INamed';
+export { IChangeable } from './IChangeable';
 export { ITrackable } from './ITrackable';
 export { IVersioned } from './IVersioned';
 export { IdGenerator } from './IdGenerator';
