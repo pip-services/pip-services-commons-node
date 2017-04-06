@@ -4,11 +4,11 @@ var async = require('async');
 var CredentialParams_1 = require("./CredentialParams");
 var StringValueMap_1 = require("../data/StringValueMap");
 var MemoryCredentialStore = (function () {
-    function MemoryCredentialStore(credentials) {
-        if (credentials === void 0) { credentials = null; }
+    function MemoryCredentialStore(config) {
+        if (config === void 0) { config = null; }
         this._items = new StringValueMap_1.StringValueMap();
-        if (credentials != null)
-            this.configure(credentials);
+        if (config != null)
+            this.configure(config);
     }
     MemoryCredentialStore.prototype.configure = function (config) {
         this.readCredentials(config);

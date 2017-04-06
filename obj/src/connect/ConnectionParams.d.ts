@@ -13,6 +13,6 @@ export declare class ConnectionParams extends ConfigParams {
     getUri(): string;
     setUri(value: string): void;
     static fromString(line: string): ConnectionParams;
-    static manyFromConfig(config: ConfigParams, configAsDefault?: boolean): ConnectionParams[];
-    static fromConfig(config: ConfigParams, configAsDefault?: boolean): ConnectionParams;
+    static manyFromConfig(config: ConfigParams): ConnectionParams[];
+    static fromConfig(config: ConfigParams): ConnectionParams;
 }

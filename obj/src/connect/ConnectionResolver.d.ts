@@ -6,7 +6,7 @@ export declare class ConnectionResolver {
     private _references;
     constructor(config?: ConfigParams, references?: IReferences);
     setReferences(references: IReferences): void;
-    configure(config: ConfigParams, configAsDefault?: boolean): void;
+    configure(config: ConfigParams): void;
     getAll(): ConnectionParams[];
     add(connection: ConnectionParams): void;
     private resolveInDiscovery(correlationId, connection, callback);

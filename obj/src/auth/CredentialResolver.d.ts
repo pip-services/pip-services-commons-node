@@ -6,7 +6,7 @@ export declare class CredentialResolver {
     private _references;
     constructor(config?: ConfigParams, references?: IReferences);
     setReferences(references: IReferences): void;
-    configure(config: ConfigParams, configAsDefault?: boolean): void;
+    configure(config: ConfigParams): void;
     getAll(): CredentialParams[];
     add(connection: CredentialParams): void;
     lookupInStores(correlationId: string, credential: CredentialParams, callback: (err: any, result: CredentialParams) => void): void;

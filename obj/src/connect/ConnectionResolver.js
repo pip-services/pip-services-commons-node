@@ -19,9 +19,8 @@ var ConnectionResolver = (function () {
     ConnectionResolver.prototype.setReferences = function (references) {
         this._references = references;
     };
-    ConnectionResolver.prototype.configure = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
-        var connections = ConnectionParams_1.ConnectionParams.manyFromConfig(config, configAsDefault);
+    ConnectionResolver.prototype.configure = function (config) {
+        var connections = ConnectionParams_1.ConnectionParams.manyFromConfig(config);
         (_a = this._connections).push.apply(_a, connections);
         var _a;
     };

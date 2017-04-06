@@ -20,7 +20,7 @@ var References = (function () {
     }
     References.prototype.put = function (locator, component) {
         if (component == null)
-            throw new Error("Reference cannot be null");
+            throw new Error("Component cannot be null");
         this._references.push(new Reference_1.Reference(locator, component));
     };
     References.prototype.remove = function (locator) {

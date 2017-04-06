@@ -13,6 +13,6 @@ export declare class CredentialParams extends ConfigParams {
     getAccessKey(): string;
     setAccessKey(value: string): void;
     static fromString(line: string): CredentialParams;
-    static manyFromConfig(config: ConfigParams, configAsDefault?: boolean): CredentialParams[];
-    static fromConfig(config: ConfigParams, configAsDefault?: boolean): CredentialParams;
+    static manyFromConfig(config: ConfigParams): CredentialParams[];
+    static fromConfig(config: ConfigParams): CredentialParams;
 }

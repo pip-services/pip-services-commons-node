@@ -2,18 +2,16 @@ let async = require('async');
 
 import { ConfigParams } from '../config/ConfigParams';
 import { IReconfigurable } from '../config/IReconfigurable';
-import { NameResolver } from '../config/NameResolver';
 import { CredentialParams } from './CredentialParams';
 import { ICredentialStore } from './ICredentialStore';
-import { Descriptor } from '../refer/Descriptor';
 import { StringValueMap } from '../data/StringValueMap';
 
 export class MemoryCredentialStore implements ICredentialStore, IReconfigurable {
     private readonly _items: StringValueMap = new StringValueMap();
 
-    public constructor(credentials: ConfigParams = null) {
-        if (credentials != null)
-            this.configure(credentials);
+    public constructor(config: ConfigParams = null) {
+        if (config != null)
+            this.configure(config);
     }
 
     public configure(config: ConfigParams): void {

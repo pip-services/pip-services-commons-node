@@ -18,9 +18,8 @@ var CredentialResolver = (function () {
     CredentialResolver.prototype.setReferences = function (references) {
         this._references = references;
     };
-    CredentialResolver.prototype.configure = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
-        var credentials = CredentialParams_1.CredentialParams.manyFromConfig(config, configAsDefault);
+    CredentialResolver.prototype.configure = function (config) {
+        var credentials = CredentialParams_1.CredentialParams.manyFromConfig(config);
         (_a = this._credentials).push.apply(_a, credentials);
         var _a;
     };

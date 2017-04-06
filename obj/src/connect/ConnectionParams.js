@@ -58,8 +58,7 @@ var ConnectionParams = (function (_super) {
         var map = StringValueMap_1.StringValueMap.fromString(line);
         return new ConnectionParams(map);
     };
-    ConnectionParams.manyFromConfig = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
+    ConnectionParams.manyFromConfig = function (config) {
         var result = [];
         var connections = config.getSection("connections");
         if (connections.length() > 0) {
@@ -73,14 +72,11 @@ var ConnectionParams = (function (_super) {
             var connection = config.getSection("connection");
             if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
-            // else
-            //     result.push(new ConnectionParams(config));
         }
         return result;
     };
-    ConnectionParams.fromConfig = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
-        var connections = this.manyFromConfig(config, configAsDefault);
+    ConnectionParams.fromConfig = function (config) {
+        var connections = this.manyFromConfig(config);
         return connections.length > 0 ? connections[0] : null;
     };
     return ConnectionParams;

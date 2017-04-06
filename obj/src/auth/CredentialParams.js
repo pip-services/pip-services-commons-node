@@ -28,13 +28,13 @@ var CredentialParams = (function (_super) {
         _super.prototype.put.call(this, "store_key", value);
     };
     CredentialParams.prototype.getUsername = function () {
-        return _super.prototype.getAsNullableString.call(this, "username");
+        return _super.prototype.getAsNullableString.call(this, "username") || _super.prototype.getAsNullableString.call(this, "user");
     };
     CredentialParams.prototype.setUsername = function (value) {
         _super.prototype.put.call(this, "username", value);
     };
     CredentialParams.prototype.getPassword = function () {
-        return _super.prototype.getAsNullableString.call(this, "password");
+        return _super.prototype.getAsNullableString.call(this, "password") || _super.prototype.getAsNullableString.call(this, "pass");
     };
     CredentialParams.prototype.setPassword = function (value) {
         _super.prototype.put.call(this, "password", value);
@@ -55,8 +55,7 @@ var CredentialParams = (function (_super) {
         var map = StringValueMap_1.StringValueMap.fromString(line);
         return new CredentialParams(map);
     };
-    CredentialParams.manyFromConfig = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
+    CredentialParams.manyFromConfig = function (config) {
         var result = [];
         var credentials = config.getSection("credentials");
         if (credentials.length() > 0) {
@@ -69,15 +68,12 @@ var CredentialParams = (function (_super) {
             var credential = config.getSection("credential");
             if (credential.length() > 0)
                 result.push(new CredentialParams(credential));
-            // else if (configAsDefault)
-            //     result.push(new CredentialParams(config));
         }
         return result;
     };
-    CredentialParams.fromConfig = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
-        var connections = this.manyFromConfig(config, configAsDefault);
-        return connections.length > 0 ? connections[0] : null;
+    CredentialParams.fromConfig = function (config) {
+        var credentials = this.manyFromConfig(config);
+        return credentials.length > 0 ? credentials[0] : null;
     };
     return CredentialParams;
 }(ConfigParams_1.ConfigParams));

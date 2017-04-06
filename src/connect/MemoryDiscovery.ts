@@ -2,10 +2,8 @@ let async = require('async');
 
 import { ConfigParams } from '../config/ConfigParams';
 import { IReconfigurable } from '../config/IReconfigurable';
-import { NameResolver } from '../config/NameResolver';
 import { ConnectionParams } from './ConnectionParams';
 import { IDiscovery } from './IDiscovery';
-import { StringValueMap } from '../data/StringValueMap';
 
 class DiscoveryItem {
     public key: string;
@@ -45,8 +43,9 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     public resolveOne(correlationId: string, key: string, callback: (err: any, result: ConnectionParams) => void): void {
         let connection: ConnectionParams = null;
         for (let index: 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null) {
-                connection = this._items[index].connection;
+            let item = this._items[index];
+            if (item.key == key && item.connection != null) {
+                connection = item.connection;
                 break;
             }
         }
@@ -56,8 +55,9 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     public resolveAll(correlationId: string, key: string, callback: (err: any, result: ConnectionParams[]) => void): void {
         let connections: ConnectionParams[] = [];
         for (let index: 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null)
-                connections.push(this._items[index].connection);
+            let item = this._items[index];
+            if (item.key == key && item.connection != null)
+                connections.push(item.connection);
         }
         callback(null, connections);
     }

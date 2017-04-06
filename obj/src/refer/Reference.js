@@ -30,7 +30,7 @@ var Reference = (function () {
         else if (this._locator != null)
             return this._locator == locator;
         else
-            return null;
+            return false;
     };
     /**
      * Gets component reference

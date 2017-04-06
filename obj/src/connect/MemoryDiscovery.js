@@ -37,8 +37,9 @@ var MemoryDiscovery = (function () {
     MemoryDiscovery.prototype.resolveOne = function (correlationId, key, callback) {
         var connection = null;
         for (var index = void 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null) {
-                connection = this._items[index].connection;
+            var item = this._items[index];
+            if (item.key == key && item.connection != null) {
+                connection = item.connection;
                 break;
             }
         }
@@ -47,8 +48,9 @@ var MemoryDiscovery = (function () {
     MemoryDiscovery.prototype.resolveAll = function (correlationId, key, callback) {
         var connections = [];
         for (var index = void 0; index < this._items.length; index++) {
-            if (this._items[index].key == key && this._items[index].connection != null)
-                connections.push(this._items[index].connection);
+            var item = this._items[index];
+            if (item.key == key && item.connection != null)
+                connections.push(item.connection);
         }
         callback(null, connections);
     };
