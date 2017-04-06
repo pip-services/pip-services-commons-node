@@ -57,7 +57,7 @@ export class ConnectionParams extends ConfigParams {
         return new ConnectionParams(map);
     }
 
-    public static manyFromConfig(config: ConfigParams, configAsDefault: boolean = true): ConnectionParams[] {
+    public static manyFromConfig(config: ConfigParams): ConnectionParams[] {
         let result: ConnectionParams[] = [];
         let connections: ConfigParams = config.getSection("connections");
 
@@ -71,15 +71,13 @@ export class ConnectionParams extends ConfigParams {
             let connection: ConfigParams = config.getSection("connection");
             if (connection.length() > 0)
                 result.push(new ConnectionParams(connection));
-            // else
-            //     result.push(new ConnectionParams(config));
         }
 
         return result;
     }
 
-    public static fromConfig(config: ConfigParams, configAsDefault: boolean = true) {
-        let connections: ConnectionParams[] = this.manyFromConfig(config, configAsDefault);
+    public static fromConfig(config: ConfigParams) {
+        let connections: ConnectionParams[] = this.manyFromConfig(config);
         return connections.length > 0 ? connections[0] : null;
     }
 

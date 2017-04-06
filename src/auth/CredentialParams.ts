@@ -20,7 +20,7 @@ export class CredentialParams extends ConfigParams {
     }
 
     public getUsername(): string {
-        return super.getAsNullableString("username");
+        return super.getAsNullableString("username") || super.getAsNullableString("user");
     }
 
     public setUsername(value: string) {
@@ -28,7 +28,7 @@ export class CredentialParams extends ConfigParams {
     }
 
     public getPassword(): string {
-        return super.getAsNullableString("password");
+        return super.getAsNullableString("password") || super.getAsNullableString("pass");
     }
 
     public setPassword(value: string) {
@@ -56,7 +56,7 @@ export class CredentialParams extends ConfigParams {
         return new CredentialParams(map);
     }
 
-    public static manyFromConfig(config: ConfigParams, configAsDefault: boolean = true): CredentialParams[] {
+    public static manyFromConfig(config: ConfigParams): CredentialParams[] {
         let result: CredentialParams[] = [];
 
         let credentials: ConfigParams = config.getSection("credentials");
@@ -70,15 +70,13 @@ export class CredentialParams extends ConfigParams {
             let credential: ConfigParams = config.getSection("credential");
             if (credential.length() > 0) 
                 result.push(new CredentialParams(credential));
-            // else if (configAsDefault)
-            //     result.push(new CredentialParams(config));
         }
 
         return result;
     }
 
-    public static fromConfig(config: ConfigParams, configAsDefault: boolean = true): CredentialParams {
-        let connections: CredentialParams[] = this.manyFromConfig(config, configAsDefault);
-        return connections.length > 0 ? connections[0] : null;
+    public static fromConfig(config: ConfigParams): CredentialParams {
+        let credentials: CredentialParams[] = this.manyFromConfig(config);
+        return credentials.length > 0 ? credentials[0] : null;
     }
 }

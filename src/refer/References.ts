@@ -21,7 +21,7 @@ export class References implements IReferences {
 	
 	public put(locator: any, component: any): void {
 		if (component == null)
-			throw new Error("Reference cannot be null");
+			throw new Error("Component cannot be null");
 
         this._references.push(new Reference(locator, component));
 	}

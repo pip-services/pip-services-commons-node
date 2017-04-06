@@ -20,8 +20,8 @@ export class CredentialResolver {
         this._references = references;
     }
 
-    public configure(config: ConfigParams, configAsDefault: boolean = true): void {
-        let credentials: CredentialParams[] = CredentialParams.manyFromConfig(config, configAsDefault);
+    public configure(config: ConfigParams): void {
+        let credentials: CredentialParams[] = CredentialParams.manyFromConfig(config);
         this._credentials.push(...credentials);
     }
 

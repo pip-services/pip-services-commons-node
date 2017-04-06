@@ -20,8 +20,8 @@ export class ConnectionResolver {
         this._references = references;
     }
 
-    public configure(config: ConfigParams, configAsDefault: boolean = true): void {
-        let connections: ConnectionParams[] = ConnectionParams.manyFromConfig(config, configAsDefault);
+    public configure(config: ConfigParams): void {
+        let connections: ConnectionParams[] = ConnectionParams.manyFromConfig(config);
         this._connections.push(...connections);
     }
 
