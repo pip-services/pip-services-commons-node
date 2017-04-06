@@ -4,7 +4,7 @@ var OptionResolver = (function () {
     function OptionResolver() {
     }
     OptionResolver.resolve = function (config, configAsDefault) {
-        if (configAsDefault === void 0) { configAsDefault = true; }
+        if (configAsDefault === void 0) { configAsDefault = false; }
         var options = config.getSection("options");
         if (Object.keys(options).length == 0 && configAsDefault)
             options = config;
