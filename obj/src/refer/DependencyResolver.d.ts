@@ -6,7 +6,7 @@ import { ReferenceQuery } from './ReferenceQuery';
 export declare class DependencyResolver implements IReferenceable, IReconfigurable {
     private _dependencies;
     private _references;
-    constructor(config?: ConfigParams);
+    constructor(config?: ConfigParams, references?: IReferences);
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
     put(name: string, locator: any): void;

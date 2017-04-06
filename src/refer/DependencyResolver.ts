@@ -11,9 +11,11 @@ export class DependencyResolver implements IReferenceable, IReconfigurable {
 	private _dependencies: any = {};
 	private _references: IReferences;
 	
-	public constructor(config?: ConfigParams) {
+	public constructor(config?: ConfigParams, references?: IReferences) {
 		if (config != null)
 			this.configure(config);
+		if (references != null)
+			this.setReferences(references);
 	}
 
 	public configure(config: ConfigParams): void {

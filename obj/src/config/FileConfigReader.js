@@ -26,7 +26,7 @@ var FileConfigReader = (function (_super) {
         this._path = path;
     };
     FileConfigReader.prototype.configure = function (config) {
-        this._path = config.getAsString("path");
+        this._path = config.getAsStringWithDefault("path", this._path);
     };
     return FileConfigReader;
 }(CachedConfigReader_1.CachedConfigReader));

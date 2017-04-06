@@ -19,6 +19,6 @@ export abstract class FileConfigReader extends CachedConfigReader implements ICo
     }
 
     public configure(config: ConfigParams): void {
-        this._path = config.getAsString("path");
+        this._path = config.getAsStringWithDefault("path", this._path);
     }    
 }

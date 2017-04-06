@@ -1,7 +1,6 @@
 import { IConfigReader } from './IConfigReader';
 import { IReconfigurable } from './IReconfigurable';
 import { ConfigParams } from './ConfigParams';
-import { NameResolver } from './NameResolver';
 
 export abstract class CachedConfigReader implements IConfigReader, IReconfigurable {
     private _lastRead: number = 0;

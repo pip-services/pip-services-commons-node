@@ -4,10 +4,12 @@ var StringConverter_1 = require("../convert/StringConverter");
 var ReferenceException_1 = require("./ReferenceException");
 var Descriptor_1 = require("./Descriptor");
 var DependencyResolver = (function () {
-    function DependencyResolver(config) {
+    function DependencyResolver(config, references) {
         this._dependencies = {};
         if (config != null)
             this.configure(config);
+        if (references != null)
+            this.setReferences(references);
     }
     DependencyResolver.prototype.configure = function (config) {
         var dependencies = config.getSection("dependencies");

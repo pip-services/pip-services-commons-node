@@ -1,6 +1,5 @@
 import { IConfigReader } from './IConfigReader';
 import { ConfigParams } from './ConfigParams';
-import { NameResolver } from './NameResolver';
 import { IReconfigurable } from './IReconfigurable';
 
 export class MemoryConfigReader implements IConfigReader, IReconfigurable {
