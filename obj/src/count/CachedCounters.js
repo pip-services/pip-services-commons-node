@@ -5,7 +5,7 @@ var CounterType_1 = require("./CounterType");
 var Counter_1 = require("./Counter");
 var CachedCounters = (function () {
     function CachedCounters() {
-        this._interval = CachedCounters._defaultInterval;
+        this._interval = 300000;
         this._cache = {};
         this._lastDumpTime = new Date().getTime();
     }
@@ -107,6 +107,5 @@ var CachedCounters = (function () {
     };
     return CachedCounters;
 }());
-CachedCounters._defaultInterval = 300000;
 exports.CachedCounters = CachedCounters;
 //# sourceMappingURL=CachedCounters.js.map

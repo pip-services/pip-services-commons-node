@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
 exports.Timing = Timing_1.Timing;
+var CachedCounters_1 = require("./CachedCounters");
+exports.CachedCounters = CachedCounters_1.CachedCounters;
 var NullCounters_1 = require("./NullCounters");
 exports.NullCounters = NullCounters_1.NullCounters;
 var LogCounters_1 = require("./LogCounters");

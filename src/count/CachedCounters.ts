@@ -8,9 +8,7 @@ import { ConfigParams } from '../config/ConfigParams';
 import { InvocationException } from '../errors/InvocationException';
 
 export abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
-    private static readonly _defaultInterval = 300000;
-
-    private _interval: number = CachedCounters._defaultInterval;
+    private _interval: number = 300000;
     private _cache: { [id: string]: Counter } = {};
     private _updated: boolean;
     private _lastDumpTime: number = new Date().getTime();

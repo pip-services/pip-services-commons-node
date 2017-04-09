@@ -6,7 +6,6 @@ import { Counter } from './Counter';
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ConfigParams } from '../config/ConfigParams';
 export declare abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
-    private static readonly _defaultInterval;
     private _interval;
     private _cache;
     private _updated;
