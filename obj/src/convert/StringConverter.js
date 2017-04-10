@@ -10,7 +10,7 @@ var StringConverter = (function () {
         if (_.isString(value))
             return value;
         if (_.isDate(value))
-            value.toISOString();
+            return value.toISOString();
         return value.toString();
     };
     StringConverter.toString = function (value) {

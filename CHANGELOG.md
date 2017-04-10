@@ -1,9 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
-## <a name="2.2.2"></a> 2.2.2 (2017-04-06)
+## <a name="2.2.4"></a> 2.2.4 (2017-04-09)
 
 ### Bug Fixed
 * Code cleanup after sync with Python
+* Fixed date to string conversion
 
 ## <a name="2.2.0"></a> 2.2.0 (2017-04-05)
 
