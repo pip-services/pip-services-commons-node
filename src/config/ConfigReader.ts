@@ -19,7 +19,7 @@ export abstract class ConfigReader implements IConfigurable {
 
     protected parameterize(config: string, parameters: ConfigParams): string {
         // Convert template to lodash
-        config = config.replace("{{", "<%=").replace("}}", "%>");
+        config = config.replace(/{{/g, "<%=").replace(/}}/g, "%>");
         parameters = this._parameters.override(parameters);
         let template = _.template(config);
         return template(parameters);

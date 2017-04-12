@@ -13,7 +13,7 @@ var ConfigReader = (function () {
     };
     ConfigReader.prototype.parameterize = function (config, parameters) {
         // Convert template to lodash
-        config = config.replace("{{", "<%=").replace("}}", "%>");
+        config = config.replace(/{{/g, "<%=").replace(/}}/g, "%>");
         parameters = this._parameters.override(parameters);
         var template = _.template(config);
         return template(parameters);

@@ -9,5 +9,6 @@
     { "field21": 543, "field22": "XYZ" }
   ],
   "field3": true,
-  "field4": "{{param1}}"
+  "field4": "{{param1}}",
+  "field5": "{{param2}}"
 }
