@@ -1,8 +1,7 @@
 import { ConfigParams } from './ConfigParams';
-import { CachedConfigReader } from './CachedConfigReader';
-import { IConfigurable } from './IConfigurable'
+import { ConfigReader } from './ConfigReader'
 
-export abstract class FileConfigReader extends CachedConfigReader implements IConfigurable {
+export abstract class FileConfigReader extends ConfigReader {
     private _path: string;
 
     public constructor(path: string = null) {
@@ -19,6 +18,8 @@ export abstract class FileConfigReader extends CachedConfigReader implements ICo
     }
 
     public configure(config: ConfigParams): void {
+        super.configure(config);
         this._path = config.getAsStringWithDefault("path", this._path);
     }    
+
 }

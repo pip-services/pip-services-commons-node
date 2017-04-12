@@ -1,3 +1,5 @@
+let _ = require('lodash');
+
 import { IConfigReader } from './IConfigReader';
 import { ConfigParams } from './ConfigParams';
 import { IReconfigurable } from './IReconfigurable';
@@ -13,13 +15,17 @@ export class MemoryConfigReader implements IConfigReader, IReconfigurable {
         this._config = config;
     }
 
-    public readConfig(correlationId: string, callback: (err: any, config: ConfigParams) => void): void {
-        let config = new ConfigParams(this._config);
-        callback(null, config);
+    public readConfig(correlationId: string, parameters: ConfigParams,
+        callback: (err: any, config: ConfigParams) => void): void {
+        if (parameters != null) {
+            let config = new ConfigParams(this._config).toString();
+            let template = _.template(config);
+            config = template(parameters);
+            callback(null, ConfigParams.fromString(config));
+        } else {
+            let config = new ConfigParams(this._config);;
+            callback(null, config);
+        }
     }
 
-    public readConfigSection(correlationId: string, section: string, callback: (err: any, config: ConfigParams) => void): void {
-        let config = this._config == null ? null : this._config.getSection(section);
-        callback(null, config);
-    }
 }

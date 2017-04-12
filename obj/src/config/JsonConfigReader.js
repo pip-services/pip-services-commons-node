@@ -22,12 +22,13 @@ var JsonConfigReader = (function (_super) {
         if (path === void 0) { path = null; }
         return _super.call(this, path) || this;
     }
-    JsonConfigReader.prototype.readObject = function (correlationId) {
+    JsonConfigReader.prototype.readObject = function (correlationId, parameters) {
         if (_super.prototype.getPath.call(this) == null)
             throw new ConfigException_1.ConfigException(correlationId, "NO_PATH", "Missing config file path");
         try {
             // Todo: make this async?
             var data = fs.readFileSync(_super.prototype.getPath.call(this), "utf8");
+            data = this.parameterize(data, parameters);
             return JsonConverter_1.JsonConverter.toNullableMap(data);
         }
         catch (e) {
@@ -36,9 +37,9 @@ var JsonConfigReader = (function (_super) {
                 .withCause(e);
         }
     };
-    JsonConfigReader.prototype.performReadConfig = function (correlationId, callback) {
+    JsonConfigReader.prototype.readConfig = function (correlationId, parameters, callback) {
         try {
-            var value = this.readObject(correlationId);
+            var value = this.readObject(correlationId, parameters);
             var config = ConfigParams_1.ConfigParams.fromValue(value);
             callback(null, config);
         }
@@ -46,11 +47,11 @@ var JsonConfigReader = (function (_super) {
             callback(ex, null);
         }
     };
-    JsonConfigReader.readObject = function (correlationId, path) {
-        return new JsonConfigReader(path).readObject(correlationId);
+    JsonConfigReader.readObject = function (correlationId, path, parameters) {
+        return new JsonConfigReader(path).readObject(correlationId, parameters);
     };
-    JsonConfigReader.readConfig = function (correlationId, path) {
-        var value = new JsonConfigReader(path).readObject(correlationId);
+    JsonConfigReader.readConfig = function (correlationId, path, parameters) {
+        var value = new JsonConfigReader(path).readObject(correlationId, parameters);
         var config = ConfigParams_1.ConfigParams.fromValue(value);
         return config;
     };

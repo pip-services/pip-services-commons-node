@@ -1,7 +1,6 @@
 import { ConfigParams } from './ConfigParams';
-import { CachedConfigReader } from './CachedConfigReader';
-import { IConfigurable } from './IConfigurable';
-export declare abstract class FileConfigReader extends CachedConfigReader implements IConfigurable {
+import { ConfigReader } from './ConfigReader';
+export declare abstract class FileConfigReader extends ConfigReader {
     private _path;
     constructor(path?: string);
     getPath(): string;

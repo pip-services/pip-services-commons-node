@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CachedConfigReader_1 = require("./CachedConfigReader");
+var ConfigReader_1 = require("./ConfigReader");
 var FileConfigReader = (function (_super) {
     __extends(FileConfigReader, _super);
     function FileConfigReader(path) {
@@ -26,9 +26,10 @@ var FileConfigReader = (function (_super) {
         this._path = path;
     };
     FileConfigReader.prototype.configure = function (config) {
+        _super.prototype.configure.call(this, config);
         this._path = config.getAsStringWithDefault("path", this._path);
     };
     return FileConfigReader;
-}(CachedConfigReader_1.CachedConfigReader));
+}(ConfigReader_1.ConfigReader));
 exports.FileConfigReader = FileConfigReader;
 //# sourceMappingURL=FileConfigReader.js.map

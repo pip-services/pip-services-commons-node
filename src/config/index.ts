@@ -1,4 +1,4 @@
-export { CachedConfigReader } from './CachedConfigReader';
+export { ConfigReader } from './ConfigReader';
 export { ConfigParams } from './ConfigParams';
 export { FileConfigReader } from './FileConfigReader';
 export { IConfigReader } from './IConfigReader';

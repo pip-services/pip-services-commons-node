@@ -22,12 +22,14 @@ var YamlConfigReader = (function (_super) {
         if (path === void 0) { path = null; }
         return _super.call(this, path) || this;
     }
-    YamlConfigReader.prototype.readObject = function (correlationId) {
+    YamlConfigReader.prototype.readObject = function (correlationId, parameters) {
         if (_super.prototype.getPath.call(this) == null)
             throw new ConfigException_1.ConfigException(correlationId, "NO_PATH", "Missing config file path");
         try {
             // Todo: make this async?
-            var data = yaml.safeLoad(fs.readFileSync(_super.prototype.getPath.call(this), 'utf8'));
+            var content = fs.readFileSync(_super.prototype.getPath.call(this), 'utf8');
+            content = this.parameterize(content, parameters);
+            var data = yaml.safeLoad(content);
             return data;
         }
         catch (e) {
@@ -36,9 +38,9 @@ var YamlConfigReader = (function (_super) {
                 .withCause(e);
         }
     };
-    YamlConfigReader.prototype.performReadConfig = function (correlationId, callback) {
+    YamlConfigReader.prototype.readConfig = function (correlationId, parameters, callback) {
         try {
-            var value = this.readObject(correlationId);
+            var value = this.readObject(correlationId, parameters);
             var config = ConfigParams_1.ConfigParams.fromValue(value);
             callback(null, config);
         }
@@ -46,11 +48,11 @@ var YamlConfigReader = (function (_super) {
             callback(ex, null);
         }
     };
-    YamlConfigReader.readObject = function (correlationId, path) {
-        return new YamlConfigReader(path).readObject(correlationId);
+    YamlConfigReader.readObject = function (correlationId, path, parameters) {
+        return new YamlConfigReader(path).readObject(correlationId, parameters);
     };
-    YamlConfigReader.readConfig = function (correlationId, path) {
-        var value = new YamlConfigReader(path).readObject(correlationId);
+    YamlConfigReader.readConfig = function (correlationId, path, parameters) {
+        var value = new YamlConfigReader(path).readObject(correlationId, parameters);
         var config = ConfigParams_1.ConfigParams.fromValue(value);
         return config;
     };

@@ -8,5 +8,6 @@
     "ABC",
     { "field21": 543, "field22": "XYZ" }
   ],
-  "field3": true
+  "field3": true,
+  "field4": "{{param1}}"
 }
