@@ -3,6 +3,7 @@
 ## <a name="2.3.0"></a> 2.3.0 (2017-04-11)
 
 ### Features
+* **validate** Added FilterParamsSchema and PagingParamsSchema
 * **config** Added parameters to ConfigReader.readConfig()
 
 ## <a name="2.2.4"></a> 2.2.4 (2017-04-09)

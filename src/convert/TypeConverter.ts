@@ -99,4 +99,37 @@ export class TypeConverter {
 		return result != null ? result : defaultValue;
 	}
 
+	public static toString(type: TypeCode): string {
+		switch (type) {
+			case TypeCode.Unknown:
+				return "unknown";
+			case TypeCode.String:
+				return "string";
+			case TypeCode.Boolean:
+				return "boolean";
+			case TypeCode.Integer:
+				return "integer"
+			case TypeCode.Long:
+				return "long";
+			case TypeCode.Float:
+				return "float";
+			case TypeCode.Double:
+				return "double";
+			case TypeCode.DateTime:
+				return "datetime";
+			case TypeCode.Duration:
+				return "duration";
+			case TypeCode.Object:
+				return "object";
+			case TypeCode.Enum:
+				return "enum";
+			case TypeCode.Array:
+				return "array";
+			case TypeCode.Map:
+				return "map";
+			default:
+				return "unknown";
+		}
+	}
+
 }

@@ -89,6 +89,38 @@ var TypeConverter = (function () {
         var result = TypeConverter.toNullableType(type, value);
         return result != null ? result : defaultValue;
     };
+    TypeConverter.toString = function (type) {
+        switch (type) {
+            case TypeCode_1.TypeCode.Unknown:
+                return "unknown";
+            case TypeCode_1.TypeCode.String:
+                return "string";
+            case TypeCode_1.TypeCode.Boolean:
+                return "boolean";
+            case TypeCode_1.TypeCode.Integer:
+                return "integer";
+            case TypeCode_1.TypeCode.Long:
+                return "long";
+            case TypeCode_1.TypeCode.Float:
+                return "float";
+            case TypeCode_1.TypeCode.Double:
+                return "double";
+            case TypeCode_1.TypeCode.DateTime:
+                return "datetime";
+            case TypeCode_1.TypeCode.Duration:
+                return "duration";
+            case TypeCode_1.TypeCode.Object:
+                return "object";
+            case TypeCode_1.TypeCode.Enum:
+                return "enum";
+            case TypeCode_1.TypeCode.Array:
+                return "array";
+            case TypeCode_1.TypeCode.Map:
+                return "map";
+            default:
+                return "unknown";
+        }
+    };
     return TypeConverter;
 }());
 exports.TypeConverter = TypeConverter;

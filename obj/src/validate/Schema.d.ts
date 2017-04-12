@@ -13,6 +13,7 @@ export declare class Schema {
     makeOptional(): Schema;
     withRule(rule: IValidationRule): Schema;
     protected performValidation(path: string, value: any, results: ValidationResult[]): void;
+    private typeToString(type);
     protected performTypeValidation(path: string, type: any, value: any, results: ValidationResult[]): void;
     validate(value: any): ValidationResult[];
     validateAndReturnException(correlationId: string, value: any, strict?: boolean): ValidationException;

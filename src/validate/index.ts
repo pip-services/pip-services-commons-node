@@ -17,3 +17,5 @@ export { PropertySchema } from './PropertySchema';
 export { ValidationException } from './ValidationException';
 export { ValidationResult } from './ValidationResult';
 export { ValidationResultType } from './ValidationResultType';
+export { FilterParamsSchema } from './FilterParamsSchema';
+export { PagingParamsSchema } from './PagingParamsSchema';

@@ -1,3 +1,5 @@
+let _ = require('lodash');
+
 import { IValidationRule } from './IValidationRule';
 import { ValidationResult } from './ValidationResult';
 import { ValidationResultType } from './ValidationResultType';
@@ -73,6 +75,14 @@ export class Schema {
         }
     }
 
+    private typeToString(type: any): string {
+        if (type == null)
+            return "unknown";
+        if (_.isNumber(type))
+            return TypeConverter.toString(type);
+        return type.toString();
+    }
+
     protected performTypeValidation(path: string, type: any, value: any, results: ValidationResult[]): void {
         // If type it not defined then skip
         if (type == null) return;
@@ -99,7 +109,7 @@ export class Schema {
                 path,
                 ValidationResultType.Error,
                 "TYPE_MISMATCH",
-                "Expected type " + type + " but found " + valueType.toString(),
+                "Expected type " + this.typeToString(type) + " but found " + this.typeToString(valueType),
                 type,
                 valueType.toString()
             )

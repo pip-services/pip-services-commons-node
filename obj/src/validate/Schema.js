@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require('lodash');
 var ValidationResult_1 = require("./ValidationResult");
 var ValidationResultType_1 = require("./ValidationResultType");
 var ValidationException_1 = require("./ValidationException");
@@ -53,6 +54,13 @@ var Schema = (function () {
             }
         }
     };
+    Schema.prototype.typeToString = function (type) {
+        if (type == null)
+            return "unknown";
+        if (_.isNumber(type))
+            return TypeConverter_1.TypeConverter.toString(type);
+        return type.toString();
+    };
     Schema.prototype.performTypeValidation = function (path, type, value, results) {
         // If type it not defined then skip
         if (type == null)
@@ -71,7 +79,7 @@ var Schema = (function () {
         // Match types
         if (TypeMatcher_1.TypeMatcher.matchType(type, valueType))
             return;
-        results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "TYPE_MISMATCH", "Expected type " + type + " but found " + valueType.toString(), type, valueType.toString()));
+        results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "TYPE_MISMATCH", "Expected type " + this.typeToString(type) + " but found " + this.typeToString(valueType), type, valueType.toString()));
     };
     Schema.prototype.validate = function (value) {
         var results = [];
