@@ -18,8 +18,21 @@ var TypeMatcher = (function () {
             return true;
         if (actualType == null)
             throw new Error("Actual type cannot be null");
-        if (_.isInteger(expectedType))
+        if (_.isInteger(expectedType)) {
+            if (expectedType == TypeCode_1.TypeCode.Integer
+                && (actualType == TypeCode_1.TypeCode.Long || actualType == TypeCode_1.TypeCode.Float || actualType == TypeCode_1.TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode_1.TypeCode.Long
+                && (actualType == TypeCode_1.TypeCode.Integer || actualType == TypeCode_1.TypeCode.Float || actualType == TypeCode_1.TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode_1.TypeCode.Float
+                && (actualType == TypeCode_1.TypeCode.Integer || actualType == TypeCode_1.TypeCode.Long || actualType == TypeCode_1.TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode_1.TypeCode.Double
+                && (actualType == TypeCode_1.TypeCode.Integer || actualType == TypeCode_1.TypeCode.Long || actualType == TypeCode_1.TypeCode.Float))
+                return true;
             return expectedType == actualType;
+        }
         if (_.isString(expectedType))
             return TypeMatcher.matchTypeByName(expectedType, actualType);
         return false;

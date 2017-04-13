@@ -1,5 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.3.3"></a> 2.3.3 (2017-04-12)
+
+### Bug Fixed
+* Relaxed validation of numbers in Node.js
+
 ## <a name="2.3.0"></a> 2.3.0 (2017-04-11)
 
 ### Features

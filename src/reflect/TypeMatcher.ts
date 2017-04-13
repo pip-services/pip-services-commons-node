@@ -20,8 +20,21 @@ export class TypeMatcher {
         if (actualType == null)
         	throw new Error("Actual type cannot be null");
 
-        if (_.isInteger(expectedType))
+        if (_.isInteger(expectedType)) {
+            if (expectedType == TypeCode.Integer 
+                && (actualType == TypeCode.Long || actualType == TypeCode.Float || actualType == TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode.Long 
+                && (actualType == TypeCode.Integer || actualType == TypeCode.Float || actualType == TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode.Float 
+                && (actualType == TypeCode.Integer || actualType == TypeCode.Long || actualType == TypeCode.Double))
+                return true;
+            if (expectedType == TypeCode.Double
+                && (actualType == TypeCode.Integer || actualType == TypeCode.Long || actualType == TypeCode.Float))
+                return true;
             return expectedType == actualType;
+        }
         
         if (_.isString(expectedType))
             return TypeMatcher.matchTypeByName(expectedType, actualType);
