@@ -17,8 +17,9 @@ export class PropertiesComparisonRule implements IValidationRule {
     }
 
     public validate(path: string, schema: Schema, value: any, results: ValidationResult[]): void {
-        var value1 = ObjectReader.getProperty(value, this._property1);
-        var value2 = ObjectReader.getProperty(value, this._property2);
+        let name = path || "value";
+        let value1 = ObjectReader.getProperty(value, this._property1);
+        let value2 = ObjectReader.getProperty(value, this._property2);
 
         if (!ObjectComparator.compare(value1, this._operation, value2)) {
             results.push(
@@ -26,7 +27,7 @@ export class PropertiesComparisonRule implements IValidationRule {
                     path,
                     ValidationResultType.Error,
                     "PROPERTIES_NOT_MATCH",
-                    "Property " + this._property1 + " is expected to " + this._operation + " property " + this._property2,
+                    name + " must have " + this._property1 + " " + this._operation + " " + this._property2,
                     value2,
                     value1
                 )

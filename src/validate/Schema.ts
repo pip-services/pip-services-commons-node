@@ -51,13 +51,15 @@ export class Schema {
     }
 
     protected performValidation(path: string, value: any, results: ValidationResult[]): void {
+        let name = path || "value";
+
         if (value == null) {
             if (this.isRequired()) {
                 results.push(new ValidationResult(
                     path,
                     ValidationResultType.Error,
                     "VALUE_IS_NULL",
-                    "value cannot be null",
+                    name + " must not be null",
                     "NOT NULL",
                     null
                 ));
@@ -98,6 +100,7 @@ export class Schema {
         value = ObjectReader.getValue(value);
         if (value == null) return;
 
+        let name = path || "value";
         let valueType: TypeCode = TypeConverter.toTypeCode(value);
 
         // Match types
@@ -109,7 +112,7 @@ export class Schema {
                 path,
                 ValidationResultType.Error,
                 "TYPE_MISMATCH",
-                "Expected type " + this.typeToString(type) + " but found " + this.typeToString(valueType),
+                name + " type must be " + this.typeToString(type) + " but found " + this.typeToString(valueType),
                 type,
                 valueType.toString()
             )

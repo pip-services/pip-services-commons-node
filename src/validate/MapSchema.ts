@@ -43,6 +43,7 @@ export class MapSchema extends Schema {
 
         if (!value) return;
 
+        let name = path || "value";
         let valueType: TypeCode = TypeConverter.toTypeCode(value);
         let map: any = valueType === TypeCode.Map ? value : null;
 
@@ -59,7 +60,7 @@ export class MapSchema extends Schema {
                     path,
                     ValidationResultType.Error,
                     "VALUE_ISNOT_MAP",
-                    "Value type is expected to be Dictionary",
+                    name + " type must be Map",
                     TypeCode.Map,
                     valueType
                 ));

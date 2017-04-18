@@ -11,10 +11,11 @@ var PropertiesComparisonRule = (function () {
         this._operation = operation;
     }
     PropertiesComparisonRule.prototype.validate = function (path, schema, value, results) {
+        var name = path || "value";
         var value1 = ObjectReader_1.ObjectReader.getProperty(value, this._property1);
         var value2 = ObjectReader_1.ObjectReader.getProperty(value, this._property2);
         if (!ObjectComparator_1.ObjectComparator.compare(value1, this._operation, value2)) {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "PROPERTIES_NOT_MATCH", "Property " + this._property1 + " is expected to " + this._operation + " property " + this._property2, value2, value1));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "PROPERTIES_NOT_MATCH", name + " must have " + this._property1 + " " + this._operation + " " + this._property2, value2, value1));
         }
     };
     return PropertiesComparisonRule;

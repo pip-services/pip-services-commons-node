@@ -43,6 +43,7 @@ var MapSchema = (function (_super) {
         _super.prototype.performValidation.call(this, path, value, results);
         if (!value)
             return;
+        var name = path || "value";
         var valueType = TypeConverter_1.TypeConverter.toTypeCode(value);
         var map = valueType === TypeCode_1.TypeCode.Map ? value : null;
         if (map) {
@@ -54,7 +55,7 @@ var MapSchema = (function (_super) {
         }
         else {
             if (this.isRequired) {
-                results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ISNOT_MAP", "Value type is expected to be Dictionary", TypeCode_1.TypeCode.Map, valueType));
+                results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ISNOT_MAP", name + " type must be Map", TypeCode_1.TypeCode.Map, valueType));
             }
         }
     };

@@ -21,6 +21,7 @@ export class ArraySchema extends Schema {
     }
 
     protected performValidation(path: string, value: any, results: ValidationResult[]): void {
+        let name = path || "value";
         value = ObjectReader.getValue(value);
 
         super.performValidation(path, value, results);
@@ -38,7 +39,7 @@ export class ArraySchema extends Schema {
                     path,
                     ValidationResultType.Error,
                     "VALUE_ISNOT_ARRAY",
-                    "Value type is expected to be List or array",
+                    name + " type must to be List or Array",
                     TypeCode.Array,
                     TypeConverter.toTypeCode(value)
                 )

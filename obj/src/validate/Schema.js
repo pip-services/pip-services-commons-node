@@ -38,9 +38,10 @@ var Schema = (function () {
         return this;
     };
     Schema.prototype.performValidation = function (path, value, results) {
+        var name = path || "value";
         if (value == null) {
             if (this.isRequired()) {
-                results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_IS_NULL", "value cannot be null", "NOT NULL", null));
+                results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_IS_NULL", name + " must not be null", "NOT NULL", null));
             }
         }
         else {
@@ -75,11 +76,12 @@ var Schema = (function () {
         value = ObjectReader_1.ObjectReader.getValue(value);
         if (value == null)
             return;
+        var name = path || "value";
         var valueType = TypeConverter_1.TypeConverter.toTypeCode(value);
         // Match types
         if (TypeMatcher_1.TypeMatcher.matchType(type, valueType))
             return;
-        results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "TYPE_MISMATCH", "Expected type " + this.typeToString(type) + " but found " + this.typeToString(valueType), type, valueType.toString()));
+        results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "TYPE_MISMATCH", name + " type must be " + this.typeToString(type) + " but found " + this.typeToString(valueType), type, valueType.toString()));
     };
     Schema.prototype.validate = function (value) {
         var results = [];

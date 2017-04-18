@@ -12,6 +12,7 @@ export class AtLeastOneExistRule implements IValidationRule {
     }
 
     public validate(path: string, schema: Schema, value: any, results: ValidationResult[]): void {
+        let name = path || "value";
         let found: string[] = [];
 
         for (var i = 0; i < this._properties.length; i++) {
@@ -26,7 +27,7 @@ export class AtLeastOneExistRule implements IValidationRule {
                     path,
                     ValidationResultType.Error,
                     "VALUE_NULL",
-                    "At least one property expected from " + this._properties,
+                    name + " must have at least one property from " + this._properties,
                     this._properties,
                     null
                 )

@@ -15,13 +15,15 @@ export class ValueComparisonRule implements IValidationRule {
     }
 
     public validate(path: string, schema: Schema, value: any, results: ValidationResult[]): void {
+        let name = path || "value";
+
         if (!ObjectComparator.compare(value, this._operation, this._value)) {
             results.push(
                 new ValidationResult(
                     path,
                     ValidationResultType.Error,
                     "BAD_VALUE",
-                    value + " is expected to " + this._operation + " " + this._value,
+                    name + " must " + this._operation + " " + this._value + " but found " + value,
                     this._operation + " " + this._value,
                     value
                 )

@@ -9,8 +9,9 @@ var ValueComparisonRule = (function () {
         this._value = value;
     }
     ValueComparisonRule.prototype.validate = function (path, schema, value, results) {
+        var name = path || "value";
         if (!ObjectComparator_1.ObjectComparator.compare(value, this._operation, this._value)) {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "BAD_VALUE", value + " is expected to " + this._operation + " " + this._value, this._operation + " " + this._value, value));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "BAD_VALUE", name + " must " + this._operation + " " + this._value + " but found " + value, this._operation + " " + this._value, value));
         }
     };
     return ValueComparisonRule;

@@ -32,6 +32,7 @@ var ArraySchema = (function (_super) {
         configurable: true
     });
     ArraySchema.prototype.performValidation = function (path, value, results) {
+        var name = path || "value";
         value = ObjectReader_1.ObjectReader.getValue(value);
         _super.prototype.performValidation.call(this, path, value, results);
         if (!value)
@@ -43,7 +44,7 @@ var ArraySchema = (function (_super) {
             }
         }
         else {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ISNOT_ARRAY", "Value type is expected to be List or array", TypeCode_1.TypeCode.Array, TypeConverter_1.TypeConverter.toTypeCode(value)));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ISNOT_ARRAY", name + " type must to be List or Array", TypeCode_1.TypeCode.Array, TypeConverter_1.TypeConverter.toTypeCode(value)));
         }
     };
     return ArraySchema;

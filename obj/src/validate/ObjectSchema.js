@@ -79,6 +79,7 @@ var ObjectSchema = (function (_super) {
         _super.prototype.performValidation.call(this, path, value, results);
         if (!value)
             return;
+        var name = path || "value";
         var properties = ObjectReader_1.ObjectReader.getProperties(value);
         if (this.properties) {
             for (var i = 0; i < this.properties.length; i++) {
@@ -102,7 +103,7 @@ var ObjectSchema = (function (_super) {
         if (!this._allowExcess)
             for (var key in properties) {
                 var propertyPath = key ? path + "." + key : key;
-                results.push(new ValidationResult_1.ValidationResult(propertyPath, ValidationResultType_1.ValidationResultType.Warning, "UNEXPECTED_PROPERTY", "Found unexpected property " + key, null, key));
+                results.push(new ValidationResult_1.ValidationResult(propertyPath, ValidationResultType_1.ValidationResultType.Warning, "UNEXPECTED_PROPERTY", name + " contains unexpected property " + key, null, key));
             }
     };
     return ObjectSchema;

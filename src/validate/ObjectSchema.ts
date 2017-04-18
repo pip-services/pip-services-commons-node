@@ -68,7 +68,8 @@ export class ObjectSchema extends Schema {
 
         if (!value) return;
 
-        var properties = ObjectReader.getProperties(value);
+        let name = path || "value";
+        let properties = ObjectReader.getProperties(value);
 
         if (this.properties) {
             for (var i = 0; i < this.properties.length; i++) {
@@ -101,7 +102,7 @@ export class ObjectSchema extends Schema {
                     propertyPath,
                     ValidationResultType.Warning,
                     "UNEXPECTED_PROPERTY",
-                    "Found unexpected property " + key,
+                    name + " contains unexpected property " + key,
                     null,
                     key
                 ));

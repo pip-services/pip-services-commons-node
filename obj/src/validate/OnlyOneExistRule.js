@@ -12,6 +12,7 @@ var OnlyOneExistRule = (function () {
         this._properties = properties;
     }
     OnlyOneExistRule.prototype.validate = function (path, schema, value, results) {
+        var name = path || "value";
         var found = [];
         for (var i = 0; i < this._properties.length; i++) {
             var property = this._properties[i];
@@ -20,10 +21,10 @@ var OnlyOneExistRule = (function () {
                 found.push(property);
         }
         if (found.length == 0) {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_NULL", "At least one property expected from " + this._properties, this._properties, null));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_NULL", name + " must have at least one property from " + this._properties, this._properties, null));
         }
         else if (found.length > 1) {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ONLY_ONE", "Only one property expected from " + this._properties, this._properties, null));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_ONLY_ONE", name + "must have only one property from " + this._properties, this._properties, null));
         }
     };
     return OnlyOneExistRule;

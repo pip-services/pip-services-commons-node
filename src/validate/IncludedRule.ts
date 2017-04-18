@@ -13,6 +13,7 @@ export class IncludedRule implements IValidationRule {
     public validate(path: string, schema: Schema, value: any, results: ValidationResult[]): void {
         if (!this._values) return;
 
+        let name = path || "value";
         let found: boolean = false;
 
         for (var i = 0; i < this._values.length && !found; i++) {
@@ -29,7 +30,7 @@ export class IncludedRule implements IValidationRule {
                     path,
                     ValidationResultType.Error,
                     "VALUE_NOT_INCLUDED",
-                    "Value shall be one of " + this._values,
+                    name + " must be one of " + this._values,
                     this._values,
                     null
                 )

@@ -13,6 +13,7 @@ var ExcludedRule = (function () {
     ExcludedRule.prototype.validate = function (path, schema, value, results) {
         if (!this._values)
             return;
+        var name = path || "value";
         var found = false;
         for (var i = 0; i < this._values.length && !found; i++) {
             var thisValue = this._values[i];
@@ -21,7 +22,7 @@ var ExcludedRule = (function () {
             }
         }
         if (found) {
-            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_INCLUDED", "Value shall not be one of " + this._values, this._values, null));
+            results.push(new ValidationResult_1.ValidationResult(path, ValidationResultType_1.ValidationResultType.Error, "VALUE_INCLUDED", name + " must not be one of " + this._values, this._values, null));
         }
     };
     return ExcludedRule;
