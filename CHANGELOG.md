@@ -1,6 +1,6 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
-## <a name="2.3.3"></a> 2.3.3 (2017-04-17)
+## <a name="2.3.4"></a> 2.3.4 (2017-04-17)
 
 ### Bug Fixed
 * Fixed validation error messages
