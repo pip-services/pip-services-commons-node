@@ -28,7 +28,7 @@ export class MemoryCredentialStore implements ICredentialStore, IReconfigurable 
         if (credential != null)
             this._items.put(key, credential);
         else
-            this._items.delete(key);
+            this._items.remove(key);
 
         if (callback) callback(null);
     }

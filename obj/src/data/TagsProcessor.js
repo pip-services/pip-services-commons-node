@@ -77,8 +77,7 @@ var TagsProcessor = (function () {
             return '';
         var result = '';
         for (var prop in field) {
-            if (field.hasOwnProperty(prop))
-                result += ' ' + TagsProcessor.extractString(field[prop]);
+            result += ' ' + TagsProcessor.extractString(field[prop]);
         }
         return result;
     };

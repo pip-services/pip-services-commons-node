@@ -7,7 +7,7 @@ export declare class StringValueMap {
     get(name: string): string;
     getKeyNames(): string[];
     put(key: string, value: any): any;
-    delete(key: string): void;
+    remove(key: string): void;
     append(map: any): void;
     clear(): any;
     getAsObject(key?: string): any;

@@ -83,8 +83,7 @@ export class TagsProcessor {
         
         let result = '';
         for (let prop in field) {
-            if (field.hasOwnProperty(prop))
-                result += ' ' + TagsProcessor.extractString(field[prop]);
+            result += ' ' + TagsProcessor.extractString(field[prop]);
         }
         return result;
     }

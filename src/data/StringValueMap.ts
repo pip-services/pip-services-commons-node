@@ -52,7 +52,7 @@ export class StringValueMap {
         this[key] = StringConverter.toNullableString(value);
     }
 
-    public delete(key: string): void {
+    public remove(key: string): void {
         delete this[key];
     }
     

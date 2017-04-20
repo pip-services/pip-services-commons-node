@@ -48,18 +48,16 @@ export class MemoryCache implements ICache, IReconfigurable {
 
         // Cleanup obsolete entries and find the oldest
         for (var prop in this._cache) {
-            if (this._cache.hasOwnProperty(prop)) {
-                let entry: CacheEntry = <CacheEntry>this._cache[prop];
-                // Remove obsolete entry
-                if (entry.isExpired()) {
-                    delete this._cache[prop];
-                }
-                // Count the remaining entry 
-                else {
-                    this._count++;
-                    if (oldest == null || oldest.getExpiration() > entry.getExpiration())
-                        oldest = entry;
-                }
+            let entry: CacheEntry = <CacheEntry>this._cache[prop];
+            // Remove obsolete entry
+            if (entry.isExpired()) {
+                delete this._cache[prop];
+            }
+            // Count the remaining entry 
+            else {
+                this._count++;
+                if (oldest == null || oldest.getExpiration() > entry.getExpiration())
+                    oldest = entry;
             }
         }
 

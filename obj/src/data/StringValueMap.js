@@ -43,7 +43,7 @@ var StringValueMap = (function () {
     StringValueMap.prototype.put = function (key, value) {
         this[key] = StringConverter_1.StringConverter.toNullableString(value);
     };
-    StringValueMap.prototype.delete = function (key) {
+    StringValueMap.prototype.remove = function (key) {
         delete this[key];
     };
     StringValueMap.prototype.append = function (map) {

@@ -36,17 +36,15 @@ var MemoryCache = (function () {
         this._count = 0;
         // Cleanup obsolete entries and find the oldest
         for (var prop in this._cache) {
-            if (this._cache.hasOwnProperty(prop)) {
-                var entry = this._cache[prop];
-                // Remove obsolete entry
-                if (entry.isExpired()) {
-                    delete this._cache[prop];
-                }
-                else {
-                    this._count++;
-                    if (oldest == null || oldest.getExpiration() > entry.getExpiration())
-                        oldest = entry;
-                }
+            var entry = this._cache[prop];
+            // Remove obsolete entry
+            if (entry.isExpired()) {
+                delete this._cache[prop];
+            }
+            else {
+                this._count++;
+                if (oldest == null || oldest.getExpiration() > entry.getExpiration())
+                    oldest = entry;
             }
         }
         // Remove the oldest if cache size exceeded maximum
