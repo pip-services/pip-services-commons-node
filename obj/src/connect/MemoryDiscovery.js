@@ -36,7 +36,7 @@ var MemoryDiscovery = (function () {
     };
     MemoryDiscovery.prototype.resolveOne = function (correlationId, key, callback) {
         var connection = null;
-        for (var index = void 0; index < this._items.length; index++) {
+        for (var index = 0; index < this._items.length; index++) {
             var item = this._items[index];
             if (item.key == key && item.connection != null) {
                 connection = item.connection;
