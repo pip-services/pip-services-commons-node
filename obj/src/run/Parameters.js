@@ -126,7 +126,7 @@ var Parameters = (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             tuples[_i] = arguments[_i];
         }
-        var map = AnyValueMap_1.AnyValueMap.fromTuplesArray(tuples);
+        var map = AnyValueMap_1.AnyValueMap.fromTuples.apply(AnyValueMap_1.AnyValueMap, tuples);
         return new Parameters(map);
     };
     Parameters.mergeParams = function () {
@@ -134,7 +134,7 @@ var Parameters = (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             parameters[_i] = arguments[_i];
         }
-        var map = AnyValueMap_1.AnyValueMap.fromMaps(parameters);
+        var map = AnyValueMap_1.AnyValueMap.fromMaps.apply(AnyValueMap_1.AnyValueMap, parameters);
         return new Parameters(map);
     };
     Parameters.fromJson = function (json) {

@@ -123,7 +123,7 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	public static mergeConfigs(...configs: ConfigParams[]): ConfigParams {
-		let map = StringValueMap.fromMaps(configs);
+		let map = StringValueMap.fromMaps(...configs);
 		return new ConfigParams(map);
 	}
 }

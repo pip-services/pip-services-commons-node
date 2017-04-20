@@ -112,12 +112,12 @@ export class Parameters extends AnyValueMap {
     }
 	
 	public static fromTuples(...tuples: any[]): Parameters {
-		let map = AnyValueMap.fromTuplesArray(tuples);
+		let map = AnyValueMap.fromTuples(...tuples);
 		return new Parameters(map);
 	}
 		
 	public static mergeParams(...parameters: Parameters[]): Parameters {
-		let map = AnyValueMap.fromMaps(parameters);
+		let map = AnyValueMap.fromMaps(...parameters);
 		return new Parameters(map);
 	}
 	

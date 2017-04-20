@@ -122,7 +122,7 @@ var ConfigParams = (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             configs[_i] = arguments[_i];
         }
-        var map = StringValueMap_1.StringValueMap.fromMaps(configs);
+        var map = StringValueMap_1.StringValueMap.fromMaps.apply(StringValueMap_1.StringValueMap, configs);
         return new ConfigParams(map);
     };
     return ConfigParams;
