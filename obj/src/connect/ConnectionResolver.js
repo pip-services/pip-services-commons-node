@@ -98,7 +98,7 @@ var ConnectionResolver = (function () {
         });
     };
     ConnectionResolver.prototype.resolveAllInDiscovery = function (correlationId, connection, callback) {
-        var result = [];
+        var resolved = [];
         var key = connection.getDiscoveryKey();
         if (!connection.useDiscovery()) {
             callback(null, []);
@@ -121,12 +121,12 @@ var ConnectionResolver = (function () {
                     callback(err);
                 }
                 else {
-                    result.push.apply(result, result);
+                    resolved = resolved.concat(result);
                     callback(null);
                 }
             });
         }, function (err) {
-            callback(err, result);
+            callback(err, resolved);
         });
     };
     ConnectionResolver.prototype.resolveAll = function (correlationId, callback) {
@@ -189,7 +189,7 @@ var ConnectionResolver = (function () {
     };
     ConnectionResolver.prototype.register = function (correlationId, connection, callback) {
         var _this = this;
-        var result = this.registerInDiscovery(correlationId, connection, function (err) {
+        this.registerInDiscovery(correlationId, connection, function (err, result) {
             if (result)
                 _this._connections.push(connection);
             if (callback)

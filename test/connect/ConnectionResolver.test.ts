@@ -51,7 +51,7 @@ suite('ConnectionResolver', ()=> {
                 connectionResolver.register("correlationId", connectionParams, (err) => {
                     assert.isNull(err);
                     let configList = connectionResolver.getAll();
-                    assert.equal(configList.length, 1);
+                    assert.equal(configList.length, 2);
                     assert.equal(configList[0].get("protocol"), "http");
                     assert.equal(configList[0].get("host"), "localhost");
                     assert.equal(configList[0].get("port"), "3000");

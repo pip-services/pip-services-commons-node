@@ -122,7 +122,7 @@ export class ConnectionResolver {
     private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, 
         callback: (err: any, result: ConnectionParams[]) => void): void {
         
-        let result: ConnectionParams[] = [];
+        let resolved: ConnectionParams[] = [];
         let key: string = connection.getDiscoveryKey();
 
         if (!connection.useDiscovery()) {
@@ -150,14 +150,14 @@ export class ConnectionResolver {
                     if (err || result == null) {
                         callback(err);
                     } else {
-                        result.push(...result);
+                        resolved = resolved.concat(result);
                         callback(null);
                     }
 
                 });
             },
             (err) => {
-                callback(err, result);
+                callback(err, resolved);
             }
         );
     }
@@ -199,7 +199,9 @@ export class ConnectionResolver {
         );
     }
 
-    private registerInDiscovery(correlationId: string, connection: ConnectionParams, callback: (err: any, result: boolean) => void) {
+    private registerInDiscovery(correlationId: string, connection: ConnectionParams,
+        callback: (err: any, result: boolean) => void) {
+        
         if (!connection.useDiscovery()) {
             if (callback) callback(null, false);
             return;
@@ -231,7 +233,7 @@ export class ConnectionResolver {
     }
 
     public register(correlationId: string, connection: ConnectionParams, callback: (err: any) => void): void {
-        var result = this.registerInDiscovery(correlationId, connection, (err) => {
+        this.registerInDiscovery(correlationId, connection, (err, result) => {
             if (result)
                 this._connections.push(connection);
             if (callback) callback(err);
