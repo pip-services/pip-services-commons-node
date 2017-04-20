@@ -39,7 +39,7 @@ var CredentialResolver = (function () {
             callback(null, null);
             return;
         }
-        var storeDescriptor = new Descriptor_1.Descriptor("*", "credential_store", "*", "*", "*");
+        var storeDescriptor = new Descriptor_1.Descriptor("*", "credential-store", "*", "*", "*");
         var components = this._references.getOptional(storeDescriptor);
         if (components.length == 0) {
             var err = new ReferenceException_1.ReferenceException(correlationId, storeDescriptor);

@@ -47,7 +47,7 @@ export class CredentialResolver {
             return;
         }
 
-        let storeDescriptor = new Descriptor("*", "credential_store", "*", "*", "*")
+        let storeDescriptor = new Descriptor("*", "credential-store", "*", "*", "*")
         let components: any[] = this._references.getOptional<any>(storeDescriptor)
         if (components.length == 0) {
             let err = new ReferenceException(correlationId, storeDescriptor);
