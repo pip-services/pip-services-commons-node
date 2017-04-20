@@ -47,7 +47,7 @@ var MemoryDiscovery = (function () {
     };
     MemoryDiscovery.prototype.resolveAll = function (correlationId, key, callback) {
         var connections = [];
-        for (var index = void 0; index < this._items.length; index++) {
+        for (var index = 0; index < this._items.length; index++) {
             var item = this._items[index];
             if (item.key == key && item.connection != null)
                 connections.push(item.connection);

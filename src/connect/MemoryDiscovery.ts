@@ -54,7 +54,7 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
 
     public resolveAll(correlationId: string, key: string, callback: (err: any, result: ConnectionParams[]) => void): void {
         let connections: ConnectionParams[] = [];
-        for (let index: 0; index < this._items.length; index++) {
+        for (let index = 0; index < this._items.length; index++) {
             let item = this._items[index];
             if (item.key == key && item.connection != null)
                 connections.push(item.connection);
