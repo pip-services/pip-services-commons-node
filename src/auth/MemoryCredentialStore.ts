@@ -20,8 +20,12 @@ export class MemoryCredentialStore implements ICredentialStore, IReconfigurable 
 
     public readCredentials(credentials: ConfigParams) {
         this._items.clear();
-        for (let key in credentials.getKeyNames())
-            this._items.put(key, CredentialParams.fromTuples([key, credentials.getAsNullableString(key)]));
+        let keys = credentials.getKeyNames();
+        for (let index = 0; index < keys.length; index++) {
+            let key = keys[index];
+            let value = credentials.getAsNullableString(key);
+            this._items.put(key, CredentialParams.fromTuplesArray([key, value]));
+        }
     }
 
     public store(correlationId: string, key: string, credential: CredentialParams, callback: (err: any) => void): void {

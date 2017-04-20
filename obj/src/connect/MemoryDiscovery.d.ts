@@ -3,7 +3,7 @@ import { IReconfigurable } from '../config/IReconfigurable';
 import { ConnectionParams } from './ConnectionParams';
 import { IDiscovery } from './IDiscovery';
 export declare class MemoryDiscovery implements IDiscovery, IReconfigurable {
-    private readonly _items;
+    private _items;
     constructor(config?: ConfigParams);
     configure(config: ConfigParams): void;
     readConnections(connections: ConfigParams): void;

@@ -18,11 +18,14 @@ var MemoryDiscovery = (function () {
         this.readConnections(config);
     };
     MemoryDiscovery.prototype.readConnections = function (connections) {
-        this._items.splice(0, this._items.length);
-        for (var key in connections.getKeyNames()) {
+        this._items = [];
+        var keys = connections.getKeyNames();
+        for (var index = 0; index < keys.length; index++) {
+            var key = keys[index];
+            var value = connections.getAsNullableString(key);
             var item = new DiscoveryItem();
             item.key = key;
-            item.connection = ConnectionParams_1.ConnectionParams.fromString(connections.getAsNullableString(key));
+            item.connection = ConnectionParams_1.ConnectionParams.fromString(value);
             this._items.push(item);
         }
     };

@@ -15,8 +15,12 @@ var MemoryCredentialStore = (function () {
     };
     MemoryCredentialStore.prototype.readCredentials = function (credentials) {
         this._items.clear();
-        for (var key in credentials.getKeyNames())
-            this._items.put(key, CredentialParams_1.CredentialParams.fromTuples([key, credentials.getAsNullableString(key)]));
+        var keys = credentials.getKeyNames();
+        for (var index = 0; index < keys.length; index++) {
+            var key = keys[index];
+            var value = credentials.getAsNullableString(key);
+            this._items.put(key, CredentialParams_1.CredentialParams.fromTuplesArray([key, value]));
+        }
     };
     MemoryCredentialStore.prototype.store = function (correlationId, key, credential, callback) {
         if (credential != null)

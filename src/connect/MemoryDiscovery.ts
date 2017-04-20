@@ -11,7 +11,7 @@ class DiscoveryItem {
 }
 
 export class MemoryDiscovery implements IDiscovery, IReconfigurable {
-    private readonly _items: DiscoveryItem[] = [];
+    private _items: DiscoveryItem[] = [];
 
     public constructor(config: ConfigParams = null) {
         if (config != null)
@@ -23,11 +23,14 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     }
 
     public readConnections(connections: ConfigParams) {
-        this._items.splice(0, this._items.length);
-        for (let key in connections.getKeyNames()) {
+        this._items = [];
+        let keys = connections.getKeyNames();
+        for (let index = 0; index < keys.length; index++) {
+            let key = keys[index];
+            let value = connections.getAsNullableString(key);
             let item: DiscoveryItem = new DiscoveryItem();
             item.key = key;
-            item.connection = ConnectionParams.fromString(connections.getAsNullableString(key));
+            item.connection = ConnectionParams.fromString(value);
             this._items.push(item);
         }
     }
