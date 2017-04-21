@@ -91,23 +91,21 @@ var DependencyResolver = (function () {
     };
     /**
      * Find all references by specified query criteria
-     * @param query a query criteria
+     * @param name a dependency name
      * @param required force to raise exception is no reference is found
      * @return list of found references
      * @throws ReferenceException when requested component wasn't found
      */
-    DependencyResolver.prototype.find = function (query, required) {
-        if (query.locator == null)
-            throw new Error("Locator cannot be null");
-        var name = StringConverter_1.StringConverter.toString(query.locator);
+    DependencyResolver.prototype.find = function (name, required) {
+        if (name == null)
+            throw new Error("Name cannot be null");
         var locator = this.locate(name);
         if (locator == null) {
             if (required)
                 throw new ReferenceException_1.ReferenceException(null, name);
             return null;
         }
-        query.locator = locator;
-        return this._references.find(query, required);
+        return this._references.find(locator, required);
     };
     DependencyResolver.fromTuples = function () {
         var tuples = [];

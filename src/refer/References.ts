@@ -1,6 +1,5 @@
 import { Reference } from './Reference';
 import { IReferences } from './IReferences';
-import { ReferenceQuery } from './ReferenceQuery';
 import { ReferenceException } from './ReferenceException';
 
 /**
@@ -69,7 +68,7 @@ export class References implements IReferences {
 		
     public getOneOptional<T>(locator: any): T {
     	try {
-	        let components = this.find<T>(new ReferenceQuery(locator), false);
+	        let components = this.find<T>(locator, false);
             return components.length > 0 ? components[0] : null;
     	} catch (ex) {
     		return null;
@@ -77,57 +76,43 @@ export class References implements IReferences {
     }
 
     public getOneRequired<T>(locator: any): T {
-        let components = this.find<T>(new ReferenceQuery(locator), true);
+        let components = this.find<T>(locator, true);
         return components.length > 0 ? components[0] : null;
     }
 
     public getOptional<T>(locator: any): T[] {
     	try {
-    		return this.find<T>(new ReferenceQuery(locator), false);
+    		return this.find<T>(locator, false);
     	} catch (ex) {
             return [];
     	}
     }
 
     public getRequired<T>(locator: any): T[] {
-        return this.find<T>(new ReferenceQuery(locator), true);
+        return this.find<T>(locator, true);
     }
 
-	public find<T>(query: ReferenceQuery, required: boolean): T[] {
-        if (query == null)
-            throw new Error("Query cannot be null");
+	public find<T>(locator: any, required: boolean): T[] {
+		if (locator == null)
+			throw new Error("Locator cannot be null");
 
         let components: T[] = [];
 
-        let index = query.ascending ? 0 : this._references.length - 1;
-
-        // Locate the start
-        if (query.startLocator != null) {
-            while (index >= 0 && index < this._references.length) {
-                let reference = this._references[index];
-                if (reference.match(query.startLocator))
-                    break;
-                index += query.ascending ? 1 : -1;
-            }
-        }
-
         // Search all references
-        while (index >= 0 && index < this._references.length) {
+        for (let index = this._references.length - 1; index >= 0; index--) {
             let reference = this._references[index];
-            if (reference.match(query.locator)) {
+            if (reference.match(locator)) {
                 let component = reference.getComponent();
                 components.push(component);
             }
-            index += query.ascending ? 1 : -1;
         }
 
         if (components.length == 0 && required)
-            throw new ReferenceException(null, query.locator);
+            throw new ReferenceException(null, locator);
 
         return components;
     }
 
-	
 	public static fromTuples(...tuples: any[]): References {
 		return new References(tuples);
 	}

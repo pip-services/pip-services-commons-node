@@ -1,5 +1,13 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.4.0"></a> 2.4.0 (2017-04-20)
+
+### Breaking changes
+* Deprecated and removed ReferenceQuery
+
+### Bug Fixed
+* Fixed field names in validation
+
 ## <a name="2.3.10"></a> 2.3.10 (2017-04-19)
 
 ### Bug Fixed

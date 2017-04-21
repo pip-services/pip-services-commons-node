@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Reference_1 = require("./Reference");
-var ReferenceQuery_1 = require("./ReferenceQuery");
 var ReferenceException_1 = require("./ReferenceException");
 /**
  * Basic implementation of IReferences that stores component as a flat list
@@ -58,7 +57,7 @@ var References = (function () {
     };
     References.prototype.getOneOptional = function (locator) {
         try {
-            var components = this.find(new ReferenceQuery_1.ReferenceQuery(locator), false);
+            var components = this.find(locator, false);
             return components.length > 0 ? components[0] : null;
         }
         catch (ex) {
@@ -66,45 +65,34 @@ var References = (function () {
         }
     };
     References.prototype.getOneRequired = function (locator) {
-        var components = this.find(new ReferenceQuery_1.ReferenceQuery(locator), true);
+        var components = this.find(locator, true);
         return components.length > 0 ? components[0] : null;
     };
     References.prototype.getOptional = function (locator) {
         try {
-            return this.find(new ReferenceQuery_1.ReferenceQuery(locator), false);
+            return this.find(locator, false);
         }
         catch (ex) {
             return [];
         }
     };
     References.prototype.getRequired = function (locator) {
-        return this.find(new ReferenceQuery_1.ReferenceQuery(locator), true);
+        return this.find(locator, true);
     };
-    References.prototype.find = function (query, required) {
-        if (query == null)
-            throw new Error("Query cannot be null");
+    References.prototype.find = function (locator, required) {
+        if (locator == null)
+            throw new Error("Locator cannot be null");
         var components = [];
-        var index = query.ascending ? 0 : this._references.length - 1;
-        // Locate the start
-        if (query.startLocator != null) {
-            while (index >= 0 && index < this._references.length) {
-                var reference = this._references[index];
-                if (reference.match(query.startLocator))
-                    break;
-                index += query.ascending ? 1 : -1;
-            }
-        }
         // Search all references
-        while (index >= 0 && index < this._references.length) {
+        for (var index = this._references.length - 1; index >= 0; index--) {
             var reference = this._references[index];
-            if (reference.match(query.locator)) {
+            if (reference.match(locator)) {
                 var component = reference.getComponent();
                 components.push(component);
             }
-            index += query.ascending ? 1 : -1;
         }
         if (components.length == 0 && required)
-            throw new ReferenceException_1.ReferenceException(null, query.locator);
+            throw new ReferenceException_1.ReferenceException(null, locator);
         return components;
     };
     References.fromTuples = function () {

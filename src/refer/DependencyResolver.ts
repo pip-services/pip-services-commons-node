@@ -5,7 +5,6 @@ import { IReferenceable } from './IReferenceable';
 import { IReferences } from './IReferences';
 import { ReferenceException } from './ReferenceException';
 import { Descriptor } from './Descriptor';
-import { ReferenceQuery } from './ReferenceQuery';
 
 export class DependencyResolver implements IReferenceable, IReconfigurable {
 	private _dependencies: any = {};
@@ -108,16 +107,15 @@ export class DependencyResolver implements IReferenceable, IReconfigurable {
 
 	/**
 	 * Find all references by specified query criteria
-	 * @param query a query criteria
+	 * @param name a dependency name
 	 * @param required force to raise exception is no reference is found
 	 * @return list of found references
 	 * @throws ReferenceException when requested component wasn't found
 	 */
-	public find<T>(query: ReferenceQuery, required: boolean): T[] {
-		if (query.locator == null)
-			throw new Error("Locator cannot be null");
+	public find<T>(name: string, required: boolean): T[] {
+		if (name == null)
+			throw new Error("Name cannot be null");
 		
-		let name = StringConverter.toString(query.locator);
 		let locator = this.locate(name);
 		if (locator == null) {
 			if (required)
@@ -125,10 +123,8 @@ export class DependencyResolver implements IReferenceable, IReconfigurable {
 			return null;
 		}
 		
-		query.locator = locator;
-		return this._references.find<T>(query, required);
+		return this._references.find<T>(locator, required);
 	}
-
 	
 	public static fromTuples(...tuples: any[]): DependencyResolver {
 		let result = new DependencyResolver();

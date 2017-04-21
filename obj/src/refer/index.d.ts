@@ -1,6 +1,5 @@
 export { Descriptor } from './Descriptor';
 export { DependencyResolver } from './DependencyResolver';
-export { ReferenceQuery } from './ReferenceQuery';
 export { IReferences } from './IReferences';
 export { IReferenceable } from './IReferenceable';
 export { IUnreferenceable } from './IUnreferenceable';

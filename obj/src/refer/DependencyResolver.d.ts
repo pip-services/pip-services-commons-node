@@ -2,7 +2,6 @@ import { ConfigParams } from '../config/ConfigParams';
 import { IReconfigurable } from '../config/IReconfigurable';
 import { IReferenceable } from './IReferenceable';
 import { IReferences } from './IReferences';
-import { ReferenceQuery } from './ReferenceQuery';
 export declare class DependencyResolver implements IReferenceable, IReconfigurable {
     private _dependencies;
     private _references;
@@ -42,11 +41,11 @@ export declare class DependencyResolver implements IReferenceable, IReconfigurab
     getOneRequired<T>(name: string): T;
     /**
      * Find all references by specified query criteria
-     * @param query a query criteria
+     * @param name a dependency name
      * @param required force to raise exception is no reference is found
      * @return list of found references
      * @throws ReferenceException when requested component wasn't found
      */
-    find<T>(query: ReferenceQuery, required: boolean): T[];
+    find<T>(name: string, required: boolean): T[];
     static fromTuples(...tuples: any[]): DependencyResolver;
 }

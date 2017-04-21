@@ -1,5 +1,4 @@
 import { TypeCode } from '../convert/TypeCode';
-import { ReferenceQuery } from './ReferenceQuery';
 
 /**
  * Set of component references with abilities to add new references, find reference using locators 
@@ -82,10 +81,10 @@ export interface IReferences {
 	/**
 	 * Find all references by specified query criteria
 	 * and matching to the specified type.
-	 * @param query a query criteria
+	 * @param locator a locator to find a reference
 	 * @param required force to raise exception is no reference is found
 	 * @return list of found references
 	 * @throws ReferenceException when requested component wasn't found
 	 */
-	find<T>(query: ReferenceQuery, required: boolean): T[];
+	find<T>(locator: any, required: boolean): T[];
 }
