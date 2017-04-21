@@ -48,7 +48,7 @@ var MapSchema = (function (_super) {
         var map = valueType === TypeCode_1.TypeCode.Map ? value : null;
         if (map) {
             for (var key in map) {
-                var elementPath = path ? path + "." + key : StringConverter_1.StringConverter.toString(key);
+                var elementPath = path != "" ? path + "." + key : StringConverter_1.StringConverter.toString(key);
                 this.performTypeValidation(elementPath, this.getKeyType(), key, results);
                 this.performTypeValidation(elementPath, this.getValueType(), map[key], results);
             }

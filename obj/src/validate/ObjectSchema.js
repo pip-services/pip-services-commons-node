@@ -102,7 +102,7 @@ var ObjectSchema = (function (_super) {
         }
         if (!this._allowExcess)
             for (var key in properties) {
-                var propertyPath = key ? path + "." + key : key;
+                var propertyPath = key && path != "" ? path + "." + key : key;
                 results.push(new ValidationResult_1.ValidationResult(propertyPath, ValidationResultType_1.ValidationResultType.Warning, "UNEXPECTED_PROPERTY", name + " contains unexpected property " + key, null, key));
             }
     };

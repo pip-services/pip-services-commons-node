@@ -49,7 +49,7 @@ export class MapSchema extends Schema {
 
         if (map) {
             for (var key in map) {
-                var elementPath = path ? path + "." + key : StringConverter.toString(key);
+                var elementPath = path != "" ? path + "." + key : StringConverter.toString(key);
 
                 this.performTypeValidation(elementPath, this.getKeyType(), key, results);
                 this.performTypeValidation(elementPath, this.getValueType(), map[key], results);

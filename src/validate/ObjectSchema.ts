@@ -96,7 +96,7 @@ export class ObjectSchema extends Schema {
 
         if (!this._allowExcess)
             for (var key in properties) {
-                let propertyPath: string = key ? path + "." + key : key;
+                let propertyPath: string = key && path != "" ? path + "." + key : key;
 
                 results.push(new ValidationResult(
                     propertyPath,

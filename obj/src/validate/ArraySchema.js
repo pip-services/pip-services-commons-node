@@ -38,9 +38,9 @@ var ArraySchema = (function (_super) {
         if (!value)
             return;
         if (_.isArray(value)) {
-            for (var i = 0; i < value.length; i++) {
-                var elementPath = !path ? i.toString() : path + "." + i;
-                this.performTypeValidation(elementPath, this.valueType, value[i], results);
+            for (var index = 0; index < value.length; index++) {
+                var elementPath = path != "" ? path + "." + index : index.toString();
+                this.performTypeValidation(elementPath, this.valueType, value[index], results);
             }
         }
         else {

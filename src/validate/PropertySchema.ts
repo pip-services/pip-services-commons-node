@@ -30,7 +30,7 @@ export class PropertySchema extends Schema {
     }
 
     public performValidation(path: string, value: any, results: ValidationResult[]): void {
-        path = path ? this.getName() : path + "." + this.getName();
+        path = path != "" ? path + "." + this.getName() : this.getName();
 
         super.performValidation(path, value, results);
 
