@@ -56,15 +56,15 @@ export abstract class Logger implements ILogger, IReconfigurable {
     }
 
     public info(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
+        this.formatAndWrite(LogLevel.Info, correlationId, null, message, ...args);
     }
 
     public debug(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
+        this.formatAndWrite(LogLevel.Debug, correlationId, null, message, ...args);
     }
 
     public trace(correlationId: string, message: string, ...args: any[]): void {
-        this.formatAndWrite(LogLevel.Warn, correlationId, null, message, ...args);
+        this.formatAndWrite(LogLevel.Trace, correlationId, null, message, ...args);
     }
 
     protected composeError(error: Error): string {

@@ -63,21 +63,21 @@ var Logger = (function () {
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Info, correlationId, null, message].concat(args));
     };
     Logger.prototype.debug = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Debug, correlationId, null, message].concat(args));
     };
     Logger.prototype.trace = function (correlationId, message) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Warn, correlationId, null, message].concat(args));
+        this.formatAndWrite.apply(this, [LogLevel_1.LogLevel.Trace, correlationId, null, message].concat(args));
     };
     Logger.prototype.composeError = function (error) {
         var builder = "";
