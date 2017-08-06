@@ -22,10 +22,10 @@ var DefaultCacheFactory = (function (_super) {
         _this.registerAsType(DefaultCacheFactory.NullCacheDescriptor, NullCache_1.NullCache);
         return _this;
     }
+    DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "cache", "default", "1.0");
+    DefaultCacheFactory.NullCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "null", "*", "1.0");
+    DefaultCacheFactory.MemoryCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "*", "1.0");
     return DefaultCacheFactory;
 }(Factory_1.Factory));
-DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "cache", "default", "1.0");
-DefaultCacheFactory.NullCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "null", "*", "1.0");
-DefaultCacheFactory.MemoryCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "*", "1.0");
 exports.DefaultCacheFactory = DefaultCacheFactory;
 //# sourceMappingURL=DefaultCacheFactory.js.map

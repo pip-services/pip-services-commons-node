@@ -154,10 +154,10 @@ var MemoryCache = (function () {
         if (callback)
             callback(null);
     };
+    //milliseconds
+    MemoryCache._defaultTimeout = 60000;
+    MemoryCache._defaultMaxSize = 1000;
     return MemoryCache;
 }());
-//milliseconds
-MemoryCache._defaultTimeout = 60000;
-MemoryCache._defaultMaxSize = 1000;
 exports.MemoryCache = MemoryCache;
 //# sourceMappingURL=MemoryCache.js.map

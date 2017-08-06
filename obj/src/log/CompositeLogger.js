@@ -34,8 +34,8 @@ var CompositeLogger = (function (_super) {
         for (var index = 0; index < this._loggers.length; index++)
             this._loggers[index].log(level, correlationId, error, message);
     };
+    CompositeLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
     return CompositeLogger;
 }(Logger_1.Logger));
-CompositeLogger.descriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "default", "1.0");
 exports.CompositeLogger = CompositeLogger;
 //# sourceMappingURL=CompositeLogger.js.map

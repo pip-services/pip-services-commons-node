@@ -20,9 +20,9 @@ var DefaultDiscoveryFactory = (function (_super) {
         _this.registerAsType(DefaultDiscoveryFactory.MemoryDiscoveryDescriptor, MemoryDiscovery_1.MemoryDiscovery);
         return _this;
     }
+    DefaultDiscoveryFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "discovery", "default", "1.0");
+    DefaultDiscoveryFactory.MemoryDiscoveryDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "discovery", "memory", "*", "1.0");
     return DefaultDiscoveryFactory;
 }(Factory_1.Factory));
-DefaultDiscoveryFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "discovery", "default", "1.0");
-DefaultDiscoveryFactory.MemoryDiscoveryDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "discovery", "memory", "*", "1.0");
 exports.DefaultDiscoveryFactory = DefaultDiscoveryFactory;
 //# sourceMappingURL=DefaultDiscoveryFactory.js.map

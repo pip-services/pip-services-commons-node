@@ -24,11 +24,11 @@ var DefaultLoggerFactory = (function (_super) {
         _this.registerAsType(DefaultLoggerFactory.CompositeLoggerDescriptor, CompositeLogger_1.CompositeLogger);
         return _this;
     }
+    DefaultLoggerFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "logger", "default", "1.0");
+    DefaultLoggerFactory.NullLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "null", "*", "1.0");
+    DefaultLoggerFactory.ConsoleLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "*", "1.0");
+    DefaultLoggerFactory.CompositeLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "*", "1.0");
     return DefaultLoggerFactory;
 }(Factory_1.Factory));
-DefaultLoggerFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "logger", "default", "1.0");
-DefaultLoggerFactory.NullLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "null", "*", "1.0");
-DefaultLoggerFactory.ConsoleLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "*", "1.0");
-DefaultLoggerFactory.CompositeLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "*", "1.0");
 exports.DefaultLoggerFactory = DefaultLoggerFactory;
 //# sourceMappingURL=DefaultLoggerFactory.js.map

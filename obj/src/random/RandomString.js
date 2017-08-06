@@ -38,13 +38,13 @@ var RandomString = (function () {
         }
         return result;
     };
+    RandomString._digits = "01234956789";
+    RandomString._symbols = "_,.:-/.[].{},#-!,$=%.+^.&*-() ";
+    RandomString._alphaLower = "abcdefghijklmnopqrstuvwxyz";
+    RandomString._alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    RandomString._alpha = RandomString._alphaUpper + RandomString._alphaLower;
+    RandomString._chars = RandomString._alpha + RandomString._digits + RandomString._symbols;
     return RandomString;
 }());
-RandomString._digits = "01234956789";
-RandomString._symbols = "_,.:-/.[].{},#-!,$=%.+^.&*-() ";
-RandomString._alphaLower = "abcdefghijklmnopqrstuvwxyz";
-RandomString._alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-RandomString._alpha = RandomString._alphaUpper + RandomString._alphaLower;
-RandomString._chars = RandomString._alpha + RandomString._digits + RandomString._symbols;
 exports.RandomString = RandomString;
 //# sourceMappingURL=RandomString.js.map

@@ -1,22 +1,40 @@
+let _ = require('lodash');
+
 import { IClosable } from './IClosable';
 import { INotifiable } from './INotifiable';
 import { Parameters } from './Parameters';
 
 export class FixedRateTimer implements IClosable {
-	private _task: INotifiable;
+    private _task: INotifiable;
+    private _callback: () => void;
 	private _delay: number;
 	private _interval: number;
 	private _timer: any;
     private _timeout: any;
 	
-	public constructor(task: INotifiable = null, interval: number = null, delay: number = null) {
-		this._task = task;
-		this._interval = interval;
-		this._delay = delay;
+	public constructor(taskOrCallback: any = null, interval: number = null, delay: number = null) {
+        if (_.isObject(taskOrCallback) && _.isFunction(taskOrCallback.notify))
+            this.setTask(taskOrCallback);
+        else 
+		    this.setCallback(taskOrCallback);
+
+        this.setInterval(interval);
+		this.setDelay(delay);
 	}
 
-	public getTask(): INotifiable { return this._task; }
-	public setTask(value: INotifiable): void { this._task = value; }
+	public getTask(): INotifiable {return this._task; }
+	public setTask(value: INotifiable): void {
+        this._task = value;
+        this._callback = () => { 
+            this._task.notify("pip-commons-timer", new Parameters()); 
+        }
+    }
+
+    public getCallback(): () => void { return this._callback; }
+    public setCallback(value: () => void) {
+        this._callback = value;
+        this._task = null;
+    }
 
 	public getDelay(): number { return this._delay; }
 	public setDelay(value: number): void { this._delay = value; }
@@ -25,11 +43,14 @@ export class FixedRateTimer implements IClosable {
 	public setInterval(value: number): void { this._interval = value; }
 	
 	public isStarted(): boolean { return this._timer != null; }
-	
+    
 	public start(): void {
         // Stop previously set timer
         this.stop();
         
+        // Exit if interval is not defined
+        if (this._interval == null || this._interval <= 0) return;
+
         // Introducing delay
         let delay = Math.max(0, this._delay - this._interval);
 
@@ -39,7 +60,7 @@ export class FixedRateTimer implements IClosable {
             // Set a new timer
             this._timer = setInterval(() => {
                 try {
-                    this._task.notify("pip-commons-timer", new Parameters());
+                    if (this._callback) this._callback();
                 } catch (ex) {
                     // Ignore or better log!
                 }

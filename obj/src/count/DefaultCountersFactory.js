@@ -24,11 +24,11 @@ var DefaultCountersFactory = (function (_super) {
         _this.registerAsType(DefaultCountersFactory.CompositeCountersDescriptor, CompositeCounters_1.CompositeCounters);
         return _this;
     }
+    DefaultCountersFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "counters", "default", "1.0");
+    DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "*", "1.0");
+    DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "*", "1.0");
+    DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "*", "1.0");
     return DefaultCountersFactory;
 }(Factory_1.Factory));
-DefaultCountersFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "counters", "default", "1.0");
-DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "*", "1.0");
-DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "*", "1.0");
-DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "*", "1.0");
 exports.DefaultCountersFactory = DefaultCountersFactory;
 //# sourceMappingURL=DefaultCountersFactory.js.map

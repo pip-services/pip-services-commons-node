@@ -103,8 +103,8 @@ var TagsProcessor = (function () {
         });
         return _.uniq(tags);
     };
+    TagsProcessor.HASHTAG_REGEX = /#\w+/g;
     return TagsProcessor;
 }());
-TagsProcessor.HASHTAG_REGEX = /#\w+/g;
 exports.TagsProcessor = TagsProcessor;
 //# sourceMappingURL=TagsProcessor.js.map

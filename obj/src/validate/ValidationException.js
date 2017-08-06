@@ -51,8 +51,8 @@ var ValidationException = (function (_super) {
         if (ex)
             throw ex;
     };
+    ValidationException.SerialVersionUid = -1459801864235223845;
     return ValidationException;
 }(BadRequestException_1.BadRequestException));
-ValidationException.SerialVersionUid = -1459801864235223845;
 exports.ValidationException = ValidationException;
 //# sourceMappingURL=ValidationException.js.map

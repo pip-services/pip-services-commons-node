@@ -1,5 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.5.0"></a> 2.5.0 (2017-08-05)
+
+### Features
+* Added to FixedRateTimer support for callback
+
 ## <a name="2.4.0"></a> 2.4.0 (2017-04-20)
 
 ### Breaking changes

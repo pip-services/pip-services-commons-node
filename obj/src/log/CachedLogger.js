@@ -61,8 +61,8 @@ var CachedLogger = (function (_super) {
             }
         }
     };
+    CachedLogger._defaultInterval = 60000;
     return CachedLogger;
 }(Logger_1.Logger));
-CachedLogger._defaultInterval = 60000;
 exports.CachedLogger = CachedLogger;
 //# sourceMappingURL=CachedLogger.js.map
