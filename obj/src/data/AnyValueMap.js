@@ -61,8 +61,8 @@ var AnyValueMap = (function () {
         return count;
     };
     AnyValueMap.prototype.getAsObject = function (key) {
-        if (key === void 0) { key = null; }
-        if (key == null) {
+        if (key === void 0) { key = undefined; }
+        if (key === undefined) {
             var result = {};
             for (var key_1 in this) {
                 var value = this[key_1];
@@ -76,8 +76,8 @@ var AnyValueMap = (function () {
         }
     };
     AnyValueMap.prototype.setAsObject = function (key, value) {
-        if (value === void 0) { value = null; }
-        if (value == null) {
+        if (value === void 0) { value = undefined; }
+        if (value === undefined) {
             value = key;
             this.clear();
             var values = MapConverter_1.MapConverter.toMap(value);

@@ -52,8 +52,8 @@ var AnyValueArray = (function (_super) {
         this.splice(0, this.length);
     };
     AnyValueArray.prototype.getAsObject = function (index) {
-        if (index === void 0) { index = null; }
-        if (index == null) {
+        if (index === void 0) { index = undefined; }
+        if (index === undefined) {
             var result = [];
             for (index = 0; index < this.length; index++)
                 result.push(this[index]);
@@ -64,7 +64,8 @@ var AnyValueArray = (function (_super) {
         }
     };
     AnyValueArray.prototype.setAsObject = function (index, value) {
-        if (value == null) {
+        if (value === void 0) { value = undefined; }
+        if (value === undefined) {
             this.clear();
             var elements = ArrayConverter_1.ArrayConverter.toArray(value);
             this.append(elements);

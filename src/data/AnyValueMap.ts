@@ -73,8 +73,8 @@ export class AnyValueMap implements ICloneable {
         return count;
     }
         
-    public getAsObject(key: string = null): any {
-        if (key == null) {
+    public getAsObject(key: string = undefined): any {
+        if (key === undefined) {
             let result: any = {};
             for (let key in this) {
                 let value = this[key];
@@ -87,8 +87,8 @@ export class AnyValueMap implements ICloneable {
         }
     }
     
-    public setAsObject(key: any, value: any = null): void {
-        if (value == null) {
+    public setAsObject(key: any, value: any = undefined): void {
+        if (value === undefined) {
             value = key
             this.clear();
             let values = MapConverter.toMap(value);

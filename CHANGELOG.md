@@ -5,6 +5,9 @@
 ### Features
 * Added to FixedRateTimer support for callback
 
+### Bug Fixed
+* Fixed setAsObject in AnyValueMap and StringValueMap with 1 parameter
+
 ## <a name="2.4.0"></a> 2.4.0 (2017-04-20)
 
 ### Breaking changes

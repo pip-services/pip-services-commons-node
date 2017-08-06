@@ -10,7 +10,7 @@ export declare class AnyValueArray extends Array<any> implements ICloneable {
     append(elements: any[]): void;
     clear(): void;
     getAsObject(index?: number): any;
-    setAsObject(index: any, value: any): void;
+    setAsObject(index: any, value?: any): void;
     getAsNullableString(index: number): string;
     getAsString(index: number): string;
     getAsStringWithDefault(index: number, defaultValue: string): string;

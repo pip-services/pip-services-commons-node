@@ -49,8 +49,8 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         this.splice(0, this.length);
     }
 
-    public getAsObject(index: number = null): any {
-        if (index == null) {
+    public getAsObject(index: number = undefined): any {
+        if (index === undefined) {
             let result: any[] = [];
             for (index = 0; index < this.length; index++)
                 result.push(this[index]);
@@ -60,8 +60,8 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         }
     }
 
-    public setAsObject(index: any, value: any): void {
-        if (value == null) {
+    public setAsObject(index: any, value: any = undefined): void {
+        if (value === undefined) {
             this.clear();
             let elements = ArrayConverter.toArray(value);
             this.append(elements);
