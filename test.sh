@@ -11,4 +11,5 @@ set -o pipefail
 #docker build -f Dockerfile -t "${IMAGE}" --target build .
 #docker run -ti --rm "${IMAGE}" "npm test"
 
+export IMAGE
 docker-compose -f ./docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from test
