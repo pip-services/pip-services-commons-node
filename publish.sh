@@ -5,6 +5,7 @@ VERSION=`cat ./VERSION`
 
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
+set -o pipefail
 
 npm login
 

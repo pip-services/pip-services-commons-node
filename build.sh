@@ -10,6 +10,7 @@ CONTAINER="${COMPONENT}"
 
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
+set -o pipefail
 
 # Remove build files
 rm -rf ./obj
