@@ -1,10 +1,12 @@
 #!/bin/bash
 
 #COMPONENT=`node -e "console.log(require('./package.json').name);"`
-COMPONENT=`basename "$PWD"`
 #VERSION=`node -e "console.log(require('./package.json').version);"`
+#COMPONENT=`basename "$PWD"`
 #VERSION=`npm view ${COMPONENT} version`
-VERSION=`cat ./VERSION`
+
+COMPONENT=$(grep -m1 name package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
+VERSION=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
 IMAGE="pipdevs/${COMPONENT}:${VERSION}-build"
 CONTAINER="${COMPONENT}"
 
