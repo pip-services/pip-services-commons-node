@@ -21,7 +21,7 @@ RUN  tsc
 # ---- Test ----
 # run linters, setup and tests
 FROM build AS test
-RUN  npm run test
+#RUN  npm run test
 #ENTRYPOINT ["npm", "test"]
 
 #

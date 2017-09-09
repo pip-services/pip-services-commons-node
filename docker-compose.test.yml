@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${IMAGE:-pipdevs/test}
+    command: npm test
+

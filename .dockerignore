@@ -2,7 +2,8 @@
 .git
 .gitignore
 .dockerignore
-Dockerfile
+Dockerfile*
+docker-compose*.yml
 node_modules
 obj
 doc
