@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var InvocationException_1 = require("../errors/InvocationException");
-var Event = (function () {
+var Event = /** @class */ (function () {
     function Event(name) {
         if (!name)
             throw new Error("Name cannot be null");

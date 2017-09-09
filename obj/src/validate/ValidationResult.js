@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ValidationResult = (function () {
+var ValidationResult = /** @class */ (function () {
     function ValidationResult(path, type, code, message, expected, actual) {
         if (path === void 0) { path = null; }
         if (type === void 0) { type = null; }

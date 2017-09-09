@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
 var CounterType_1 = require("./CounterType");
 var Counter_1 = require("./Counter");
-var CachedCounters = (function () {
+var CachedCounters = /** @class */ (function () {
     function CachedCounters() {
         this._interval = 300000;
         this._cache = {};

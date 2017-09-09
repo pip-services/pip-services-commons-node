@@ -4,7 +4,7 @@ var _ = require('lodash');
 /**
  * Helper class that assigns references to components
  */
-var Referencer = (function () {
+var Referencer = /** @class */ (function () {
     function Referencer() {
     }
     /**

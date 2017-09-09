@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
 var MemoryDiscovery_1 = require("./MemoryDiscovery");
-var DefaultDiscoveryFactory = (function (_super) {
+var DefaultDiscoveryFactory = /** @class */ (function (_super) {
     __extends(DefaultDiscoveryFactory, _super);
     function DefaultDiscoveryFactory() {
         var _this = _super.call(this) || this;

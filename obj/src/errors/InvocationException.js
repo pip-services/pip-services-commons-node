@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors returned by remote services or network during call attempts
  */
-var InvocationException = (function (_super) {
+var InvocationException = /** @class */ (function (_super) {
     __extends(InvocationException, _super);
     function InvocationException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

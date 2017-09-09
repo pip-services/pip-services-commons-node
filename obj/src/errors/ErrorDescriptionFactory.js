@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ErrorCategory_1 = require("./ErrorCategory");
 var ErrorDescription_1 = require("./ErrorDescription");
 var ApplicationException_1 = require("./ApplicationException");
-var ErrorDescriptionFactory = (function () {
+var ErrorDescriptionFactory = /** @class */ (function () {
     function ErrorDescriptionFactory() {
     }
     ErrorDescriptionFactory.create = function (error) {

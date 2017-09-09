@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RandomInteger_1 = require("./RandomInteger");
-var RandomDateTime = (function () {
+var RandomDateTime = /** @class */ (function () {
     function RandomDateTime() {
     }
     RandomDateTime.nextDate = function (minYear, maxYear) {

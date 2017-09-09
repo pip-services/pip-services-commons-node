@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var IntegerConverter_1 = require("../convert/IntegerConverter");
 var BooleanConverter_1 = require("../convert/BooleanConverter");
 var AnyValueMap_1 = require("./AnyValueMap");
-var PagingParams = (function () {
+var PagingParams = /** @class */ (function () {
     function PagingParams(skip, take, total) {
         if (skip === void 0) { skip = null; }
         if (take === void 0) { take = null; }

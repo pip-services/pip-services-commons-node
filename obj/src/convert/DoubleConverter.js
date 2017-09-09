@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var DoubleConverter = (function () {
+var DoubleConverter = /** @class */ (function () {
     function DoubleConverter() {
     }
     DoubleConverter.toNullableDouble = function (value) {

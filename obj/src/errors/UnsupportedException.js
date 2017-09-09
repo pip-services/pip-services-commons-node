@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors caused by calls to unsupported or not yet implemented functionality
  */
-var UnsupportedException = (function (_super) {
+var UnsupportedException = /** @class */ (function (_super) {
     __extends(UnsupportedException, _super);
     function UnsupportedException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

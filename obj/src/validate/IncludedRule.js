@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationResult_1 = require("./ValidationResult");
 var ValidationResultType_1 = require("./ValidationResultType");
-var IncludedRule = (function () {
+var IncludedRule = /** @class */ (function () {
     function IncludedRule() {
         var values = [];
         for (var _i = 0; _i < arguments.length; _i++) {

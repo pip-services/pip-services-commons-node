@@ -15,7 +15,7 @@ var LogCounters_1 = require("./LogCounters");
 var CompositeCounters_1 = require("./CompositeCounters");
 var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
-var DefaultCountersFactory = (function (_super) {
+var DefaultCountersFactory = /** @class */ (function (_super) {
     __extends(DefaultCountersFactory, _super);
     function DefaultCountersFactory() {
         var _this = _super.call(this) || this;

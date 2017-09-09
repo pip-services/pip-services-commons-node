@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var MapConverter = (function () {
+var MapConverter = /** @class */ (function () {
     function MapConverter() {
     }
     MapConverter.toNullableMap = function (value) {

@@ -4,7 +4,7 @@ var _ = require('lodash');
 var ObjectReader_1 = require("./ObjectReader");
 var ObjectWriter_1 = require("./ObjectWriter");
 var RecursiveObjectReader_1 = require("./RecursiveObjectReader");
-var RecursiveObjectWriter = (function () {
+var RecursiveObjectWriter = /** @class */ (function () {
     function RecursiveObjectWriter() {
     }
     // Todo: Make it smarter

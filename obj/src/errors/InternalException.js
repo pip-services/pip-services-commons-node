@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors caused by programming mistakes
  */
-var InternalException = (function (_super) {
+var InternalException = /** @class */ (function (_super) {
     __extends(InternalException, _super);
     function InternalException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

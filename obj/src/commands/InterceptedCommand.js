@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var InterceptedCommand = (function () {
+var InterceptedCommand = /** @class */ (function () {
     function InterceptedCommand(intercepter, next) {
         this._intercepter = intercepter;
         this._next = next;

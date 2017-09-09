@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
 var MemoryCredentialStore_1 = require("./MemoryCredentialStore");
-var DefaultCredentialStoreFactory = (function (_super) {
+var DefaultCredentialStoreFactory = /** @class */ (function (_super) {
     __extends(DefaultCredentialStoreFactory, _super);
     function DefaultCredentialStoreFactory() {
         var _this = _super.call(this) || this;

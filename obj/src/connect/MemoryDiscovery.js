@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
 var ConnectionParams_1 = require("./ConnectionParams");
-var DiscoveryItem = (function () {
+var DiscoveryItem = /** @class */ (function () {
     function DiscoveryItem() {
     }
     return DiscoveryItem;
 }());
-var MemoryDiscovery = (function () {
+var MemoryDiscovery = /** @class */ (function () {
     function MemoryDiscovery(config) {
         if (config === void 0) { config = null; }
         this._items = [];

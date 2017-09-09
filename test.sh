@@ -1,0 +1,11 @@
+#!/bin/bash
+
+COMPONENT=`basename "$PWD"`
+VERSION=`cat ./VERSION`
+IMAGE="pipdevs/${COMPONENT}:${VERSION}-build"
+
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
+docker build -f Dockerfile -t "${IMAGE}" --target build .
+docker run -ti --rm "${IMAGE}" "npm test"

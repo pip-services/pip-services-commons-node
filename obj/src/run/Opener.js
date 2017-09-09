@@ -5,7 +5,7 @@ var async = require('async');
 /**
  * Helper class that opens a collection of components
  */
-var Opener = (function () {
+var Opener = /** @class */ (function () {
     function Opener() {
     }
     /**

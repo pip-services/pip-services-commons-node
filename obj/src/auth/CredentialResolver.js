@@ -4,7 +4,7 @@ var async = require('async');
 var CredentialParams_1 = require("./CredentialParams");
 var ReferenceException_1 = require("../refer/ReferenceException");
 var Descriptor_1 = require("../refer/Descriptor");
-var CredentialResolver = (function () {
+var CredentialResolver = /** @class */ (function () {
     function CredentialResolver(config, references) {
         if (config === void 0) { config = null; }
         if (references === void 0) { references = null; }

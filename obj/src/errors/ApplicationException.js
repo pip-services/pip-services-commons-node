@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var ErrorCategory_1 = require("./ErrorCategory");
 var StringValueMap_1 = require("../data/StringValueMap");
-var ApplicationException = (function (_super) {
+var ApplicationException = /** @class */ (function (_super) {
     __extends(ApplicationException, _super);
     function ApplicationException(category, correlation_id, code, message) {
         if (category === void 0) { category = null; }

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var DoubleConverter_1 = require("../convert/DoubleConverter");
 var StringConverter_1 = require("../convert/StringConverter");
-var ObjectComparator = (function () {
+var ObjectComparator = /** @class */ (function () {
     function ObjectComparator() {
     }
     ObjectComparator.compare = function (value1, operation, value2) {

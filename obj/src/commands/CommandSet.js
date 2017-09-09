@@ -6,7 +6,7 @@ var ValidationException_1 = require("../validate/ValidationException");
 var ValidationResult_1 = require("../validate/ValidationResult");
 var ValidationResultType_1 = require("../validate/ValidationResultType");
 var IdGenerator_1 = require("../data/IdGenerator");
-var CommandSet = (function () {
+var CommandSet = /** @class */ (function () {
     function CommandSet() {
         this._commands = [];
         this._events = [];

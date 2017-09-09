@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors related to mistakes in microservice user-defined configuration
  */
-var ConfigException = (function (_super) {
+var ConfigException = /** @class */ (function (_super) {
     __extends(ConfigException, _super);
     function ConfigException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

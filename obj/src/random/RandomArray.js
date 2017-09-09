@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RandomInteger_1 = require("./RandomInteger");
-var RandomArray = (function () {
+var RandomArray = /** @class */ (function () {
     function RandomArray() {
     }
     RandomArray.pick = function (values) {

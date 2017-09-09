@@ -5,7 +5,7 @@ var path = require("path");
 var NotFoundException_1 = require("../errors/NotFoundException");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
-var TypeReflector = (function () {
+var TypeReflector = /** @class */ (function () {
     function TypeReflector() {
     }
     TypeReflector.getType = function (name, library) {

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
-var NullCounters = (function () {
+var NullCounters = /** @class */ (function () {
     function NullCounters() {
     }
     NullCounters.prototype.NullCounters = function () { };

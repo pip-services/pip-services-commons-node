@@ -5,7 +5,7 @@ var ReferenceException_1 = require("./ReferenceException");
 /**
  * Basic implementation of IReferences that stores component as a flat list
  */
-var References = (function () {
+var References = /** @class */ (function () {
     function References(tuples) {
         if (tuples === void 0) { tuples = null; }
         this._references = [];

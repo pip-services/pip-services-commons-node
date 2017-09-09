@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var StringConverter_1 = require("../convert/StringConverter");
 var ReferenceException_1 = require("./ReferenceException");
 var Descriptor_1 = require("./Descriptor");
-var DependencyResolver = (function () {
+var DependencyResolver = /** @class */ (function () {
     function DependencyResolver(config, references) {
         this._dependencies = {};
         if (config != null)

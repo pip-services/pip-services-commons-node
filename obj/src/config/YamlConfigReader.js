@@ -16,7 +16,7 @@ var ConfigParams_1 = require("./ConfigParams");
 var FileConfigReader_1 = require("./FileConfigReader");
 var ConfigException_1 = require("../errors/ConfigException");
 var FileException_1 = require("../errors/FileException");
-var YamlConfigReader = (function (_super) {
+var YamlConfigReader = /** @class */ (function (_super) {
     __extends(YamlConfigReader, _super);
     function YamlConfigReader(path) {
         if (path === void 0) { path = null; }

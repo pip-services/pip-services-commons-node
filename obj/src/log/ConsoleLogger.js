@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var StringConverter_1 = require("../convert/StringConverter");
 var LogLevel_1 = require("./LogLevel");
 var Logger_1 = require("./Logger");
-var ConsoleLogger = (function (_super) {
+var ConsoleLogger = /** @class */ (function (_super) {
     __extends(ConsoleLogger, _super);
     function ConsoleLogger() {
         return _super.call(this) || this;

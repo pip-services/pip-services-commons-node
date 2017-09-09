@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var TypeConverter_1 = require("./TypeConverter");
 var MapConverter_1 = require("./MapConverter");
-var JsonConverter = (function () {
+var JsonConverter = /** @class */ (function () {
     function JsonConverter() {
     }
     JsonConverter.fromJson = function (type, value) {

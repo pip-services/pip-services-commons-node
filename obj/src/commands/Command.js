@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var InvocationException_1 = require("../errors/InvocationException");
-var Command = (function () {
+var Command = /** @class */ (function () {
     function Command(name, schema, func) {
         if (!name)
             throw new Error("Name cannot be null");

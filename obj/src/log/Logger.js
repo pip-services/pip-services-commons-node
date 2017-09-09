@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var util = require('util');
 var LogLevel_1 = require("./LogLevel");
 var LogLevelConverter_1 = require("./LogLevelConverter");
-var Logger = (function () {
+var Logger = /** @class */ (function () {
     function Logger() {
         this._level = LogLevel_1.LogLevel.Info;
     }

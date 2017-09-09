@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var StringConverter = (function () {
+var StringConverter = /** @class */ (function () {
     function StringConverter() {
     }
     StringConverter.toNullableString = function (value) {

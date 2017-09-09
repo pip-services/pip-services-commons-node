@@ -12,7 +12,7 @@ var DateTimeConverter_1 = require("../convert/DateTimeConverter");
 var MapConverter_1 = require("../convert/MapConverter");
 var AnyValue_1 = require("./AnyValue");
 var AnyValueArray_1 = require("./AnyValueArray");
-var AnyValueMap = (function () {
+var AnyValueMap = /** @class */ (function () {
     function AnyValueMap(values) {
         if (values === void 0) { values = null; }
         this.append(values);

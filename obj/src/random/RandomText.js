@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var RandomInteger_1 = require("./RandomInteger");
 var RandomString_1 = require("./RandomString");
 var RandomBoolean_1 = require("./RandomBoolean");
-var RandomText = (function () {
+var RandomText = /** @class */ (function () {
     function RandomText() {
     }
     RandomText.color = function () {

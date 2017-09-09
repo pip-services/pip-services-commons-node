@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var TypeCode_1 = require("../convert/TypeCode");
 var MapSchema_1 = require("./MapSchema");
-var FilterParamsSchema = (function (_super) {
+var FilterParamsSchema = /** @class */ (function (_super) {
     __extends(FilterParamsSchema, _super);
     function FilterParamsSchema() {
         return _super.call(this, null, null, TypeCode_1.TypeCode.String, null) || this;

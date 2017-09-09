@@ -11,7 +11,7 @@ var ConfigException_1 = require("../errors/ConfigException");
  * <li> implementation version: '1.0', '1.5' or '10.4'
  * </ul>
  */
-var Descriptor = (function () {
+var Descriptor = /** @class */ (function () {
     /**
      * Creates instance of a component locator
      * @param group - logical group: 'pip-services-runtime', 'pip-services-logging'

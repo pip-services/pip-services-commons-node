@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Schema_1 = require("./Schema");
-var PropertySchema = (function (_super) {
+var PropertySchema = /** @class */ (function (_super) {
     __extends(PropertySchema, _super);
     function PropertySchema(required, rules, name, type) {
         var _this = _super.call(this, required, rules) || this;

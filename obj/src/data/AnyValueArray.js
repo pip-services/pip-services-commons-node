@@ -22,7 +22,7 @@ var DateTimeConverter_1 = require("../convert/DateTimeConverter");
 var ArrayConverter_1 = require("../convert/ArrayConverter");
 var AnyValue_1 = require("./AnyValue");
 var AnyValueMap_1 = require("./AnyValueMap");
-var AnyValueArray = (function (_super) {
+var AnyValueArray = /** @class */ (function (_super) {
     __extends(AnyValueArray, _super);
     function AnyValueArray(values) {
         if (values === void 0) { values = null; }

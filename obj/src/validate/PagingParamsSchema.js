@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var TypeCode_1 = require("../convert/TypeCode");
 var ObjectSchema_1 = require("./ObjectSchema");
-var PagingParamsSchema = (function (_super) {
+var PagingParamsSchema = /** @class */ (function (_super) {
     __extends(PagingParamsSchema, _super);
     function PagingParamsSchema() {
         var _this = _super.call(this) || this;

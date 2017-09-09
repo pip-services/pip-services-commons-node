@@ -7,7 +7,7 @@ var ValidationException_1 = require("./ValidationException");
 var ObjectReader_1 = require("../reflect/ObjectReader");
 var TypeMatcher_1 = require("../reflect/TypeMatcher");
 var TypeConverter_1 = require("../convert/TypeConverter");
-var Schema = (function () {
+var Schema = /** @class */ (function () {
     function Schema(required, rules) {
         this._required = required;
         this._rules = rules;

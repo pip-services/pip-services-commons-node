@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors due to improper user requests, like missing or wrong parameters
  */
-var BadRequestException = (function (_super) {
+var BadRequestException = /** @class */ (function (_super) {
     __extends(BadRequestException, _super);
     function BadRequestException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

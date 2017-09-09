@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ConfigParams_1 = require("../config/ConfigParams");
 var StringValueMap_1 = require("../data/StringValueMap");
-var CredentialParams = (function (_super) {
+var CredentialParams = /** @class */ (function (_super) {
     __extends(CredentialParams, _super);
     function CredentialParams(values) {
         if (values === void 0) { values = null; }

@@ -16,7 +16,7 @@ var Schema_1 = require("./Schema");
 var PropertySchema_1 = require("./PropertySchema");
 var ObjectComparator_1 = require("./ObjectComparator");
 var ObjectReader_1 = require("../reflect/ObjectReader");
-var ObjectSchema = (function (_super) {
+var ObjectSchema = /** @class */ (function (_super) {
     __extends(ObjectSchema, _super);
     function ObjectSchema(allowExcessProperies, required, rules) {
         var _this = _super.call(this, required, rules) || this;

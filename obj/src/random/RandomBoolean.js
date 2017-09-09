@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RandomBoolean = (function () {
+var RandomBoolean = /** @class */ (function () {
     function RandomBoolean() {
     }
     RandomBoolean.chance = function (chances, maxChances) {

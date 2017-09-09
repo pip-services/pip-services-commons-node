@@ -18,7 +18,7 @@ var ObjectReader_1 = require("../reflect/ObjectReader");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
 var StringConverter_1 = require("../convert/StringConverter");
-var MapSchema = (function (_super) {
+var MapSchema = /** @class */ (function (_super) {
     __extends(MapSchema, _super);
     function MapSchema(required, rules, keyType, valueType) {
         var _this = _super.call(this, required, rules) || this;

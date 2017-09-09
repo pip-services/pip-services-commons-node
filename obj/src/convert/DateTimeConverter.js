@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var DateTimeConverter = (function () {
+var DateTimeConverter = /** @class */ (function () {
     function DateTimeConverter() {
     }
     DateTimeConverter.toNullableDateTime = function (value) {

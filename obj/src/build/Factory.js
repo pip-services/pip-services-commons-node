@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CreateException_1 = require("./CreateException");
-var Registration = (function () {
+var Registration = /** @class */ (function () {
     function Registration() {
     }
     return Registration;
 }());
-var Factory = (function () {
+var Factory = /** @class */ (function () {
     function Factory() {
         this._registrations = [];
     }

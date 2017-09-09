@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var CreateException_1 = require("./CreateException");
-var CompositeFactory = (function () {
+var CompositeFactory = /** @class */ (function () {
     function CompositeFactory() {
         var factories = [];
         for (var _i = 0; _i < arguments.length; _i++) {

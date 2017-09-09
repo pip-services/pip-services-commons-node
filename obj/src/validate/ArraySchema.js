@@ -17,7 +17,7 @@ var ValidationResultType_1 = require("./ValidationResultType");
 var ObjectReader_1 = require("../reflect/ObjectReader");
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
-var ArraySchema = (function (_super) {
+var ArraySchema = /** @class */ (function (_super) {
     __extends(ArraySchema, _super);
     function ArraySchema(valueType) {
         var _this = _super.call(this) || this;

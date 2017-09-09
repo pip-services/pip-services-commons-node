@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var CachedCounters_1 = require("./CachedCounters");
 var CompositeLogger_1 = require("../log/CompositeLogger");
 var StringConverter_1 = require("../convert/StringConverter");
-var LogCounters = (function (_super) {
+var LogCounters = /** @class */ (function (_super) {
     __extends(LogCounters, _super);
     function LogCounters() {
         var _this = _super !== null && _super.apply(this, arguments) || this;

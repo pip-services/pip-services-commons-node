@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var async = require('async');
 var CredentialParams_1 = require("./CredentialParams");
 var StringValueMap_1 = require("../data/StringValueMap");
-var MemoryCredentialStore = (function () {
+var MemoryCredentialStore = /** @class */ (function () {
     function MemoryCredentialStore(config) {
         if (config === void 0) { config = null; }
         this._items = new StringValueMap_1.StringValueMap();

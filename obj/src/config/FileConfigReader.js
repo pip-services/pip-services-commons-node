@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var ConfigReader_1 = require("./ConfigReader");
-var FileConfigReader = (function (_super) {
+var FileConfigReader = /** @class */ (function (_super) {
     __extends(FileConfigReader, _super);
     function FileConfigReader(path) {
         if (path === void 0) { path = null; }

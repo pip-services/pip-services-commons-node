@@ -14,7 +14,7 @@ var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
 var NullCache_1 = require("./NullCache");
 var MemoryCache_1 = require("./MemoryCache");
-var DefaultCacheFactory = (function (_super) {
+var DefaultCacheFactory = /** @class */ (function (_super) {
     __extends(DefaultCacheFactory, _super);
     function DefaultCacheFactory() {
         var _this = _super.call(this) || this;

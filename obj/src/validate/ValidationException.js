@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationResultType_1 = require("./ValidationResultType");
 var BadRequestException_1 = require("../errors/BadRequestException");
-var ValidationException = (function (_super) {
+var ValidationException = /** @class */ (function (_super) {
     __extends(ValidationException, _super);
     function ValidationException(correlationId, message, results) {
         var _this = _super.call(this, correlationId, "INVALID_DATA", message || ValidationException.composeMessage(results)) || this;

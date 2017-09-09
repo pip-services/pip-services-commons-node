@@ -5,7 +5,7 @@ var ConnectionParams_1 = require("./ConnectionParams");
 var ConfigParams_1 = require("../config/ConfigParams");
 var ConfigException_1 = require("../errors/ConfigException");
 var Descriptor_1 = require("../refer/Descriptor");
-var ConnectionResolver = (function () {
+var ConnectionResolver = /** @class */ (function () {
     function ConnectionResolver(config, references) {
         if (config === void 0) { config = null; }
         if (references === void 0) { references = null; }

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationResult_1 = require("./ValidationResult");
 var ValidationResultType_1 = require("./ValidationResultType");
 var ObjectReader_1 = require("../reflect/ObjectReader");
-var OnlyOneExistRule = (function () {
+var OnlyOneExistRule = /** @class */ (function () {
     function OnlyOneExistRule() {
         var properties = [];
         for (var _i = 0; _i < arguments.length; _i++) {

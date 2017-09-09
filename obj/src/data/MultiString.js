@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var MultiString = (function () {
+var MultiString = /** @class */ (function () {
     function MultiString() {
     }
     return MultiString;

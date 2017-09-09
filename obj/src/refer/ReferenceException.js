@@ -14,7 +14,7 @@ var InternalException_1 = require("../errors/InternalException");
 /**
  * Exception thrown when required component is not found in references
  */
-var ReferenceException = (function (_super) {
+var ReferenceException = /** @class */ (function (_super) {
     __extends(ReferenceException, _super);
     function ReferenceException(correlationId, locator) {
         var _this = _super.call(this, correlationId, "REF_ERROR", "Failed to obtain reference to " + locator) || this;

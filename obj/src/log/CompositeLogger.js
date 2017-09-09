@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Logger_1 = require("./Logger");
 var Descriptor_1 = require("../refer/Descriptor");
-var CompositeLogger = (function (_super) {
+var CompositeLogger = /** @class */ (function (_super) {
     __extends(CompositeLogger, _super);
     function CompositeLogger(references) {
         if (references === void 0) { references = null; }

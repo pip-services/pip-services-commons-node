@@ -5,7 +5,7 @@ var async = require('async');
 /**
  * Helper class that triggers execution for components
  */
-var Executor = (function () {
+var Executor = /** @class */ (function () {
     function Executor() {
     }
     /**

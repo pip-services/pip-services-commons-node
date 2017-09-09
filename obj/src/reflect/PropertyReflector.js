@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var PropertyReflector = (function () {
+var PropertyReflector = /** @class */ (function () {
     function PropertyReflector() {
     }
     PropertyReflector.matchField = function (fieldName, fieldValue, expectedName) {

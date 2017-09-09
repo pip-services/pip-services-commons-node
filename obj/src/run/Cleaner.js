@@ -5,7 +5,7 @@ var async = require('async');
 /**
  * Helper class that cleans components
  */
-var Cleaner = (function () {
+var Cleaner = /** @class */ (function () {
     function Cleaner() {
     }
     /**

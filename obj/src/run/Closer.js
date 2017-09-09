@@ -5,7 +5,7 @@ var async = require('async');
 /**
  * Helper class that closes components
  */
-var Closer = (function () {
+var Closer = /** @class */ (function () {
     function Closer() {
     }
     /**

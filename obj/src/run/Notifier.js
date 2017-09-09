@@ -4,7 +4,7 @@ var _ = require('lodash');
 /**
  * Helper class that triggers notification for components
  */
-var Notifier = (function () {
+var Notifier = /** @class */ (function () {
     function Notifier() {
     }
     /**

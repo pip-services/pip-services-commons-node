@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Timing_1 = require("./Timing");
 var Descriptor_1 = require("../refer/Descriptor");
-var CompositeCounters = (function () {
+var CompositeCounters = /** @class */ (function () {
     function CompositeCounters() {
         this._counters = [];
     }

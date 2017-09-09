@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var StringValueMap_1 = require("./StringValueMap");
-var FilterParams = (function (_super) {
+var FilterParams = /** @class */ (function (_super) {
     __extends(FilterParams, _super);
     function FilterParams(map) {
         if (map === void 0) { map = null; }

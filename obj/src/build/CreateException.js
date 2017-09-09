@@ -14,7 +14,7 @@ var InternalException_1 = require("../errors/InternalException");
 /**
  * Exception thrown when component cannot be created by a factory
  */
-var CreateException = (function (_super) {
+var CreateException = /** @class */ (function (_super) {
     __extends(CreateException, _super);
     function CreateException(correlationId, messageOrLocator) {
         if (correlationId === void 0) { correlationId = null; }

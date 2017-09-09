@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var PropertyReflector_1 = require("./PropertyReflector");
 var IntegerConverter_1 = require("../convert/IntegerConverter");
-var ObjectReader = (function () {
+var ObjectReader = /** @class */ (function () {
     function ObjectReader() {
     }
     ObjectReader.getValue = function (obj) {

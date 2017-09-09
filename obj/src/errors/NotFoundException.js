@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Error caused by attempt to access missing object
  */
-var NotFoundException = (function (_super) {
+var NotFoundException = /** @class */ (function (_super) {
     __extends(NotFoundException, _super);
     function NotFoundException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

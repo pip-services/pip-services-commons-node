@@ -10,7 +10,7 @@ var DoubleConverter_1 = require("./DoubleConverter");
 var DateTimeConverter_1 = require("./DateTimeConverter");
 var ArrayConverter_1 = require("./ArrayConverter");
 var MapConverter_1 = require("./MapConverter");
-var TypeConverter = (function () {
+var TypeConverter = /** @class */ (function () {
     function TypeConverter() {
     }
     TypeConverter.toTypeCode = function (value) {

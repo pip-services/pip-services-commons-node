@@ -13,7 +13,7 @@ var MapConverter_1 = require("../convert/MapConverter");
 var AnyValue_1 = require("./AnyValue");
 var AnyValueArray_1 = require("./AnyValueArray");
 var AnyValueMap_1 = require("./AnyValueMap");
-var StringValueMap = (function () {
+var StringValueMap = /** @class */ (function () {
     function StringValueMap(map) {
         if (map === void 0) { map = null; }
         if (map != null)

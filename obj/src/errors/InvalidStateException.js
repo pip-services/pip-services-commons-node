@@ -16,7 +16,7 @@ var ApplicationException_1 = require("./ApplicationException");
  * Errors related to operations called in wrong component state.
  * For instance, business calls when component is not ready
  */
-var InvalidStateException = (function (_super) {
+var InvalidStateException = /** @class */ (function (_super) {
     __extends(InvalidStateException, _super);
     function InvalidStateException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

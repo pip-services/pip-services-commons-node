@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RandomFloat = (function () {
+var RandomFloat = /** @class */ (function () {
     function RandomFloat() {
     }
     RandomFloat.nextFloat = function (min, max) {

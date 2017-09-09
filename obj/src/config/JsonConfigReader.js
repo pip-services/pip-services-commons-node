@@ -16,7 +16,7 @@ var FileConfigReader_1 = require("./FileConfigReader");
 var ConfigException_1 = require("../errors/ConfigException");
 var FileException_1 = require("../errors/FileException");
 var JsonConverter_1 = require("../convert/JsonConverter");
-var JsonConfigReader = (function (_super) {
+var JsonConfigReader = /** @class */ (function (_super) {
     __extends(JsonConfigReader, _super);
     function JsonConfigReader(path) {
         if (path === void 0) { path = null; }

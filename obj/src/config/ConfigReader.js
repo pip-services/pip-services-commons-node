@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var ConfigParams_1 = require("./ConfigParams");
-var ConfigReader = (function () {
+var ConfigReader = /** @class */ (function () {
     function ConfigReader() {
         this._parameters = new ConfigParams_1.ConfigParams();
     }

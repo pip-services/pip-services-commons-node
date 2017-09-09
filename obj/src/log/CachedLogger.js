@@ -14,7 +14,7 @@ var os = require('os');
 var ErrorDescriptionFactory_1 = require("../errors/ErrorDescriptionFactory");
 var Logger_1 = require("./Logger");
 var LogMessage_1 = require("./LogMessage");
-var CachedLogger = (function (_super) {
+var CachedLogger = /** @class */ (function (_super) {
     __extends(CachedLogger, _super);
     function CachedLogger() {
         var _this = _super !== null && _super.apply(this, arguments) || this;

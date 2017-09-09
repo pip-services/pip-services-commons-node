@@ -6,7 +6,7 @@ var byteToHex = [];
 for (var i = 0; i < 256; i++) {
     byteToHex[i] = (i + 0x100).toString(16).substr(1);
 }
-var IdGenerator = (function () {
+var IdGenerator = /** @class */ (function () {
     function IdGenerator() {
     }
     IdGenerator.nextShort = function () {

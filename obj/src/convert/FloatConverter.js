@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var DoubleConverter_1 = require("./DoubleConverter");
-var FloatConverter = (function () {
+var FloatConverter = /** @class */ (function () {
     function FloatConverter() {
     }
     FloatConverter.toNullableFloat = function (value) {

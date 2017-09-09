@@ -30,7 +30,7 @@ var RecursiveObjectReader_1 = require("../reflect/RecursiveObjectReader");
  *
  * All keys stored in the map are case-insensitive.
  */
-var ConfigParams = (function (_super) {
+var ConfigParams = /** @class */ (function (_super) {
     __extends(ConfigParams, _super);
     function ConfigParams(values) {
         if (values === void 0) { values = null; }

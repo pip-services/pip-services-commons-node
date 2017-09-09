@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogLevel_1 = require("./LogLevel");
 var StringConverter_1 = require("../convert/StringConverter");
-var LogLevelConverter = (function () {
+var LogLevelConverter = /** @class */ (function () {
     function LogLevelConverter() {
     }
     LogLevelConverter.toLogLevel = function (value) {

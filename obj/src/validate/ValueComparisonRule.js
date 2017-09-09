@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationResult_1 = require("./ValidationResult");
 var ObjectComparator_1 = require("./ObjectComparator");
 var ValidationResultType_1 = require("./ValidationResultType");
-var ValueComparisonRule = (function () {
+var ValueComparisonRule = /** @class */ (function () {
     function ValueComparisonRule(operation, value) {
         this._operation = operation;
         this._value = value;

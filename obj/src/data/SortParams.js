@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var SortParams = (function (_super) {
+var SortParams = /** @class */ (function (_super) {
     __extends(SortParams, _super);
     function SortParams(fields) {
         if (fields === void 0) { fields = null; }

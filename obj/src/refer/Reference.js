@@ -4,7 +4,7 @@ var Descriptor_1 = require("./Descriptor");
 /**
  * Placeholder to store component references.
  */
-var Reference = (function () {
+var Reference = /** @class */ (function () {
     /**
      * Create a new reference for an object
      * @param locator a component locator for the reference

@@ -4,7 +4,7 @@ var _ = require('lodash');
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
 var ObjectReader_1 = require("./ObjectReader");
-var RecursiveObjectReader = (function () {
+var RecursiveObjectReader = /** @class */ (function () {
     function RecursiveObjectReader() {
     }
     RecursiveObjectReader.performHasProperty = function (obj, names, nameIndex) {

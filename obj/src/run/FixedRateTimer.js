@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var Parameters_1 = require("./Parameters");
-var FixedRateTimer = (function () {
+var FixedRateTimer = /** @class */ (function () {
     function FixedRateTimer(taskOrCallback, interval, delay) {
         if (taskOrCallback === void 0) { taskOrCallback = null; }
         if (interval === void 0) { interval = null; }

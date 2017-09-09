@@ -4,7 +4,7 @@ var _ = require('lodash');
 var TypeCode_1 = require("./TypeCode");
 var TypeConverter_1 = require("./TypeConverter");
 var TypeReflector_1 = require("../reflect/TypeReflector");
-var RecursiveMapConverter = (function () {
+var RecursiveMapConverter = /** @class */ (function () {
     function RecursiveMapConverter() {
     }
     RecursiveMapConverter.objectToMap = function (value) {

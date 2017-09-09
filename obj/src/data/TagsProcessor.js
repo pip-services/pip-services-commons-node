@@ -4,7 +4,7 @@ var _ = require('lodash');
 /**
  * Extracts from objects and processes search tags
  */
-var TagsProcessor = (function () {
+var TagsProcessor = /** @class */ (function () {
     function TagsProcessor() {
     }
     /**

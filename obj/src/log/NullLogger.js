@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogLevel_1 = require("./LogLevel");
-var NullLogger = (function () {
+var NullLogger = /** @class */ (function () {
     function NullLogger() {
     }
     NullLogger.prototype.getLevel = function () { return LogLevel_1.LogLevel.None; };

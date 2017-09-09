@@ -21,7 +21,7 @@ var ObjectWriter_1 = require("../reflect/ObjectWriter");
  *
  * All keys stored in the map are case-insensitive.
  */
-var Parameters = (function (_super) {
+var Parameters = /** @class */ (function (_super) {
     __extends(Parameters, _super);
     function Parameters(map) {
         if (map === void 0) { map = null; }

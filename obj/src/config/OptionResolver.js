@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var OptionResolver = (function () {
+var OptionResolver = /** @class */ (function () {
     function OptionResolver() {
     }
     OptionResolver.resolve = function (config, configAsDefault) {

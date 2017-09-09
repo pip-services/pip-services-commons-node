@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors in read/write file operations
  */
-var FileException = (function (_super) {
+var FileException = /** @class */ (function (_super) {
     __extends(FileException, _super);
     function FileException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

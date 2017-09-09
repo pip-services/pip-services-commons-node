@@ -15,7 +15,7 @@ var Descriptor_1 = require("../refer/Descriptor");
 var MemoryConfigReader_1 = require("./MemoryConfigReader");
 var JsonConfigReader_1 = require("./JsonConfigReader");
 var YamlConfigReader_1 = require("./YamlConfigReader");
-var DefaultConfigReaderFactory = (function (_super) {
+var DefaultConfigReaderFactory = /** @class */ (function (_super) {
     __extends(DefaultConfigReaderFactory, _super);
     function DefaultConfigReaderFactory() {
         var _this = _super.call(this) || this;

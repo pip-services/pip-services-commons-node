@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RandomDouble = (function () {
+var RandomDouble = /** @class */ (function () {
     function RandomDouble() {
     }
     RandomDouble.nextDouble = function (min, max) {

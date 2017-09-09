@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var BooleanConverter = (function () {
+var BooleanConverter = /** @class */ (function () {
     function BooleanConverter() {
     }
     BooleanConverter.toNullableBoolean = function (value) {

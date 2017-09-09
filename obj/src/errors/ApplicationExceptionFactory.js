@@ -13,7 +13,7 @@ var ConflictException_1 = require("./ConflictException");
 var NotFoundException_1 = require("./NotFoundException");
 var UnsupportedException_1 = require("./UnsupportedException");
 var InvalidStateException_1 = require("./InvalidStateException");
-var ApplicationExceptionFactory = (function () {
+var ApplicationExceptionFactory = /** @class */ (function () {
     function ApplicationExceptionFactory() {
     }
     ApplicationExceptionFactory.create = function (description) {

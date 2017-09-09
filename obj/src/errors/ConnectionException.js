@@ -16,7 +16,7 @@ var ApplicationException_1 = require("./ApplicationException");
  * Errors happened during connection to remote services.
  * They can be related to misconfiguration, network issues or remote service itself
  */
-var ConnectionException = (function (_super) {
+var ConnectionException = /** @class */ (function (_super) {
     __extends(ConnectionException, _super);
     function ConnectionException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

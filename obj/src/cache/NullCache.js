@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var NullCache = (function () {
+var NullCache = /** @class */ (function () {
     function NullCache() {
     }
     NullCache.prototype.retrieve = function (correlationId, key, callback) {

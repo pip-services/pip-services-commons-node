@@ -10,7 +10,7 @@ var DoubleConverter_1 = require("../convert/DoubleConverter");
 var DateTimeConverter_1 = require("../convert/DateTimeConverter");
 var AnyValueArray_1 = require("./AnyValueArray");
 var AnyValueMap_1 = require("./AnyValueMap");
-var AnyValue = (function () {
+var AnyValue = /** @class */ (function () {
     function AnyValue(value) {
         if (value === void 0) { value = null; }
         if (value instanceof AnyValue)

@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Access errors caused by missing user identity or security permissions
  */
-var UnauthorizedException = (function (_super) {
+var UnauthorizedException = /** @class */ (function (_super) {
     __extends(UnauthorizedException, _super);
     function UnauthorizedException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

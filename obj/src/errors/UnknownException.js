@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Unknown or unexpected errors
  */
-var UnknownException = (function (_super) {
+var UnknownException = /** @class */ (function (_super) {
     __extends(UnknownException, _super);
     function UnknownException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

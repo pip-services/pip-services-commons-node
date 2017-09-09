@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var TypeCode_1 = require("../convert/TypeCode");
 var TypeConverter_1 = require("../convert/TypeConverter");
-var TypeMatcher = (function () {
+var TypeMatcher = /** @class */ (function () {
     function TypeMatcher() {
     }
     TypeMatcher.matchValue = function (expectedType, actualValue) {

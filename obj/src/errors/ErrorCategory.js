@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Defines broad categories of application errors.
  */
-var ErrorCategory = (function () {
+var ErrorCategory = /** @class */ (function () {
     function ErrorCategory() {
     }
     /**

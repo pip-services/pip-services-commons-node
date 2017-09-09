@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CacheEntry_1 = require("./CacheEntry");
-var MemoryCache = (function () {
+var MemoryCache = /** @class */ (function () {
     /**
      * Creates instance of local in-memory cache component
      */

@@ -15,7 +15,7 @@ var ApplicationException_1 = require("./ApplicationException");
 /**
  * Errors raised by conflict in object versions posted by user and stored on server.
  */
-var ConflictException = (function (_super) {
+var ConflictException = /** @class */ (function (_super) {
     __extends(ConflictException, _super);
     function ConflictException(correlation_id, code, message) {
         if (correlation_id === void 0) { correlation_id = null; }

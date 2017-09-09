@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var CacheEntry = (function () {
+var CacheEntry = /** @class */ (function () {
     function CacheEntry(key, value, timeout) {
         this._key = key;
         this._value = value;

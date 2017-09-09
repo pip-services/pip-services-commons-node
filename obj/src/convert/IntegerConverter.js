@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
 var LongConverter_1 = require("./LongConverter");
-var IntegerConverter = (function () {
+var IntegerConverter = /** @class */ (function () {
     function IntegerConverter() {
     }
     IntegerConverter.toNullableInteger = function (value) {

@@ -15,7 +15,7 @@ var ConsoleLogger_1 = require("./ConsoleLogger");
 var CompositeLogger_1 = require("./CompositeLogger");
 var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
-var DefaultLoggerFactory = (function (_super) {
+var DefaultLoggerFactory = /** @class */ (function (_super) {
     __extends(DefaultLoggerFactory, _super);
     function DefaultLoggerFactory() {
         var _this = _super.call(this) || this;
