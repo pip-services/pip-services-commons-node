@@ -1,0 +1,8 @@
+.vscode
+src
+test
+data
+Dockerfile*
+docker-compose*
+.dockerignore
+*.sh
