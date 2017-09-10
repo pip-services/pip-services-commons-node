@@ -29,4 +29,4 @@ fi
 git tag $TAG
 git push --tags
 
-npm publish --tag $TAG
+npm publish
