@@ -29,4 +29,6 @@ fi
 git tag $TAG
 git push --tags
 
-npm publish
+npm publish --tag $TAG
+
+echo "*** Published ${TAG} release ***"
