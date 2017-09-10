@@ -15,14 +15,15 @@ set -e
 set -o pipefail
 
 # Login to npm
-if [ -z "${NPM_USERNAME}" ]; then
+if [ -z "${NPM_USER}" ]; then
 npm login
 else
-npm login <<!
-$NPM_USERNAME
-$NPM_PASSWORD
-$NPM_EMAIL
-!
+# npm login <<!
+# $NPM_USER
+# $NPM_PASS
+# $NPM_EMAIL
+# !
+npm-cli-login
 fi
 
 git tag $TAG
