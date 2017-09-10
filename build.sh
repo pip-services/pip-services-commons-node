@@ -22,6 +22,5 @@ docker build -f Dockerfile.build -t ${IMAGE} .
 
 # Create and copy compiled files, then destroy
 docker create --name ${CONTAINER} ${IMAGE}
-#docker run -ti --name ${CONTAINER} ${IMAGE} npm run test-tc
 docker cp ${CONTAINER}:/app/obj ./obj
 docker rm ${CONTAINER}
