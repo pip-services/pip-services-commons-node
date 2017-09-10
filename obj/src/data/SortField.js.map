@@ -1,0 +1,1 @@
+{"version":3,"file":"SortField.js","sourceRoot":"","sources":["../../../src/data/SortField.ts"],"names":[],"mappings":";;AAAA;IACC,mBAAmB,IAAmB,EAAE,SAAyB;QAA9C,qBAAA,EAAA,WAAmB;QAAE,0BAAA,EAAA,gBAAyB;QAChE,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,IAAI,CAAC,SAAS,GAAG,SAAS,CAAC;IAC5B,CAAC;IAIF,gBAAC;AAAD,CAAC,AARD,IAQC;AARY,8BAAS"}
