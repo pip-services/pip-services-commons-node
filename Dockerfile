@@ -1,5 +1,5 @@
 # ---- Build ----
-FROM pipdevs/tsdev:2.5.2 AS build
+FROM pipdevs/ts-dev:2.5.2 AS build
 
 # set working directory
 WORKDIR /app
