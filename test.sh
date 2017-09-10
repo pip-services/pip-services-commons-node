@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COMPONENT=$(grep -m1 name package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
-VERSION=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
+VERSION=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g' | sed 's/-.*//g')
 IMAGE="pipdevs/${COMPONENT}:${VERSION}-test"
 
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
