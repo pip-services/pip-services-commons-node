@@ -8,8 +8,11 @@ IMAGE="pipdevs/${COMPONENT}:${VERSION}-test"
 set -e
 set -o pipefail
 
-#docker build -f Dockerfile -t "${IMAGE}" --target build .
-#docker run -ti --rm "${IMAGE}" "npm test"
+# Workaround to remove dangling images
+docker-compose -f ./docker-compose.test.yml down
 
 export IMAGE
 docker-compose -f ./docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from test
+
+# Workaround to remove dangling images
+docker-compose -f ./docker-compose.test.yml down

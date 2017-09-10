@@ -6,5 +6,5 @@ services:
       context: .
       dockerfile: Dockerfile.test
     image: ${IMAGE:-pipdevs/test}
-    command: ${RUN_CMD:-npm test}
+    command: ${TEST_CMD:-npm test}
 
