@@ -1,0 +1,64 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var CachedCounters_1 = require("./CachedCounters");
+var CompositeLogger_1 = require("../log/CompositeLogger");
+var StringConverter_1 = require("../convert/StringConverter");
+var LogCounters = /** @class */ (function (_super) {
+    __extends(LogCounters, _super);
+    function LogCounters() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._logger = new CompositeLogger_1.CompositeLogger();
+        return _this;
+    }
+    LogCounters.prototype.LogCounters = function () { };
+    LogCounters.prototype.setReferences = function (references) {
+        this._logger.setReferences(references);
+    };
+    LogCounters.prototype.counterToString = function (counter) {
+        var result = "Counter " + counter.name + " { ";
+        result += "\"type\": " + counter.type;
+        if (counter.last != null)
+            result += ", \"last\": " + StringConverter_1.StringConverter.toString(counter.last);
+        if (counter.count != null)
+            result += ", \"count\": " + StringConverter_1.StringConverter.toString(counter.count);
+        if (counter.min != null)
+            result += ", \"min\": " + StringConverter_1.StringConverter.toString(counter.min);
+        if (counter.max != null)
+            result += ", \"max\": " + StringConverter_1.StringConverter.toString(counter.max);
+        if (counter.average != null)
+            result += ", \"avg\": " + StringConverter_1.StringConverter.toString(counter.average);
+        if (counter.time != null)
+            result += ", \"time\": " + StringConverter_1.StringConverter.toString(counter.time);
+        result += " }";
+        return result;
+    };
+    LogCounters.prototype.save = function (counters) {
+        if (this._logger == null || counters == null)
+            return;
+        if (counters.length == 0)
+            return;
+        counters.sort(function (c1, c2) {
+            if (c1.name < c2.name)
+                return -1;
+            if (c1.name > c2.name)
+                return 1;
+            return 0;
+        });
+        for (var i = 0; i < counters.length; i++) {
+            this._logger.info(null, this.counterToString(counters[i]));
+        }
+    };
+    return LogCounters;
+}(CachedCounters_1.CachedCounters));
+exports.LogCounters = LogCounters;
+//# sourceMappingURL=LogCounters.js.map
