@@ -12,7 +12,7 @@ var ObjectWriter = /** @class */ (function () {
         if (name == null)
             throw new Error("Property name cannot be null");
         if (_.isObject(obj) && !_.isDate(obj)) {
-            return PropertyReflector_1.PropertyReflector.setProperty(obj, name, value);
+            PropertyReflector_1.PropertyReflector.setProperty(obj, name, value);
         }
         else if (_.isArray(obj)) {
             var index = IntegerConverter_1.IntegerConverter.toNullableInteger(name);

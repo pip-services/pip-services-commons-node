@@ -2,15 +2,22 @@ let _ = require('lodash');
 
 import { TypeCode } from '../convert/TypeCode';
 import { TypeConverter } from '../convert/TypeConverter';
+import { IntegerConverter } from '../convert/IntegerConverter';
 import { ObjectReader } from './ObjectReader';
 import { ObjectWriter } from './ObjectWriter';
 import { RecursiveObjectReader } from './RecursiveObjectReader';
 
 export class RecursiveObjectWriter {
 
-	// Todo: Make it smarter
-	private static createProperty(obj: any, name: string): any {
-        return {};
+	private static createProperty(obj: any, names: string[], nameIndex: number): any {
+		// If next field is index then create an array
+		let subField = names.length > nameIndex + 1 ? names[nameIndex + 1] : null;
+		let subFieldIndex = IntegerConverter.toNullableInteger(subField);
+		if (subFieldIndex != null)
+			return [];
+
+		// Else create a dictionary
+		return {};
 	}
 	
     private static performSetProperty(obj: any, names: string[], nameIndex: number, value: any): any {
@@ -19,7 +26,7 @@ export class RecursiveObjectWriter {
 			if (subObj != null)
 				RecursiveObjectWriter.performSetProperty(subObj, names, nameIndex + 1, value);
 			else {
-				subObj = RecursiveObjectWriter.createProperty(obj, names[nameIndex]);
+				subObj = RecursiveObjectWriter.createProperty(obj, names, nameIndex);
 				if (subObj != null) {					
 					RecursiveObjectWriter.performSetProperty(subObj, names, nameIndex + 1, value);
 					ObjectWriter.setProperty(obj, names[nameIndex], subObj);

@@ -1,5 +1,5 @@
 export declare class RecursiveObjectWriter {
-    private static createProperty(obj, name);
+    private static createProperty(obj, names, nameIndex);
     private static performSetProperty(obj, names, nameIndex, value);
     static setProperty(obj: any, name: string, value: any): void;
     static setProperties(obj: any, values: any): void;

@@ -1,5 +1,11 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.7.0"></a> 2.7.0 (2017-09-30) 
+
+### Features
+* Integrated mustache template engine to parameterize config files
+* Improved creation of properties in RecursiveObjectWriter
+
 ## <a name="2.5.0"></a> 2.5.0 (2017-08-05) 
 
 ### Features

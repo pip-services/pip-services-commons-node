@@ -26,6 +26,7 @@ var CompositeLogger = /** @class */ (function (_super) {
         var loggers = references.getOptional(new Descriptor_1.Descriptor(null, "logger", null, null, null));
         for (var i = 0; i < loggers.length; i++) {
             var logger = loggers[i];
+            // Todo: This doesn't work in TS. Redo...
             if (logger != this)
                 this._loggers.push(logger);
         }

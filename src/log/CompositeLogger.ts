@@ -21,6 +21,7 @@ export class CompositeLogger extends Logger implements IReferenceable {
         for (var i = 0; i < loggers.length; i++) {
             let logger: ILogger = loggers[i];
 
+			// Todo: This doesn't work in TS. Redo...
             if (logger != this as ILogger)
                 this._loggers.push(logger);
         }

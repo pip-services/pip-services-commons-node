@@ -1,14 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
+var IntegerConverter_1 = require("../convert/IntegerConverter");
 var ObjectReader_1 = require("./ObjectReader");
 var ObjectWriter_1 = require("./ObjectWriter");
 var RecursiveObjectReader_1 = require("./RecursiveObjectReader");
 var RecursiveObjectWriter = /** @class */ (function () {
     function RecursiveObjectWriter() {
     }
-    // Todo: Make it smarter
-    RecursiveObjectWriter.createProperty = function (obj, name) {
+    RecursiveObjectWriter.createProperty = function (obj, names, nameIndex) {
+        // If next field is index then create an array
+        var subField = names.length > nameIndex + 1 ? names[nameIndex + 1] : null;
+        var subFieldIndex = IntegerConverter_1.IntegerConverter.toNullableInteger(subField);
+        if (subFieldIndex != null)
+            return [];
+        // Else create a dictionary
         return {};
     };
     RecursiveObjectWriter.performSetProperty = function (obj, names, nameIndex, value) {
@@ -17,7 +23,7 @@ var RecursiveObjectWriter = /** @class */ (function () {
             if (subObj != null)
                 RecursiveObjectWriter.performSetProperty(subObj, names, nameIndex + 1, value);
             else {
-                subObj = RecursiveObjectWriter.createProperty(obj, names[nameIndex]);
+                subObj = RecursiveObjectWriter.createProperty(obj, names, nameIndex);
                 if (subObj != null) {
                     RecursiveObjectWriter.performSetProperty(subObj, names, nameIndex + 1, value);
                     ObjectWriter_1.ObjectWriter.setProperty(obj, names[nameIndex], subObj);

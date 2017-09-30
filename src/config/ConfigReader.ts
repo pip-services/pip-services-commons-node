@@ -1,4 +1,5 @@
 let _ = require('lodash');
+let mustache = require('mustache');
 
 import { ConfigParams } from './ConfigParams';
 import { IConfigurable } from './IConfigurable'
@@ -18,11 +19,14 @@ export abstract class ConfigReader implements IConfigurable {
         callback: (err: any, config: ConfigParams) => void): void;
 
     protected parameterize(config: string, parameters: ConfigParams): string {
-        // Convert template to lodash
-        config = config.replace(/{{/g, "<%=").replace(/}}/g, "%>");
         parameters = this._parameters.override(parameters);
-        let template = _.template(config);
-        return template(parameters);
+
+        // Convert template to lodash
+        //config = config.replace(/{{/g, "<%=").replace(/}}/g, "%>");
+        //let template = _.template(config);
+        //return template(parameters);
+
+        return mustache.render(config, parameters);
     }
 
 }

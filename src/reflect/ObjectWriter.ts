@@ -12,7 +12,7 @@ export class ObjectWriter {
 			throw new Error("Property name cannot be null");
 
         if (_.isObject(obj) && !_.isDate(obj)) {
-            return PropertyReflector.setProperty(obj, name, value);
+            PropertyReflector.setProperty(obj, name, value);
         } else if (_.isArray(obj)) {
             let index = IntegerConverter.toNullableInteger(name);
             if (index >= 0) {
@@ -20,7 +20,7 @@ export class ObjectWriter {
                     obj.push(null);
                 obj[index] = value;
             }
-        }
+		}
 	}
 	
 	public static setProperties(obj: any, values: any): void {
