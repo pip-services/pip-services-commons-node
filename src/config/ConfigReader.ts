@@ -1,5 +1,5 @@
 let _ = require('lodash');
-let mustache = require('mustache');
+let handlebars = require('handlebars');
 
 import { ConfigParams } from './ConfigParams';
 import { IConfigurable } from './IConfigurable'
@@ -26,7 +26,8 @@ export abstract class ConfigReader implements IConfigurable {
         //let template = _.template(config);
         //return template(parameters);
 
-        return mustache.render(config, parameters);
+        let template = handlebars.compile(config);
+        return template(parameters);
     }
 
 }

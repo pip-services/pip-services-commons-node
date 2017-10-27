@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require('lodash');
-var mustache = require('mustache');
+var handlebars = require('handlebars');
 var ConfigParams_1 = require("./ConfigParams");
 var ConfigReader = /** @class */ (function () {
     function ConfigReader() {
@@ -18,7 +18,8 @@ var ConfigReader = /** @class */ (function () {
         //config = config.replace(/{{/g, "<%=").replace(/}}/g, "%>");
         //let template = _.template(config);
         //return template(parameters);
-        return mustache.render(config, parameters);
+        var template = handlebars.compile(config);
+        return template(parameters);
     };
     return ConfigReader;
 }());
