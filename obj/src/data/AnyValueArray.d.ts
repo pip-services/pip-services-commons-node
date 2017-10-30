@@ -8,6 +8,7 @@ export declare class AnyValueArray extends Array<any> implements ICloneable {
     put(index: number, value: any): void;
     remove(index: number): void;
     append(elements: any[]): void;
+    size(): number;
     clear(): void;
     getAsObject(index?: number): any;
     setAsObject(index: any, value?: any): void;
