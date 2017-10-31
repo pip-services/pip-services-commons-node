@@ -48,9 +48,6 @@ var AnyValueArray = /** @class */ (function (_super) {
                 this.push(elements[index]);
         }
     };
-    AnyValueArray.prototype.size = function () {
-        return this.length;
-    };
     AnyValueArray.prototype.clear = function () {
         this.splice(0, this.length);
     };

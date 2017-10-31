@@ -45,10 +45,6 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     	}
     }
 
-    public size(): number {
-        return this.length;
-    }
-
     public clear(): void {
         this.splice(0, this.length);
     }

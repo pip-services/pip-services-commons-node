@@ -23,18 +23,15 @@ var AnyValueMap = /** @class */ (function () {
             throw new Error("Name cannot be null");
         // Case-insensitive search
         name = name.toLowerCase();
-        for (var key in this) {
-            var value = this[key];
-            if (this.hasOwnProperty(key) && key.toLowerCase() == name)
-                return value;
-        }
-        return null;
+        return this[name] || null;
     };
-    AnyValueMap.prototype.put = function (key, value) {
-        this[key] = value;
+    AnyValueMap.prototype.put = function (name, value) {
+        name = name.toLowerCase();
+        this[name] = value;
     };
-    AnyValueMap.prototype.remove = function (key) {
-        delete this[key];
+    AnyValueMap.prototype.remove = function (name) {
+        name = name.toLowerCase();
+        delete this[name];
     };
     AnyValueMap.prototype.append = function (map) {
         if (map == null)
@@ -42,7 +39,7 @@ var AnyValueMap = /** @class */ (function () {
         for (var key in map) {
             var value = map[key];
             if (map.hasOwnProperty(key))
-                this[key] = value;
+                this[key.toLowerCase()] = value;
         }
     };
     AnyValueMap.prototype.clear = function () {
@@ -85,7 +82,7 @@ var AnyValueMap = /** @class */ (function () {
             this.append(values);
         }
         else {
-            this[key] = value;
+            this.put(key, value);
         }
     };
     AnyValueMap.prototype.getAsNullableString = function (key) {

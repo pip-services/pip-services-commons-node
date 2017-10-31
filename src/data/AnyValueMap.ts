@@ -27,21 +27,17 @@ export class AnyValueMap implements ICloneable {
     	
     	// Case-insensitive search
         name = name.toLowerCase()
-    	for (let key in this) {
-            let value = this[key];
-    		if (this.hasOwnProperty(key) && key.toLowerCase() == name)
-                return value;
-    	}
-    	
-    	return null;
+    	return this[name] || null;
     }
 
-	public put(key: string, value: any): any {
-        this[key] = value;
+	public put(name: string, value: any): any {
+        name = name.toLowerCase()
+        this[name] = value;
     }
 
-    public remove(key: string): void {
-        delete this[key];
+    public remove(name: string): void {
+        name = name.toLowerCase()
+        delete this[name];
     }
 
     public append(map: any): void {
@@ -50,7 +46,7 @@ export class AnyValueMap implements ICloneable {
 		for (let key in map) {
             let value = map[key];
             if (map.hasOwnProperty(key))
-                this[key] = value;
+                this[key.toLowerCase()] = value;
 		}
     }
 
@@ -93,7 +89,7 @@ export class AnyValueMap implements ICloneable {
             let values = MapConverter.toMap(value);
             this.append(values);
         } else {
-            this[key] = value;
+            this.put(key, value);
         }
     }
     

@@ -5,8 +5,8 @@ import { AnyValueArray } from './AnyValueArray';
 export declare class AnyValueMap implements ICloneable {
     constructor(values?: any);
     get(name: string): any;
-    put(key: string, value: any): any;
-    remove(key: string): void;
+    put(name: string, value: any): any;
+    remove(name: string): void;
     append(map: any): void;
     clear(): any;
     length(): number;
