@@ -19,7 +19,7 @@ var MemoryDiscovery = /** @class */ (function () {
     };
     MemoryDiscovery.prototype.readConnections = function (connections) {
         this._items = [];
-        var keys = connections.getKeyNames();
+        var keys = connections.getKeys();
         for (var index = 0; index < keys.length; index++) {
             var key = keys[index];
             var value = connections.getAsNullableString(key);

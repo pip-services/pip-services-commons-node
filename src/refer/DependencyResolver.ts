@@ -19,7 +19,7 @@ export class DependencyResolver implements IReferenceable, IReconfigurable {
 
 	public configure(config: ConfigParams): void {
 		let dependencies = config.getSection("dependencies");
-        let names = dependencies.getKeyNames();
+        let names = dependencies.getKeys();
 		for (let index = 0; index < names.length; index++) {
             let name = names[index];
 			let locator = dependencies.get(name);

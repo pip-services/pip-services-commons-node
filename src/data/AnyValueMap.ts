@@ -15,29 +15,40 @@ import { AnyValue } from './AnyValue';
 import { AnyValueArray } from './AnyValueArray';
 
 export class AnyValueMap implements ICloneable {
-//    private count: number;
 
     public constructor(values: any = null) { 
     	this.append(values);
     }
     
-    public get(name: string): any {
-    	if (name == null)
+    public get(key: string): any {
+    	if (key == null)
     		throw new Error("Name cannot be null");
     	
     	// Case-insensitive search
-        name = name.toLowerCase()
-    	return this[name] || null;
+        key = key.toLowerCase()
+    	return this[key] || null;
     }
 
-	public put(name: string, value: any): any {
-        name = name.toLowerCase()
-        this[name] = value;
+	public getKeys(): string[] {
+        let keys: string[] = [];
+		
+		for (let key in this) {
+            if (this.hasOwnProperty(key)) {
+                keys.push(key);
+            }
+        }
+
+        return keys;
+    }            
+    
+	public put(key: string, value: any): any {
+        key = key.toLowerCase()
+        this[key] = value;
     }
 
-    public remove(name: string): void {
-        name = name.toLowerCase()
-        delete this[name];
+    public remove(key: string): void {
+        key = key.toLowerCase()
+        delete this[key];
     }
 
     public append(map: any): void {

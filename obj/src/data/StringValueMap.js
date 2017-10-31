@@ -24,26 +24,23 @@ var StringValueMap = /** @class */ (function () {
             throw new Error("Name cannot be null");
         // Case-insensitive search
         name = name.toLowerCase();
-        for (var key in this) {
-            var value = this[key];
-            if (this.hasOwnProperty(key) && key.toLowerCase() == name)
-                return StringConverter_1.StringConverter.toNullableString(value);
-        }
-        return null;
+        return this[name] || null;
     };
-    StringValueMap.prototype.getKeyNames = function () {
-        var names = [];
+    StringValueMap.prototype.getKeys = function () {
+        var keys = [];
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
-                names.push(key);
+                keys.push(key);
             }
         }
-        return names;
+        return keys;
     };
     StringValueMap.prototype.put = function (key, value) {
+        key = key.toLowerCase();
         this[key] = StringConverter_1.StringConverter.toNullableString(value);
     };
     StringValueMap.prototype.remove = function (key) {
+        key = key.toLowerCase();
         delete this[key];
     };
     StringValueMap.prototype.append = function (map) {
@@ -52,7 +49,7 @@ var StringValueMap = /** @class */ (function () {
         for (var key in map) {
             var value = map[key];
             if (map.hasOwnProperty(key))
-                this[key] = StringConverter_1.StringConverter.toNullableString(value);
+                this[key.toLowerCase()] = StringConverter_1.StringConverter.toNullableString(value);
         }
     };
     StringValueMap.prototype.clear = function () {
@@ -86,7 +83,7 @@ var StringValueMap = /** @class */ (function () {
             this.append(values);
         }
         else {
-            this[key] = StringConverter_1.StringConverter.toNullableString(value);
+            this.put(key, value);
         }
     };
     StringValueMap.prototype.getAsNullableString = function (key) {
@@ -268,7 +265,7 @@ var StringValueMap = /** @class */ (function () {
             var pos = token.indexOf('=');
             var key = pos > 0 ? token.substring(0, pos).trim() : token.trim();
             var value = pos > 0 ? token.substring(pos + 1).trim() : null;
-            result[key] = value;
+            result.put(key, value);
         }
         return result;
     };

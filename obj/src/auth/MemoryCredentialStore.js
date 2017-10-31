@@ -15,7 +15,7 @@ var MemoryCredentialStore = /** @class */ (function () {
     };
     MemoryCredentialStore.prototype.readCredentials = function (credentials) {
         this._items.clear();
-        var keys = credentials.getKeyNames();
+        var keys = credentials.getKeys();
         for (var index = 0; index < keys.length; index++) {
             var key = keys[index];
             var value = credentials.getAsNullableString(key);

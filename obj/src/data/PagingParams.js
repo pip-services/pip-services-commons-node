@@ -39,7 +39,7 @@ var PagingParams = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             tuples[_i] = arguments[_i];
         }
-        var map = AnyValueMap_1.AnyValueMap.fromTuples(tuples);
+        var map = AnyValueMap_1.AnyValueMap.fromTuplesArray(tuples);
         return PagingParams.fromMap(map);
     };
     PagingParams.fromMap = function (map) {

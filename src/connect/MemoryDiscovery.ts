@@ -24,7 +24,7 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
 
     public readConnections(connections: ConfigParams) {
         this._items = [];
-        let keys = connections.getKeyNames();
+        let keys = connections.getKeys();
         for (let index = 0; index < keys.length; index++) {
             let key = keys[index];
             let value = connections.getAsNullableString(key);

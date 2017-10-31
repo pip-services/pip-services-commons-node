@@ -13,7 +13,7 @@ var DependencyResolver = /** @class */ (function () {
     }
     DependencyResolver.prototype.configure = function (config) {
         var dependencies = config.getSection("dependencies");
-        var names = dependencies.getKeyNames();
+        var names = dependencies.getKeys();
         for (var index = 0; index < names.length; index++) {
             var name_1 = names[index];
             var locator = dependencies.get(name_1);

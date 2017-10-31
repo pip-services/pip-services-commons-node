@@ -26,33 +26,29 @@ export class StringValueMap {
     		throw new Error("Name cannot be null");
     	
     	// Case-insensitive search
-        name = name.toLowerCase()
-    	for (let key in this) {
-            let value = this[key];
-    		if (this.hasOwnProperty(key) && key.toLowerCase() == name)
-                return StringConverter.toNullableString(value);
-    	}
-    	
-    	return null;
+        name = name.toLowerCase();
+        return this[name] || null;
     }
 
-	public getKeyNames(): string[] {
-        let names: string[] = [];
+	public getKeys(): string[] {
+        let keys: string[] = [];
 		
 		for (let key in this) {
             if (this.hasOwnProperty(key)) {
-                names.push(key);
+                keys.push(key);
             }
         }
 
-        return names;
+        return keys;
     }            
     
 	public put(key: string, value: any): any {
+        key = key.toLowerCase();
         this[key] = StringConverter.toNullableString(value);
     }
 
     public remove(key: string): void {
+        key = key.toLowerCase();
         delete this[key];
     }
     
@@ -62,7 +58,7 @@ export class StringValueMap {
 		for (let key in map) {
             let value = map[key];
             if (map.hasOwnProperty(key))
-                this[key] = StringConverter.toNullableString(value);
+                this[key.toLowerCase()] = StringConverter.toNullableString(value);
 		}
     }
 
@@ -95,7 +91,7 @@ export class StringValueMap {
             let values = MapConverter.toMap(value);
             this.append(values);
         } else {
-            this[key] = StringConverter.toNullableString(value);
+            this.put(key, value);
         }
     }
     
@@ -319,7 +315,7 @@ export class StringValueMap {
 			let pos = token.indexOf('=');
 			let key = pos > 0 ? token.substring(0, pos).trim() : token.trim();
 			let value = pos > 0 ? token.substring(pos + 1).trim() : null;
-            result[key] = value;
+            result.put(key, value);
 		}
 		
 		return result;

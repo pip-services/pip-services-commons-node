@@ -13,25 +13,33 @@ var MapConverter_1 = require("../convert/MapConverter");
 var AnyValue_1 = require("./AnyValue");
 var AnyValueArray_1 = require("./AnyValueArray");
 var AnyValueMap = /** @class */ (function () {
-    //    private count: number;
     function AnyValueMap(values) {
         if (values === void 0) { values = null; }
         this.append(values);
     }
-    AnyValueMap.prototype.get = function (name) {
-        if (name == null)
+    AnyValueMap.prototype.get = function (key) {
+        if (key == null)
             throw new Error("Name cannot be null");
         // Case-insensitive search
-        name = name.toLowerCase();
-        return this[name] || null;
+        key = key.toLowerCase();
+        return this[key] || null;
     };
-    AnyValueMap.prototype.put = function (name, value) {
-        name = name.toLowerCase();
-        this[name] = value;
+    AnyValueMap.prototype.getKeys = function () {
+        var keys = [];
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                keys.push(key);
+            }
+        }
+        return keys;
     };
-    AnyValueMap.prototype.remove = function (name) {
-        name = name.toLowerCase();
-        delete this[name];
+    AnyValueMap.prototype.put = function (key, value) {
+        key = key.toLowerCase();
+        this[key] = value;
+    };
+    AnyValueMap.prototype.remove = function (key) {
+        key = key.toLowerCase();
+        delete this[key];
     };
     AnyValueMap.prototype.append = function (map) {
         if (map == null)

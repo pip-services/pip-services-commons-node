@@ -36,7 +36,7 @@ export class PagingParams {
 	}
 	
 	public static fromTuples(...tuples: any[]): PagingParams {
-		let map = AnyValueMap.fromTuples(tuples);
+		let map = AnyValueMap.fromTuplesArray(tuples);
 		return PagingParams.fromMap(map);
 	}
 
