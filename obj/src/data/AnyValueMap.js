@@ -13,6 +13,7 @@ var MapConverter_1 = require("../convert/MapConverter");
 var AnyValue_1 = require("./AnyValue");
 var AnyValueArray_1 = require("./AnyValueArray");
 var AnyValueMap = /** @class */ (function () {
+    //    private count: number;
     function AnyValueMap(values) {
         if (values === void 0) { values = null; }
         this.append(values);

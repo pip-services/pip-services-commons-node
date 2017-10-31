@@ -15,8 +15,7 @@ import { AnyValue } from './AnyValue';
 import { AnyValueArray } from './AnyValueArray';
 
 export class AnyValueMap implements ICloneable {
-
-    private count: number;
+//    private count: number;
 
     public constructor(values: any = null) { 
     	this.append(values);
