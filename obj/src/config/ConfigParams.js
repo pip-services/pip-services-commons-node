@@ -47,7 +47,7 @@ var ConfigParams = /** @class */ (function (_super) {
                 // Perform case sensitive search
                 var found = false;
                 for (var index = 0; index < sections.length; index++) {
-                    if (section.toLowerCase() == sections[index].toLowerCase()) {
+                    if (section == sections[index]) {
                         found = true;
                         break;
                     }
@@ -60,14 +60,14 @@ var ConfigParams = /** @class */ (function (_super) {
     };
     ConfigParams.prototype.getSection = function (section) {
         var result = new ConfigParams();
-        var prefix = section.toLowerCase() + ".";
+        var prefix = section + ".";
         for (var key in this) {
             if (this.hasOwnProperty(key)) {
                 // Prevents exception on the next line
                 if (key.length < prefix.length)
                     continue;
                 // Perform case sensitive match
-                var keyPrefix = key.substring(0, prefix.length).toLowerCase();
+                var keyPrefix = key.substring(0, prefix.length);
                 if (keyPrefix == prefix) {
                     var name_1 = key.substring(prefix.length);
                     result.put(name_1, this[key]);

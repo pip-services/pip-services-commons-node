@@ -39,7 +39,7 @@ export class ConfigParams extends StringValueMap {
 				// Perform case sensitive search
 				let found = false;
 				for (let index = 0; index < sections.length; index++) {
-					if (section.toLowerCase() == sections[index].toLowerCase()) {
+					if (section == sections[index]) {
 						found = true;
 						break;
 					}
@@ -55,7 +55,7 @@ export class ConfigParams extends StringValueMap {
 
 	public getSection(section: string): ConfigParams {
 		let result = new ConfigParams();
-		let prefix = section.toLowerCase() + ".";
+		let prefix = section + ".";
 
 		for (let key in this) {
 			if (this.hasOwnProperty(key)) {
@@ -64,7 +64,7 @@ export class ConfigParams extends StringValueMap {
 					continue;
 
 				// Perform case sensitive match
-				let keyPrefix = key.substring(0, prefix.length).toLowerCase();
+				let keyPrefix = key.substring(0, prefix.length);
 				if (keyPrefix == prefix) {
 					let name = key.substring(prefix.length);
 					result.put(name, this[key]);

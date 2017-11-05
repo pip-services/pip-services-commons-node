@@ -4,7 +4,7 @@ import { AnyValueArray } from './AnyValueArray';
 import { AnyValueMap } from './AnyValueMap';
 export declare class StringValueMap {
     constructor(map?: any);
-    get(name: string): string;
+    get(key: string): string;
     getKeys(): string[];
     put(key: string, value: any): any;
     remove(key: string): void;

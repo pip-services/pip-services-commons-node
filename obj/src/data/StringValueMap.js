@@ -19,12 +19,8 @@ var StringValueMap = /** @class */ (function () {
         if (map != null)
             this.append(map);
     }
-    StringValueMap.prototype.get = function (name) {
-        if (name == null)
-            throw new Error("Name cannot be null");
-        // Case-insensitive search
-        name = name.toLowerCase();
-        return this[name] || null;
+    StringValueMap.prototype.get = function (key) {
+        return this[key] || null;
     };
     StringValueMap.prototype.getKeys = function () {
         var keys = [];
@@ -36,11 +32,9 @@ var StringValueMap = /** @class */ (function () {
         return keys;
     };
     StringValueMap.prototype.put = function (key, value) {
-        key = key.toLowerCase();
         this[key] = StringConverter_1.StringConverter.toNullableString(value);
     };
     StringValueMap.prototype.remove = function (key) {
-        key = key.toLowerCase();
         delete this[key];
     };
     StringValueMap.prototype.append = function (map) {
@@ -49,7 +43,7 @@ var StringValueMap = /** @class */ (function () {
         for (var key in map) {
             var value = map[key];
             if (map.hasOwnProperty(key))
-                this[key.toLowerCase()] = StringConverter_1.StringConverter.toNullableString(value);
+                this[key] = StringConverter_1.StringConverter.toNullableString(value);
         }
     };
     StringValueMap.prototype.clear = function () {

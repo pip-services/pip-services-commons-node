@@ -21,11 +21,6 @@ export class AnyValueMap implements ICloneable {
     }
     
     public get(key: string): any {
-    	if (key == null)
-    		throw new Error("Name cannot be null");
-    	
-    	// Case-insensitive search
-        key = key.toLowerCase()
     	return this[key] || null;
     }
 
@@ -42,12 +37,10 @@ export class AnyValueMap implements ICloneable {
     }            
     
 	public put(key: string, value: any): any {
-        key = key.toLowerCase()
         this[key] = value;
     }
 
     public remove(key: string): void {
-        key = key.toLowerCase()
         delete this[key];
     }
 
@@ -57,7 +50,7 @@ export class AnyValueMap implements ICloneable {
 		for (let key in map) {
             let value = map[key];
             if (map.hasOwnProperty(key))
-                this[key.toLowerCase()] = value;
+                this[key] = value;
 		}
     }
 

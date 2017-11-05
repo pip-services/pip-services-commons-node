@@ -54,13 +54,13 @@ suite('ConfigParams', ()=> {
 
         var config = ConfigParams.fromValue(value);
         assert.equal(config.length(), 7);
-        assert.equal(config.getAsInteger("Field1.Field11"), 123);
-        assert.equal(config.get("Field1.Field12"), "ABC");
-        assert.equal(config.getAsInteger("Field2.0"), 123);
-        assert.equal(config.get("Field2.1"), "ABC");
-        assert.equal(config.getAsInteger("Field2.2.Field21"), 543);
-        assert.equal(config.get("Field2.2.Field22"), "XYZ");
-        assert.equal(config.getAsBoolean("Field3"), true);
+        assert.equal(config.getAsInteger("field1.field11"), 123);
+        assert.equal(config.get("field1.field12"), "ABC");
+        assert.equal(config.getAsInteger("field2.0"), 123);
+        assert.equal(config.get("field2.1"), "ABC");
+        assert.equal(config.getAsInteger("field2.2.field21"), 543);
+        assert.equal(config.get("field2.2.field22"), "XYZ");
+        assert.equal(config.getAsBoolean("field3"), true);
     });    
 
 });

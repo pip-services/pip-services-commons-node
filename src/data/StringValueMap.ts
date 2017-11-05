@@ -21,13 +21,8 @@ export class StringValueMap {
     	    this.append(map);
     }
     
-    public get(name: string): string {
-    	if (name == null)
-    		throw new Error("Name cannot be null");
-    	
-    	// Case-insensitive search
-        name = name.toLowerCase();
-        return this[name] || null;
+    public get(key: string): string {
+        return this[key] || null;
     }
 
 	public getKeys(): string[] {
@@ -43,12 +38,10 @@ export class StringValueMap {
     }            
     
 	public put(key: string, value: any): any {
-        key = key.toLowerCase();
         this[key] = StringConverter.toNullableString(value);
     }
 
     public remove(key: string): void {
-        key = key.toLowerCase();
         delete this[key];
     }
     
@@ -58,7 +51,7 @@ export class StringValueMap {
 		for (let key in map) {
             let value = map[key];
             if (map.hasOwnProperty(key))
-                this[key.toLowerCase()] = StringConverter.toNullableString(value);
+                this[key] = StringConverter.toNullableString(value);
 		}
     }
 

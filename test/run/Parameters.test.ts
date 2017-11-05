@@ -159,17 +159,17 @@ suite('Parameters', ()=> {
         var config = ConfigParams.fromTuples(
             "field1.field11", 123,
             "field2", "ABC",
-            "Field1.Field12", "XYZ"
+            "field1.field12", "XYZ"
         );
 
         var parameters = Parameters.fromConfig(config);
         assert.equal(2, parameters.length());
-        assert.equal("ABC", parameters.get("Field2"));
+        assert.equal("ABC", parameters.get("field2"));
 
-        var value = parameters.getAsMap("Field1");
+        var value = parameters.getAsMap("field1");
         assert.equal(2, value.length());
         assert.equal("123", value.get("field11"));
-        assert.equal("XYZ", value.get("Field12"));
+        assert.equal("XYZ", value.get("field12"));
     });
 
 });
