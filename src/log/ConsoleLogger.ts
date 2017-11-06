@@ -1,6 +1,7 @@
 import { StringConverter } from '../convert/StringConverter';
 import { LogLevel } from './LogLevel';
 import { Logger } from './Logger';
+import { LogLevelConverter } from './LogLevelConverter';
 
 export class ConsoleLogger extends Logger {
 	
@@ -14,7 +15,7 @@ export class ConsoleLogger extends Logger {
         let result: string = '[';
         result += correlationId != null ? correlationId : "---";
         result += ':';
-        result += level.toString();
+        result += LogLevelConverter.toString(level);
         result += ':';
         result += StringConverter.toString(new Date());
         result += "] ";

@@ -1,6 +1,6 @@
 {
     "name": "pip-services-commons-node",
-    "version": "2.7.3",
+    "version": "2.7.4",
     "author": "Conceptual Vision Consulting LLC",
     "description": "Basic portable abstraction for Pip.Services in Node.js",
     "contributors": [

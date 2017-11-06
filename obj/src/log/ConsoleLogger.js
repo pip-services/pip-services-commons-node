@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var StringConverter_1 = require("../convert/StringConverter");
 var LogLevel_1 = require("./LogLevel");
 var Logger_1 = require("./Logger");
+var LogLevelConverter_1 = require("./LogLevelConverter");
 var ConsoleLogger = /** @class */ (function (_super) {
     __extends(ConsoleLogger, _super);
     function ConsoleLogger() {
@@ -24,7 +25,7 @@ var ConsoleLogger = /** @class */ (function (_super) {
         var result = '[';
         result += correlationId != null ? correlationId : "---";
         result += ':';
-        result += level.toString();
+        result += LogLevelConverter_1.LogLevelConverter.toString(level);
         result += ':';
         result += StringConverter_1.StringConverter.toString(new Date());
         result += "] ";
