@@ -5,7 +5,7 @@ var LogMessage = /** @class */ (function () {
         this.time = new Date();
         this.level = level;
         this.source = source;
-        this.correlationId = correlationId;
+        this.correlation_id = correlationId;
         this.error = error;
         this.message = message;
     }

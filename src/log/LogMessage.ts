@@ -6,7 +6,7 @@ export class LogMessage {
     	this.time = new Date();
         this.level = level;
         this.source = source;
-        this.correlationId = correlationId;
+        this.correlation_id = correlationId;
         this.error = error;
         this.message = message;
     }
@@ -14,7 +14,7 @@ export class LogMessage {
 	public time: Date;
 	public source: string;
 	public level: LogLevel;
-	public correlationId: string;
+	public correlation_id: string;
 	public error: ErrorDescription;
 	public message: string;
 }
