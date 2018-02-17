@@ -16,6 +16,9 @@ var JsonConverter = /** @class */ (function () {
             return null;
         return JSON.stringify(value);
     };
+    JsonConverter.fromToObject = function (value) {
+        return value;
+    };
     JsonConverter.toNullableMap = function (value) {
         if (value == null)
             return null;

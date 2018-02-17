@@ -40,6 +40,15 @@ suite('JsonConverter', ()=> {
 		assert.equal(date.getTime(), jsonDate.getTime());
     });
 
+    test('From To Object', () => {
+        let value1 = { field1: 123, field2: 'ABC' };
+        
+        let value2 = JsonConverter.fromToObject(value1);
+        assert.isNotNull(value2);
+        assert.equal(value1.field1, value2.field1);
+        assert.equal(value1.field2, value2.field2);
+    });
+
     test('To Json Map', () => {
 		// Handling simple objects
 		let value = "{ \"value1\":123, \"value2\":234 }";

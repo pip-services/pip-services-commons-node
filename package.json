@@ -58,6 +58,7 @@
         "@types/lodash": "^4.0.0",
         "@types/mocha": "*",
         "@types/node": "*",
+        "memcached": "^2.2.2",
         "chai": "*",
         "matcha": "*",
         "mocha": "*",

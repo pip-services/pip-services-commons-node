@@ -5,6 +5,7 @@
 ### Features
 * Added lock package for distributed locks
 * Added memcached cache and lock
+* Added JsonConverter.fromToObject() method
 
 ## <a name="2.7.0"></a> 2.7.0 (2017-09-30) 
 

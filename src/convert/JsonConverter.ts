@@ -15,6 +15,10 @@ export class JsonConverter {
 		return JSON.stringify(value);
 	}
 
+	public static fromToObject(value: any): any {
+		return value;
+	}
+
 	public static toNullableMap(value: string): any {
 		if (value == null) return null;
 
