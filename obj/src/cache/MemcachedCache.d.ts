@@ -1,0 +1,31 @@
+import { ConfigParams } from '../config/ConfigParams';
+import { IConfigurable } from '../config/IConfigurable';
+import { IReferences } from '../refer/IReferences';
+import { IReferenceable } from '../refer/IReferenceable';
+import { IOpenable } from '../run/IOpenable';
+import { ICache } from './ICache';
+export declare class MemcachedCache implements ICache, IConfigurable, IReferenceable, IOpenable {
+    private _connectionResolver;
+    private _maxKeySize;
+    private _maxExpiration;
+    private _maxValue;
+    private _poolSize;
+    private _reconnect;
+    private _timeout;
+    private _retries;
+    private _failures;
+    private _retry;
+    private _remove;
+    private _idle;
+    private _client;
+    constructor();
+    configure(config: ConfigParams): void;
+    setReferences(references: IReferences): void;
+    isOpened(): boolean;
+    open(correlationId: string, callback: (err: any) => void): void;
+    close(correlationId: string, callback: (err: any) => void): void;
+    private checkOpened(correlationId, callback);
+    retrieve(correlationId: string, key: string, callback: (err: any, value: any) => void): void;
+    store(correlationId: string, key: string, value: any, timeout: number, callback: (err: any) => void): void;
+    remove(correlationId: string, key: string, callback: (err: any) => void): void;
+}

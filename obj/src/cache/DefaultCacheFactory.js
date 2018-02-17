@@ -14,17 +14,20 @@ var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
 var NullCache_1 = require("./NullCache");
 var MemoryCache_1 = require("./MemoryCache");
+var MemcachedCache_1 = require("./MemcachedCache");
 var DefaultCacheFactory = /** @class */ (function (_super) {
     __extends(DefaultCacheFactory, _super);
     function DefaultCacheFactory() {
         var _this = _super.call(this) || this;
         _this.registerAsType(DefaultCacheFactory.MemoryCacheDescriptor, MemoryCache_1.MemoryCache);
         _this.registerAsType(DefaultCacheFactory.NullCacheDescriptor, NullCache_1.NullCache);
+        _this.registerAsType(DefaultCacheFactory.MemcachedCacheDescriptor, MemcachedCache_1.MemcachedCache);
         return _this;
     }
     DefaultCacheFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "cache", "default", "1.0");
     DefaultCacheFactory.NullCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "null", "*", "1.0");
     DefaultCacheFactory.MemoryCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memory", "*", "1.0");
+    DefaultCacheFactory.MemcachedCacheDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "cache", "memcached", "*", "1.0");
     return DefaultCacheFactory;
 }(Factory_1.Factory));
 exports.DefaultCacheFactory = DefaultCacheFactory;
