@@ -3,7 +3,8 @@ import { ILogger } from './ILogger';
 import { LogLevel } from './LogLevel';
 import { ConfigParams } from '../config/ConfigParams';
 export declare abstract class Logger implements ILogger, IReconfigurable {
-    private _level;
+    protected _level: LogLevel;
+    protected _source: string;
     protected constructor();
     configure(config: ConfigParams): void;
     getLevel(): LogLevel;

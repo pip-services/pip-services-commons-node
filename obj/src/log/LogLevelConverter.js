@@ -5,7 +5,8 @@ var StringConverter_1 = require("../convert/StringConverter");
 var LogLevelConverter = /** @class */ (function () {
     function LogLevelConverter() {
     }
-    LogLevelConverter.toLogLevel = function (value) {
+    LogLevelConverter.toLogLevel = function (value, defaultValue) {
+        if (defaultValue === void 0) { defaultValue = LogLevel_1.LogLevel.Info; }
         if (value == null)
             return LogLevel_1.LogLevel.Info;
         value = StringConverter_1.StringConverter.toString(value).toUpperCase();
@@ -24,7 +25,7 @@ var LogLevelConverter = /** @class */ (function () {
         else if ("6" == value || "TRACE" == value)
             return LogLevel_1.LogLevel.Trace;
         else
-            return LogLevel_1.LogLevel.Info;
+            return defaultValue;
     };
     LogLevelConverter.toString = function (level) {
         if (level == LogLevel_1.LogLevel.Fatal)

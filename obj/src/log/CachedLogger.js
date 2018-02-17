@@ -10,7 +10,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var os = require('os');
 var ErrorDescriptionFactory_1 = require("../errors/ErrorDescriptionFactory");
 var Logger_1 = require("./Logger");
 var LogMessage_1 = require("./LogMessage");
@@ -26,12 +25,12 @@ var CachedLogger = /** @class */ (function (_super) {
     }
     CachedLogger.prototype.write = function (level, correlationId, ex, message) {
         var error = ex != null ? ErrorDescriptionFactory_1.ErrorDescriptionFactory.create(ex) : null;
-        var source = os.hostname(); // Todo: add current module name name
-        var logMessage = new LogMessage_1.LogMessage(level, source, correlationId, error, message);
+        var logMessage = new LogMessage_1.LogMessage(level, this._source, correlationId, error, message);
         this._cache.push(logMessage);
         this.update();
     };
     CachedLogger.prototype.configure = function (config) {
+        _super.prototype.configure.call(this, config);
         this._interval = config.getAsLongWithDefault("interval", this._interval);
     };
     CachedLogger.prototype.clear = function () {

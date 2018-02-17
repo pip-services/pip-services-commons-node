@@ -6,9 +6,11 @@ var LogLevelConverter_1 = require("./LogLevelConverter");
 var Logger = /** @class */ (function () {
     function Logger() {
         this._level = LogLevel_1.LogLevel.Info;
+        this._source = null;
     }
     Logger.prototype.configure = function (config) {
-        this._level = LogLevelConverter_1.LogLevelConverter.toLogLevel(config.getAsObject("level"));
+        this._level = LogLevelConverter_1.LogLevelConverter.toLogLevel(config.getAsObject("level"), this._level);
+        this._source = config.getAsStringWithDefault("source", this._source);
     };
     Logger.prototype.getLevel = function () {
         return this._level;

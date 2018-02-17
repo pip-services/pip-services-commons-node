@@ -1,5 +1,11 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.8.0"></a> 2.8.0 (2018-02-17) 
+
+### Features
+* Added lock package for distributed locks
+* Added memcached cache and lock
+
 ## <a name="2.7.0"></a> 2.7.0 (2017-09-30) 
 
 ### Features

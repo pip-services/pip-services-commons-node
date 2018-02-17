@@ -3,7 +3,7 @@ import { StringConverter } from '../convert/StringConverter';
 
 export class LogLevelConverter {
 
-    public static toLogLevel(value: any): LogLevel {
+    public static toLogLevel(value: any, defaultValue: LogLevel = LogLevel.Info): LogLevel {
         if (value == null) return LogLevel.Info;
 
         value = StringConverter.toString(value).toUpperCase();
@@ -22,7 +22,7 @@ export class LogLevelConverter {
         else if ("6" == value || "TRACE" == value)
             return LogLevel.Trace;
         else
-            return LogLevel.Info;
+            return defaultValue;
     }
 
     public static toString(level: LogLevel): string {

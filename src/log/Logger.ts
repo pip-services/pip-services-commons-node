@@ -7,14 +7,17 @@ import { LogLevelConverter } from './LogLevelConverter';
 import { ConfigParams } from '../config/ConfigParams';
 
 export abstract class Logger implements ILogger, IReconfigurable {
-    private _level: LogLevel = LogLevel.Info;
+    protected _level: LogLevel = LogLevel.Info;
+    protected _source: string = null;
 
     protected constructor() { }
 
     public configure(config: ConfigParams): void {
         this._level = LogLevelConverter.toLogLevel(
-            config.getAsObject("level")
+            config.getAsObject("level"),
+            this._level
         );
+        this._source = config.getAsStringWithDefault("source", this._source);
     }
 
     public getLevel(): LogLevel {

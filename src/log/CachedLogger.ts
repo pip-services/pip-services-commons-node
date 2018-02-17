@@ -1,5 +1,3 @@
-let os = require('os');
-
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ConfigParams } from '../config/ConfigParams';
 import { ErrorDescription } from '../errors/ErrorDescription';
@@ -18,8 +16,7 @@ export abstract class CachedLogger extends Logger implements IReconfigurable {
 	
 	protected write(level: LogLevel, correlationId: string, ex: Error, message: string): void {
 		let error: ErrorDescription = ex != null ? ErrorDescriptionFactory.create(ex) : null;
-        let source: string = os.hostname(); // Todo: add current module name name
-		let logMessage: LogMessage = new LogMessage(level, source, correlationId, error, message);
+		let logMessage: LogMessage = new LogMessage(level, this._source, correlationId, error, message);
 		
         this._cache.push(logMessage);
 		
@@ -29,7 +26,9 @@ export abstract class CachedLogger extends Logger implements IReconfigurable {
     protected abstract save(messages: LogMessage[]): void;
 
     public configure(config: ConfigParams): void {
-    	this._interval = config.getAsLongWithDefault("interval", this._interval);
+        super.configure(config);
+        
+        this._interval = config.getAsLongWithDefault("interval", this._interval);
     }
     
     public clear(): void {

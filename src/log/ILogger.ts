@@ -3,8 +3,8 @@ import { LogLevel } from './LogLevel';
 // Todo: solve issue with overloaded methods. Look at Python implementation
 export interface ILogger {
 	getLevel(): LogLevel;
-	setLevel(value: LogLevel): void;
-
+    setLevel(value: LogLevel): void;
+    
     log(level: LogLevel, correlationId: string, error: Error, message: string, ...args: any[]) : void;
 
     fatal(correlationId: string, error: Error, message: string, ...args: any[]) : void;

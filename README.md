@@ -19,6 +19,7 @@ All functionality is decomposed into several packages:
 - **Count** - performance counters components
 - **Data** - data value objects and random value generators
 - **Errors** - portable application errors
+- **Lock** - distributed locking
 - **Log** - logging components
 - **Random** - random data generators
 - **Refer** - component referencing framework
