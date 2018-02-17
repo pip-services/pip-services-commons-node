@@ -7,4 +7,12 @@ services:
       dockerfile: Dockerfile.test
     image: ${IMAGE:-pipdevs/test}
     command: ${TEST_CMD:-npm test}
+    depends_on:
+      - memcached
 
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    ports:
+      - "11211:11211"
+    

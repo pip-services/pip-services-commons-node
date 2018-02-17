@@ -3,9 +3,9 @@ let assert = require('chai').assert;
 
 import { ILock } from '../../src/lock/ILock';
 
-let LOCK1: string = "Lock 1";
-let LOCK2: string = "Lock 2";
-let LOCK3: string = "Lock 3";
+let LOCK1: string = "lock_1";
+let LOCK2: string = "lock_2";
+let LOCK3: string = "lock_3";
 
 export class LockFixture {
     private _lock: ILock;
