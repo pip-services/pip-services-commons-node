@@ -57,16 +57,16 @@ var MemcachedCache = /** @class */ (function () {
             }
             var options = {
                 maxKeySize: _this._maxKeySize,
-                _maxExpiration: _this._maxExpiration,
-                _maxValue: _this._maxValue,
-                _poolSize: _this._poolSize,
-                _reconnect: _this._reconnect,
-                _timeout: _this._timeout,
-                _retries: _this._retries,
-                _failures: _this._failures,
-                _retry: _this._retry,
-                _remove: _this._remove,
-                _idle: _this._idle
+                maxExpiration: _this._maxExpiration,
+                maxValue: _this._maxValue,
+                poolSize: _this._poolSize,
+                reconnect: _this._reconnect,
+                timeout: _this._timeout,
+                retries: _this._retries,
+                failures: _this._failures,
+                retry: _this._retry,
+                remove: _this._remove,
+                idle: _this._idle
             };
             var Memcached = require('memcached');
             _this._client = new Memcached(servers, options);

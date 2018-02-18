@@ -5,5 +5,6 @@ export declare class DefaultLoggerFactory extends Factory {
     static readonly NullLoggerDescriptor: Descriptor;
     static readonly ConsoleLoggerDescriptor: Descriptor;
     static readonly CompositeLoggerDescriptor: Descriptor;
+    static readonly FluentdLoggerDescriptor: Descriptor;
     constructor();
 }

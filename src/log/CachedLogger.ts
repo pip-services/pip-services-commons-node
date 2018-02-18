@@ -37,7 +37,7 @@ export abstract class CachedLogger extends Logger implements IReconfigurable {
     }
 
     public dump(): void {
-        if (this._updated) {            
+        if (this._updated) {
             if (!this._updated) return;
             
             let messages = this._cache;

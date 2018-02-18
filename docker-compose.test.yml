@@ -9,6 +9,7 @@ services:
     command: ${TEST_CMD:-npm test}
     depends_on:
       - memcached
+      - fluentd
 
   memcached:
     image: memcached:latest
@@ -16,3 +17,11 @@ services:
     ports:
       - "11211:11211"
     
+  fluentd:
+    image: fluent/fluentd
+    container_name: fluentd
+    # volumes:
+    #   - ./logs:/fluentd/log
+    ports:
+      - "24224:24224"
+          

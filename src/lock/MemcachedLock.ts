@@ -71,16 +71,16 @@ export class MemcachedLock extends Lock implements IConfigurable, IReferenceable
 
             let options = {
                 maxKeySize: this._maxKeySize,
-                _maxExpiration: this._maxExpiration,
-                _maxValue: this._maxValue,
-                _poolSize: this._poolSize,
-                _reconnect: this._reconnect,
-                _timeout: this._timeout,
-                _retries: this._retries,
-                _failures: this._failures,
-                _retry: this._retry,
-                _remove: this._remove,
-                _idle: this._idle
+                maxExpiration: this._maxExpiration,
+                maxValue: this._maxValue,
+                poolSize: this._poolSize,
+                reconnect: this._reconnect,
+                timeout: this._timeout,
+                retries: this._retries,
+                failures: this._failures,
+                retry: this._retry,
+                remove: this._remove,
+                idle: this._idle
             };
 
             let Memcached = require('memcached');
