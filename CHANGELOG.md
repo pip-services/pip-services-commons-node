@@ -1,5 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.8.0"></a> 2.8.0 (2018-03-01) 
+
+### Features
+* Moved from mustache to handlebars
+
 ## <a name="2.8.0"></a> 2.8.0 (2018-02-17) 
 
 ### Features
