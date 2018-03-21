@@ -13,7 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var NullLogger_1 = require("./NullLogger");
 var ConsoleLogger_1 = require("./ConsoleLogger");
 var CompositeLogger_1 = require("./CompositeLogger");
-var FluentdLogger_1 = require("./FluentdLogger");
 var Factory_1 = require("../build/Factory");
 var Descriptor_1 = require("../refer/Descriptor");
 var DefaultLoggerFactory = /** @class */ (function (_super) {
@@ -21,16 +20,20 @@ var DefaultLoggerFactory = /** @class */ (function (_super) {
     function DefaultLoggerFactory() {
         var _this = _super.call(this) || this;
         _this.registerAsType(DefaultLoggerFactory.NullLoggerDescriptor, NullLogger_1.NullLogger);
+        _this.registerAsType(DefaultLoggerFactory.NullLoggerDescriptor2, NullLogger_1.NullLogger);
         _this.registerAsType(DefaultLoggerFactory.ConsoleLoggerDescriptor, ConsoleLogger_1.ConsoleLogger);
+        _this.registerAsType(DefaultLoggerFactory.ConsoleLoggerDescriptor2, ConsoleLogger_1.ConsoleLogger);
         _this.registerAsType(DefaultLoggerFactory.CompositeLoggerDescriptor, CompositeLogger_1.CompositeLogger);
-        _this.registerAsType(DefaultLoggerFactory.FluentdLoggerDescriptor, FluentdLogger_1.FluentdLogger);
+        _this.registerAsType(DefaultLoggerFactory.CompositeLoggerDescriptor2, CompositeLogger_1.CompositeLogger);
         return _this;
     }
-    DefaultLoggerFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "logger", "default", "1.0");
-    DefaultLoggerFactory.NullLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "null", "*", "1.0");
-    DefaultLoggerFactory.ConsoleLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "*", "1.0");
-    DefaultLoggerFactory.CompositeLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "*", "1.0");
-    DefaultLoggerFactory.FluentdLoggerDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "logger", "fluentd", "*", "1.0");
+    DefaultLoggerFactory.Descriptor = new Descriptor_1.Descriptor("pip-services", "factory", "logger", "default", "1.0");
+    DefaultLoggerFactory.NullLoggerDescriptor = new Descriptor_1.Descriptor("pip-services", "logger", "null", "*", "1.0");
+    DefaultLoggerFactory.NullLoggerDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "logger", "null", "*", "1.0");
+    DefaultLoggerFactory.ConsoleLoggerDescriptor = new Descriptor_1.Descriptor("pip-services", "logger", "console", "*", "1.0");
+    DefaultLoggerFactory.ConsoleLoggerDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "logger", "console", "*", "1.0");
+    DefaultLoggerFactory.CompositeLoggerDescriptor = new Descriptor_1.Descriptor("pip-services", "logger", "composite", "*", "1.0");
+    DefaultLoggerFactory.CompositeLoggerDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "logger", "composite", "*", "1.0");
     return DefaultLoggerFactory;
 }(Factory_1.Factory));
 exports.DefaultLoggerFactory = DefaultLoggerFactory;

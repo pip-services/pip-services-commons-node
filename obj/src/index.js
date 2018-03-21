@@ -12,6 +12,7 @@ __export(require("./connect"));
 __export(require("./convert"));
 __export(require("./count"));
 __export(require("./errors"));
+__export(require("./lock"));
 __export(require("./log"));
 __export(require("./data"));
 __export(require("./random"));

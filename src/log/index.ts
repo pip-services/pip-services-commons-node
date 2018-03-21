@@ -7,5 +7,4 @@ export { CachedLogger } from './CachedLogger';
 export { ConsoleLogger } from './ConsoleLogger';
 export { CompositeLogger } from './CompositeLogger';
 export { LogMessage } from './LogMessage';
-export { FluentdLogger } from './FluentdLogger';
 export { DefaultLoggerFactory } from './DefaultLoggerFactory';

@@ -20,14 +20,20 @@ var DefaultCountersFactory = /** @class */ (function (_super) {
     function DefaultCountersFactory() {
         var _this = _super.call(this) || this;
         _this.registerAsType(DefaultCountersFactory.NullCountersDescriptor, NullCounters_1.NullCounters);
+        _this.registerAsType(DefaultCountersFactory.NullCountersDescriptor2, NullCounters_1.NullCounters);
         _this.registerAsType(DefaultCountersFactory.LogCountersDescriptor, LogCounters_1.LogCounters);
+        _this.registerAsType(DefaultCountersFactory.LogCountersDescriptor2, LogCounters_1.LogCounters);
         _this.registerAsType(DefaultCountersFactory.CompositeCountersDescriptor, CompositeCounters_1.CompositeCounters);
+        _this.registerAsType(DefaultCountersFactory.CompositeCountersDescriptor2, CompositeCounters_1.CompositeCounters);
         return _this;
     }
-    DefaultCountersFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "counters", "default", "1.0");
-    DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "*", "1.0");
-    DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "*", "1.0");
-    DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "*", "1.0");
+    DefaultCountersFactory.Descriptor = new Descriptor_1.Descriptor("pip-services", "factory", "counters", "default", "1.0");
+    DefaultCountersFactory.NullCountersDescriptor = new Descriptor_1.Descriptor("pip-services", "counters", "null", "*", "1.0");
+    DefaultCountersFactory.NullCountersDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "counters", "null", "*", "1.0");
+    DefaultCountersFactory.LogCountersDescriptor = new Descriptor_1.Descriptor("pip-services", "counters", "log", "*", "1.0");
+    DefaultCountersFactory.LogCountersDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "counters", "log", "*", "1.0");
+    DefaultCountersFactory.CompositeCountersDescriptor = new Descriptor_1.Descriptor("pip-services", "counters", "composite", "*", "1.0");
+    DefaultCountersFactory.CompositeCountersDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "counters", "composite", "*", "1.0");
     return DefaultCountersFactory;
 }(Factory_1.Factory));
 exports.DefaultCountersFactory = DefaultCountersFactory;

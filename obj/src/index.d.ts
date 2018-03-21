@@ -7,6 +7,7 @@ export * from './connect';
 export * from './convert';
 export * from './count';
 export * from './errors';
+export * from './lock';
 export * from './log';
 export * from './data';
 export * from './random';

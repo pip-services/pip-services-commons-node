@@ -1,5 +1,11 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.9.0"></a> 2.9.0 (2018-03-20) 
+
+### Breaking changes
+* Moved FluentdLogger, MemcachedCache and MemcachedLock to pip-services-oss package
+* Changed logical group in descriptors to 'pip-services'
+
 ## <a name="2.8.0"></a> 2.8.0 (2018-03-01) 
 
 ### Features

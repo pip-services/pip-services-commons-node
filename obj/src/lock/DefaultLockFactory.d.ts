@@ -4,6 +4,5 @@ export declare class DefaultLockFactory extends Factory {
     static readonly Descriptor: Descriptor;
     static readonly NullLockDescriptor: Descriptor;
     static readonly MemoryLockDescriptor: Descriptor;
-    static readonly MemcachedLockDescriptor: Descriptor;
     constructor();
 }

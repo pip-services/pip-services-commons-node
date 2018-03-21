@@ -24,10 +24,10 @@ var DefaultConfigReaderFactory = /** @class */ (function (_super) {
         _this.registerAsType(DefaultConfigReaderFactory.YamlConfigReaderDescriptor, YamlConfigReader_1.YamlConfigReader);
         return _this;
     }
-    DefaultConfigReaderFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "config-reader", "default", "1.0");
-    DefaultConfigReaderFactory.MemoryConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "memory", "*", "1.0");
-    DefaultConfigReaderFactory.JsonConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "json", "*", "1.0");
-    DefaultConfigReaderFactory.YamlConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "config-reader", "yaml", "*", "1.0");
+    DefaultConfigReaderFactory.Descriptor = new Descriptor_1.Descriptor("pip-services", "factory", "config-reader", "default", "1.0");
+    DefaultConfigReaderFactory.MemoryConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services", "config-reader", "memory", "*", "1.0");
+    DefaultConfigReaderFactory.JsonConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services", "config-reader", "json", "*", "1.0");
+    DefaultConfigReaderFactory.YamlConfigReaderDescriptor = new Descriptor_1.Descriptor("pip-services", "config-reader", "yaml", "*", "1.0");
     return DefaultConfigReaderFactory;
 }(Factory_1.Factory));
 exports.DefaultConfigReaderFactory = DefaultConfigReaderFactory;

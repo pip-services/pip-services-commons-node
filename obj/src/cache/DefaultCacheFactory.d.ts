@@ -4,6 +4,5 @@ export declare class DefaultCacheFactory extends Factory {
     static readonly Descriptor: Descriptor;
     static readonly NullCacheDescriptor: Descriptor;
     static readonly MemoryCacheDescriptor: Descriptor;
-    static readonly MemcachedCacheDescriptor: Descriptor;
     constructor();
 }

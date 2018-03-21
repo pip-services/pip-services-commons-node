@@ -18,10 +18,12 @@ var DefaultCredentialStoreFactory = /** @class */ (function (_super) {
     function DefaultCredentialStoreFactory() {
         var _this = _super.call(this) || this;
         _this.registerAsType(DefaultCredentialStoreFactory.MemoryCredentialStoreDescriptor, MemoryCredentialStore_1.MemoryCredentialStore);
+        _this.registerAsType(DefaultCredentialStoreFactory.MemoryCredentialStoreDescriptor2, MemoryCredentialStore_1.MemoryCredentialStore);
         return _this;
     }
-    DefaultCredentialStoreFactory.Descriptor = new Descriptor_1.Descriptor("pip-services-commons", "factory", "credential-store", "default", "1.0");
-    DefaultCredentialStoreFactory.MemoryCredentialStoreDescriptor = new Descriptor_1.Descriptor("pip-services-commons", "credential-store", "memory", "*", "1.0");
+    DefaultCredentialStoreFactory.Descriptor = new Descriptor_1.Descriptor("pip-services", "factory", "credential-store", "default", "1.0");
+    DefaultCredentialStoreFactory.MemoryCredentialStoreDescriptor = new Descriptor_1.Descriptor("pip-services", "credential-store", "memory", "*", "1.0");
+    DefaultCredentialStoreFactory.MemoryCredentialStoreDescriptor2 = new Descriptor_1.Descriptor("pip-services-commons", "credential-store", "memory", "*", "1.0");
     return DefaultCredentialStoreFactory;
 }(Factory_1.Factory));
 exports.DefaultCredentialStoreFactory = DefaultCredentialStoreFactory;
