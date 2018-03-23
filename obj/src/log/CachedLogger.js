@@ -20,8 +20,8 @@ var CachedLogger = /** @class */ (function (_super) {
         _this._cache = [];
         _this._updated = false;
         _this._lastDumpTime = new Date().getTime();
-        _this._interval = 10000;
         _this._maxCacheSize = 100;
+        _this._interval = 10000;
         return _this;
     }
     CachedLogger.prototype.write = function (level, correlationId, ex, message) {

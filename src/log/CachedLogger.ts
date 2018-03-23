@@ -12,8 +12,8 @@ export abstract class CachedLogger extends Logger implements IReconfigurable {
     private _cache: LogMessage[] = [];
     private _updated: boolean = false;
     private _lastDumpTime: number = new Date().getTime();
-    private _interval: number = 10000;
     private _maxCacheSize: number = 100;
+    protected _interval: number = 10000;
 	
 	protected write(level: LogLevel, correlationId: string, ex: Error, message: string): void {
 		let error: ErrorDescription = ex != null ? ErrorDescriptionFactory.create(ex) : null;

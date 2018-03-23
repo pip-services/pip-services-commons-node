@@ -7,8 +7,8 @@ export declare abstract class CachedLogger extends Logger implements IReconfigur
     private _cache;
     private _updated;
     private _lastDumpTime;
-    private _interval;
     private _maxCacheSize;
+    protected _interval: number;
     protected write(level: LogLevel, correlationId: string, ex: Error, message: string): void;
     protected abstract save(messages: LogMessage[], callback: (err: any) => void): void;
     configure(config: ConfigParams): void;
