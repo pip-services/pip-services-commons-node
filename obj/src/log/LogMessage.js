@@ -1,13 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogMessage = /** @class */ (function () {
-    function LogMessage(level, source, correlationId, error, message) {
-        this.time = new Date();
-        this.level = level;
-        this.source = source;
-        this.correlation_id = correlationId;
-        this.error = error;
-        this.message = message;
+    function LogMessage() {
     }
     return LogMessage;
 }());
