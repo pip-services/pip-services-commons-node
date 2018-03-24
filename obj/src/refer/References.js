@@ -47,6 +47,14 @@ var References = /** @class */ (function () {
         }
         return components;
     };
+    References.prototype.getAllLocators = function () {
+        var locators = [];
+        for (var index = 0; index < this._references.length; index++) {
+            var reference = this._references[index];
+            locators.push(reference.getLocator());
+        }
+        return locators;
+    };
     References.prototype.getAll = function () {
         var components = [];
         for (var index = 0; index < this._references.length; index++) {

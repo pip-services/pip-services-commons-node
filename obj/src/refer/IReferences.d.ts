@@ -26,6 +26,12 @@ export interface IReferences {
      */
     removeAll(locator: any): any[];
     /**
+     * Gets all stored component locators
+     * @return a list with component locators
+     * @param callback callback function with execution error
+     */
+    getAllLocators(): any[];
+    /**
      * Gets all stored component references
      * @return a list with component references
      * @param callback callback function with execution error

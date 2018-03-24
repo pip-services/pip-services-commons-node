@@ -55,7 +55,18 @@ export class References implements IReferences {
 		return components;
 	}
 
-	public getAll(): any[] {
+	public getAllLocators(): any[] {
+        let locators: any[] = [];
+		
+        for (let index = 0; index < this._references.length; index++) {
+            let reference = this._references[index];
+            locators.push(reference.getLocator());
+        }
+		
+		return locators;
+	}
+
+    public getAll(): any[] {
         let components: any[] = [];
 		
         for (let index = 0; index < this._references.length; index++) {

@@ -9,6 +9,7 @@ export declare class References implements IReferences {
     put(locator: any, component: any): void;
     remove(locator: any): any;
     removeAll(locator: any): any[];
+    getAllLocators(): any[];
     getAll(): any[];
     getOneOptional<T>(locator: any): T;
     getOneRequired<T>(locator: any): T;
