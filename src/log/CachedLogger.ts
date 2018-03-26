@@ -9,10 +9,10 @@ import { LogMessage } from './LogMessage';
 import { LogLevelConverter } from './LogLevelConverter';
 
 export abstract class CachedLogger extends Logger implements IReconfigurable {
-    private _cache: LogMessage[] = [];
-    private _updated: boolean = false;
-    private _lastDumpTime: number = new Date().getTime();
-    private _maxCacheSize: number = 100;
+    protected _cache: LogMessage[] = [];
+    protected _updated: boolean = false;
+    protected _lastDumpTime: number = new Date().getTime();
+    protected _maxCacheSize: number = 100;
     protected _interval: number = 10000;
 	
 	protected write(level: LogLevel, correlationId: string, ex: Error, message: string): void {
