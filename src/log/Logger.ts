@@ -1,12 +1,16 @@
-var util = require('util');
+let util = require('util');
 
 import { IReconfigurable } from '../config/IReconfigurable';
 import { ILogger } from './ILogger';
 import { LogLevel } from './LogLevel';
 import { LogLevelConverter } from './LogLevelConverter';
 import { ConfigParams } from '../config/ConfigParams';
+import { IReferenceable } from '../refer/IReferenceable';
+import { IReferences } from '../refer/IReferences';
+import { ContextInfo } from '../info/ContextInfo';
+import { Descriptor } from '../refer/Descriptor';
 
-export abstract class Logger implements ILogger, IReconfigurable {
+export abstract class Logger implements ILogger, IReconfigurable, IReferenceable {
     protected _level: LogLevel = LogLevel.Info;
     protected _source: string = null;
 
@@ -20,6 +24,14 @@ export abstract class Logger implements ILogger, IReconfigurable {
         this._source = config.getAsStringWithDefault("source", this._source);
     }
 
+    public setReferences(references: IReferences) {
+        let contextInfo = references.getOneOptional<ContextInfo>(
+            new Descriptor("pip-services", "context-info", "*", "*", "1.0"));
+        if (contextInfo != null && this._source == null) {
+            this._source = contextInfo.name;
+        }
+    }
+
     public getLevel(): LogLevel {
         return this._level;
     }
@@ -28,6 +40,14 @@ export abstract class Logger implements ILogger, IReconfigurable {
         this._level = value;
     }
 
+    public getSource(): string {
+        return this._source;
+    }
+
+    public setSource(value: string): void {
+        this._source = value;
+    }
+    
     protected abstract write(level: LogLevel, correlationId: string, error: Error, message: string): void;
 
     protected formatAndWrite(level: LogLevel, correlationId: string, error: Error, message: string, ...args: any[]): void {

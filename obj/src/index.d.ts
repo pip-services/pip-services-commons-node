@@ -15,3 +15,4 @@ export * from './refer';
 export * from './reflect';
 export * from './validate';
 export * from './run';
+export * from './info';

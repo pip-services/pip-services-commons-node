@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var util = require('util');
 var LogLevel_1 = require("./LogLevel");
 var LogLevelConverter_1 = require("./LogLevelConverter");
+var Descriptor_1 = require("../refer/Descriptor");
 var Logger = /** @class */ (function () {
     function Logger() {
         this._level = LogLevel_1.LogLevel.Info;
@@ -12,11 +13,23 @@ var Logger = /** @class */ (function () {
         this._level = LogLevelConverter_1.LogLevelConverter.toLogLevel(config.getAsObject("level"), this._level);
         this._source = config.getAsStringWithDefault("source", this._source);
     };
+    Logger.prototype.setReferences = function (references) {
+        var contextInfo = references.getOneOptional(new Descriptor_1.Descriptor("pip-services", "context-info", "*", "*", "1.0"));
+        if (contextInfo != null && this._source == null) {
+            this._source = contextInfo.name;
+        }
+    };
     Logger.prototype.getLevel = function () {
         return this._level;
     };
     Logger.prototype.setLevel = function (value) {
         this._level = value;
+    };
+    Logger.prototype.getSource = function () {
+        return this._source;
+    };
+    Logger.prototype.setSource = function (value) {
+        this._source = value;
     };
     Logger.prototype.formatAndWrite = function (level, correlationId, error, message) {
         var args = [];

@@ -20,4 +20,5 @@ __export(require("./refer"));
 __export(require("./reflect"));
 __export(require("./validate"));
 __export(require("./run"));
+__export(require("./info"));
 //# sourceMappingURL=index.js.map

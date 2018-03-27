@@ -16,7 +16,7 @@ var LogLevelConverter_1 = require("./LogLevelConverter");
 var CachedLogger = /** @class */ (function (_super) {
     __extends(CachedLogger, _super);
     function CachedLogger() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
         _this._cache = [];
         _this._updated = false;
         _this._lastDumpTime = new Date().getTime();

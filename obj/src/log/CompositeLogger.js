@@ -23,6 +23,7 @@ var CompositeLogger = /** @class */ (function (_super) {
         return _this;
     }
     CompositeLogger.prototype.setReferences = function (references) {
+        _super.prototype.setReferences.call(this, references);
         var loggers = references.getOptional(new Descriptor_1.Descriptor(null, "logger", null, null, null));
         for (var i = 0; i < loggers.length; i++) {
             var logger = loggers[i];

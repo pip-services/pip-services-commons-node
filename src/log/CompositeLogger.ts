@@ -17,6 +17,8 @@ export class CompositeLogger extends Logger implements IReferenceable {
 	}
 
 	public setReferences(references: IReferences): void {
+		super.setReferences(references);
+
 		let loggers: any[] = references.getOptional<any>(new Descriptor(null, "logger", null, null, null));
         for (var i = 0; i < loggers.length; i++) {
             let logger: ILogger = loggers[i];

@@ -1,5 +1,10 @@
 # Basic portable abstractions for Pip.Services in Node.js Changelog
 
+## <a name="2.10.0"></a> 2.10.0 (2018-03-26) 
+
+### Breaking changes
+* Added ContextInfo and InfoFactory
+
 ## <a name="2.9.0"></a> 2.9.0 (2018-03-20) 
 
 ### Breaking changes
