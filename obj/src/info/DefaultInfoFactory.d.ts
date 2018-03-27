@@ -1,6 +1,6 @@
 import { Factory } from '../build/Factory';
 import { Descriptor } from '../refer/Descriptor';
-export declare class InfoFactory extends Factory {
+export declare class DefaultInfoFactory extends Factory {
     static readonly Descriptor: Descriptor;
     static readonly ContextInfoDescriptor: Descriptor;
     static readonly ContainerInfoDescriptor: Descriptor;
