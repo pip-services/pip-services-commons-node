@@ -2,6 +2,11 @@
 
 ## <a name="2.10.0"></a> 2.10.0 (2018-03-26) 
 
+### Features
+* **data** Added ProjectionParams
+* **validate** Added ProjectionParamsSchema
+* **count** Added reset_timeout parameter to CachedCounter
+
 ### Breaking changes
 * Added ContextInfo and InfoFactory
 

@@ -40,4 +40,6 @@ var FilterParamsSchema_1 = require("./FilterParamsSchema");
 exports.FilterParamsSchema = FilterParamsSchema_1.FilterParamsSchema;
 var PagingParamsSchema_1 = require("./PagingParamsSchema");
 exports.PagingParamsSchema = PagingParamsSchema_1.PagingParamsSchema;
+var ProjectionParamsSchema_1 = require("./ProjectionParamsSchema");
+exports.ProjectionParamsSchema = ProjectionParamsSchema_1.ProjectionParamsSchema;
 //# sourceMappingURL=index.js.map

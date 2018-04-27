@@ -15,5 +15,6 @@ export { SortParams } from './SortParams';
 export { PagingParams } from './PagingParams';
 export { DataPage } from './DataPage';
 export { FilterParams } from './FilterParams';
+export { ProjectionParams } from './ProjectionParams';
 export { MultiString } from './MultiString';
 export { TagsProcessor } from './TagsProcessor';

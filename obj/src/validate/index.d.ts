@@ -19,3 +19,4 @@ export { ValidationResult } from './ValidationResult';
 export { ValidationResultType } from './ValidationResultType';
 export { FilterParamsSchema } from './FilterParamsSchema';
 export { PagingParamsSchema } from './PagingParamsSchema';
+export { ProjectionParamsSchema } from './ProjectionParamsSchema';
