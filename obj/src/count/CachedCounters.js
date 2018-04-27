@@ -6,8 +6,10 @@ var Counter_1 = require("./Counter");
 var CachedCounters = /** @class */ (function () {
     function CachedCounters() {
         this._interval = 300000;
+        this._resetTimeout = 0;
         this._cache = {};
         this._lastDumpTime = new Date().getTime();
+        this._lastResetTime = new Date().getTime();
     }
     CachedCounters.prototype.CachedCounters = function () { };
     CachedCounters.prototype.getInterval = function () {
@@ -48,8 +50,19 @@ var CachedCounters = /** @class */ (function () {
             }
         }
     };
+    CachedCounters.prototype.resetIfNeeded = function () {
+        if (this._resetTimeout == 0)
+            return;
+        var now = new Date().getTime();
+        if (now - this._lastResetTime > this._resetTimeout) {
+            this._cache = {};
+            this._updated = false;
+            this._lastResetTime = now;
+        }
+    };
     CachedCounters.prototype.getAll = function () {
         var result = [];
+        this.resetIfNeeded();
         for (var key in this._cache)
             result.push(this._cache[key]);
         return result;
@@ -57,6 +70,7 @@ var CachedCounters = /** @class */ (function () {
     CachedCounters.prototype.get = function (name, type) {
         if (!name)
             throw new Error("Name cannot be null");
+        this.resetIfNeeded();
         var counter = this._cache[name];
         if (counter == null || counter.type != type) {
             counter = new Counter_1.Counter(name, type);

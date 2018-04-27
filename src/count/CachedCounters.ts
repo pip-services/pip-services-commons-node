@@ -9,9 +9,11 @@ import { InvocationException } from '../errors/InvocationException';
 
 export abstract class CachedCounters implements ICounters, IReconfigurable, ITimingCallback {
     protected _interval: number = 300000;
+    protected _resetTimeout: number = 0;
     protected _cache: { [id: string]: Counter } = {};
     protected _updated: boolean;
     protected _lastDumpTime: number = new Date().getTime();
+    protected _lastResetTime: number = new Date().getTime();
 
     public CachedCounters() { }
 
@@ -64,8 +66,21 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
         }
     }
 
+    private resetIfNeeded(): void {
+        if (this._resetTimeout == 0) return;
+
+        var now = new Date().getTime();
+        if (now - this._lastResetTime > this._resetTimeout) {
+            this._cache = {};
+            this._updated = false;
+            this._lastResetTime = now;
+        }
+    }
+
     public getAll(): Counter[] {
         let result: Counter[] = [];
+
+        this.resetIfNeeded();
 
         for (var key in this._cache)
             result.push(this._cache[key]);
@@ -76,6 +91,8 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
     public get(name: string, type: CounterType): Counter {
         if (!name)
             throw new Error("Name cannot be null");
+
+        this.resetIfNeeded();
 
         let counter: Counter = this._cache[name];
 
