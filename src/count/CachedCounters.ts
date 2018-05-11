@@ -29,6 +29,7 @@ export abstract class CachedCounters implements ICounters, IReconfigurable, ITim
 
     public configure(config: ConfigParams): void {
         this._interval = config.getAsLongWithDefault("interval", this._interval);
+        this._resetTimeout = config.getAsLongWithDefault("reset_timeout", this._resetTimeout);
     }
 
     public clear(name: string): void {

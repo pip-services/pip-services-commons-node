@@ -20,7 +20,7 @@ var CompositeCounters = /** @class */ (function () {
         }
     };
     CompositeCounters.prototype.beginTiming = function (name) {
-        return new Timing_1.Timing();
+        return new Timing_1.Timing(name, this);
     };
     CompositeCounters.prototype.endTiming = function (name, elapsed) {
         for (var i = 0; i < this._counters.length; i++) {

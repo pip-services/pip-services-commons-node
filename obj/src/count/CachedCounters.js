@@ -20,6 +20,7 @@ var CachedCounters = /** @class */ (function () {
     };
     CachedCounters.prototype.configure = function (config) {
         this._interval = config.getAsLongWithDefault("interval", this._interval);
+        this._resetTimeout = config.getAsLongWithDefault("reset_timeout", this._resetTimeout);
     };
     CachedCounters.prototype.clear = function (name) {
         delete this._cache[name];

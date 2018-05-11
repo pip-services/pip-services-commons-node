@@ -16,7 +16,7 @@ export class CompositeCounters implements ICounters, ITimingCallback, IReference
 
     public setReferences(references: IReferences): void {
         var counters = references.getOptional<ICounters>(new Descriptor(null, "counters", null, null, null));
-        for (var i = 0; i < counters.length; i++) {
+        for (let i = 0; i < counters.length; i++) {
             let counter: ICounters = counters[i];
 
             if (counter != this as ICounters)
@@ -25,11 +25,11 @@ export class CompositeCounters implements ICounters, ITimingCallback, IReference
     }
 
     public beginTiming(name: string): Timing {
-        return new Timing();
+        return new Timing(name, this);
     }
 
     public endTiming(name: string, elapsed: number): void {
-        for (var i = 0; i < this._counters.length; i++) {
+        for (let i = 0; i < this._counters.length; i++) {
             let counter: any = this._counters[i];
             var callback = counter as ITimingCallback;
             if (callback != null)
@@ -38,12 +38,12 @@ export class CompositeCounters implements ICounters, ITimingCallback, IReference
     }
 
     public stats(name: string, value: number): void {
-        for (var i = 0; i < this._counters.length; i++)
+        for (let i = 0; i < this._counters.length; i++)
             this._counters[i].stats(name, value);
     }
 
     public last(name: string, value: number): void {
-        for (var i = 0; i < this._counters.length; i++)
+        for (let i = 0; i < this._counters.length; i++)
             this._counters[i].last(name, value);
     }
 
@@ -52,7 +52,7 @@ export class CompositeCounters implements ICounters, ITimingCallback, IReference
     }
 
     public timestamp(name: string, value: Date): void {
-        for (var i = 0; i < this._counters.length; i++)
+        for (let i = 0; i < this._counters.length; i++)
             this._counters[i].timestamp(name, value);
     }
 
@@ -64,7 +64,7 @@ export class CompositeCounters implements ICounters, ITimingCallback, IReference
         if (!name)
             throw new Error("Name cannot be null");
 
-        for (var i = 0; i < this._counters.length; i++)
+        for (let i = 0; i < this._counters.length; i++)
             this._counters[i].increment(name, value);
     }
 }
