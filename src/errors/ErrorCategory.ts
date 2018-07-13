@@ -2,6 +2,7 @@
  * Defines broad categories of application errors.
  */
 export class ErrorCategory {
+	
 	/**
 	 * Unknown or unexpected errors.
 	 */
