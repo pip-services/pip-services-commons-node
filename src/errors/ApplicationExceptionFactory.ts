@@ -14,8 +14,18 @@ import { NotFoundException } from './NotFoundException';
 import { UnsupportedException } from './UnsupportedException';
 import { InvalidStateException } from './InvalidStateException';
 
+/**
+ * Class 'ApplicationExceptionFactory' contains the static method 'create', 
+ * which generates ApplicationExceptions based on the information in the ErrorDescription.
+ */
 export class ApplicationExceptionFactory {
 	
+	/**
+	 * @param description  	An ErrorDescription, which contains the error's category (defines what type of ApplicationException to create); 
+	 * correlationId, code, and message (all 3 are used in the ApplicationException's constructor); details, cause, and stacktrace 
+	 * (used to fill the error with details).
+	 * @returns       		A class that extends ApplicationException, which contains information from the ErrorDescription description.
+	 */
     public static create(description: ErrorDescription): ApplicationException {
     	if (description == null)
     		throw new Error("Description cannot be null");

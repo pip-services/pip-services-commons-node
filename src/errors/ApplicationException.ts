@@ -3,6 +3,11 @@ let _ = require('lodash');
 import { ErrorCategory } from './ErrorCategory';
 import { StringValueMap } from '../data/StringValueMap';
 
+/**
+ * Class 'ApplicationException' is used as a parent class for all other (Category)Exception classes. 
+ * 
+ * Defaults: status = 500, code = 'UNKNOWN', category = ErrorCategory.Unknown, message = 'Unknown error'.
+ */
 export class ApplicationException extends Error {
     public message: string;
     public category: string;
@@ -76,6 +81,13 @@ export class ApplicationException extends Error {
         return this;
     }
 
+    /** 
+     * Method 'wrap' unwrap the parameter 'cause' [unwrapError(cause)], and, if the 
+     * unwrapped cause is an instance of ApplicationException, returns the unwrapped ApplicationException.
+     * If the unwrapped cause is NOT an instance of ApplicationException, then this ApplicationException's 'cause' is set to 'cause.message'. 
+     * @param cause     Cause of the exception that will be unwrapped and returned/added.
+     * @returns         Unwrapped from 'cause' ApplicationException, or this ApplicationException with 'this.cause' set to 'cause.message'.
+     */
     public wrap(cause: any): ApplicationException {
         cause = ApplicationException.unwrapError(cause);
 
@@ -86,6 +98,13 @@ export class ApplicationException extends Error {
         return this;
     }
     
+    /** 
+     * Static method 'wrapError' is identical to the non-static method 'wrap'
+     * and wraps the ApplicationException passed as 'error', instead of itself (this).
+     * @param error     ApplicationException to wrap.
+     * @param cause     Cause of the exception that will be unwrapped and returned/added.
+     * @returns         Unwrapped from 'cause' ApplicationException, or ApplicationException 'error' with 'error.cause' set to 'cause.message'
+     */
     public static wrapError(error: ApplicationException, cause: any): ApplicationException {
         cause = ApplicationException.unwrapError(cause);
 
@@ -96,6 +115,11 @@ export class ApplicationException extends Error {
         return error;
     }
 
+    /** 
+     * Method 'unwrapError' is used to unwrap Seneca exceptions and restify exceptions.
+     * @param error     'wrapped' error.
+     * @returns         For Seneca exceptions: error.orig. For restify exceptions: error.body.
+     */
     public static unwrapError(error: any): any {
         if (error == null) return null;
         

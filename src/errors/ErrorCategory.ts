@@ -3,70 +3,73 @@
  */
 export class ErrorCategory {
 	/**
-	 * Unknown or unexpected errors
+	 * Unknown or unexpected errors.
 	 */
 	public static readonly Unknown: string = "Unknown";
 
 	/**
-	 * Internal errors caused by programming mistakes
+	 * Internal errors caused by programming mistakes.
 	 */
 	public static readonly Internal: string = "Internal";
 
 	/**
-	 * Errors related to mistakes in user-defined configuration
+	 * Errors related to mistakes in user-defined configurations.
 	 */
 	public static readonly Misconfiguration: string = "Misconfiguration";
 	
 	/**
-	 * Errors related to operations called in wrong component state.
-	 * For instance, business calls when component is not ready
+	 * Errors related to calling operations, which require the component 
+	 * to be in a specific state. 
+	 * 
+	 * For example: business calls when the component is not ready.
 	 */
 	public static readonly InvalidState: string = "InvalidState";
 	
 	/**
-	 * Errors happened during connection to remote services.
-	 * They can be related to misconfiguration, network issues
-	 * or remote service itself 
+	 * Errors that occur during connections to remote services.
+	 * They can be related to misconfiguration, network issues,
+	 * or the remote service itself.
 	 */
 	public static readonly NoResponse: string = "NoResponse";
 
     /**
-     * Errors returned by remote services or network
-     * during call attempts
+     * Errors returned by remote services or by the network
+     * during call attempts.
      */
 	public static readonly FailedInvocation: string = "FailedInvocation";
 
 	/**
-	 * Errors in read/write file operations
+	 * Errors in read/write file operations.
 	 */
 	public static readonly FileError: string = "FileError";
 
 	/**
-	 * Errors due to improper user requests, like
-	 * missing or wrong parameters 
+	 * Errors due to improper user requests. 
+	 * 
+	 * For example: missing or incorrect parameters.
 	 */
 	public static readonly BadRequest: string = "BadRequest";
 	
 	/**
-	 * Access errors caused by missing user identity
-	 * or security permissions
+	 * Access errors caused by missing user identity (authentication error)
+	 * or incorrect security permissions (authorization error).
 	 */
 	public static readonly Unauthorized: string = "Unauthorized";
 
     /**
-     * Error caused by attempt to access missing object
+     * Errors caused by attempts to access missing objects.
      */
 	public static readonly NotFound: string = "NotFound";
 	
 	/**
-	 * Errors raised by conflict in object versions
-	 * posted by user and stored on server.
+	 * Errors raised by conflicts between object versions that were
+	 * posted by the user and those that are stored on the server.
 	 */
 	public static readonly Conflict: string = "Conflict";	
 	
 	/**
 	 * Errors caused by calls to unsupported 
-	 * or not yet implemented functionality
+	 * or not yet implemented functionality.
 	 */
 	public static readonly Unsupported: string = "Unsupported";
 }

@@ -2,7 +2,7 @@ import { ErrorCategory } from './ErrorCategory';
 import { ApplicationException } from './ApplicationException';
 
 /**
- * Errors related to mistakes in microservice user-defined configuration
+ * Errors related to mistakes in the microservice's user-defined configurations.
  */
 export class ConfigException extends ApplicationException {
 	public constructor(correlation_id: string = null, code: string = null, message: string = null) {

@@ -2,7 +2,8 @@ import { ErrorCategory } from './ErrorCategory';
 import { ApplicationException } from './ApplicationException';
 
 /**
- * Errors raised by conflict in object versions posted by user and stored on server.
+ * Errors raised by conflicts between object versions that were
+ * posted by the user and those that are stored on the server.
  */
 export class ConflictException extends ApplicationException {
 	public constructor(correlation_id: string = null, code: string = null, message: string = null) {

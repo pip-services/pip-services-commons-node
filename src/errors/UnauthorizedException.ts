@@ -2,7 +2,7 @@ import { ErrorCategory } from './ErrorCategory';
 import { ApplicationException } from './ApplicationException';
 
 /**
- * Access errors caused by missing user identity or security permissions
+ * Access errors caused by missing user identity (authentication error) or incorrect security permissions (authorization error).
  */
 export class UnauthorizedException extends ApplicationException {
 	public constructor(correlation_id: string = null, code: string = null, message: string = null) {

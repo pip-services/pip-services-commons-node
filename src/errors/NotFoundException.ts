@@ -2,7 +2,7 @@ import { ErrorCategory } from './ErrorCategory';
 import { ApplicationException } from './ApplicationException';
 
 /**
- * Error caused by attempt to access missing object
+ * Errors caused by attempts to access missing objects.
  */
 export class NotFoundException extends ApplicationException {
 	public constructor(correlation_id: string = null, code: string = null, message: string = null) {
