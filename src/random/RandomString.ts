@@ -1,5 +1,6 @@
 import { RandomInteger } from './RandomInteger';
 import { RandomBoolean } from './RandomBoolean';
+
 /**
  * Class 'RandomString' is used for generating random strings and chars, as well as picking at random strings/chars from a given set of strings/chars.
  */

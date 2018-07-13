@@ -1,6 +1,7 @@
 import { RandomInteger } from './RandomInteger';
 import { RandomString } from './RandomString';
 import { RandomBoolean } from './RandomBoolean';
+
 /**
  * Class 'RandomText' is used for generating random strings, which can contain: colors, names (first + last, with/without prefixes/suffixes), 
  * objects, adjectives, verbs, phrases (words separated by spaces), phone numbers, email addresses, sequences of words (CamelCase), or texts.
