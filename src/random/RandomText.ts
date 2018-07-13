@@ -1,7 +1,10 @@
 import { RandomInteger } from './RandomInteger';
 import { RandomString } from './RandomString';
 import { RandomBoolean } from './RandomBoolean';
-
+/**
+ * Class 'RandomText' is used for generating random strings, which can contain: colors, names (first + last, with/without prefixes/suffixes), 
+ * objects, adjectives, verbs, phrases (words separated by spaces), phone numbers, email addresses, sequences of words (CamelCase), or texts.
+ */
 export class RandomText {
     private static readonly _namePrefixes = ["Dr.", "Mr.", "Mrs"];
     private static readonly _nameSuffixes = ["Jr.", "Sr.", "II", "III"];
@@ -65,22 +68,38 @@ export class RandomText {
     private static readonly _allWords = RandomText._firstNames.concat(RandomText._lastNames).concat(RandomText._colors)
         .concat(RandomText._stuffs).concat(RandomText._adjectives).concat(RandomText._verbs);
 
+    /**
+     * @returns the name of a random color. Returned name is capitalized.
+     */
     public static color(): string {
         return RandomString.pick(RandomText._colors);
     }
 
+    /**
+     * @returns the name of a random object. Returned name is capitalized.
+     */
     public static stuff(): string {
         return RandomString.pick(RandomText._stuffs);
     }
 
+    /**
+     * @returns a random adjective. Returned adjective is capitalized.
+     */
     public static adjective(): string {
         return RandomString.pick(RandomText._adjectives);
     }
 
+    /**
+     * @returns a random verb. Returned verb is capitalized.
+     */
     public static verb(): string {
         return RandomString.pick(RandomText._verbs);
     }
 
+    /**
+     * @returns a random phrase, consisting of random words. Words will be separated by spaces, 
+     *          and only the first word will be capitalized.
+     */
     public static phrase(minSize: number, maxSize: number = null): string {
         maxSize = Math.max(minSize, maxSize || minSize);
         let size = RandomInteger.nextInteger(minSize, maxSize);
@@ -95,6 +114,10 @@ export class RandomText {
         return result;
     }
 
+    /**
+     * @returns a random name in the format of "(Prefix )First Last( Suffix)", 
+     *          where (Prefix/Suffix) are added at random.
+     */
     public static fullName(): string {
         let result = '';
 
@@ -110,10 +133,21 @@ export class RandomText {
         return result;
     }
 
+    /**
+     * @returns a random word from available first names, last names, colors, stuffs, adjectives, or verbs. 
+     *          Returned word is capitalized.
+     */
     public static word(): string {
         return RandomString.pick(RandomText._allWords);
     }
 
+    /**
+     * @param min   minimum number of words in the sequence. If 'max' is not given, sequence will contain 'min' random words.
+     * @param max   (optional) maximum number of words in the sequence.
+     * @returns     a string sequence of random words from available first names, last names, colors, stuffs, adjectives, or verbs.  
+     *              All words in the sequence will be capitalized and NOT separated by spaces (CamelCase). Use 'phrase' for generating 
+     *              sequences of words that are separated by spaces.
+     */
     public static words(min: number, max: number = null): string {
         let result = '';
 
@@ -124,6 +158,9 @@ export class RandomText {
         return result;
     }
 
+    /**
+     * @returns a random phone number in the format of "(XXX) XXX-YYYY" where XXX = [111,999] and YYYY = [0, 9999].
+     */
     public static phone(): string {
         let result = '';
 
@@ -137,10 +174,22 @@ export class RandomText {
         return result;
     }
 
+    /**
+     * @returns a random email address in the format of "WORDS26&#064;WORDS13.com" where x and y in WORDSxy represent the minimum 
+     *          and maximum number of words, making up WORDS.
+     */
     public static email(): string {
         return RandomText.words(2, 6) + "@" + RandomText.words(1, 3) + ".com";
     }
 
+    /**
+     * Generates a random text, consisting of first names, last names, colors, stuffs, adjectives, verbs, and punctuation marks.
+     * 
+     * @param minSize   minimum amount of words to generate. If 'maxSize' is not given,
+     *                  text will contain 'minSize' words.
+     * @param maxSize   (optional) maximum amount of words to generate.
+     * @returns         generated text.
+     */
     public static text(minSize: number, maxSize: number = null): string {
         maxSize = Math.max(minSize, maxSize || minSize);
         let size = RandomInteger.nextInteger(minSize, maxSize);
