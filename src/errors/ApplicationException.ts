@@ -16,19 +16,14 @@ import { StringValueMap } from '../data/StringValueMap';
  * 
  * ApplicationException serves as a parent class for all other (Category)Exception classes. 
  * 
- * USAGE:
- * <ul>
- * <li>Developers can use this class to create their own application exceptions (create exceptions from the ground up).</li>
-    
- * <li>Exceptions can be wrapped around one another (wrap an exception around an existing exception).</li>
-    
- * <li>Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
-    * ApplicationException.</li>
-    
- * <li>ApplicationExceptions are converted to ErrorDescriptions (@see ErrorDescription), which are then sent back to 'caller' 
+ * Usage:
+ * - Developers can use this class to create their own application exceptions (create exceptions from the ground up).
+ * - Exceptions can be wrapped around one another (wrap an exception around an existing exception).
+ * - Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
+ *   ApplicationException.
+ * - ApplicationExceptions are converted to ErrorDescriptions (@see ErrorDescription), which are then sent back to 'caller' 
     * microservices. When the microservice on the other end receives the ErrorDescription, it can use it to restore the 
-    * ApplicationException and propagate it to the place from where it was called.</li>
- * </ul>
+    * ApplicationException and propagate it to the place from where it was called.
 
  * 
  * Defaults: 
