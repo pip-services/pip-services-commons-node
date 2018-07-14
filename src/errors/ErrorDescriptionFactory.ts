@@ -3,8 +3,7 @@ import { ErrorDescription } from './ErrorDescription';
 import { ApplicationException } from './ApplicationException';
 
 /**
- * Class 'ApplicationExceptionFactory' contains the static method 'create', 
- * which generates ErrorDescriptions based on information about the error.
+ * Contains the static method 'create', which generates ErrorDescriptions based on information about the error.
  */
 export class ErrorDescriptionFactory {
 

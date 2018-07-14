@@ -1,8 +1,8 @@
 import { RandomInteger } from './RandomInteger';
 
 /**
- * Class 'RandomDateTime' is used for generating random Dates/DateTimes, as well as updating existing DateTimes 
- * by generating a value in the range of 'original DateTime' ±'delta/range'
+ * Provides functions that can be used for generating random Dates/DateTimes, as well as updating existing DateTimes 
+ * by generating values in the range of 'original DateTime' ±'delta/range'
  */
 export class RandomDateTime {
 

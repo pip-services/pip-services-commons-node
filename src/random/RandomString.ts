@@ -2,7 +2,7 @@ import { RandomInteger } from './RandomInteger';
 import { RandomBoolean } from './RandomBoolean';
 
 /**
- * Class 'RandomString' is used for generating random strings and chars, as well as picking at random strings/chars from a given set of strings/chars.
+ * Provides functions that can be used for generating random strings and chars, as well as picking at random strings/chars from a given set of strings/chars.
  */
 export class RandomString {
     private static readonly _digits = "01234956789";

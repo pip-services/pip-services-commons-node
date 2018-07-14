@@ -15,8 +15,7 @@ import { UnsupportedException } from './UnsupportedException';
 import { InvalidStateException } from './InvalidStateException';
 
 /**
- * Class 'ApplicationExceptionFactory' contains the static method 'create', 
- * which generates ApplicationExceptions based on the information in the ErrorDescription.
+ * Contains the static method 'create', which generates ApplicationExceptions based on the information in the ErrorDescription.
  */
 export class ApplicationExceptionFactory {
 	

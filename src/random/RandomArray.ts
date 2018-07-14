@@ -1,12 +1,12 @@
 import { RandomInteger } from './RandomInteger';
 
 /**
- * Class 'RandomArray' allows for picking items at random from an array of type T.
+ * Allows for picking items at random from an array of type T.
  */
 export class RandomArray {
     
     /**
-     * Picks a item at random from the array 'values'.
+     * Picks an item at random from the array 'values'.
      * 
      * @param values    array of items to pick from.
      * @returns         picked item.

@@ -4,20 +4,89 @@ import { ErrorCategory } from './ErrorCategory';
 import { StringValueMap } from '../data/StringValueMap';
 
 /**
- * Class 'ApplicationException' is used as a parent class for all other (Category)Exception classes. 
+ * This class provides cross-(programming)language and (natural)language-independent standardization of exceptions. 
  * 
- * Defaults: status = 500, code = 'UNKNOWN', category = ErrorCategory.Unknown, message = 'Unknown error'.
+ * ApplicationException contains a strict structure, which allows for structuration of free-form exception messages, as well as 
+ * their serialization. Serialization is necessary for sending exceptions over the REST interface back to 'caller' microservices.
+ * 
+ * An ApplicationException contains enough information to translate an exception from one (natural) language to another. 
+ * It concretely defines the type of exception (via the 'code' field) and links exceptions to business transactions 
+ * (via 'correlation_id'). ApplicationException's fields allow us to develop (natural) language-independent exceptions, 
+ * as well as cross-(programming)language error propagation.
+ * 
+ * ApplicationException serves as a parent class for all other (Category)Exception classes. 
+ * 
+ * USAGE:
+ * <ul>
+ * <li>Developers can use this class to create their own application exceptions (create exceptions from the ground up).</li>
+    
+ * <li>Exceptions can be wrapped around one another (wrap an exception around an existing exception).</li>
+    
+ * <li>Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
+    * ApplicationException.</li>
+    
+ * <li>ApplicationExceptions are converted to ErrorDescriptions (@see ErrorDescription), which are then sent back to 'caller' 
+    * microservices. When the microservice on the other end receives the ErrorDescription, it can use it to restore the 
+    * ApplicationException and propagate it to the place from where it was called.</li>
+ * </ul>
+
+ * 
+ * Defaults: 
+ * 
+ * status = 500, code = 'UNKNOWN', category = ErrorCategory.Unknown, message = 'Unknown error'.
  */
 export class ApplicationException extends Error {
+    /**
+     * This field stores the message that was contained in the original error. 
+     * Errors' messages are always in English. However, using this class's 
+     * 'code' and 'details' fields, we can translate the error's message to 
+     * any other language during UI population.
+     */
     public message: string;
+    /**
+     * Defines what category of exceptions this exception belongs to.
+     */
     public category: string;
+    /**
+     * Used when sending over the REST interface, so that we know what status to raise.
+     */
     public status: number = 500;
+    /**
+     * Every error needs a unique code by which it can be identified. Using this code, 
+     * we can select error messages from various natural languages to display later on 
+     * in the UI.
+     */
     public code: string = 'UNKNOWN';
-    public details: StringValueMap;   
+    /**
+     * This field is used when translating an error into a different natural language (to be displayed
+     * later on in the UI).
+     * 
+     * For example, if we received an ObjectNotFoundException (general error) when searching for an 
+     * object via its id, the id by which the object was not found can be added as a detail. This allows 
+     * us to add additional details to our translated error messages. 
+     * Resulting error message format: “{Error's text in some language} - id: {id}”
+     */
+    public details: StringValueMap; 
+    /**
+     * Important field for microservices, as it allows us 
+     * to tie an exception to a specific business transaction. 
+     */   
     public correlation_id: string;
+    /**
+     * Stack trace of the exception.
+     */ 
     public stack_trace: string;
+    /**
+     * Additional information, regarding to the cause of the exception.
+     */ 
     public cause: string;
 
+    /**
+     * @param category          category that this exception belongs to.
+     * @param correlation_id    ties the exception to a specific business transaction. 
+     * @param code              unique code that can be used to identify the error.
+     * @param message           the message that was contained in the original error.
+     */
     constructor(category: string = null, correlation_id: string = null, code: string = null, message: string = null) {
         super(message);
 
@@ -82,7 +151,7 @@ export class ApplicationException extends Error {
     }
 
     /** 
-     * Method 'wrap' unwrap the parameter 'cause' [unwrapError(cause)], and, if the 
+     * Method 'wrap' unwraps the parameter 'cause' [unwrapError(cause)], and, if the 
      * unwrapped cause is an instance of ApplicationException, returns the unwrapped ApplicationException.
      * If the unwrapped cause is NOT an instance of ApplicationException, then this ApplicationException's 
      * 'cause' is set to 'cause.message'. 
