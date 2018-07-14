@@ -4,6 +4,9 @@ import { IConfigReader } from './IConfigReader';
 import { ConfigParams } from './ConfigParams';
 import { IReconfigurable } from './IReconfigurable';
 
+/**
+ * Provides functions for reading configuration parameters that are stored in memory.
+ */
 export class MemoryConfigReader implements IConfigReader, IReconfigurable {
     protected _config: ConfigParams = new ConfigParams();
 

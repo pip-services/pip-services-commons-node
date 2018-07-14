@@ -8,6 +8,10 @@ import { ConfigException } from '../errors/ConfigException'
 import { FileException } from '../errors/FileException'
 import { JsonConverter } from '../convert/JsonConverter'
 
+/**
+ * Provides functions for reading configuration parameters that are stored in 
+ * YAML format from a file located at 'path'.
+ */
 export class YamlConfigReader extends FileConfigReader {
 
     public constructor(path: string = null) {
