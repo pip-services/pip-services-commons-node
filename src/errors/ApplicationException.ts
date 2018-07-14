@@ -21,14 +21,15 @@ import { StringValueMap } from '../data/StringValueMap';
  * - Exceptions can be wrapped around one another (wrap an exception around an existing exception).
  * - Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
  *   ApplicationException.
- * - ApplicationExceptions are converted to ErrorDescriptions (@see ErrorDescription), which are then sent back to 'caller' 
+ * - ApplicationExceptions are converted to {@link ErrorDescription}s, which are then sent back to 'caller' 
     * microservices. When the microservice on the other end receives the ErrorDescription, it can use it to restore the 
     * ApplicationException and propagate it to the place from where it was called.
-
  * 
  * Defaults: 
- * 
- * status = 500, code = 'UNKNOWN', category = ErrorCategory.Unknown, message = 'Unknown error'.
+ * - status = 500
+ * - code = 'UNKNOWN'
+ * - category = ErrorCategory.Unknown
+ * - message = 'Unknown error'
  */
 export class ApplicationException extends Error {
     /**
