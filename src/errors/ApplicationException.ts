@@ -9,24 +9,24 @@ import { StringValueMap } from '../data/StringValueMap';
  * ApplicationException contains a strict structure and functions that help structurize free-form exception messages.
  * While ApplicationExceptions themselves are not serializable, they can be converted to {@link ErrorDescription}s, 
  * which are serializable. Serialization of ErrorDescriptions is necessary for sending exceptions over the REST interface 
- * back to "caller" microservices.
+ * back to "caller" microservices (cross-language error propagation).
  * 
- * An ApplicationException contains enough information to create detailed localized strings for various exceptions.
- * It concretely defines the type of exception (via the 'code' field) and links exceptions to business transactions 
- * (via 'correlation_id'). ApplicationException's fields allow for development of localized exceptions, 
- * as well as cross-language error propagation.
+ * An ApplicationException contains enough information in its fields to create detailed localized strings for practically 
+ * any exception. It uniquely defines the type of exception (via the 'code' field) and links exceptions to business 
+ * transactions (via 'correlation_id').
  * 
  * ApplicationException serves as a parent class for all other (Category)Exception classes. 
  * 
  * Usage:
- * - The classes included in this package (which already extend ApplicationException) can be used for error propagation.
- * - Developers can use this class to create their own application exceptions (create exceptions from the ground up).
- * - Exceptions can be wrapped around one another (wrap an exception around an existing exception).
- * - Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
- *   ApplicationException.
- * - ApplicationExceptions are converted to {@link ErrorDescription}s, which are then sent back to 'caller' 
-    * microservices. When the microservice on the other end receives the ErrorDescription, it can use it to restore the 
-    * ApplicationException and propagate it to the place from where the call was made.
+ * - The classes included in this package (which already extend ApplicationException) can be used "as is".
+ * - Developers can use this class to create their own application exceptions (from the ground up).
+ * - Exceptions can be wrapped around one another (new exceptions can be wrapped around existing exceptions).
+ * - PipService's microservices automatically intercept common exceptions and try to convert them to the closest available 
+    * type of ApplicationException.
+ * - ApplicationExceptions can be converted to {@link ErrorDescription}s, which can then be sent back to 'caller' 
+    * microservices, even if they are written in a different language. When the microservice on the other end 
+    * receives the ErrorDescription, it can use it to restore the ApplicationException and propagate the exception to 
+    * the place from where the call was made.
  * 
  * Defaults: 
  * - status = 500
@@ -41,9 +41,9 @@ export class ApplicationException extends Error {
      * Errors' messages are always in English. However, using this class's 'code' and 'details' 
      * fields, we can create localized versions of the error's message and use them instead in the UI. */
     public message: string;
-    /** Defines what category of exceptions this exception belongs to.  */
+    /** Defines what category of exceptions this exception belongs to. */
     public category: string;
-    /** Used when sending over the REST interface, so that we know what status to raise. */
+    /** Used when sending over the REST interface, so that we know what HTTP status code to raise. */
     public status: number = 500;
     /** Every error needs a unique code by which it can be identified. Using this code, 
      *  we can select which localized error messages to use and what to display in the UI.*/
@@ -52,8 +52,8 @@ export class ApplicationException extends Error {
      * 
      * For example, if we received an ObjectNotFoundException (general error) when searching for an 
      * object via its id, the id by which the object was not found can be added as a detail. This allows 
-     * us to add additional details to our translated error messages. 
-     * Resulting error message format: “{Localized error's text} - id: {id}” */
+     * us to add additional details to localized error messages. 
+     * Resulting error message format: “(Localized error's text) - id: (id)” */
     public details: StringValueMap; 
     /** Important field for microservices, as it allows us to tie an exception to a specific business transaction.  */   
     public correlation_id: string;
@@ -134,7 +134,7 @@ export class ApplicationException extends Error {
     /**
      * Sets the status of the exception and returns the resulting ApplicationException.
      * The 'status' field is used when sending exceptions over the REST interface, 
-     * so that we know what status to raise.
+     * so that we know what HTTP status code to raise.
      */ 
     public withStatus(status: number): ApplicationException {
         this.status = status || 500;
@@ -169,7 +169,7 @@ export class ApplicationException extends Error {
     }
 
     /** 
-     * Method 'wrap' unwraps the parameter 'cause' [unwrapError(cause)], and, if the 
+     * Unwraps the parameter 'cause' using the static function {@link #unwrapError}, and, if the 
      * unwrapped cause is an instance of ApplicationException, returns the unwrapped ApplicationException.
      * If the unwrapped cause is NOT an instance of ApplicationException, then this ApplicationException's 
      * 'cause' is set to 'cause.message'. 
@@ -177,6 +177,8 @@ export class ApplicationException extends Error {
      * @param cause     Cause of the exception that will be unwrapped and returned/added.
      * @returns         Unwrapped from 'cause' ApplicationException, or this ApplicationException with 
      *                  'this.cause' set to 'cause.message'.
+     * 
+     * @see #unwrapError
      */
     public wrap(cause: any): ApplicationException {
         cause = ApplicationException.unwrapError(cause);
@@ -189,13 +191,15 @@ export class ApplicationException extends Error {
     }
     
     /** 
-     * Static method 'wrapError' is identical to the non-static method 'wrap'
+     * This static method is identical to the non-static method {@link #wrap}
      * and wraps the ApplicationException passed as 'error', instead of itself (this).
      * 
      * @param error     ApplicationException to wrap.
      * @param cause     Cause of the exception that will be unwrapped and returned/added.
      * @returns         Unwrapped from 'cause' ApplicationException, or ApplicationException 
      *                  'error' with 'error.cause' set to 'cause.message'.
+     * 
+     * @see #wrap
      */
     public static wrapError(error: ApplicationException, cause: any): ApplicationException {
         cause = ApplicationException.unwrapError(cause);
@@ -208,7 +212,7 @@ export class ApplicationException extends Error {
     }
 
     /** 
-     * Method 'unwrapError' is used to unwrap Seneca exceptions and restify exceptions.
+     * Used to unwrap Seneca exceptions and restify exceptions.
      * 
      * @param error     'wrapped' error.
      * @returns         For Seneca exceptions: error.orig. For restify exceptions: error.body.

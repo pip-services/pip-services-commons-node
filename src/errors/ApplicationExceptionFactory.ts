@@ -15,15 +15,18 @@ import { UnsupportedException } from './UnsupportedException';
 import { InvalidStateException } from './InvalidStateException';
 
 /**
- * Contains the static method 'create', which generates ApplicationExceptions based on the information in the ErrorDescription.
+ * Contains the static method 'create', which converts ErrorDescriptions back into ApplicationExceptions.
+ * 
+ * @see ErrorDescription
+ * @see ApplicationException
  */
 export class ApplicationExceptionFactory {
 	
 	/**
 	 * @param description  	An ErrorDescription, which contains the error's category (defines what type of ApplicationException to create); 
 	 * 						correlationId, code, and message (all 3 are used in the ApplicationException's constructor); details, cause, 
-	 * 						and stacktrace (used to fill the error with details).
-	 * @returns       		A class that extends ApplicationException, which contains information from the ErrorDescription description.
+	 * 						and stack_trace (to fill the corresponding fields of the ApplicationException object).
+	 * @returns       		A class child class of ApplicationException, which corresponding to the ErrorDescription that was passed.
 	 */
     public static create(description: ErrorDescription): ApplicationException {
     	if (description == null)
