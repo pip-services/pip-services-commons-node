@@ -10,6 +10,8 @@ import { JsonConverter } from '../convert/JsonConverter'
 /**
  * Provides functions for reading configuration parameters that are stored in 
  * JSON format from a file located at 'path'.
+ * 
+ * @see FileConfigReader
  */
 export class JsonConfigReader extends FileConfigReader {
 

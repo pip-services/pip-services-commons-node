@@ -5,10 +5,10 @@ import { ConfigParams } from './ConfigParams';
 import { IConfigurable } from './IConfigurable'
 
 /**
- * Abstract class that can be implemented for creating various ConfigReaders. 
- * ConfigReader implements {@link IConfigurable} and can be configured using
- * {@link ConfigParams}. The ConfigParams in the section named "parameters"
- * is saved to "_parameters" upon configuration.
+ * Combination of the {@link IConfigReader} and {@link IConfigurable} interfaces. Allows for object 
+ * configuration using {@link ConfigParams} via the 'configure' function, and contains the abstract 
+ * function 'readConfig', which, upon implementation, should contain the logic necessary for reading 
+ * and parsing ConfigParams. Also contains the 'parameterize' function.
  * 
  * @see IConfigReader
  * @see IConfigurable
@@ -20,8 +20,13 @@ export abstract class ConfigReader implements IConfigurable {
     public constructor() {}
 
     /**
+     * Configure this object using ConfigParams.
      * 
-     * @param config    ConfigParams containing a section named "parameters", which will be saved to the "_parameters" field of this class.
+     * @param config    ConfigParams that contain a section named "parameters", 
+     *                  which will be saved to the "_parameters" field of this class.
+     * 
+     * @see IConfigurable
+     * @see ConfigParams
      */
     public configure(config: ConfigParams): void {
         let parameters = config.getSection("parameters")
@@ -35,13 +40,13 @@ export abstract class ConfigReader implements IConfigurable {
      * 
      * @param correlationId     links exceptions that could be raised to business transactions.
      * @param parameters        ConfigParams to read.
-     * @param callback          filter lambda function
+     * @param callback          value or exception that is returned.
      */
     public abstract readConfig(correlationId: string, parameters: ConfigParams,
         callback: (err: any, config: ConfigParams) => void): void;
 
     /**
-     * Protected method for overridding the '_parameters' field of this class.
+     * Protected method for parameterizing this object by overridding the '_parameters' field.
      * 
      * @param config        string to be used for handlebars template compilation.
      * @param parameters    ConfigParams that will be used to overridding the 

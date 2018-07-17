@@ -11,6 +11,8 @@ import { JsonConverter } from '../convert/JsonConverter'
 /**
  * Provides functions for reading configuration parameters that are stored in 
  * YAML format from a file located at 'path'.
+ * 
+ * @see FileConfigReader
  */
 export class YamlConfigReader extends FileConfigReader {
 

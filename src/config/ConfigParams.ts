@@ -22,6 +22,11 @@ import { RecursiveObjectReader } from '../reflect/RecursiveObjectReader';
  * Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z
  * 
  * All keys stored in the map are case-insensitive.
+ * 
+ * ConfigParams can be used to configure objects of classes that implement {@link IConfigurable}.
+ * 
+ * @see IConfigurable
+ * @see StringValueMap
  */
 export class ConfigParams extends StringValueMap {
 
@@ -101,8 +106,8 @@ export class ConfigParams extends StringValueMap {
 	/**
 	 * Adds 'sectionParams' to this ConfigParams object under the section named 'section'.
 	 * 
-	 * @param section 			name of the section, under which 'sectionParams' will be added. 
-	 * 							The keys of 'sectionParams' will be renamed to "section.<key's name>",
+	 * @param section 			name of the section, under which 'sectionParams' is to be added. 
+	 * 							The keys of 'sectionParams' will be renamed to "(section).<key's name>",
 	 * 							when added to this ConfigParams object.
 	 * @param sectionParams 	ConfigParams that are to be added under the section named 'section'.
 	 */
@@ -131,7 +136,7 @@ export class ConfigParams extends StringValueMap {
 	/**
 	 * Overrides the configuration parameters stored in this object with the ones in 
 	 * 'configParams'. If a configuration is already set in this ConfigParams object, 
-	 * it will be overwritten by the value in configParams with the same key.
+	 * it will be overwritten by the value in 'configParams' with the same key.
 	 * @see #setDefaults
 	 * 
 	 * @param configParams		configuration parameters to override the 
@@ -147,10 +152,10 @@ export class ConfigParams extends StringValueMap {
 	 * Sets the default configurations for this ConfigParams object, based on the
 	 * default configuration parameters passed in 'defaultConfigParams'. If a 
 	 * configuration is already set in this ConfigParams object, it will not be
-	 * overwritten by the default value in defaultConfigParams with the same key.
+	 * overwritten by the default value in 'defaultConfigParams' with the same key.
 	 * @see #override
 	 * 
-	 * @param defaultConfigParams	default configuration parameters, stored in a ConfigParams object.
+	 * @param defaultConfigParams	default configuration parameters (ConfigParams object).
 	 * @returns						ConfigParams object with newly set defaults.
 	 */
 	public setDefaults(defaultConfigParams: ConfigParams): ConfigParams {
@@ -159,10 +164,13 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that creates a ConfigParams object based on the values that are stored in 
-	 * the 'value' object's properties.
+	 * Static function that creates a ConfigParams object based on the values that are stored 
+	 * in the 'value' object's properties.
 	 * 
 	 * @param value		configuration parameters in the form of an object with properties.
+	 * @returns			generated ConfigParams.
+	 * 
+	 * @see RecursiveObjectReader#getProperties
 	 */
 	public static fromValue(value: any): ConfigParams {
 		let map = RecursiveObjectReader.getProperties(value);
@@ -173,6 +181,9 @@ export class ConfigParams extends StringValueMap {
 	 * Static function that creates a ConfigParams object from an array of tuples.
 	 * 
 	 * @param tuples	configuration parameters in the form of an array of tuples.
+	 * @returns			generated ConfigParams.
+	 * 
+	 * @see StringValueMap#fromTuplesArray
 	 */
 	public static fromTuples(...tuples: any[]): ConfigParams {
 		let map = StringValueMap.fromTuplesArray(tuples);
@@ -184,6 +195,9 @@ export class ConfigParams extends StringValueMap {
 	 * 
 	 * @param line 		configuration parameters in the form of a parameterized string. 
 	 * 					Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"
+	 * @returns			generated ConfigParams.
+	 * 
+	 * @see StringValueMap#fromString
 	 */
 	public static fromString(line: string): ConfigParams {
 		let map = StringValueMap.fromString(line);
@@ -191,14 +205,15 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that can merge two or more ConfigParams into one. If two or more 
-	 * ConfigParams objects in 'configs' contain configurations with identical complex keys, 
-	 * the value of the object with the highest index in the array will be used. All other
-	 * values with this key in other ConfigParams objects will be overridden.
+	 * Static function that can merge two or more ConfigParams into one.
 	 * 
 	 * @param configs 	array of ConfigParams that are to be merged into one ConfigParams object. 
-	 * 					The order of elements in the array is important, as it regulates which values 
-	 * 					to keep, if identical complex keys are found (last index has the highest priority).
+	 * 					The order of elements in this array is important, as it regulates which values 
+	 * 					to keep in the case of identical complex keys (the ConfigParams with the 
+	 * 					highest index override the values of other ConfigParams with the same key).
+	 * @returns			merged ConfigParams.
+	 * 
+	 * @see StringValueMap#fromMaps
 	 */
 	public static mergeConfigs(...configs: ConfigParams[]): ConfigParams {
 		let map = StringValueMap.fromMaps(...configs);

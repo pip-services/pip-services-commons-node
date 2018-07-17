@@ -2,19 +2,22 @@ import { ConfigParams } from './ConfigParams';
 import { ConfigReader } from './ConfigReader'
 
 /**
- * Abstract class that can be implemented for creating various FileConfigReaders, which
- * read configuration parameters from the file located at '_path'. 
+ *  
+ * Abstract class that can be implemented by classes that need to read {@link ConfigParams} 
+ * from a file. The target file's location is stored in the '_path' field of this class.
  * 
- * This class is abstract because it inherits the abstract function 
- * {@link ConfigReader#readConfig}
+ * This class is abstract due to the fact that it inherits the abstract function 
+ * {@link ConfigReader#readConfig}.
  * 
+ * @see ConfigReader
  * @see ConfigReader#readConfig
+ * @see ConfigParams
  */
 export abstract class FileConfigReader extends ConfigReader {
     private _path: string;
 
     /**
-     * @param path path to the file containing configuration parameters.
+     * @param path path to the target file, containing configuration parameters.
      */
     public constructor(path: string = null) {
         super();
@@ -22,23 +25,28 @@ export abstract class FileConfigReader extends ConfigReader {
     }
 
     /**
-     * @returns path to the file containing configuration parameters.
+     * Get the path to the target configurations file.
+     * 
+     * @returns path to the target file, containing configuration parameters.
      */
     public getPath(): string {
         return this._path;
     }
 
     /**
-     * @param path path to the file containing configuration parameters.
+     * Set the path to the target configurations file.
+     * 
+     * @param path path to the target file, containing configuration parameters.
      */
     public setPath(path: string) {
         this._path = path;
     }
 
     /**
-     * @param config    configures this class in accordance with ConfigReader's 
-     *                  configure function and sets this class's '_path' field
-     *                  in accordance with the configuration parameter named "path".
+     * @param config    configures this class in accordance with {@link ConfigReader#configure} 
+     *                  and sets this class's '_path' field to the value stored in 'config' 
+     *                  with the key "path".
+     * 
      * @see ConfigReader#configure
      */
     public configure(config: ConfigParams): void {
