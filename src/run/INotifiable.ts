@@ -7,8 +7,8 @@ import { Parameters } from './Parameters';
 export interface INotifiable {
 	/**
 	 * Executes a unit of work
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param args a set of parameters for execution
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param args 				set of parameters for execution.
 	 */
 	notify(correlationId: string, args: Parameters): void;
 }

@@ -31,7 +31,7 @@ export class YamlConfigReader extends FileConfigReader {
      * Reads the YAML data from the file and returns it as a parameterized {@link NullableMap} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     unique id to correlate across all request flows.
+     * @param correlationId     unique business transaction id to trace calls across components.
      * @param parameters        used to parameterize the reader.
      * @returns                 NullableMap with data from the YAML file.
      * 
@@ -63,9 +63,10 @@ export class YamlConfigReader extends FileConfigReader {
      * Reads the YAML data from the file and returns it as a parameterized {@link ConfigParams} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     unique id to correlate across all request flows.
+     * @param correlationId     unique business transaction id to trace calls across components.
      * @param parameters        used to parameterize the reader.
-     * @param callback          resulting value or exception will be returned in the callback.
+     * @param callback          callback function that will be called with an error or with the
+     *                          ConfigParams that were read.
      * 
      * @see #readObject(correlationId: string, parameters: ConfigParams)
      */
@@ -83,7 +84,7 @@ export class YamlConfigReader extends FileConfigReader {
     /**
      * Static implementation of YamlConfigReader's non-static {@link #readObject}.
      * 
-     * @param correlationId     unique id to correlate across all request flows.
+     * @param correlationId     unique business transaction id to trace calls across components.
      * @param path              location of the target YAML file.
      * @param parameters        used to parameterize the reader.
      * 
@@ -96,7 +97,7 @@ export class YamlConfigReader extends FileConfigReader {
     /**
      * Static implementation of YamlConfigReader's non-static {@link #readConfig}.
      * 
-     * @param correlationId     unique id to correlate across all request flows.
+     * @param correlationId     unique business transaction id to trace calls across components.
      * @param path              location of the target YAML file.
      * @param parameters        used to parameterize the reader.
      * 

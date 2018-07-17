@@ -7,9 +7,9 @@ import { Parameters } from '../run/Parameters';
 export interface IEventListener {
 	/**
 	 * Notifies that event occurred.
-	 * @param event event reference
-	 * @param correlationId a unique correlation/transaction id
-	 * @param value event arguments
+	 * @param event 			event reference.
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param value 			event arguments.
 	 */
     onEvent(correlationId: string, event: IEvent, args: Parameters): void;
 }

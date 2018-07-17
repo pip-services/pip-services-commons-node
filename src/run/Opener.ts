@@ -7,7 +7,8 @@ let async = require('async');
 export class Opener {
 	/**
 	 * Checks if component that implement IOpenable interface is opened
-	 * @param component a component to be checked
+	 * 
+	 * @param component 	component to be checked
 	 */
 	public static isOpenedOne(component: any): boolean {
 		if (_.isFunction(component.isOpened))
@@ -18,7 +19,8 @@ export class Opener {
 
 	/**
 	 * Checks if components that implement IOpenable interface are opened
-	 * @param components a list of components to be checked
+	 * 
+	 * @param components 	list of components to be checked
 	 */
 	public static isOpened(components: any[]): boolean {
 		if (components == null) return true;
@@ -32,9 +34,10 @@ export class Opener {
 
 	/**
 	 * Opens a component that implement IOpenable interface
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param component a component to be opened
-     * @param callback a function to call back when open is complete
+	 * 
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param component 		component to be opened.
+     * @param callback 			function to call when open is complete.
 	 */
 	public static openOne(correlationId: string, component: any, callback?: (err: any) => void): void {
         if (_.isFunction(component.open)) {
@@ -50,9 +53,10 @@ export class Opener {
 
 	/**
 	 * Opens component that implement IOpenable interface
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param components a list of components to be opened
-     * @param callback a function to call back when open is complete
+	 * 
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param components 		list of components to be opened.
+     * @param callback 			function to call when open is complete.
 	 */
 	public static open(correlationId: string, components: any[], callback?: (err: any) => void): void {
         async.eachSeries(

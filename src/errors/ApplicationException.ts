@@ -65,7 +65,7 @@ export class ApplicationException extends Error {
 
     /**
      * @param category          category that this exception belongs to.
-     * @param correlation_id    unique id to correlate across all request flows.
+     * @param correlation_id    unique business transaction id to trace calls across components.
      * @param code              unique code that can be used to identify the error.
      * @param message           the message that was contained in the original error.
      */

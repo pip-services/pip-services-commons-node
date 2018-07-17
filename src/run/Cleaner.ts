@@ -7,9 +7,9 @@ let async = require('async');
 export class Cleaner {
 	/**
 	 * Cleans component that implement ICleanable interface
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param component a components to be cleaned
-     * @param callback a function to call back when cleaning is complete
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param component 		component to be cleaned.
+     * @param callback 			function to call when cleaning is complete.
 	 */
 	public static clearOne(correlationId: string, component: any, callback?: (err: any) => void): void {
         if (_.isFunction(component.clear)) {
@@ -25,9 +25,9 @@ export class Cleaner {
 
 	/**
 	 * Cleans components that implement ICleanable interface
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param components a list of components to be cleaned
-     * @param callback a function to call back when cleaning is complete
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param components 		list of components to be cleaned
+     * @param callback 			function to call when cleaning is complete
 	 */
 	public static clear(correlationId: string, components: any[], callback?: (err: any) => void) {		
         async.eachSeries(

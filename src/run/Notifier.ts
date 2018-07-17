@@ -8,9 +8,10 @@ import { Parameters } from './Parameters';
 export class Notifier {
 	/**
 	 * Triggers notification for component that implement INotifiable interface. 
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param components a list of components to be notified
-	 * @param args a set of parameters to pass to notified components
+	 * 
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param components 		list of components to be notified.
+	 * @param args 				set of parameters to pass to notified components.
 	 */
 	public static notifyOne(correlationId: string, component: any, args: Parameters): void {
         if (_.isFunction(component.notify))
@@ -19,9 +20,10 @@ export class Notifier {
 
 	/**
 	 * Triggers notification for components that implement INotifiable interface. 
-	 * @param correlationId a unique transaction id to trace calls across components
-	 * @param components a list of components to be notified
-	 * @param args a set of parameters to pass to notified components
+	 * 
+	 * @param correlationId 	unique business transaction id to trace calls across components.
+	 * @param components 		list of components to be notified.
+	 * @param args 				set of parameters to pass to notified components.
 	 */
     public static notify(correlationId: string, components: any[], args: Parameters): void {
 		if (components == null) return;
