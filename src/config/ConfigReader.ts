@@ -20,7 +20,8 @@ export abstract class ConfigReader implements IConfigurable {
     public constructor() {}
 
     /**
-     * Configure this object using ConfigParams.
+     * Sets component's configuration parameters and switches the component
+	 * to the 'Configured' state.
      * 
      * @param config    ConfigParams that contain a section named "parameters", 
      *                  which will be saved to the "_parameters" field of this class.
