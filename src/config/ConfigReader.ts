@@ -6,9 +6,9 @@ import { IConfigurable } from './IConfigurable'
 
 /**
  * Combination of the {@link IConfigReader} and {@link IConfigurable} interfaces. Allows for object 
- * configuration using {@link ConfigParams} via the 'configure' function, and contains the abstract 
- * function 'readConfig', which, upon implementation, should contain the logic necessary for reading 
- * and parsing ConfigParams. Also contains the 'parameterize' function.
+ * configuration using {@link ConfigParams} via the {@link #configure} function, and contains the abstract 
+ * function {@link #readConfig}, which, upon implementation, should contain the logic necessary for reading 
+ * and parsing ConfigParams. Also contains the {@link #parameterize} function.
  * 
  * @see IConfigReader
  * @see IConfigurable
@@ -40,7 +40,7 @@ export abstract class ConfigReader implements IConfigurable {
      * 
      * @param correlationId     links exceptions that could be raised to business transactions.
      * @param parameters        ConfigParams to read.
-     * @param callback          value or exception that is returned.
+     * @param callback          resulting value or exception will be returned in the callback.
      */
     public abstract readConfig(correlationId: string, parameters: ConfigParams,
         callback: (err: any, config: ConfigParams) => void): void;

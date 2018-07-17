@@ -1,9 +1,9 @@
 import { ConfigParams } from './ConfigParams';
 
 /**
- * Configurable interface that contains the 'configure' function. If an object 
+ * Configurable interface that contains the {@link #configure} function. If an object 
  * needs to be configurable, it can implement this interface and parse the 
- * ConfigParams that the 'configure' function receives as a parameter. 
+ * ConfigParams that 'configure' receives as a parameter. 
  * 
  * @see ConfigParams
  */
