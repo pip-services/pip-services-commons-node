@@ -55,7 +55,8 @@ export class ApplicationException extends Error {
      * us to add additional details to localized error messages. 
      * Resulting error message format: “(Localized error's text) - id: (id)” */
     public details: StringValueMap; 
-    /** Important field for microservices, as it allows us to tie an exception to a specific business transaction.  */   
+    /** Unique id to correlate across all request flows. Important field for microservices, 
+     * as it allows us to tie an exception to a specific business transaction.  */   
     public correlation_id: string;
     /** Stack trace of the exception. */ 
     public stack_trace: string;
@@ -64,7 +65,7 @@ export class ApplicationException extends Error {
 
     /**
      * @param category          category that this exception belongs to.
-     * @param correlation_id    ties the exception to a specific business transaction. 
+     * @param correlation_id    unique id to correlate across all request flows.
      * @param code              unique code that can be used to identify the error.
      * @param message           the message that was contained in the original error.
      */
