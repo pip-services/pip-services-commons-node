@@ -6,10 +6,11 @@
 export class RandomInteger {
     
     /**
-     * Generates an integer in the range ['min', 'max']. If 'max' is not given, range is set to [0, 'min'].
+     * Generates a integer in the range ['min', 'max']. If 'max' is omitted, then the range will be set to [0, 'min'].
      * 
-     * @param min   minimum value of integer that will be generated (set to 'max', if 'max' is not given).
-     * @param max   (optional) maximum value of integer that will be generated.
+     * @param min   minimum value of the integer that will be generated. 
+     *              If 'max' is omitted, then 'max' is set to 'min' and 'min' is set to 0.
+     * @param max   (optional) maximum value of the integer that will be generated. Defaults to 'min' if omitted.
      * @returns     generated random integer value.
      */
     public static nextInteger(min: number, max: number = null): number {
@@ -25,12 +26,12 @@ export class RandomInteger {
     }
 
     /**
-     * Generates a new integer that will differ from 'value' by a maximum of ±'range'. If range is not given, 
-     * generated value will differ from 'value' by a maximum of ±10%. 
+     * Generates a new integer that will differ from 'value' by a maximum of ±'range'. If range is omitted, 
+     * then the generated value will differ from 'value' by a maximum of ±10%. 
      * 
      * @param value     integer to update.
      * @param range     (optional) defines the maximum amount by which the new integer can differ from 'value'. 
-     *                  Default: 10% of 'value' (floored).
+     *                  Defaults to 10% of 'value' (floored) if omitted.
      * @returns         updated integer value.
      */
     public static updateInteger(value: number, range: number = null): number {
@@ -42,11 +43,11 @@ export class RandomInteger {
     }
 
     /**
-     * Generates an array of integers, whose values are identical to their indexes. The size of the array is randomly chosen from the range ['min', 'max'].
-     * If 'max' is not given, the array's length will always be 'min'.
+     * Generates an array of integers, whose values are identical to their indexes. The length of the array is randomly chosen from the range ['min', 'max'].
+     * If 'max' is omitted, then the the array's length will be 'min'.
      * 
-     * @param min   minimum length of the array that will be generated. If 'max' is not given, the size of the generated array will always be 'min'.
-     * @param max   maximum length of the array that will be generated.
+     * @param min   minimum length of the array that will be generated. If 'max' is omitted, then 'min' defines the array's length .
+     * @param max   (optional) maximum length of the array that will be generated.
      * @returns     generated array of integers.
      */
     public static sequence(min: number, max: number = null): number[] {

@@ -9,8 +9,8 @@ export class RandomDateTime {
     /**
      * Generates a Date in the range ['minYear', 'maxYear'].
      * 
-     * @param minYear   (optional) minimum Date that will be generated. If not given, it will be set to 0-10 years ago (from the current year).
-     * @param maxYear   (optional) maximum Date that will be generated. If not given, it will be set to the current year.
+     * @param minYear   (optional) minimum Date that will be generated. Defaults to 0-10 years ago (from the current year) if omitted.
+     * @param maxYear   (optional) maximum Date that will be generated. Defaults to the current year if omitted.
      * @returns         generated random Date.
      */
     public static nextDate(minYear: number = null, maxYear: number = null): Date {
@@ -41,8 +41,8 @@ export class RandomDateTime {
     /**
      * Generates a DateTime in the range ['minYear', 'maxYear'].
      * 
-     * @param minYear   (optional) minimum DateTime that will be generated. If not given, it will be set to 0-10 years ago (from the current year).
-     * @param maxYear   (optional) maximum DateTime that will be generated. If not given, it will be set to the current year.
+     * @param minYear   (optional) minimum DateTime that will be generated. Defaults to 0-10 years ago (from the current year) if omitted.
+     * @param maxYear   (optional) maximum DateTime that will be generated. Defaults to the current year if omitted.
      * @returns         generated random DateTime.
      */
     public static nextDateTime(minYear: number = null, maxYear: number = null): Date {
@@ -53,11 +53,11 @@ export class RandomDateTime {
 
     /**
      * Generates a new DateTime that will differ from 'value' by a maximum of ±'range'. 
-     * If 'range' is not given (or is 0), generated DateTime will differ from 'value' by ±10 days. 
+     * If 'range' is omitted (or 0), then the generated DateTime will differ from 'value' by ±10 days. 
      * 
      * @param value     DateTime to update.
      * @param range     (optional) defines the maximum amount of days by which the new DateTime can differ from 'value'. If range is a negative number,
-     *                  'value' will be returned. If zero or not given - the default value of 10 days will be used.
+     *                  'value' will be returned. Defaults to 10 days if omitted or zero.
      * @returns         updated DateTime.
      */
     public static updateDateTime(value: Date, range: number = null): Date {

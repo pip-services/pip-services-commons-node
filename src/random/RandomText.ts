@@ -143,7 +143,7 @@ export class RandomText {
     }
 
     /**
-     * @param min   minimum number of words in the sequence. If 'max' is not given, sequence will contain 'min' random words.
+     * @param min   minimum number of words in the sequence. Sequence will contain 'min' random words if 'max' is omitted.
      * @param max   (optional) maximum number of words in the sequence.
      * @returns     a string sequence of random words from available first names, last names, colors, stuffs, adjectives, or verbs.  
      *              All words in the sequence will be capitalized and NOT separated by spaces (CamelCase). Use 'phrase' for generating 
@@ -186,8 +186,7 @@ export class RandomText {
     /**
      * Generates a random text, consisting of first names, last names, colors, stuffs, adjectives, verbs, and punctuation marks.
      * 
-     * @param minSize   minimum amount of words to generate. If 'maxSize' is not given,
-     *                  text will contain 'minSize' words.
+     * @param minSize   minimum amount of words to generate. Text will contain 'minSize' words if 'maxSize' is omitted.
      * @param maxSize   (optional) maximum amount of words to generate.
      * @returns         generated text.
      */
