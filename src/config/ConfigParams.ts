@@ -164,7 +164,7 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that creates a ConfigParams object based on the values that are stored 
+	 * Static method that creates a ConfigParams object based on the values that are stored 
 	 * in the 'value' object's properties.
 	 * 
 	 * @param value		configuration parameters in the form of an object with properties.
@@ -178,7 +178,7 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that creates a ConfigParams object from an array of tuples.
+	 * Static method that creates a ConfigParams object from an array of tuples.
 	 * 
 	 * @param tuples	configuration parameters in the form of an array of tuples.
 	 * @returns			generated ConfigParams.
@@ -191,7 +191,7 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that creates a ConfigParams object from a parameterized string.
+	 * Static method that creates a ConfigParams object from a parameterized string.
 	 * 
 	 * @param line 		configuration parameters in the form of a parameterized string. 
 	 * 					Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"
@@ -205,7 +205,7 @@ export class ConfigParams extends StringValueMap {
 	}
 
 	/**
-	 * Static function that can merge two or more ConfigParams into one.
+	 * Static method that can merge two or more ConfigParams into one.
 	 * 
 	 * @param configs 	array of ConfigParams that are to be merged into one ConfigParams object. 
 	 * 					The order of elements in this array is important, as it regulates which values 

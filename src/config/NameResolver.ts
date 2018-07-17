@@ -2,7 +2,7 @@ import { ConfigParams } from './ConfigParams';
 import { Descriptor } from '../refer/Descriptor';
 
 /**
- * Contains the static function {@link #resolve}, which can be used for resolving the name 
+ * Contains the static method {@link #resolve}, which can be used for resolving the name 
  * of a ConfigParams configuration.
  */
 export class NameResolver {

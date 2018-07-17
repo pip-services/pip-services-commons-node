@@ -8,7 +8,7 @@ import { FileException } from '../errors/FileException'
 import { JsonConverter } from '../convert/JsonConverter'
 
 /**
- * Provides functions for reading configuration parameters from a JSON file.
+ * Provides methods for reading configuration parameters from a JSON file.
  * 
  * @see FileConfigReader
  */
@@ -30,7 +30,7 @@ export class JsonConfigReader extends FileConfigReader {
      * Reads the JSON data from the file and returns it as a parameterized {@link NullableMap} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param parameters        used to parameterize the reader.
      * @returns                 NullableMap with data from the JSON file.
      * 
@@ -61,7 +61,7 @@ export class JsonConfigReader extends FileConfigReader {
      * Reads the JSON data from the file and returns it as a parameterized {@link ConfigParams} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param parameters        used to parameterize the reader.
      * @param callback          resulting value or exception will be returned in the callback.
      * 
@@ -81,7 +81,7 @@ export class JsonConfigReader extends FileConfigReader {
     /**
      * Static implementation of JsonConfigReader's non-static {@link #readObject}.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param path              location of the target JSON file.
      * @param parameters        used to parameterize the reader.
      * 
@@ -94,7 +94,7 @@ export class JsonConfigReader extends FileConfigReader {
     /**
      * Static implementation of JsonConfigReader's non-static {@link #readConfig}.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param path              location of the target JSON file.
      * @param parameters        used to parameterize the reader.
      * 

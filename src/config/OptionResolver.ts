@@ -1,7 +1,7 @@
 import { ConfigParams } from './ConfigParams';
 
 /**
- * Contains the static function {@link #resolve}, which can be used for resolving 
+ * Contains the static method {@link #resolve}, which can be used for resolving 
  * the options of a ConfigParams configuration.
  */
 export class OptionResolver {

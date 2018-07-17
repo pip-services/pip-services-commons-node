@@ -1,7 +1,7 @@
 import { ConfigParams } from './ConfigParams';
 
 /**
- * Configurable interface that contains the {@link #configure} function. If an object 
+ * Configurable interface that contains the {@link #configure} method. If an object 
  * needs to be configurable, it can implement this interface and parse the 
  * ConfigParams that 'configure' receives as a parameter. 
  * 
@@ -10,7 +10,7 @@ import { ConfigParams } from './ConfigParams';
 export interface IConfigurable {
 
     /**
-     * Abstract function for configuring objects using ConfigParams.
+     * Abstract method for configuring objects using ConfigParams.
      * 
      * @param config    ConfigParams to use for object configuration.
      */

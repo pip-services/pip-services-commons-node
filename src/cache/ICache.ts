@@ -5,7 +5,7 @@
 export interface ICache {
 
     /**
-     * Abstract function that will contain the logic for retrieving key-value pairs
+     * Abstract method that will contain the logic for retrieving key-value pairs
      * from the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.
@@ -17,7 +17,7 @@ export interface ICache {
         callback: (err: any, value: any) => void): void;
 
     /**
-     * Abstract function that will contain the logic for storing key-value pairs
+     * Abstract method that will contain the logic for storing key-value pairs
      * in the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.
@@ -31,7 +31,7 @@ export interface ICache {
         callback?: (err: any) => void): void;
 
     /**
-     * Abstract function that will contain the logic for removing key-value pairs
+     * Abstract method that will contain the logic for removing key-value pairs
      * from the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.

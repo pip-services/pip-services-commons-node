@@ -9,7 +9,7 @@ import { FileException } from '../errors/FileException'
 import { JsonConverter } from '../convert/JsonConverter'
 
  /**
- * Provides functions for reading configuration parameters from a YAML file.
+ * Provides methods for reading configuration parameters from a YAML file.
  * 
  * @see FileConfigReader
  */
@@ -31,7 +31,7 @@ export class YamlConfigReader extends FileConfigReader {
      * Reads the YAML data from the file and returns it as a parameterized {@link NullableMap} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param parameters        used to parameterize the reader.
      * @returns                 NullableMap with data from the YAML file.
      * 
@@ -63,7 +63,7 @@ export class YamlConfigReader extends FileConfigReader {
      * Reads the YAML data from the file and returns it as a parameterized {@link ConfigParams} object. 
      * Reader's path must be set.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param parameters        used to parameterize the reader.
      * @param callback          resulting value or exception will be returned in the callback.
      * 
@@ -83,7 +83,7 @@ export class YamlConfigReader extends FileConfigReader {
     /**
      * Static implementation of YamlConfigReader's non-static {@link #readObject}.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param path              location of the target YAML file.
      * @param parameters        used to parameterize the reader.
      * 
@@ -96,7 +96,7 @@ export class YamlConfigReader extends FileConfigReader {
     /**
      * Static implementation of YamlConfigReader's non-static {@link #readConfig}.
      * 
-     * @param correlationId     ties possible exceptions to business transactions.
+     * @param correlationId     unique id to correlate across all request flows.
      * @param path              location of the target YAML file.
      * @param parameters        used to parameterize the reader.
      * 

@@ -8,7 +8,7 @@ import { ICache } from './ICache';
 export class NullCache implements ICache {
     
     /**
-     * Null function that will always return null when retrieving key-value pairs
+     * Null method that will always return null when retrieving key-value pairs
      * from the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.
@@ -21,7 +21,7 @@ export class NullCache implements ICache {
     }
 
     /**
-     * Null function that will always return null when storing key-value pairs
+     * Null method that will always return null when storing key-value pairs
      * in the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.
@@ -36,7 +36,7 @@ export class NullCache implements ICache {
     }
 
     /**
-     * Null function that will always return null when removing key-value pairs
+     * Null method that will always return null when removing key-value pairs
      * from the cache.
      * 
      * @param correlationId     unique id to correlate across all request flows.

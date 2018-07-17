@@ -5,7 +5,7 @@ import { JsonConfigReader } from './JsonConfigReader';
 import { YamlConfigReader } from './YamlConfigReader';
 
 /**
- * Contains static read-only descriptor for the Memory, JSON, and YAML ConfigReaders (as well as a default config-reader descriptor).
+ * Contains static read-only descriptors for the Memory, JSON, and YAML ConfigReaders (as well as a default config-reader descriptor).
  */
 export class DefaultConfigReaderFactory extends Factory {
 	public static readonly Descriptor = new Descriptor("pip-services", "factory", "config-reader", "default", "1.0");

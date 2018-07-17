@@ -1,5 +1,5 @@
 /**
- * Provides functions that can be used for generating random booleans using 'chance' and 'nextBoolean' functions.
+ * Provides methods that can be used for generating random booleans using 'chance' and 'nextBoolean' methods.
  */
 export class RandomBoolean {
 

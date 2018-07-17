@@ -6,7 +6,7 @@ import { ConfigReader } from './ConfigReader'
  * Abstract class that can be implemented by classes that need to read {@link ConfigParams} 
  * from a file. The target file's location is stored in the '_path' field of this class.
  * 
- * This class is abstract due to the fact that it inherits the abstract function 
+ * This class is abstract due to the fact that it inherits the abstract method 
  * {@link ConfigReader#readConfig}.
  * 
  * @see ConfigReader

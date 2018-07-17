@@ -6,7 +6,7 @@ import { StringValueMap } from '../data/StringValueMap';
 /**
  * This class provides cross-language (portable) and language-independent (localizable) standardization of exceptions. 
  * 
- * ApplicationException contains a strict structure and functions that help structurize free-form exception messages.
+ * ApplicationException contains a strict structure and methods that help structurize free-form exception messages.
  * While ApplicationExceptions themselves are not serializable, they can be converted to {@link ErrorDescription}s, 
  * which are serializable. Serialization of ErrorDescriptions is necessary for sending exceptions over the REST interface 
  * back to "caller" microservices (cross-language error propagation).
