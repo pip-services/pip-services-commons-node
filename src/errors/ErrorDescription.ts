@@ -1,70 +1,49 @@
 /**
- * This class allows us to represent exceptions in a form that is serializable.
+ * This class allows us to represent ApplicationExceptions in a form that is serializable.
  *   
- * When an exception is raised, we transform it into an ErrorDescription, serialize it, 
- * and then send it over the REST interface to the 'caller' microservice. On the 'caller' 
- * microservice's side we receive the ErrorDescription object and convert it back into a 
- * language specific exception. This provides cross-language error propagation via 
- * serialization.
+ * When an exception is raised, the {@link ApplicationException} class (or its child)
+ * can be used to structurize the exception. Afterwards, the ApplicationException can be 
+ * transformed it into an ErrorDescription, serialized in one language, transferred to 
+ * the receiving side, and deserialized in another language. 
  * 
- * If the exception that was raised is a child class of ApplicationException, we can 
- * use the ApplicationException class from the PipServices Commons library on the receiving 
- * side to process it (as long as the service is written in a language that PipServices supports).
+ * After deserialization, the exception's class can be restored, if it was initally 
+ * a child of ApplicationException. 
  * 
- * On the other hand, if a specific exception is raised, then an attempt is made to raise a similar 
- * exception (from the ones available in the receiving side's language), which is closest in meaning 
- * to the exception raised in the original language.  
+ * If a specific exception was raised and transferred between microservices that are written 
+ * in different languages, then the exception type that is closest to the original exception's 
+ * type can be chosen from the exceptions available in the receiving side's language. 
+ * This provides cross-language error propagation via serialization.
  * 
- * This allows us to catch, send, and process any type of exception that is raised, even between
+ * This allows us to catch, transfer, and process any type of exception that is raised, even between
  * services that are written in different languages.
+ * 
+ * @see ApplicationException
  */
 export class ErrorDescription {
-	/**
-     * Defines the error's type.
-     */
+	/** Defines the error's type. */
 	public type: string;
-	/**
-     * Defines what category of errors this error belongs to.
-     */
+	/** Defines what category of errors this error belongs to. */
 	public category: string;
-	/**
-     * Used when sending over the REST interface, so that we know what status to raise.
-     */
+	/** Used when sending over the REST interface, so that we know what status to raise. */
 	public status: number;
-	/**
-     * Every error needs a unique code by which it can be identified. Using this code, 
-     * we can select error messages from various natural languages to display later on 
-     * in the UI.
-     */
+    /** Every error needs a unique code by which it can be identified. Using this code, 
+     *  we can select which localized error messages to use and what to display in the UI.*/
 	public code: string;
-	/**
-     * This field stores the message that was contained in the original error. 
-     * Errors' messages are always in English. However, using this class's 
-     * 'code' and 'details' fields, we can translate the error's message to 
-     * any other language during UI population.
-     */
+    /**This field stores the message or description that was contained in the original error. 
+     * Errors' messages are always in English. However, using this class's 'code' and 'details' 
+     * fields, we can create localized versions of the error's message and use them instead in the UI. */
 	public message: string;
-	/**
-     * This field is used when translating an error into a different natural language (to be displayed
-     * later on in the UI).
+    /**This field is used to add additional information to localized error message strings.
      * 
      * For example, if we received an ObjectNotFoundException (general error) when searching for an 
      * object via its id, the id by which the object was not found can be added as a detail. This allows 
      * us to add additional details to our translated error messages. 
-     * Resulting error message format: “{Error's text in some language} - id: {id}”
-     */
+     * Resulting error message format: “{Localized error's text} - id: {id}” */
 	public details: any;
-	/**
-     * Important field for microservices, as it allows us 
-     * to tie an exception to a specific business transaction. 
-     */   
+	/**Important field for microservices, as it allows us to tie an exception to a specific business transaction. */   
 	public correlation_id: string;
-	/**
-     * Additional information, regarding to the cause of the exception.
-     */ 
+	/** Additional information about the cause of the exception. */ 
 	public cause: string;
-	/**
-     * Stack trace of the exception.
-     */ 
+	/** Stack trace of the exception. */ 
 	public stack_trace: string;
 }

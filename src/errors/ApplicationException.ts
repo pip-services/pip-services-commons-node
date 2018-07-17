@@ -4,77 +4,62 @@ import { ErrorCategory } from './ErrorCategory';
 import { StringValueMap } from '../data/StringValueMap';
 
 /**
- * This class provides cross-(programming)language and (natural)language-independent standardization of exceptions. 
+ * This class provides cross-language (portable) and language-independent (localizable) standardization of exceptions. 
  * 
- * ApplicationException contains a strict structure, which allows for structuration of free-form exception messages, as well as 
- * their serialization. Serialization is necessary for sending exceptions over the REST interface back to 'caller' microservices.
+ * ApplicationException contains a strict structure and functions that help structurize free-form exception messages.
+ * While ApplicationExceptions themselves are not serializable, they can be converted to {@link ErrorDescription}s, 
+ * which are serializable. Serialization of ErrorDescriptions is necessary for sending exceptions over the REST interface 
+ * back to "caller" microservices.
  * 
- * An ApplicationException contains enough information to translate an exception from one (natural) language to another. 
+ * An ApplicationException contains enough information to create detailed localized strings for various exceptions.
  * It concretely defines the type of exception (via the 'code' field) and links exceptions to business transactions 
- * (via 'correlation_id'). ApplicationException's fields allow us to develop (natural) language-independent exceptions, 
- * as well as cross-(programming)language error propagation.
+ * (via 'correlation_id'). ApplicationException's fields allow for development of localized exceptions, 
+ * as well as cross-language error propagation.
  * 
  * ApplicationException serves as a parent class for all other (Category)Exception classes. 
  * 
  * Usage:
+ * - The classes included in this package (which already extend ApplicationException) can be used for error propagation.
  * - Developers can use this class to create their own application exceptions (create exceptions from the ground up).
  * - Exceptions can be wrapped around one another (wrap an exception around an existing exception).
  * - Our microservices automatically intercept common exceptions and try to convert them to the closest available type of 
  *   ApplicationException.
  * - ApplicationExceptions are converted to {@link ErrorDescription}s, which are then sent back to 'caller' 
     * microservices. When the microservice on the other end receives the ErrorDescription, it can use it to restore the 
-    * ApplicationException and propagate it to the place from where it was called.
+    * ApplicationException and propagate it to the place from where the call was made.
  * 
  * Defaults: 
  * - status = 500
  * - code = 'UNKNOWN'
  * - category = ErrorCategory.Unknown
  * - message = 'Unknown error'
+ * 
+ * @see ErrorDescription
  */
 export class ApplicationException extends Error {
-    /**
-     * This field stores the message that was contained in the original error. 
-     * Errors' messages are always in English. However, using this class's 
-     * 'code' and 'details' fields, we can translate the error's message to 
-     * any other language during UI population.
-     */
+    /**This field stores the message or description that was contained in the original error. 
+     * Errors' messages are always in English. However, using this class's 'code' and 'details' 
+     * fields, we can create localized versions of the error's message and use them instead in the UI. */
     public message: string;
-    /**
-     * Defines what category of exceptions this exception belongs to.
-     */
+    /** Defines what category of exceptions this exception belongs to.  */
     public category: string;
-    /**
-     * Used when sending over the REST interface, so that we know what status to raise.
-     */
+    /** Used when sending over the REST interface, so that we know what status to raise. */
     public status: number = 500;
-    /**
-     * Every error needs a unique code by which it can be identified. Using this code, 
-     * we can select error messages from various natural languages to display later on 
-     * in the UI.
-     */
+    /** Every error needs a unique code by which it can be identified. Using this code, 
+     *  we can select which localized error messages to use and what to display in the UI.*/
     public code: string = 'UNKNOWN';
-    /**
-     * This field is used when translating an error into a different natural language (to be displayed
-     * later on in the UI).
+    /**This field is used to add additional information to localized error message strings.
      * 
      * For example, if we received an ObjectNotFoundException (general error) when searching for an 
      * object via its id, the id by which the object was not found can be added as a detail. This allows 
      * us to add additional details to our translated error messages. 
-     * Resulting error message format: “{Error's text in some language} - id: {id}”
-     */
+     * Resulting error message format: “{Localized error's text} - id: {id}” */
     public details: StringValueMap; 
-    /**
-     * Important field for microservices, as it allows us 
-     * to tie an exception to a specific business transaction. 
-     */   
+    /** Important field for microservices, as it allows us to tie an exception to a specific business transaction.  */   
     public correlation_id: string;
-    /**
-     * Stack trace of the exception.
-     */ 
+    /** Stack trace of the exception. */ 
     public stack_trace: string;
-    /**
-     * Additional information, regarding to the cause of the exception.
-     */ 
+    /** Additional information about the cause of the exception. */ 
     public cause: string;
 
     /**
@@ -97,50 +82,87 @@ export class ApplicationException extends Error {
         this.name = this.code;
     }
     
+    /**
+     * Returns additional information about the cause of the exception.
+     */ 
     public getCauseString(): string { 
         return this.cause != null ? this.cause.toString() : null;
     }
 
+    /**
+     * Sets additional information about the cause of the exception.
+     */ 
     public setCauseString(value: string): void {
     	this.cause = value;
     }    
 
+    /**
+     * Returns the stack trace of the exception.
+     */ 
     public getStackTraceString(): string {
         return this.stack_trace || (<any>this).stack;
     }
 
+    /**
+     * Sets the stack trace of the exception.
+     */ 
     public setStackTraceString(value: string): void {
     	this.stack_trace = value;
     }
 
+    /**
+     * Sets the code of the exception and returns the resulting ApplicationException.
+     * Every error needs a unique code by which it can be identified. Using this code, 
+     * we can select which localized error messages to use and what to display in the UI.
+     * */
     public withCode(code: string): ApplicationException {
         this.code = code || 'UNKNOWN';
         this.name = this.code;
         return this;
     }
         
+    /**
+     * Sets the cause of the exception and returns the resulting ApplicationException.
+     * The 'cause' field contains additional information about the cause of the exception.
+     */ 
     public withCause(cause: Error): ApplicationException {
         if (cause)
             this.cause = cause.message;
         return this;
     }
-    
+        
+    /**
+     * Sets the status of the exception and returns the resulting ApplicationException.
+     * The 'status' field is used when sending exceptions over the REST interface, 
+     * so that we know what status to raise.
+     */ 
     public withStatus(status: number): ApplicationException {
         this.status = status || 500;
         return this;
     }
     
+    /**
+     * Sets the details of the exception and returns the resulting ApplicationException.
+     * Details are used to add additional information to localized error message strings.
+     */ 
     public withDetails(key: string, value: any): ApplicationException {
         this.details = this.details || new StringValueMap();
         this.details.setAsObject(key, value);
         return this;
     }
     
+    /**
+     * Sets the correlation ID of the exception and returns the resulting ApplicationException.
+     * The correlation ID ties an exception to a specific business transaction.
+     */ 
     public withCorrelationId(correlation_id: string): ApplicationException {
         this.correlation_id = correlation_id;
         return this;
     }
 
+    /**
+     * Sets the stack trace of the exception and returns the resulting ApplicationException.
+     */ 
     public withStackTrace(stackTrace: string): ApplicationException {
         this.stack_trace = stackTrace;
         return this;
