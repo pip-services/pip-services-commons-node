@@ -5,6 +5,11 @@ import { ConfigParams } from '../config/ConfigParams';
 import { NameResolver } from '../config/NameResolver';
 import { ApplicationException } from '../errors/ApplicationException';
 
+/**
+ * Provides local in-memory cache support.
+ * 
+ * @see {ICache}
+ */
 export class MemoryCache implements ICache, IReconfigurable {
     //milliseconds
     private static readonly _defaultTimeout: number = 60000;
@@ -18,18 +23,19 @@ export class MemoryCache implements ICache, IReconfigurable {
     private _maxSize: number = MemoryCache._defaultMaxSize;
 
 	/**
-	 * Creates instance of local in-memory cache component
+	 * Creates an instance of this local in-memory cache component.
 	 */
     public constructor() { }
 
 	/**
-	 * Sets component configuration parameters and switches component
-	 * to 'Configured' state. The configuration is only allowed once
+	 * Sets component's configuration parameters and switches the component
+	 * to the 'Configured' state. Configuration is only allowed once,
 	 * right after creation. Attempts to perform reconfiguration will 
 	 * cause an exception.
-	 * @param config the component configuration parameters.
-	 * @throws MicroserviceError when component is in illegal state 
-	 * or configuration validation fails. 
+     * 
+	 * @param config the component's configuration parameters.
+	 * @throws  MicroserviceError when component is in illegal state 
+	 *          or configuration validation fails. 
 	 */
     public configure(config: ConfigParams): void {
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
@@ -39,7 +45,7 @@ export class MemoryCache implements ICache, IReconfigurable {
 	/**
 	 * Cleans up cache from obsolete values and shrinks the cache
 	 * to fit into allowed max size by dropping values that were not
-	 * accessed for a long time
+	 * accessed for a long time.
 	 */
     private cleanup(): void {
         let oldest: CacheEntry = null;
@@ -69,15 +75,15 @@ export class MemoryCache implements ICache, IReconfigurable {
     }
 
 	/**
-	 * Retrieves a value from the cache by unique key.
-	 * It is recommended to use either string GUIDs like '123456789abc'
-	 * or unique natural keys prefixed with the functional group
-	 * like 'pip-services-storage:block-123'. 
-	 * @param correlationId a unique id to correlate across all request flow.
-	 * @param key a unique key to locate value in the cache
-	 * @param callback a callback function to be called 
-	 * with error or retrieved value. It returns <b>null</b> 
-	 * when value was not found
+	 * Retrieves a value from the cache by its unique key.
+	 * It is recommended to use either string GUIDs (for example: '123456789abc')
+	 * or unique natural keys prefixed with the functional group (for example: 
+	 * 'pip-services-storage:block-123'). 
+     * 
+	 * @param correlationId     unique id to correlate across all request flows.
+	 * @param key               unique key to locate the value by in the cache.
+	 * @param callback          callback function that will be called with an error or the retrieved value. 
+     *                          Returns <b>null</b> if the value was not found.
 	 */
     public retrieve(correlationId: string, key: string, callback: (err: any, value: any) => void): void {
         if (key == null) {
@@ -108,12 +114,12 @@ export class MemoryCache implements ICache, IReconfigurable {
 
 	/**
 	 * Stores value identified by unique key in the cache. 
-	 * Stale timeout is configured in the component options. 
-	 * @param correlationId a unique id to correlate across all request flow.
-	 * @param key a unique key to locate value in the cache.
-	 * @param value a value to store.
-	 * @param callback a callback function to be called with error
-	 * or stored value
+	 * Cache entry's expiration timeout is configured in the component's options. 
+     * 
+	 * @param correlationId     unique id to correlate across all request flows.
+	 * @param key               unique key to locate the value by in the cache.
+	 * @param value             value to store.
+	 * @param callback          callback function that will be called with an error or the stored value.
 	 */
     public store(correlationId: string, key: string, value: any, timeout: number, callback: (err: any, value: any) => void): void {
         if (key == null) {
@@ -156,11 +162,11 @@ export class MemoryCache implements ICache, IReconfigurable {
     }
 
 	/**
-	 * Removes value stored in the cache.
-	 * @param correlationId a unique id to correlate across all request flow.
-	 * @param key a unique key to locate value in the cache.
-	 * @param callback a callback function to be called
-	 * with error or success
+	 * Removes a value from the cache using its key.
+     * 
+	 * @param correlationId     unique id to correlate across all request flows.
+	 * @param key               unique key to locate the value by in the cache.
+	 * @param callback          callback function that will be called with an error or success.
 	 */
     public remove(correlationId: string, key: string, callback: (err: any) => void): void {
         if (key == null) {
