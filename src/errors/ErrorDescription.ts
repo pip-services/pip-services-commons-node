@@ -40,7 +40,7 @@ export class ErrorDescription {
      * us to add additional details to localized error messages. 
      * Resulting error message format: “(Localized error's text) - id: (id)” */
 	public details: any;
-	/** Unique id to correlate across all request flows. Important field for microservices, 
+	/** Unique business transaction id to trace calls across components. Important field for microservices, 
      * as it allows us to tie an exception to a specific business transaction. */   
 	public correlation_id: string;
 	/** Additional information about the cause of the exception. */ 

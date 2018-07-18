@@ -55,7 +55,7 @@ export class ApplicationException extends Error {
      * us to add additional details to localized error messages. 
      * Resulting error message format: “(Localized error's text) - id: (id)” */
     public details: StringValueMap; 
-    /** Unique id to correlate across all request flows. Important field for microservices, 
+    /** Unique business transaction id to trace calls across components. Important field for microservices, 
      * as it allows us to tie an exception to a specific business transaction.  */   
     public correlation_id: string;
     /** Stack trace of the exception. */ 
@@ -170,14 +170,25 @@ export class ApplicationException extends Error {
     }
 
     /** 
-     * Unwraps the parameter 'cause' using the static function {@link #unwrapError}, and, if the 
-     * unwrapped cause is an instance of ApplicationException, returns the unwrapped ApplicationException.
-     * If the unwrapped cause is NOT an instance of ApplicationException, then this ApplicationException's 
-     * 'cause' is set to 'cause.message'. 
+     * Wrapping allows us to transform general exceptions into ApplicationExceptions.
      * 
-     * @param cause     Cause of the exception that will be unwrapped and returned/added.
-     * @returns         Unwrapped from 'cause' ApplicationException, or this ApplicationException with 
-     *                  'this.cause' set to 'cause.message'.
+     * This method does the following:
+     * - attempts to unwrap Seneca and restify exceptions from the parameter 'cause' using the 
+     * static method {@link #unwrapError} (if they are present).
+     * - checks whether 'cause' is an ApplicationException (if it is, then no additional wrapping is done).
+     * - if the 'cause' parameter contains an unknown exception, then the cause field of this 
+     * ApplicationException object is set to the original exception (the 'cause' parameter's 'message' field).
+     * 
+     * The third point of this list is used in the following way: when an unknown exception is raised, the 
+     * exception's type can be determined, a category of ApplicationExceptions that is closest to the exception's 
+     * type can be chosen from the ones available, after which the unknown exception can be wrapped around the 
+     * chosen type of ApplicationException. This is done for unifying exceptions, as it is challenging to process 
+     * a wide variety of unknown exceptions. Wrapping unknown exceptions around existing ones allows us to categorize 
+     * them and be "in the ballpark". 
+     * 
+     * @param cause     the exception that is to be wrapped around this ApplicationException object.
+     * @returns         the 'cause' parameter as an ApplicationException (if it is one) or this ApplicationException 
+     *                  object with 'this.cause' set to the 'cause' parameter's 'message' field.
      * 
      * @see #unwrapError
      */
@@ -192,13 +203,13 @@ export class ApplicationException extends Error {
     }
     
     /** 
-     * This static method is identical to the non-static method {@link #wrap}
-     * and wraps the ApplicationException passed as 'error', instead of itself (this).
+     * Static method that is identical to the non-static method {@link #wrap}. Wraps 'cause' around 
+     * the ApplicationException passed as 'error', instead of itself (this).
      * 
-     * @param error     ApplicationException to wrap.
-     * @param cause     Cause of the exception that will be unwrapped and returned/added.
-     * @returns         Unwrapped from 'cause' ApplicationException, or ApplicationException 
-     *                  'error' with 'error.cause' set to 'cause.message'.
+     * @param error     ApplicationException that has been chosen for wrapping.
+     * @param cause     the exception that is to be wrapped around the 'error' parameter.
+     * @returns         the 'cause' parameter as an ApplicationException (if it is one) or the parameter 
+     *                  'error' with its 'cause' field set to the 'cause' parameter's 'message' field.
      * 
      * @see #wrap
      */
@@ -215,7 +226,7 @@ export class ApplicationException extends Error {
     /** 
      * Used to unwrap Seneca exceptions and restify exceptions.
      * 
-     * @param error     'wrapped' error.
+     * @param error     error that may contain Seneca or restify exceptions.
      * @returns         For Seneca exceptions: error.orig. For restify exceptions: error.body.
      */
     public static unwrapError(error: any): any {
