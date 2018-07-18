@@ -22,8 +22,7 @@ export class MemoryConfigReader implements IConfigReader, IReconfigurable {
     }
 
     /**
-     * Sets the ConfigParams that are to be used by this MemoryConfigReader, and switches the component
-	 * to the 'Configured' state.
+     * Sets the ConfigParams that are to be used by this MemoryConfigReader.
      * 
      * @param config    ConfigParams to save in memory.
      */

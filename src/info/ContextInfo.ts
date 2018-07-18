@@ -26,8 +26,8 @@ export class ContextInfo implements IReconfigurable {
 	}
 
 	/**
-	 * Sets component's configuration parameters and switches the component
-	 * to the 'Configured' state. 
+	 * Sets this object's 'name' and 'description' to the values set in the passed configuration parameters. 
+	 * Also sets 'properties' to the values stored in the section named "properties".
 	 * 
 	 * @param config 	the ConfigParams to configure this object with.
 	 * 

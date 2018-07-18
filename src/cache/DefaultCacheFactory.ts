@@ -15,7 +15,7 @@ export class DefaultCacheFactory extends Factory {
     public static readonly MemoryCacheDescriptor: Descriptor = new Descriptor("pip-services", "cache", "memory", "*", "1.0");
 
     /**
-	 * Registers the NullCacheDescriptor and the MemoryCacheDescriptor descriptors as types in this factory.
+	 * Adds object factories for NullCache and MemoryCache to this Factory.
 	 * 
 	 * @see Factory#Factory
 	 */

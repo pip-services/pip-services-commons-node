@@ -28,10 +28,8 @@ export class MemoryCache implements ICache, IReconfigurable {
     public constructor() { }
 
 	/**
-	 * Sets component's configuration parameters and switches the component
-	 * to the 'Configured' state. Configuration is only allowed once,
-	 * right after creation. Attempts to perform reconfiguration will 
-	 * cause an exception.
+	 * Sets this object's 'timeout' and 'max_size' to the values that are 
+     * set in the passed configuration parameters.
      * 
 	 * @param config the component's configuration parameters.
 	 * @throws  MicroserviceError when component is in illegal state 

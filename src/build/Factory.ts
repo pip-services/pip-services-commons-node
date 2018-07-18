@@ -9,7 +9,7 @@ class Registration {
 /**
  * Base factory class that can be extended for creating more specific factories. Usually, all that needs
  * to be added to a class that extends Factory is: 
- * - a set of {@link Descriptor}s (one for each object type that needs to be included in this factory).
+ * - a set of locators (PipServices uses {@link Descriptor Descriptors}) - one for each object type that needs to be included in this factory.
  * - a constructor (in which the object types are registered using the {@link #registerAsType} method).
  * 
  * #### Example Descriptor:
@@ -34,12 +34,10 @@ export class Factory implements IFactory {
 	 * 
 	 *     (locator) => { return new myClass(); }
 	 * 
-	 * @param locator 		the {@link Descriptor} that is used to identify the factory. Cannot be null.
+	 * @param locator 		the locator that is used to identify the factory. Cannot be null.
 	 * @param factory 		the factory to add. Cannot be null.
 	 * 
 	 * @throws Error, when locator or factory parameters are null.
-	 * 
-	 * @see Descriptor
 	 */
 	public register(locator: any, factory: (locator: any) => any): void {
 		if (locator == null)
@@ -56,12 +54,10 @@ export class Factory implements IFactory {
 	/**
 	 * Registers a factory that can create instance of 'objectFactory' classes.
 	 * 
-	 * @param locator 			{@link Descriptor} that is used to identify the object factory. Cannot be null.
+	 * @param locator 			the locator that is used to identify the object factory. Cannot be null.
 	 * @param objectFactory 	the object type that can be created by this factory. Cannot be null.
 	 * 
 	 * @throws Error, when locator or factory parameters are null.
-	 * 
-	 * @see Descriptor
 	 */
 	public registerAsType(locator: any, objectFactory: any): void {
 		if (locator == null)

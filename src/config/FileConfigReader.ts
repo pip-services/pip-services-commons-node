@@ -43,8 +43,8 @@ export abstract class FileConfigReader extends ConfigReader {
     }
 
     /**
-     * Sets component's configuration parameters and switches the component
-	 * to the 'Configured' state.
+     * Sets this object's configuration parameters and 'path' to the values
+     * set in the passed configuration parameters.
      * 
      * @param config    configures this class in accordance with {@link ConfigReader#configure} 
      *                  and sets this class's '_path' field to the value stored in 'config' 

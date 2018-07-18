@@ -16,8 +16,7 @@ export class DefaultConfigReaderFactory extends Factory {
 	public static readonly YamlConfigReaderDescriptor = new Descriptor("pip-services", "config-reader", "yaml", "*", "1.0");
 	
 	/**
-	 * Registers the MemoryConfigReaderDescriptor, JsonConfigReaderDescriptor, and YamlConfigReaderDescriptor
-	 * descriptors as types in this factory.
+	 * Adds object factories for MemoryConfigReader, JsonConfigReader, and YamlConfigReader to this Factory.
 	 * 
 	 * @see Factory#Factory
 	 */
