@@ -24,8 +24,10 @@ export abstract class ConfigReader implements IConfigurable {
 	 * to the 'Configured' state.
      * 
      * @param config    ConfigParams that contain a section named "parameters", 
-     *                  which will be saved to the "_parameters" field of this class.
+     *                  which will be used when {@link #parameterize parameterizing} 
+     *                  configurations that are passed to this ConfigReader.
      * 
+     * @see #parameterize
      * @see IConfigurable
      * @see ConfigParams
      */
@@ -48,11 +50,27 @@ export abstract class ConfigReader implements IConfigurable {
         callback: (err: any, config: ConfigParams) => void): void;
 
     /**
-     * Protected method for parameterizing this object by overridding the '_parameters' field.
+     * Protected method for parameterizing ConfigReaders, which allows using {@link https://handlebarsjs.com/ handlebars}
+     * to create parameterized configurations.
      * 
-     * @param config        string to be used for handlebars template compilation.
-     * @param parameters    ConfigParams that will be used to overridding the 
-     *                      '_parameters' field of this class.
+     * The idea behind using parameterized configurations: handlebars allows us to take a templated configuration and 
+     * parameterize it, using a given set of parameters. Parameterization can be done with the help of environment variables 
+     * as well. For example: the configuration for a container can be created as such, that it will use certain environment 
+     * variables to tailor itself to the system by dynamically setting addresses, ports, etc.
+     * 
+     * Example of a templated configuration:
+     * 
+     *     {{#if MONGODB_ENABLED}}
+     *      # MongoDb persistence
+     *      - descriptor: "service-name:persistence:mongodb:default:1.0"
+     *      connection:
+     *          uri: {{MONGODB_SERVICE_URI}}{{^if MONGODB_SERVICE_URI}}"mongodb://localhost:27017/test"{{/if}}
+     *     {{/if}}
+     * 
+     * @param config        string containing the configuration that is to be parameterized using this ConfigReader's 
+     *                      parameters, as well as the parameters passed as 'parameters'.
+     * @param parameters    ConfigParams that contain the parameters to override this ConfigReader's parameters with.
+     * @returns the parameterized configuration.
      */
     protected parameterize(config: string, parameters: ConfigParams): string {
         parameters = this._parameters.override(parameters);
