@@ -25,6 +25,9 @@ export class MemoryConfigReader implements IConfigReader, IReconfigurable {
      * Sets the ConfigParams that are to be used by this MemoryConfigReader.
      * 
      * @param config    ConfigParams to save in memory.
+     * 
+     * @see ConfigParams
+     * @see IConfigurable
      */
     public configure(config: ConfigParams): void {
         this._config = config;

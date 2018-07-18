@@ -34,6 +34,9 @@ export class MemoryCache implements ICache, IReconfigurable {
 	 * @param config the component's configuration parameters.
 	 * @throws  MicroserviceError when component is in illegal state 
 	 *          or configuration validation fails. 
+     * 
+     * @see ConfigParams
+     * @see IConfigurable
 	 */
     public configure(config: ConfigParams): void {
         this._timeout = config.getAsLongWithDefault("timeout", this._timeout);
