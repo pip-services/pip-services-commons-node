@@ -6,6 +6,8 @@ import { MemoryCache } from './MemoryCache';
 
 /**
  * Contains static read-only descriptors for the Null and Memory caches (as well as a default cache descriptor).
+ * 
+ * @see Factory
  */
 export class DefaultCacheFactory extends Factory {
     public static readonly Descriptor: Descriptor = new Descriptor("pip-services", "factory", "cache", "default", "1.0");

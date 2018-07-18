@@ -1,19 +1,26 @@
 /**
- * Interface for component factories
+ * Interface for creating component factories. IFactory is part of the "factory design pattern", 
+ * which is used to make factory classes. Factory classes are capable of creating instances of 
+ * components that are requested using component locators.
  */
 export interface IFactory {
 	/**
-	 * Checks if factory is able to create requested component and returns its locator.
-	 * @param locator a locator for requested component
-	 * @return a locator of object to be created
+	 * Checks if the factory is able to create the requested component 
+	 * and returns its locator.
+	 * 
+	 * @param locator 		the locator of the requested component.
+	 * @return 				the locator of the object that is to be created.
 	 */
 	canCreate(locator: any): any;
 
 	/**
-	 * Creates a component by requested locator
-	 * @param locator a requested components
-	 * @return an instance of created component
-	 * @throws CreateException when component creation fails 
+	 * Creates an instance of the component with the given locator.
+	 * 
+	 * @param locator 	the requested component.
+	 * @return 			an instance of the created component.
+	 * @throws 			a CreateException, when component creation fails.
+	 * 
+	 * @see CreateException
 	 */
 	create(locator: any): any;
 }
