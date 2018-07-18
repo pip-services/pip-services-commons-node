@@ -2,6 +2,8 @@
  * Interface for creating component factories. IFactory is part of the "factory design pattern", 
  * which is used to make factory classes. Factory classes are capable of creating instances of 
  * components that are requested using component locators.
+ * 
+ * Allows for implementaion of various factory types in a portable manner.  
  */
 export interface IFactory {
 	/**
