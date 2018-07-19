@@ -1,11 +1,10 @@
 /**
- * Interface for versioned data object with optimistic concurrency resolution. 
- * The version can be any string with only requirement to be higher comparing the the previous version.
- * When generated automatically it represents a timestamp string. 
+ * Interface for versioned data objects with optimistic concurrency resolution. 
+ * The version can be any string, with the only requirement that newer versions 
+ * strings are higher (bigger) than the previous version string. When generated 
+ * automatically, the version is represented by a timestamp string. 
  */
 export interface IVersioned {
-	/**
-	 * The object version
-	 */
+	/** The object's version. */
 	version: string;
 }

@@ -1,9 +1,7 @@
 /**
- * Interface for data objects that can track their changes including logical deletion 
+ * Interface for data objects that can track their changes.
  */
 export interface IChangeable {
-	/**
-	 * The last time when the object was changed (created, or updated)
-	 */
+	/** The UTC time at which the object was last changed (created or updated). */
 	change_time: Date;
 }

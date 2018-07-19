@@ -1,9 +1,7 @@
 /**
- * Interface for data objects that have human-readable name
+ * Interface for data objects that have human-readable names.
  */
 export interface INamed {
-	/**
-	 * The object name
-	 */
+	/** The object's name. */
 	name: string;
 }
