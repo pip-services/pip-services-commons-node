@@ -4,7 +4,7 @@ import { ConnectionParams } from './ConnectionParams';
 import { IDiscovery } from './IDiscovery';
 import { ConfigParams } from '../config/ConfigParams';
 import { IReferences } from '../refer/IReferences';
-import { ConfigException } from '../errors/ConfigException';
+import { ReferenceException } from '../refer/ReferenceException';
 import { Descriptor } from '../refer/Descriptor';
 
 /**
@@ -81,8 +81,9 @@ export class ConnectionResolver {
      * @param connection        ConnectionParams that contain a discovery key, which will be used for 
      *                          resolving connections.
      * @param callback          callback function that will be called with an error or with the 
-     *                          first ConnectionParams found.
-     * @throws a ConfigException, if no "discovery" services are referenced.
+     *                          first ConnectionParams found. Null will be returned if the connection
+     *                          does not have a key, or there are no references set.
+     * @throws a ReferenceException, if no valid "discovery" services are referenced.
      */
     private resolveInDiscovery(correlationId: string, connection: ConnectionParams, 
         callback: (err: any, result: ConnectionParams) => void): void {
@@ -98,9 +99,10 @@ export class ConnectionResolver {
             return;
         }
 
-        let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
+        let discoveryDescriptor = new Descriptor("*", "discovery", "*", "*", "*")
+        let discoveries: any[] = this._references.getOptional<any>(discoveryDescriptor)
         if (discoveries.length == 0) {
-            let err = new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            let err = new ReferenceException(correlationId, discoveryDescriptor);
             callback(err, null);
             return;
         }
@@ -190,7 +192,7 @@ export class ConnectionResolver {
      * @param callback          callback function that will be called with an error or with the 
      *                          list of ConnectionParams that were found in the referenced discovery 
      *                          services using the 'connection' parameter's discovery key.
-     * @throws a ConfigException, if no "discovery" services are referenced.
+     * @throws a ReferenceException, if no "discovery" services are referenced.
      */
     private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, 
         callback: (err: any, result: ConnectionParams[]) => void): void {
@@ -208,9 +210,10 @@ export class ConnectionResolver {
             return;
         }
 
-        let discoveries: any[] = this._references.getOptional<any>(new Descriptor("*", "discovery", "*", "*", "*"))
+        let discoveryDescriptor = new Descriptor("*", "discovery", "*", "*", "*")
+        let discoveries: any[] = this._references.getOptional<any>(discoveryDescriptor)
         if (discoveries.length == 0) {
-            let err = new ConfigException(correlationId, "CANNOT_RESOLVE", "Discovery wasn't found to make resolution");
+            let err = new ReferenceException(correlationId, discoveryDescriptor);
             callback(err, null);
             return;
         }
