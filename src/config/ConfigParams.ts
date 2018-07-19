@@ -35,7 +35,9 @@ export class ConfigParams extends StringValueMap {
 	 * (Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"), or from an object with
 	 * configuration parameters stored as properties.
 	 * 
-	 * @param values 
+	 * @param values 	configuration parameters to store in this object. Defaults to null.
+	 * 
+	 * @see StringValueMap#StringValueMap
 	 */
 	public constructor(values: any = null) {
 		super(values);
