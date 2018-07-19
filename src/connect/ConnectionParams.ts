@@ -27,7 +27,7 @@ export class ConnectionParams extends ConfigParams {
 
     /**
      * @returns     whether or not these ConnectionParams contain a key that can be
-     *              using in a discovery service for resolving connections 
+     *              used in a discovery service for resolving connections 
      *              ("discovery_key" is not null?).
      */
     public useDiscovery(): boolean {
