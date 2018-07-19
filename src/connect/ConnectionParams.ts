@@ -9,10 +9,11 @@ import { StringValueMap } from '../data/StringValueMap';
  * If a service needs to configure a certain connection, then the port, ip address, protocol, 
  * and other parameters can be set using a ConnectionParams object. Relevant helper classes 
  * (like {@link ConnectionResolver}) can be used to acquiring these parameters and discover objects 
- * or components that store and retrieve connection parameters. 
+ * or components that store and retrieve connection parameters (discovery services - see {@link IDiscovery}). 
  * 
  * @see CredentialParams
  * @see ConnectionResolver
+ * @see IDiscovery
  */
 export class ConnectionParams extends ConfigParams {
 

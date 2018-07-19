@@ -11,7 +11,7 @@ class DiscoveryItem {
 }
 
 /**
- * Discovery service (see {@link IDiscovery}) that stores its registry of connections in memory. 
+ * Discovery service (see {@link IDiscovery}) that stores its registry of connections ({@link ConnectionParams}) in memory. 
  * 
  * Supports both static and dynamic discovery.
  * 
@@ -28,6 +28,7 @@ class DiscoveryItem {
  * challenges occur along the way.  
  * 
  * @see IDiscovery
+ * @see ConnectionParams
  */
 export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     private _items: DiscoveryItem[] = [];
@@ -62,10 +63,10 @@ export class MemoryDiscovery implements IDiscovery, IReconfigurable {
     }
 
     /**
-     * Parses the connections passed as ConfigParams into this object's DiscoveryItems list, which is used for
-     * static discovery.
+     * Parses the connections passed as ConfigParams into this object's registry, which is used for
+     * static discovery. The registry's keys will be identical to the ConfigParams' keys.
      * 
-     * @param connections   ConfigParams containing connection info.
+     * @param connections   ConfigParams containing connection information.
      * 
      * @see ConfigParams
      */
