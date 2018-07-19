@@ -7,32 +7,83 @@ import { IReferences } from '../refer/IReferences';
 import { ConfigException } from '../errors/ConfigException';
 import { Descriptor } from '../refer/Descriptor';
 
+/**
+ * Helper class that stores connection parameters ({@link ConnectionParams}) and is capable of acquiring parameters 
+ * from various discovery services.
+ * 
+ * @see ConnectionParams
+ * @see IDiscovery
+ */
 export class ConnectionResolver {
     private readonly _connections: ConnectionParams[] = [];
     private _references: IReferences = null;
 
+    /**
+     * @param config        ConfigParams (connections) to configure this object with.
+     * @param references    references to the discovery services that should be used by this ConnectionResolver.
+     * 
+     * @see #configure
+     * @see #setReferences
+     */
     public constructor(config: ConfigParams = null, references: IReferences = null) {
         if (config != null) this.configure(config);
         if (references != null) this.setReferences(references);
     }
 
+    /**
+     * Sets the discovery services that this ConnectionResolver references.
+     * 
+     * @param references    references to set.
+     */
     public setReferences(references: IReferences): void {
         this._references = references;
     }
 
+    /**
+     * Configures this object by converting the passed ConfigParams into a list of ConnectionParams
+     * and adding them to this ConnectionResolver's list of connections.
+     * 
+     * @param config    connections to add to this ConnectionResolver's list of connections.
+     * 
+     * @see ConnectionParams#manyFromConfig
+     * @see ConnectionParams
+     * @see ConfigParams
+     * @see IConfigurable
+     */
     public configure(config: ConfigParams): void {
         let connections: ConnectionParams[] = ConnectionParams.manyFromConfig(config);
         this._connections.push(...connections);
     }
 
+    /**
+     * @returns a list of all connections that are stored in this ConnectionResolver.
+     */
     public getAll(): ConnectionParams[] {
         return this._connections;
     }
 
+    /**
+     * Adds a new connection to this ConnectionResolver's list of connections.
+     * 
+     * @param connection    ConnectionParams for the connection that is to be added.
+     * 
+     * @see ConnectionParams
+     */
     public add(connection: ConnectionParams): void {
         this._connections.push(connection);
     }
 
+    /**
+     * Private method that resolves a connection to a given end-point using the 'connection' parameter's 
+     * discovery key in the discovery services referenced.
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param connection        ConnectionParams that contain a discovery key, which will be used for 
+     *                          resolving connections.
+     * @param callback          callback function that will be called with an error or with the 
+     *                          first ConnectionParams found.
+     * @throws a ConfigException, if no "discovery" services are referenced.
+     */
     private resolveInDiscovery(correlationId: string, connection: ConnectionParams, 
         callback: (err: any, result: ConnectionParams) => void): void {
         
@@ -75,6 +126,17 @@ export class ConnectionResolver {
         );
     }
 
+    /**
+     * Resolves a connection in this ConnectionResolver using its list of connections ({@link ConnectionParams}) 
+     * and the discovery services ({@link IDiscovery}) referenced.
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param callback          callback function that will be called with an error or with the 
+     *                          return value. Returns: the first connection found that does not 
+     *                          need to be resolved in a discovery service or the first connection 
+     *                          successfully resolved in a discovery service. Returns null 
+     *                          if no connections were resolved.
+     */
     public resolve(correlationId: string, 
         callback: (err: any, result: ConnectionParams) => void): void {
 
@@ -87,10 +149,10 @@ export class ConnectionResolver {
 
         for (let index = 0; index < this._connections.length; index++) {
             if (!this._connections[index].useDiscovery()) {
-                callback(null, this._connections[index]);
+                callback(null, this._connections[index]);  //If a connection is not configured for discovery use - return it.
                 return;
             } else {
-                connections.push(this._connections[index]);
+                connections.push(this._connections[index]);  //Otherwise, add it to the list of connections to resolve.
             }
         }
 
@@ -118,7 +180,18 @@ export class ConnectionResolver {
         );
     }
 
-
+    /**
+     * Private method that resolves all of the connections to a given end-point using the 'connection' 
+     * parameter's discovery key in the discovery services referenced.
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param connection        ConnectionParams that contain a discovery key, which will be used for 
+     *                          resolving connections.
+     * @param callback          callback function that will be called with an error or with the 
+     *                          list of ConnectionParams that were found in the referenced discovery 
+     *                          services using the 'connection' parameter's discovery key.
+     * @throws a ConfigException, if no "discovery" services are referenced.
+     */
     private resolveAllInDiscovery(correlationId: string, connection: ConnectionParams, 
         callback: (err: any, result: ConnectionParams[]) => void): void {
         
@@ -162,6 +235,16 @@ export class ConnectionResolver {
         );
     }
 
+    /**
+     * Resolves all connections that:
+     * - are stored in this ConnectionResolver and do not need to be resolved in a discovery service;
+     * - are resolved in referenced discovery services ({@link IDiscovery}) using the discovery keys stored in the ConnectionResolver's 
+     * connections ({@link ConnectionParams}).
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param callback          callback function that will be called with an error or with the 
+     *                          list of ConnectionParams resolved.
+     */
     public resolveAll(correlationId: string, callback: (err: any, result: ConnectionParams[]) => void): void {
         let resolved: ConnectionParams[] = [];
         let toResolve: ConnectionParams[] = [];
@@ -199,6 +282,17 @@ export class ConnectionResolver {
         );
     }
 
+    /**
+     * Private method that registers the given connection in all referenced discovery services. 
+     * Used for dynamic discovery (described in {@link MemoryDiscovery}).
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param connection        connection to register in the discovery services.
+     * @param callback          callback function that will be called with an error or with a 
+     *                          boolean result (successful or not).
+     * 
+     * @see MemoryDiscovery
+     */
     private registerInDiscovery(correlationId: string, connection: ConnectionParams,
         callback: (err: any, result: boolean) => void) {
         
@@ -232,6 +326,16 @@ export class ConnectionResolver {
         );
     }
 
+    /**
+     * Registers the given connection in all referenced discovery services. Used for dynamic discovery 
+     * (described in {@link MemoryDiscovery}).
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param connection        connection to register in the discovery services.
+     * @param callback          callback function that will be called with an error, if one is raised.
+     * 
+     * @see MemoryDiscovery
+     */
     public register(correlationId: string, connection: ConnectionParams, callback: (err: any) => void): void {
         this.registerInDiscovery(correlationId, connection, (err, result) => {
             if (result)
