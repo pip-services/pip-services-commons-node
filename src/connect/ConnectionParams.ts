@@ -4,12 +4,15 @@ import { StringValueMap } from '../data/StringValueMap';
 /**
  * Contains implementation of connection parameters, using various connection strings, which are 
  * stripped of all credentials. Connection parameters and credentials are stored separately, 
- * since the latter have special requirements for secure storage.
+ * since the latter have special requirements for secure storage (see {@link CredentialParams} for more info).
  * 
  * If a service needs to configure a certain connection, then the port, ip address, protocol, 
  * and other parameters can be set using a ConnectionParams object. Relevant helper classes 
  * (like {@link ConnectionResolver}) can be used to acquiring these parameters and discover objects 
  * or components that store and retrieve connection parameters. 
+ * 
+ * @see CredentialParams
+ * @see ConnectionResolver
  */
 export class ConnectionParams extends ConfigParams {
 
