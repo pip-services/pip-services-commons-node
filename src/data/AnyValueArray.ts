@@ -418,8 +418,8 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns         the item at the given index as an AnyValueArray object. Returns
-     *                  null if the item at the given index is null (hence - nullable).
+     * @returns         the item at the given index as a nullable AnyValueArray object (returns
+     *                  null if the item at the given index is null).
      * 
      * @see #fromValue
      */
@@ -455,8 +455,8 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns         the item at the given index as an AnyValueMap object. Returns
-     *                  null if the item at the given index is null (hence - nullable).
+     * @returns         the item at the given index as a nullable AnyValueMap object (returns
+     *                  null if the item at the given index is null).
      * 
      * @see AnyValueMap
      * @see AnyValueMap#fromValue

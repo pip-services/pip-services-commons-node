@@ -448,8 +448,8 @@ export class StringValueMap {
 
     /** 
      * @param key       key of the item to retrieve.
-     * @returns         the item with the given key as an AnyValueArray object. Returns
-     *                  null if the item with the given key is null (hence - nullable).
+     * @returns         the item with the given key as a nullable AnyValueArray object (returns
+     *                  null if the item with the given key is null).
      * 
      * @see AnyValueArray
      * @see AnyValueArray#fromValue
@@ -488,8 +488,8 @@ export class StringValueMap {
 
     /** 
      * @param key       key of the item to retrieve.
-     * @returns         the item with the given key as an AnyValueMap object. Returns
-     *                  null if the item with the given key is null (hence - nullable).
+     * @returns         the item with the given key as a nullable AnyValueMap object (returns
+     *                  null if the item with the given key is null).
      * 
      * @see #fromValue
      */
