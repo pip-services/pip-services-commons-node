@@ -35,7 +35,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
      * as a parameter. If 'values' are omitted, they can be set later on using 
      * {@link #setAsObject} or {@link #append}.
      * 
-     * @param values    values to store in this AnyValueArray.
+     * @param values    the values to store in this AnyValueArray.
      */
     public constructor(values: any[] = null) {
         super();
@@ -49,15 +49,15 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     
     /**
      * @param index     index of the item to retrieve from this AnyValueArray.
-     * @returns the item that is located at the given index.
+     * @returns         the item that is located at the given index.
      */
     public get(index: number): any {
         return this[index];
     }
 
     /**
-     * @param index     index to insert the new value at.
-     * @param value     the value to insert into this AnyValueArray.
+     * @param index     the index at which to insert the given value.
+     * @param value     the value to insert into this AnyValueArray at the given index.
      */
     public put(index: number, value: any): void {
         this[index] = value;
@@ -87,8 +87,8 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /**
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index without any conversions or
-     *          all items, if 'index' is undefined or omitted.
+     * @returns         the item at the given index without any conversions or
+     *                  all items, if 'index' is undefined or omitted.
      */
     public getAsObject(index: number = undefined): any {
         if (index === undefined) {
@@ -101,9 +101,18 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         }
     }
 
-    
+    /**
+     * @param index     the position in this AnyValueArray to set the value at.
+     * @param value     the value to set in this AnyValueArray at the given 'index'. 
+     *                  If 'index' is omitted, then this AnyValueArray will be set (cleared and
+     *                  filled anew) using 'value'. In this case 'value' will be converted to 
+     *                  an array using "ArrayConverter.toArray(value)" and set to this AnyValueArray.
+     * 
+     * @see ArrayConverter#toArray
+     */
     public setAsObject(index: any, value: any = undefined): void {
         if (value === undefined) {
+            value = index //originally was not present - added by Mark Makarychev.
             this.clear();
             let elements = ArrayConverter.toArray(value);
             this.append(elements);
@@ -114,7 +123,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable string. 
+     * @returns         the item at the given index as a nullable string. 
      * 
      * @see StringConverter#toNullableString
      */
@@ -125,7 +134,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a string (or null as the default). 
+     * @returns         the item at the given index as a string (or null as the default). 
      * 
      * @see #getAsStringWithDefault
      */
@@ -148,7 +157,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable boolean. 
+     * @returns         the item at the given index as a nullable boolean. 
      * 
      * @see BooleanConverter#toNullableBoolean
      */
@@ -159,7 +168,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a Boolean (or false as the default). 
+     * @returns         the item at the given index as a boolean (or false as the default). 
      * 
      * @see #getAsBooleanWithDefault
      */
@@ -170,7 +179,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     /**
      * @param index             index of the item to retrieve.
      * @param defaultValue      value to return, if conversion is not possible.
-     * @returns                 the item at the given index as a Boolean or the
+     * @returns                 the item at the given index as a boolean or the
      *                          defaultValue, if conversion is not possible.
      * 
      * @see BooleanConverter#toBooleanWithDefault
@@ -182,7 +191,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable integer. 
+     * @returns         the item at the given index as a nullable integer. 
      * 
      * @see IntegerConverter#toNullableInteger
      */
@@ -193,7 +202,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as an integer (or 0 as the default). 
+     * @returns         the item at the given index as an integer (or 0 as the default). 
      * 
      * @see #getAsIntegerWithDefault
      */
@@ -216,7 +225,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable long. 
+     * @returns         the item at the given index as a nullable long. 
      * 
      * @see LongConverter#toNullableLong
      */
@@ -227,7 +236,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a long (or 0 as the default). 
+     * @returns         the item at the given index as a long (or 0 as the default). 
      * 
      * @see #getAsLongWithDefault
      */
@@ -250,7 +259,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable float. 
+     * @returns         the item at the given index as a nullable float. 
      * 
      * @see FloatConverter#toNullableFloat
      */
@@ -261,7 +270,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a float (or 0 as the default). 
+     * @returns         the item at the given index as a float (or 0 as the default). 
      * 
      * @see #getAsFloatWithDefault
      */
@@ -284,7 +293,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable double. 
+     * @returns         the item at the given index as a nullable double. 
      * 
      * @see DoubleConverter#toNullableDouble
      */
@@ -295,7 +304,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
 
     /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a double (or 0 as the default). 
+     * @returns         the item at the given index as a double (or 0 as the default). 
      * 
      * @see #getAsDoubleWithDefault
      */
@@ -316,9 +325,9 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         return DoubleConverter.toDoubleWithDefault(value, defaultValue);
     }
 
-        /** 
+    /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a nullable Datetime. 
+     * @returns         the item at the given index as a nullable Datetime. 
      * 
      * @see DateTimeConverter#toNullableDateTime
      */
@@ -327,9 +336,9 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         return DateTimeConverter.toNullableDateTime(value);
     }
 
-        /** 
+    /** 
      * @param index     index of the item to retrieve.
-     * @returns the item at the given index as a Datetime (or null as the default). 
+     * @returns         the item at the given index as a Datetime (or null as the default). 
      * 
      * @see #getAsDateTimeWithDefault
      */
@@ -337,7 +346,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         return this.getAsDateTimeWithDefault(index, null);
     }
 
-        /**
+    /**
      * @param index             index of the item to retrieve.
      * @param defaultValue      value to return, if conversion is not possible.
      * @returns                 the item at the given index as a Datetime or the
@@ -350,55 +359,143 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         return DateTimeConverter.toDateTimeWithDefault(value, defaultValue);
     }
 
+    /** 
+     * Converts the item at the given index into a nullable object of type 'type' using
+     * {@link TypeConverter#toNullableType<T>} and returns it.
+     * 
+     * @param type      the TypeCode to be used in TypeConverter.toNullableType<T>(TypeCode, value);
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as a nullable object of type 'type'.
+     * 
+     * @see TypeConverter#toNullableType<T>
+     */
     public getAsNullableType<T>(type: TypeCode, index: number): T {
         let value = this[index];
         return TypeConverter.toNullableType<T>(type, value);
     }
 
+    /** 
+     * Converts the item at the given index into an object of type 'type' using
+     * {@link TypeConverter#toTypeWithDefault<T>} and returns it.
+     * 
+     * @param type      the TypeCode to be used in TypeConverter.toTypeWithDefault<T>(TypeCode, value, null);
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an object of type 'type' (or null as the default). 
+     * 
+     * @see #getAsTypeWithDefault
+     */
     public getAsType<T>(type: TypeCode, index: number): T {
         return this.getAsTypeWithDefault(type, index, null);
     }
 
+    /**
+     * Converts the item at the given index into an object of type 'type' using
+     * {@link TypeConverter#toTypeWithDefault<T>} and returns it.
+     * 
+     * @param type              the TypeCode to be used in TypeConverter.toTypeWithDefault<T>(TypeCode, value, defaultValue);
+     * @param defaultValue      value to return, if conversion is not possible.
+     * @returns                 the item at the given index as an object of type 'type' or the defaultValue, 
+     *                          if conversion is not possible.
+     * 
+     * @see TypeConverter#toTypeWithDefault<T>
+     */
     public getAsTypeWithDefault<T>(type: TypeCode, index: number, defaultValue: T): T {
         let value = this[index];
         return TypeConverter.toTypeWithDefault(type, value, defaultValue);
     }
 
+    /** 
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an AnyValue object. 
+     * 
+     * @see AnyValue
+     * @see AnyValue#AnyValue
+     */
     public getAsValue(index: number): AnyValue {
         let value = this[index];
     	return new AnyValue(value);
     }
 
+    /** 
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an AnyValueArray object. Returns
+     *                  null if the item at the given index is null (hence - nullable).
+     * 
+     * @see #fromValue
+     */
     public getAsNullableArray(index: number): AnyValueArray {
         let value = this[index];
     	return value != null ? AnyValueArray.fromValue(value) : null;
     }
 
+    /** 
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an AnyValueArray object. 
+     * 
+     * @see #fromValue
+     */
     public getAsArray(index: number): AnyValueArray {
         let value = this[index];
     	return AnyValueArray.fromValue(value);
     }
     
+    /** 
+     * @param index         index of the item to retrieve.
+     * @param defaultValue  value to use if the item at the given index cannot be converted 
+     *                      into an AnyValueArray.
+     * @returns             the item at the given index as an AnyValueArray object or 'defaultValue',
+     *                      if conversion is not possible. 
+     * 
+     * @see #getAsNullableArray
+     */
     public getAsArrayWithDefault(index: number, defaultValue: AnyValueArray): AnyValueArray {
     	let result = this.getAsNullableArray(index);
     	return result != null ? result : defaultValue;
     }
 
+    /** 
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an AnyValueMap object. Returns
+     *                  null if the item at the given index is null (hence - nullable).
+     * 
+     * @see AnyValueMap
+     * @see AnyValueMap#fromValue
+     */
     public getAsNullableMap(index: number): AnyValueMap {
         let value = this[index];
     	return value != null ? AnyValueMap.fromValue(value) : null;
     }
 
+    /** 
+     * @param index     index of the item to retrieve.
+     * @returns         the item at the given index as an AnyValueMap object. 
+     * 
+     * @see AnyValueMap
+     * @see AnyValueMap#fromValue
+     */
     public getAsMap(index: number): AnyValueMap {
         let value = this[index];
     	return AnyValueMap.fromValue(value);
     }
 
+    /** 
+     * @param index         index of the item to retrieve.
+     * @param defaultValue  value to use if the item at the given index cannot be converted 
+     *                      into an AnyValueMap.
+     * @returns             the item at the given index as an AnyValueMap object or 'defaultValue',
+     *                      if conversion is not possible. 
+     * 
+     * @see #getAsNullableMap
+     */
     public getAsMapWithDefault(index: number, defaultValue: AnyValueMap): AnyValueMap {
         let result = this.getAsNullableMap(index);
     	return result != null ? AnyValueMap.fromValue(result): defaultValue;
     }
 
+    /**
+     * @param value     value to search for in this AnyValueArray.
+     * @returns         whether or not this AnyValueArray contains the given value.
+     */
     public contains(value: any): boolean {
         for (let index = 0; index < this.length; index++) {
             let element = this[index];
@@ -414,6 +511,21 @@ export class AnyValueArray extends Array<any> implements ICloneable {
         return false;
     }
 
+    /**
+     * Checks whether or not this AnyValueArray contains a certain value as an object of type 'type'.
+     * The value passed will be converted using {@link TypeConverter#toType<T>}, where as this AnyValueArray's 
+     * values will be converted using {@link TypeConverter#toNullableType}. After conversion, the value is searched 
+     * for amongst the AnyValueArray's converted values.
+     * 
+     * @param type      the TypeCode to use for converting 'value' into an object of type 'type' using the 
+     *                  TypeConverter class.
+     * @param value     the value to search for amongst this AnyValueArray's values after conversion.
+     * @returns         whether or not this AnyValueArray contains the given value as an object of type 
+     *                  'type'. If both converted values are null, true will be returned.
+     * 
+     * @see TypeConverter#toType<T>
+     * @see TypeConverter#toNullableType
+     */
     public containsAsType<T>(type: TypeCode, value: any): boolean {
         let typedValue = TypeConverter.toType<T>(type, value);
 
@@ -437,9 +549,9 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     }
     
     /** 
-     * @returns this AnyValueArray as a CSV (comma-separated values).
-     *
-     * @see StringConverter#toString
+     * @returns this AnyValueArray as a comma-separated values string.
+     * 
+     * Example: "value1,,value3".
      */
     public toString(): string {
         let builder = '';
@@ -452,10 +564,10 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     }
     
     /**
-     * Static method for creating an AnyValueArray from an set of values.
+     * Static method for creating an AnyValueArray from the values passed as parameters.
      * 
-     * @param values    values to initialize the AnyValueArray with.
-     * @returns the AnyValueArray created and filled by the 'values' provided.
+     * @param values    the values to initialize the AnyValueArray with, which are passed as parameters.
+     * @returns         the AnyValueArray created and filled by the values provided.
      */
     public static fromValues(...values: any[]): AnyValueArray {
     	return new AnyValueArray(values);
@@ -464,8 +576,10 @@ export class AnyValueArray extends Array<any> implements ICloneable {
     /**
      * Static method for creating an AnyValueArray from a value using {@link ArrayConverter#toNullableArray}.
      * 
-     * @param value    value to convert to a nullable array and initialize the new AnyValueArray with.
-     * @returns the AnyValueArray that was created and filled by 'value'.
+     * @param value     value to convert to a nullable array and initialize the new AnyValueArray with.
+     * @returns         the AnyValueArray that was created and filled by 'value'.
+     * 
+     * @see ArrayConverter#toNullableArray
      */
     public static fromValue(value: any): AnyValueArray {
     	let values = ArrayConverter.toNullableArray(value);
@@ -479,7 +593,7 @@ export class AnyValueArray extends Array<any> implements ICloneable {
      * @param values            string of values, separated by the char passed as 'separator'
      * @param separator         char that is used to separate the values in the string passed as 'values'.
      * @param removeDuplicates  (optional) boolean that defines whether or not duplicate items should be removed.
-     * @returns     the AnyValueArray that was created and filled by 'values'.
+     * @returns                 the AnyValueArray that was created and filled by 'values'.
      */
     public static fromString(values: string, separator: string, removeDuplicates: boolean = false): AnyValueArray {
     	let result = new AnyValueArray();

@@ -301,6 +301,9 @@ export class AnyValue implements ICloneable {
     }
 
     /**
+     * Converts this object's 'value' field into an object of type 'type' using
+     * {@link TypeConverter#toTypeWithDefault<T>} and returns it.
+     * 
      * @param type              the TypeCode to be used in TypeConverter.toTypeWithDefault<T>(TypeCode, value, defaultValue);
      * @param defaultValue      value to return, if conversion is not possible.
      * @returns                 this object's 'value' field as an object of type 'type' or the defaultValue, 

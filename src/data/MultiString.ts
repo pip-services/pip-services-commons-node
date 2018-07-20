@@ -4,7 +4,8 @@
  * itself. 
  */
 export class MultiString {
-    /** Field that immitates a key-value pair object, where the 'key' is the language in which 
+    /** 
+     * Field that immitates a key-value pair object, where the 'key' is the language in which 
      * the 'value' is written, and the 'value' is localized string itself. 
      */
     [language: string]: string;

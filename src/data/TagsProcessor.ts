@@ -1,16 +1,16 @@
 let _ = require('lodash');
 
 /**
- * Extracts from objects and processes search tags
+ * Class that provides methods for extracting and processing search tags from objects.
  */
 export class TagsProcessor {
     private static HASHTAG_REGEX = /#\w+/g;
 
     /**
-     * Normalize a tag by replacing with REGEX: (_|#)
+     * Normalize a tag by replacing with the REGEX: (_|#)
      *
-     * @param tag The tag to normalize
-     * @return A normalized tag
+     * @param tag   the tag to normalize.
+     * @return      a normalized tag.
      */
     public static normalizeTag(tag: string): string {
         return tag 
@@ -19,10 +19,10 @@ export class TagsProcessor {
     }
 
     /**
-     * Compress a tag by replacing with REGEX: ( |_|#)
+     * Compress a tag by replacing with the REGEX: ( |_|#)
      *
-     * @param tag The tag to compress
-     * @return A compressed tag
+     * @param tag   the tag to compress.
+     * @return      a compressed tag.
      */
     public static compressTag(tag: string): string {
         return tag
@@ -31,11 +31,11 @@ export class TagsProcessor {
     }
 
     /**
-     * Determines if two tags are equal based on length and contained characters
+     * Determines if two tags are equal, based on their length and the characters contained.
      *
-     * @param tag1 The first tag
-     * @param tag2 The second tag
-     * @return True if tags are equal, false if tags are not equal
+     * @param tag1  the first tag.
+     * @param tag2  the second tag.
+     * @return      true if the tags are equal and false otherwise.
      */
     public static equalTags(tag1: any, tag2: any): boolean {
         if (tag1 == null && tag2 == null)
@@ -47,10 +47,10 @@ export class TagsProcessor {
     }
 
     /**
-     * Normalize multiple tags contained in a single String using {@link org.pipservices.runtime.data.TagProcessor#normalizeTag(String)}
+     * Normalizes the tags contained in the passed String using {@link org.pipservices.runtime.data.TagProcessor#normalizeTag(String)}.
      *
-     * @param tags The tags to normalize
-     * @return A String array of normalized tags
+     * @param tags  the tags to normalize.
+     * @return      a String array of normalized tags.
      */
     public static normalizeTags(tags: any): string[] {
         if (_.isString(tags))
@@ -62,10 +62,10 @@ export class TagsProcessor {
     }
 
     /**
-     * Compress multiple tags contained in a single String using {@link org.pipservices.runtime.data.TagProcessor#compressTag(String)}
+     * Compresses the tags contained in the passed String using {@link org.pipservices.runtime.data.TagProcessor#compressTag(String)}.
      *
-     * @param tags The tags to compress
-     * @return A String array of compressed tags
+     * @param tags  the tags to compress.
+     * @return      a String array of compressed tags.
      */
     public static compressTags(tags: any): string[] {
         if (_.isString(tags))
@@ -89,11 +89,12 @@ export class TagsProcessor {
     }
 
     /**
-     * Extracts hash tags from a JSON object based on user defined tag search fields
+     * Extracts hash tags from a JSON object with the help of user-defined tag search fields.
      *
-     * @param jsonObject   The JSON object to parse
-     * @param searchFields The user defined tag search fields
-     * @return String array of compressed tags based on the user defined tag search fields
+     * @param jsonObject    the JSON object to parse.
+     * @param searchFields  the user-defined tag search fields.
+     * @return              a String array of compressed tags, based on the user-defined 
+     *                      tag search fields.
      */
     public static extractHashTags(obj: any, ...searchFields: string[]): string[] {
         let tags = TagsProcessor.compressTags(obj.tags);
