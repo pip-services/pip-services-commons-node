@@ -1,3 +1,9 @@
+/**
+ * Codes for the data types that can be
+ * converted using {@link TypeConverter}.
+ * 
+ * @see TypeConverter
+ */
 export enum TypeCode {
 	Unknown,
 	String,

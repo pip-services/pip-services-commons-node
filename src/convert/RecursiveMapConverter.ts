@@ -4,6 +4,9 @@ import { TypeCode } from './TypeCode';
 import { TypeConverter } from './TypeConverter';
 import { TypeReflector } from '../reflect/TypeReflector';
 
+/**
+ * Provides methods for recursively converting values.
+ */
 export class RecursiveMapConverter {
 
     private static objectToMap(value: any): any {
